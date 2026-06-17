@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games I've Been To</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0f14;
+    --surface:   #151820;
+    --border:    #252a35;
+    --muted:     #3a4054;
+    --text:      #e8eaf0;
+    --subdued:   #8892a4;
+    --accent:    #f0a500;   /* scoreboard amber */
+    --sport-bg:  #1a2a1a;
+    --sport-txt: #5ed47a;
+    --league-bg: #0f1e35;
+    --league-txt:#5aaeff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #0d0f14 0%, #151f2e 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 40px 32px 32px;
+    text-align: center;
+  }
+  header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-shadow: 0 0 40px rgba(240,165,0,0.3);
+  }
+  header p {
+    margin-top: 8px;
+    color: var(--subdued);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .stat-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat .num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--subdued);
+    margin-top: 2px;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  /* ── NAV / TOC ── */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subdued);
+    text-decoration: none;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  nav a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(240,165,0,0.06);
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 1300px; margin: 0 auto; padding: 32px 16px 64px; }
+
+  /* ── SPORT BANNER (green) ── */
+  .sport-banner {
+    margin-top: 40px;
+    padding: 12px 20px;
+    background: var(--sport-bg);
+    border-left: 4px solid var(--sport-txt);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sport-banner h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sport-txt);
+  }
+  .sport-count {
+    margin-left: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--sport-txt);
+    opacity: 0.7;
+  }
+
+  /* ── LEAGUE BANNER (blue) ── */
+  .league-section {
+    margin-top: 2px;
+  }
+  .league-banner {
+    padding: 9px 20px 9px 28px;
+    background: var(--league-bg);
+    border-left: 4px solid var(--league-txt);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .league-banner h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--league-txt);
+  }
+  .league-count {
+    margin-left: auto;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--league-txt);
+    opacity: 0.7;
+  }
+  .toggle-icon {
+    font-size: 10px;
+    color: var(--league-txt);
+    opacity: 0.6;
+    margin-left: 6px;
+    transition: transform 0.2s;
+  }
+  .league-body.collapsed { display: none; }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  thead tr {
+    background: #1c2030;
+    border-bottom: 1px solid var(--border);
+  }
+  thead th {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--subdued);
+    padding: 8px 10px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid #1a1e28;
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: #1e2232; }
+  tbody tr.playoff { background: rgba(240,165,0,0.04); }
+  tbody tr.playoff:hover { background: rgba(240,165,0,0.09); }
+  tbody td {
+    padding: 7px 10px;
+    color: var(--text);
+    font-family: 'Roboto Mono', monospace;
+    white-space: nowrap;
+  }
+  td.date  { color: var(--subdued); font-size: 11px; }
+  td.home  { font-weight: 500; color: #c8d0e0; }
+  td.away  { color: #9aa3b5; }
+  td.score { color: var(--accent); font-weight: 500; }
+  td.ot    { color: #e07070; font-size: 11px; }
+  td.venue { color: var(--subdued); font-size: 11px; font-family: 'Inter', sans-serif; }
+  td.seating { font-size: 11px; color: #6a7488; }
+  td.details {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #a0a8bc;
+    font-style: italic;
+    max-width: 200px;
+    white-space: normal;
+  }
+  td.details.playoff-note { color: var(--accent); font-style: normal; font-weight: 500; }
+  td.links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--league-txt);
+    text-decoration: none;
+    margin-right: 6px;
+    opacity: 0.8;
+  }
+  td.links a:hover { opacity: 1; text-decoration: underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 24px 16px 20px; }
+    nav { padding: 10px 12px; }
+    .stat .num { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Games I've Been To</h1>
+  <p>A lifetime of live sports &mdash; 1988 through 2026</p>
+  <div class="stat-bar">
+    <div class="stat"><div class="num" id="total-games">—</div><div class="lbl">Total Games</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">39</div><div class="lbl">Years Span</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">8</div><div class="lbl">Sports</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><div class="num">40+</div><div class="lbl">Venues</div></div>
+  </div>
+</header>
+
+<nav id="top-nav">
+  <a href="#sport-hockey">Hockey</a>
+  <a href="#sport-baseball">Baseball</a>
+  <a href="#sport-football">Football</a>
+  <a href="#sport-soccer">Soccer</a>
+  <a href="#sport-basketball">Basketball</a>
+  <a href="#sport-lacrosse">Lacrosse</a>
+  <a href="#sport-rugby">Rugby</a>
+  <a href="#sport-volleyball">Volleyball</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════ HOCKEY -->
+<div id="sport-hockey" class="sport-banner">
+  <h2>🏒 Hockey</h2>
+  <span class="sport-count">5 leagues</span>
+</div>
+
+<!-- NHL -->
+<div class="league-section" id="league-nhl">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>National Hockey League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">75 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th>
+        <th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="date">Dec 12 1988</td><td class="home">Toronto</td><td class="away">Calgary</td><td class="score">4–4</td><td class="ot">OT</td><td class="venue">Maple Leaf Gardens</td><td class="seating">73</td><td class="seating">M</td><td class="seating">2</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 27 1989</td><td class="home">Toronto</td><td class="away">Detroit</td><td class="score">7–7</td><td class="ot">OT</td><td class="venue">Maple Leaf Gardens</td><td class="seating">73</td><td class="seating">M</td><td class="seating">2</td><td class="details"></td></tr>
+        <tr><td class="date">Jan 12 1991</td><td class="home">Toronto</td><td class="away">Hartford</td><td class="score">2–2</td><td class="ot">OT</td><td class="venue">Maple Leaf Gardens</td><td class="seating">73</td><td class="seating">M</td><td class="seating">1</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 4 1991</td><td class="home">Toronto</td><td class="away">San Jose</td><td class="score">4–1</td><td class="ot"></td><td class="venue">Maple Leaf Gardens</td><td class="seating">72</td><td class="seating">D</td><td class="seating">11</td><td class="details">SJ first game in Toronto</td></tr>
+        <tr><td class="date">Dec 23 1991</td><td class="home">Toronto</td><td class="away">Winnipeg</td><td class="score">3–1</td><td class="ot"></td><td class="venue">Maple Leaf Gardens</td><td class="seating">73</td><td class="seating">M</td><td class="seating">2</td><td class="details"></td></tr>
+        <tr class="playoff"><td class="date">May 13 1995</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">1–3</td><td class="ot"></td><td class="venue">Maple Leaf Gardens</td><td class="seating">73</td><td class="seating">M</td><td class="seating">3</td><td class="details playoff-note">Playoff R1 G3</td></tr>
+        <tr><td class="date">Nov 15 2000</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">1–2</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">120</td><td class="seating">18</td><td class="seating">1</td><td class="details"></td></tr>
+        <tr class="playoff"><td class="date">Apr 14 2003</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">4–3</td><td class="ot">2OT</td><td class="venue">Air Canada Centre</td><td class="seating">320</td><td class="seating">11</td><td class="seating">6</td><td class="details playoff-note">Playoff R1 G3</td></tr>
+        <tr class="playoff"><td class="date">Apr 8 2004</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">2–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">322</td><td class="seating">11</td><td class="seating">19</td><td class="details playoff-note">Playoff R1 G1</td></tr>
+        <tr class="playoff"><td class="date">Apr 10 2004</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">2–0</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">322</td><td class="seating">4</td><td class="seating">15</td><td class="details playoff-note">Playoff R1 G2</td></tr>
+        <tr class="playoff"><td class="date">Apr 13 2004</td><td class="home">Montreal</td><td class="away">Boston</td><td class="score">3–4</td><td class="ot">2OT</td><td class="venue">Bell Centre</td><td class="seating">122</td><td class="seating">B</td><td class="seating">10</td><td class="details playoff-note">Playoff R1 G4</td></tr>
+        <tr class="playoff"><td class="date">Apr 14 2004</td><td class="home">Ottawa</td><td class="away">Toronto</td><td class="score">4–1</td><td class="ot"></td><td class="venue">Corel Centre</td><td class="seating">322</td><td class="seating">O</td><td class="seating">12</td><td class="details playoff-note">Playoff R1 G4</td></tr>
+        <tr><td class="date">Nov 5 2005</td><td class="home">Toronto</td><td class="away">Tampa Bay</td><td class="score">5–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">322</td><td class="seating">11</td><td class="seating">19</td><td class="details">Hall of Fame Game</td></tr>
+        <tr><td class="date">Dec 6 2005</td><td class="home">Toronto</td><td class="away">Los Angeles</td><td class="score">1–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">319</td><td class="seating">18</td><td class="seating">32</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 12 2005</td><td class="home">Toronto</td><td class="away">Anaheim</td><td class="score">3–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">312</td><td class="seating">18</td><td class="seating">32</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 7 2006</td><td class="home">Toronto</td><td class="away">Atlanta</td><td class="score">4–1</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">312</td><td class="seating">15</td><td class="seating">11</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 11 2006</td><td class="home">Toronto</td><td class="away">NY Rangers</td><td class="score">2–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">312</td><td class="seating">15</td><td class="seating">13</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 28 2006</td><td class="home">Toronto</td><td class="away">Washington</td><td class="score">3–5</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">309</td><td class="seating">14</td><td class="seating">7</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 7 2006</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">5–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">120</td><td class="seating">10</td><td class="seating">7</td><td class="details"></td></tr>
+        <tr><td class="date">Apr 18 2006</td><td class="home">Toronto</td><td class="away">Pittsburgh</td><td class="score">5–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">323</td><td class="seating">11</td><td class="seating">19</td><td class="details">Season Finale</td></tr>
+        <tr><td class="date">Nov 28 2006</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">1–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">319</td><td class="seating">19S</td><td class="seating">20</td><td class="details"></td></tr>
+        <tr><td class="date">Jan 13 2007</td><td class="home">Toronto</td><td class="away">Vancouver</td><td class="score">1–6</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">319</td><td class="seating">17</td><td class="seating">31</td><td class="details">Hockey Day in Canada</td></tr>
+        <tr><td class="date">Feb 13 2007</td><td class="home">Toronto</td><td class="away">NY Islanders</td><td class="score">2–3</td><td class="ot">OT SO</td><td class="venue">Air Canada Centre</td><td class="seating">310</td><td class="seating">19S</td><td class="seating">20</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 23 2007</td><td class="home">Buffalo</td><td class="away">Toronto</td><td class="score">5–4</td><td class="ot"></td><td class="venue">HSBC Arena</td><td class="seating">304</td><td class="seating">12</td><td class="seating">21</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 27 2007</td><td class="home">Toronto</td><td class="away">Carolina</td><td class="score">6–1</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">120</td><td class="seating">10</td><td class="seating">7</td><td class="details"></td></tr>
+        <tr><td class="date">Apr 7 2007</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">6–5</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19S</td><td class="seating">9</td><td class="details">Season Finale</td></tr>
+        <tr><td class="date">Sep 20 2007</td><td class="home">Toronto</td><td class="away">Phoenix</td><td class="score">2–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">9x</td><td class="seating">9</td><td class="details">Preseason</td></tr>
+        <tr><td class="date">Sep 28 2007</td><td class="home">Toronto</td><td class="away">Detroit</td><td class="score">6–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">317</td><td class="seating">10x</td><td class="seating">12</td><td class="details">Preseason</td></tr>
+        <tr><td class="date">Oct 3 2007</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">3–4</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">317</td><td class="seating">9x</td><td class="seating">13</td><td class="details">Season Opener</td></tr>
+        <tr><td class="date">Oct 20 2007</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">4–6</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19S</td><td class="seating">19</td><td class="details"></td></tr>
+        <tr><td class="date">Oct 29 2007</td><td class="home">Toronto</td><td class="away">Washington</td><td class="score">1–7</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19S</td><td class="seating">9</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 9 2007</td><td class="home">Detroit</td><td class="away">Columbus</td><td class="score">4–1</td><td class="ot"></td><td class="venue">Joe Louis Arena</td><td class="seating">206</td><td class="seating">19</td><td class="seating">12</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 10 2007</td><td class="home">Toronto</td><td class="away">NY Rangers</td><td class="score">2–3</td><td class="ot">OT SO</td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">16x</td><td class="seating">6</td><td class="details">Hall of Fame Game</td></tr>
+        <tr><td class="date">Nov 24 2007</td><td class="home">Ottawa</td><td class="away">Philadelphia</td><td class="score">3–4</td><td class="ot"></td><td class="venue">Scotiabank Place</td><td class="seating">323</td><td class="seating">N</td><td class="seating">3</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 4 2007</td><td class="home">Toronto</td><td class="away">Nashville</td><td class="score">3–1</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">10x</td><td class="seating">8</td><td class="details"></td></tr>
+        <tr><td class="date">Jan 1 2008</td><td class="home">Buffalo</td><td class="away">Pittsburgh</td><td class="score">1–2</td><td class="ot">OT SO</td><td class="venue">Ralph Wilson Stadium</td><td class="seating">122</td><td class="seating">28</td><td class="seating">17</td><td class="details playoff-note">Winter Classic</td></tr>
+        <tr><td class="date">Jan 29 2008</td><td class="home">Toronto</td><td class="away">St. Louis</td><td class="score">2–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">12x</td><td class="seating">8</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 5 2008</td><td class="home">Toronto</td><td class="away">Florida</td><td class="score">0–8</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">10x</td><td class="seating">9</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 14 2008</td><td class="home">Toronto</td><td class="away">NY Islanders</td><td class="score">4–5</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19S</td><td class="seating">21</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 4 2008</td><td class="home">Toronto</td><td class="away">New Jersey</td><td class="score">1–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">17x</td><td class="seating">6</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 15 2008</td><td class="home">Toronto</td><td class="away">Buffalo</td><td class="score">2–6</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+        <tr><td class="date">Mar 29 2008</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">4–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">319</td><td class="seating">13</td><td class="seating">22</td><td class="details"></td></tr>
+        <tr><td class="date">Apr 3 2008</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">2–8</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">311</td><td class="seating">16</td><td class="seating">25</td><td class="details">Home Season Finale</td></tr>
+        <tr><td class="date">Apr 5 2008</td><td class="home">Montreal</td><td class="away">Toronto</td><td class="score">3–1</td><td class="ot"></td><td class="venue">Bell Centre</td><td class="seating">313</td><td class="seating">B</td><td class="seating">9</td><td class="details">Season Finale</td></tr>
+        <tr><td class="date">Oct 11 2008</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">1–6</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">317</td><td class="seating">9x</td><td class="seating">13</td><td class="details">Home Opener</td></tr>
+        <tr><td class="date">Nov 22 2008</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">4–5</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19</td><td class="seating">21</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 6 2008</td><td class="home">Montreal</td><td class="away">Washington</td><td class="score">1–2</td><td class="ot"></td><td class="venue">Bell Centre</td><td class="seating">402</td><td class="seating">B</td><td class="seating">15</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 23 2008</td><td class="home">Toronto</td><td class="away">Dallas</td><td class="score">2–8</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">321</td><td class="seating">19</td><td class="seating">21</td><td class="details"></td></tr>
+        <tr><td class="date">Jan 31 2009</td><td class="home">Toronto</td><td class="away">Pittsburgh</td><td class="score">5–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">317</td><td class="seating">9x</td><td class="seating">13</td><td class="details"></td></tr>
+        <tr><td class="date">Feb 21 2009</td><td class="home">Toronto</td><td class="away">Vancouver</td><td class="score">2–3</td><td class="ot">OT SO</td><td class="venue">Air Canada Centre</td><td class="seating">309</td><td class="seating">14</td><td class="seating"></td><td class="details"></td></tr>
+        <tr><td class="date">Mar 7 2009</td><td class="home">Toronto</td><td class="away">Edmonton</td><td class="score">1–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">7x</td><td class="seating">8</td><td class="details"></td></tr>
+        <tr><td class="date">Apr 11 2009</td><td class="home">Montreal</td><td class="away">Pittsburgh</td><td class="score">1–3</td><td class="ot"></td><td class="venue">Bell Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">Season Finale</td></tr>
+        <tr class="playoff"><td class="date">Jun 12 2009</td><td class="home">Detroit</td><td class="away">Pittsburgh</td><td class="score">1–2</td><td class="ot"></td><td class="venue">Joe Louis Arena</td><td class="seating">215</td><td class="seating">18</td><td class="seating">15</td><td class="details playoff-note">Stanley Cup Finals G7</td></tr>
+        <tr><td class="date">Oct 1 2009</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">3–4</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">317</td><td class="seating">12x</td><td class="seating">16</td><td class="details">Home Opener</td></tr>
+        <tr><td class="date">Oct 13 2009</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">1–4</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">14x</td><td class="seating">10</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 10 2009</td><td class="home">Toronto</td><td class="away">Minnesota</td><td class="score">2–5</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">16x</td><td class="seating">9</td><td class="details"></td></tr>
+        <tr><td class="date">Oct 7 2010</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">3–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">313</td><td class="seating">14x</td><td class="seating">8</td><td class="details">Home Opener</td></tr>
+        <tr><td class="date">Oct 18 2010</td><td class="home">Toronto</td><td class="away">NY Islanders</td><td class="score">1–2</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">311</td><td class="seating">12</td><td class="seating">8</td><td class="details"></td></tr>
+        <tr><td class="date">Jan 20 2011</td><td class="home">Toronto</td><td class="away">Anaheim</td><td class="score">5–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">109</td><td class="seating">16</td><td class="seating">5</td><td class="details"></td></tr>
+        <tr><td class="date">Oct 6 2011</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">2–0</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">312</td><td class="seating">19S</td><td class="seating">32</td><td class="details">Home Opener</td></tr>
+        <tr><td class="date">Oct 19 2011</td><td class="home">Toronto</td><td class="away">Winnipeg</td><td class="score">4–3</td><td class="ot">OT SO</td><td class="venue">Air Canada Centre</td><td class="seating">116</td><td class="seating">23</td><td class="seating"></td><td class="details"></td></tr>
+        <tr><td class="date">Jan 1 2014</td><td class="home">Detroit</td><td class="away">Toronto</td><td class="score">2–3</td><td class="ot">OT SO</td><td class="venue">Michigan Stadium</td><td class="seating">44</td><td class="seating">20</td><td class="seating">1</td><td class="details playoff-note">Winter Classic</td></tr>
+        <tr><td class="date">Dec 15 2015</td><td class="home">Toronto</td><td class="away">Tampa Bay</td><td class="score">4–5</td><td class="ot">OT</td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 19 2015</td><td class="home">Toronto</td><td class="away">Los Angeles</td><td class="score">5–0</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 7 2016</td><td class="home">Toronto</td><td class="away">Minnesota</td><td class="score">2–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Apr 9 2017</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">2–3</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 6 2017</td><td class="home">Toronto</td><td class="away">Las Vegas</td><td class="score">3–4</td><td class="ot">OT SO</td><td class="venue">Air Canada Centre</td><td class="seating">310S</td><td class="seating">19</td><td class="seating">4</td><td class="details"></td></tr>
+        <tr><td class="date">Dec 16 2017</td><td class="home">Ottawa</td><td class="away">Montreal</td><td class="score">3–0</td><td class="ot"></td><td class="venue">Lansdowne Park</td><td class="seating">E6</td><td class="seating">51</td><td class="seating">1</td><td class="details playoff-note">Winter Classic</td></tr>
+        <tr><td class="date">Dec 19 2017</td><td class="home">Toronto</td><td class="away">Carolina</td><td class="score">8–1</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details">Next Century Game</td></tr>
+        <tr><td class="date">Oct 16 2018</td><td class="home">Minnesota</td><td class="away">Arizona</td><td class="score">2–1</td><td class="ot"></td><td class="venue">Excel Energy Center</td><td class="seating">205</td><td class="seating">9</td><td class="seating">11</td><td class="details"></td></tr>
+        <tr><td class="date">Nov 9 2018</td><td class="home">Toronto</td><td class="away">New Jersey</td><td class="score">6–1</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details">Hall of Fame Game</td></tr>
+        <tr><td class="date">Feb 27 2019</td><td class="home">Toronto</td><td class="away">Carolina</td><td class="score">6–2</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 8 2022</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">4–6</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+        <tr><td class="date">Mar 13 2022</td><td class="home">Buffalo</td><td class="away">Toronto</td><td class="score">2–5</td><td class="ot"></td><td class="venue">Tim Hortons Field</td><td class="seating">119</td><td class="seating">8</td><td class="seating">22</td><td class="details playoff-note">Heritage Classic Hamilton</td></tr>
+        <tr><td class="date">Nov 20 2025</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">2–3</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">118</td><td class="seating">21</td><td class="seating">14</td><td class="details"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- AHL -->
+<div class="league-section" id="league-ahl">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>American Hockey League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">3 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Oct 20 2007</td><td class="home">Toronto</td><td class="away">Manitoba</td><td class="score">5–3</td><td class="ot"></td><td class="venue">Ricoh Coliseum</td><td class="seating">105</td><td class="seating">B</td><td class="seating">20</td><td class="details"></td></tr>
+      <tr><td class="date">Dec 30 2013</td><td class="home">Grand Rapids</td><td class="away">Toronto</td><td class="score">3–4</td><td class="ot"></td><td class="venue">Comerica Park</td><td class="seating">129</td><td class="seating">30</td><td class="seating">1</td><td class="details">Outdoor game</td></tr>
+      <tr class="playoff"><td class="date">Jun 14 2018</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">6–1</td><td class="ot"></td><td class="venue">Ricoh Coliseum</td><td class="seating">115A</td><td class="seating">T</td><td class="seating">7</td><td class="details playoff-note">Calder Cup Finals G7</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- OHL -->
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Ontario Hockey League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jan 5 2020</td><td class="home">Mississauga</td><td class="away">Peterborough</td><td class="score">7–3</td><td class="ot"></td><td class="venue">Paramount Fine Foods Ctr</td><td class="seating">3</td><td class="seating">H</td><td class="seating">9</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- Women's Hockey -->
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Women's Hockey</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Dec 6 1997</td><td class="home">Canada</td><td class="away">USA</td><td class="score">5–4</td><td class="ot"></td><td class="venue">Winnipeg Arena</td><td class="details">Olympic Exhibition</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- U18 -->
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>U18 Tournament</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr class="playoff"><td class="date">Aug 11 2018</td><td class="home">Canada</td><td class="away">Sweden</td><td class="score">6–2</td><td class="ot"></td><td class="venue">Rogers Place</td><td class="seating">121</td><td class="seating">19</td><td class="seating">14</td><td class="details playoff-note">Hlinka Gretzky Cup Finals U18</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ BASEBALL -->
+<div id="sport-baseball" class="sport-banner">
+  <h2>⚾ Baseball</h2>
+  <span class="sport-count">2 leagues</span>
+</div>
+
+<!-- MLB -->
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Major League Baseball</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">88 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Aug 21 1988</td><td class="home">Toronto</td><td class="away">Milwaukee</td><td class="score">8–4</td><td class="venue">Exhibition Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Jun 7 1990</td><td class="home">Toronto</td><td class="away">Minnesota</td><td class="score">10–3</td><td class="venue">Skydome</td><td class="seating">514</td><td class="seating">30</td><td class="seating">101</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 8 1991</td><td class="home">AL</td><td class="away">NL</td><td class="score">—</td><td class="venue">Skydome</td><td class="seating">130A</td><td class="seating">40</td><td class="seating">5</td><td class="details playoff-note">All Star HR Derby</td></tr>
+      <tr><td class="date">Sep 4 1991</td><td class="home">Toronto</td><td class="away">Baltimore</td><td class="score">3–1</td><td class="venue">Skydome</td><td class="seating">123</td><td class="seating">39</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Oct 8 1992</td><td class="home">Toronto</td><td class="away">Oakland</td><td class="score">3–1</td><td class="venue">Skydome</td><td class="seating">508</td><td class="seating">3</td><td class="seating">12</td><td class="details playoff-note">ALCS G2</td></tr>
+      <tr><td class="date">Jun 22 1993</td><td class="home">Toronto</td><td class="away">NY Yankees</td><td class="score">5–4</td><td class="venue">Skydome</td><td class="seating">113D</td><td class="seating">3</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Oct 9 1993</td><td class="home">Toronto</td><td class="away">Chicago WS</td><td class="score">4–7</td><td class="venue">Skydome</td><td class="seating">513</td><td class="seating">22</td><td class="seating">111</td><td class="details playoff-note">ALCS G4</td></tr>
+      <tr><td class="date">May 23 1994</td><td class="home">Toronto</td><td class="away">Cleveland</td><td class="score">6–5</td><td class="venue">Skydome</td><td class="seating">505</td><td class="seating">6</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 21 1994</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">9–3</td><td class="venue">Skydome</td><td class="seating">114</td><td class="seating">1</td><td class="seating">9</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 24 1996</td><td class="home">Toronto</td><td class="away">Oakland</td><td class="score">6–7</td><td class="venue">Skydome</td><td class="seating">509</td><td class="seating">10</td><td class="seating">6</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 31 2000</td><td class="home">Toronto</td><td class="away">LA Dodgers</td><td class="score">—</td><td class="venue">Skydome</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Apr 17 2007</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">2–1</td><td class="venue">Rogers Centre</td><td class="seating">521</td><td class="seating">14</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 8 2008</td><td class="home">Toronto</td><td class="away">Oakland</td><td class="score">8–9</td><td class="venue">Rogers Centre</td><td class="seating">537</td><td class="seating">4</td><td class="seating">108</td><td class="details"></td></tr>
+      <tr><td class="date">May 14 2008</td><td class="home">NY Mets</td><td class="away">Washington</td><td class="score">3–5</td><td class="venue">Shea Stadium</td><td class="seating">2</td><td class="seating">K</td><td class="seating">16</td><td class="details"></td></tr>
+      <tr><td class="date">May 16 2008</td><td class="home">NY Yankees</td><td class="away">NY Mets</td><td class="score">—</td><td class="venue">Yankee Stadium</td><td class="seating">BLCH51</td><td class="seating">P</td><td class="seating">19</td><td class="details">PPD Rain</td></tr>
+      <tr><td class="date">May 18 2008</td><td class="home">Boston</td><td class="away">Milwaukee</td><td class="score">11–7</td><td class="venue">Fenway Park</td><td class="seating">42</td><td class="seating">41</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 7 2008</td><td class="home">Detroit</td><td class="away">Cleveland</td><td class="score">8–4</td><td class="venue">Comerica Park</td><td class="seating">147</td><td class="seating">K</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 13 2008</td><td class="home">Toronto</td><td class="away">Chi Cubs</td><td class="score">3–2</td><td class="venue">Rogers Centre</td><td class="seating">521B</td><td class="seating">12</td><td class="seating">102</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 2 2012</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">4–7</td><td class="venue">Rogers Centre</td><td class="seating">536R</td><td class="seating">2</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 22 2012</td><td class="home">Pittsburgh</td><td class="away">Detroit</td><td class="score">4–1</td><td class="venue">PNC Park</td><td class="seating">117</td><td class="seating">H</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">May 14 2013</td><td class="home">Toronto</td><td class="away">San Francisco</td><td class="score">10–6</td><td class="venue">Rogers Centre</td><td class="seating">522R</td><td class="seating">9</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr><td class="date">May 28 2013</td><td class="home">Toronto</td><td class="away">Atlanta</td><td class="score">6–7</td><td class="venue">Rogers Centre</td><td class="seating">517</td><td class="seating">1</td><td class="seating">105</td><td class="details">10 Innings</td></tr>
+      <tr><td class="date">Jun 17 2013</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">2–0</td><td class="venue">Rogers Centre</td><td class="seating">523L</td><td class="seating">1</td><td class="seating">105</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 23 2013</td><td class="home">Toronto</td><td class="away">LA Dodgers</td><td class="score">9–10</td><td class="venue">Rogers Centre</td><td class="seating">532R</td><td class="seating">7</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 4 2013</td><td class="home">Cincinnati</td><td class="away">St. Louis</td><td class="score">2–15</td><td class="venue">Great American Ballpark</td><td class="seating">527</td><td class="seating">D</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 15 2013</td><td class="home">Toronto</td><td class="away">Baltimore</td><td class="score">1–3</td><td class="venue">Rogers Centre</td><td class="seating">520R</td><td class="seating">1</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 29 2013</td><td class="home">Toronto</td><td class="away">Tampa Bay</td><td class="score">6–7</td><td class="venue">Rogers Centre</td><td class="seating">515R</td><td class="seating">8</td><td class="seating">1</td><td class="details">Season Finale</td></tr>
+      <tr><td class="date">Apr 4 2014</td><td class="home">Toronto</td><td class="away">NY Yankees</td><td class="score">3–7</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">32</td><td class="seating">10</td><td class="details">Season Opener</td></tr>
+      <tr><td class="date">Apr 8 2014</td><td class="home">Toronto</td><td class="away">Houston</td><td class="score">5–2</td><td class="venue">Rogers Centre</td><td class="seating">536L</td><td class="seating">2</td><td class="seating">101</td><td class="details"></td></tr>
+      <tr><td class="date">May 8 2014</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">12–6</td><td class="venue">Rogers Centre</td><td class="seating">511L</td><td class="seating">1</td><td class="seating">107</td><td class="details"></td></tr>
+      <tr><td class="date">May 12 2014</td><td class="home">Toronto</td><td class="away">LA Angels</td><td class="score">7–3</td><td class="venue">Rogers Centre</td><td class="seating">520L</td><td class="seating">1</td><td class="seating">104</td><td class="details"></td></tr>
+      <tr><td class="date">May 25 2014</td><td class="home">Toronto</td><td class="away">Oakland</td><td class="score">3–1</td><td class="venue">Rogers Centre</td><td class="seating">535L</td><td class="seating">2</td><td class="seating">104</td><td class="details"></td></tr>
+      <tr><td class="date">May 29 2014</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">6–8</td><td class="venue">Rogers Centre</td><td class="seating">536R</td><td class="seating">2</td><td class="seating">1</td><td class="details">10 Innings</td></tr>
+      <tr><td class="date">Jun 6 2014</td><td class="home">Chi Cubs</td><td class="away">Miami</td><td class="score">5–3</td><td class="venue">Wrigley Field</td><td class="seating">220</td><td class="seating">7</td><td class="seating">4</td><td class="details">13 Innings</td></tr>
+      <tr><td class="date">Jun 9 2014</td><td class="home">Chicago WS</td><td class="away">Detroit</td><td class="score">6–5</td><td class="venue">US Cellular Field</td><td class="seating">154</td><td class="seating">19</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 1 2014</td><td class="home">Toronto</td><td class="away">Milwaukee</td><td class="score">4–1</td><td class="venue">Rogers Centre</td><td class="seating">535L</td><td class="seating">3</td><td class="seating">105</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 12 2014</td><td class="home">Cleveland</td><td class="away">Arizona</td><td class="score">1–0</td><td class="venue">Progressive Field</td><td class="seating">146</td><td class="seating">G</td><td class="seating">1</td><td class="details">PPD Rain 3 Inn</td></tr>
+      <tr><td class="date">Aug 13 2014</td><td class="home">Cleveland</td><td class="away">Arizona</td><td class="score">3–2</td><td class="venue">Progressive Field</td><td class="seating">140</td><td class="seating">J</td><td class="seating">5</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 13 2014</td><td class="home">Cleveland</td><td class="away">Arizona</td><td class="score">0–1</td><td class="venue">Progressive Field</td><td class="seating">140</td><td class="seating">J</td><td class="seating">5</td><td class="details">12 Innings</td></tr>
+      <tr><td class="date">Apr 6 2015</td><td class="home">Miami</td><td class="away">Atlanta</td><td class="score">1–2</td><td class="venue">Marlins Park</td><td class="seating">20</td><td class="seating">18</td><td class="seating">20</td><td class="details">Season Opener</td></tr>
+      <tr><td class="date">Apr 7 2015</td><td class="home">Tampa Bay</td><td class="away">Baltimore</td><td class="score">5–6</td><td class="venue">Tropicana Field</td><td class="seating">302</td><td class="seating">B</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 11 2015</td><td class="home">Atlanta</td><td class="away">NY Mets</td><td class="score">5–3</td><td class="venue">Turner Field</td><td class="seating">151L</td><td class="seating">23</td><td class="seating">101</td><td class="details"></td></tr>
+      <tr><td class="date">May 10 2015</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">3–6</td><td class="venue">Rogers Centre</td><td class="seating">509L</td><td class="seating">12</td><td class="seating">102</td><td class="details"></td></tr>
+      <tr><td class="date">May 23 2015</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">2–3</td><td class="venue">Rogers Centre</td><td class="seating">516</td><td class="seating">1</td><td class="seating">105</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 17 2015</td><td class="home">Toronto</td><td class="away">NY Mets</td><td class="score">8–0</td><td class="venue">Rogers Centre</td><td class="seating">526L</td><td class="seating">1</td><td class="seating">108</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 14 2015</td><td class="home">Kansas City</td><td class="away">LA Angels</td><td class="score">4–1</td><td class="venue">Kaufmann Stadium</td><td class="seating">413</td><td class="seating">LL</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 17 2015</td><td class="home">St. Louis</td><td class="away">San Francisco</td><td class="score">2–1</td><td class="venue">Busch Stadium III</td><td class="seating">250</td><td class="seating">3</td><td class="seating">5</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 18 2015</td><td class="home">St. Louis</td><td class="away">San Francisco</td><td class="score">0–2</td><td class="venue">Busch Stadium III</td><td class="seating">193</td><td class="seating">6</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 27 2015</td><td class="home">Toronto</td><td class="away">Tampa Bay</td><td class="score">5–4</td><td class="venue">Rogers Centre</td><td class="seating">533L</td><td class="seating">3</td><td class="seating">110</td><td class="details">Home Finale</td></tr>
+      <tr class="playoff"><td class="date">Oct 8 2015</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">3–5</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALDS G1</td></tr>
+      <tr class="playoff"><td class="date">Oct 9 2015</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">4–6</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALDS G2</td></tr>
+      <tr class="playoff"><td class="date">Oct 14 2015</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">6–3</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALDS G5</td></tr>
+      <tr class="playoff"><td class="date">Oct 19 2015</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">11–8</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALCS G3</td></tr>
+      <tr class="playoff"><td class="date">Oct 20 2015</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">2–14</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALCS G4</td></tr>
+      <tr class="playoff"><td class="date">Oct 21 2015</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">7–1</td><td class="venue">Rogers Centre</td><td class="seating">514R</td><td class="seating">14</td><td class="seating">6</td><td class="details playoff-note">ALCS G5</td></tr>
+      <tr><td class="date">Apr 8 2016</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">7–8</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 8 2016</td><td class="home">Toronto</td><td class="away">LA Dodgers</td><td class="score">2–4</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 14 2016</td><td class="home">LA Dodgers</td><td class="away">St. Louis</td><td class="score">5–3</td><td class="venue">Dodger Stadium</td><td class="seating">VIP R5</td><td class="seating">A</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">May 17 2016</td><td class="home">San Diego</td><td class="away">San Francisco</td><td class="score">1–5</td><td class="venue">Petco Park</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 18 2016</td><td class="home">Anaheim</td><td class="away">LA Dodgers</td><td class="score">8–1</td><td class="venue">Angel Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 20 2016</td><td class="home">Oakland</td><td class="away">NY Yankees</td><td class="score">3–8</td><td class="venue">County Coliseum</td><td class="seating">119</td><td class="seating">33</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">May 22 2016</td><td class="home">San Francisco</td><td class="away">Chi Cubs</td><td class="score">1–0</td><td class="venue">AT&amp;T Park</td><td class="seating">313</td><td class="seating">6</td><td class="seating">14</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 14 2016</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">11–3</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Jul 25 2016</td><td class="home">Toronto</td><td class="away">San Diego</td><td class="score">4–2</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">1st time SD in TOR</td></tr>
+      <tr><td class="date">Aug 16 2016</td><td class="home">Toronto</td><td class="away">NY Yankees</td><td class="score">12–6</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Oct 9 2016</td><td class="home">Toronto</td><td class="away">Texas</td><td class="score">7–6</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details playoff-note">ALDS G3</td></tr>
+      <tr class="playoff"><td class="date">Oct 17 2016</td><td class="home">Toronto</td><td class="away">Cleveland</td><td class="score">2–4</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details playoff-note">ALCS G3</td></tr>
+      <tr><td class="date">Apr 11 2017</td><td class="home">Toronto</td><td class="away">Milwaukee</td><td class="score">3–4</td><td class="venue">Rogers Centre</td><td class="seating">522L</td><td class="seating">10</td><td class="seating">101</td><td class="details">Season Opener</td></tr>
+      <tr><td class="date">Apr 20 2017</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">1–4</td><td class="venue">Rogers Centre</td><td class="seating">537R</td><td class="seating">6</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr><td class="date">May 30 2017</td><td class="home">Toronto</td><td class="away">Cincinnati</td><td class="score">6–4</td><td class="venue">Rogers Centre</td><td class="seating">520L</td><td class="seating">15</td><td class="seating">101</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 14 2017</td><td class="home">Toronto</td><td class="away">Tampa Bay</td><td class="score">7–6</td><td class="venue">Rogers Centre</td><td class="seating">521R</td><td class="seating">15</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 7 2017</td><td class="home">Minnesota</td><td class="away">Baltimore</td><td class="score">9–6</td><td class="venue">Target Field</td><td class="seating">215</td><td class="seating">5</td><td class="seating">5</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 14 2017</td><td class="home">Seattle</td><td class="away">Baltimore</td><td class="score">3–11</td><td class="venue">Safeco Field</td><td class="seating">330</td><td class="seating">10</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 24 2017</td><td class="home">Toronto</td><td class="away">NY Yankees</td><td class="score">3–11</td><td class="venue">Rogers Centre</td><td class="seating">515R</td><td class="seating">28</td><td class="seating">8</td><td class="details">Home Finale</td></tr>
+      <tr><td class="date">Apr 27 2018</td><td class="home">Philadelphia</td><td class="away">Atlanta</td><td class="score">7–3</td><td class="venue">Citizens Bank Park</td><td class="seating">11</td><td class="seating">3</td><td class="seating">14</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 28 2018</td><td class="home">Baltimore</td><td class="away">Detroit</td><td class="score">5–9</td><td class="venue">Camden Yards</td><td class="seating">58</td><td class="seating">7</td><td class="seating">5</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 29 2018</td><td class="home">Washington</td><td class="away">Arizona</td><td class="score">3–1</td><td class="venue">Nationals Park</td><td class="seating">115</td><td class="seating">L</td><td class="seating">14</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 4 2019</td><td class="home">NY Yankees</td><td class="away">Boston</td><td class="score">7–4</td><td class="venue">Yankee Stadium</td><td class="seating">421</td><td class="seating">2</td><td class="seating">13</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 6 2019</td><td class="home">NY Mets</td><td class="away">Miami</td><td class="score">5–0</td><td class="venue">Citi Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 16 2022</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">6–2</td><td class="venue">Rogers Centre</td><td class="seating">BOX</td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Jun 14 2022</td><td class="home">Toronto</td><td class="away">Baltimore</td><td class="score">5–6</td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 1 2024</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">1–6</td><td class="venue">Rogers Centre</td><td class="seating">WJFD</td><td class="seating"></td><td class="seating"></td><td class="details">Work event – flight deck</td></tr>
+      <tr><td class="date">Jun 5 2025</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">9–1</td><td class="venue">Rogers Centre</td><td class="seating">WJFD</td><td class="seating"></td><td class="seating"></td><td class="details">Work event – flight deck</td></tr>
+      <tr><td class="date">Apr 29 2026</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">8–1</td><td class="venue">Rogers Centre</td><td class="seating">WJFD</td><td class="seating"></td><td class="seating"></td><td class="details">Work event – flight deck</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- Minor League Baseball -->
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Minor League Baseball</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 18 2015</td><td class="home">Buffalo</td><td class="away">Columbus</td><td class="score">5–1</td><td class="venue">Coca-Cola Field</td><td class="seating">119</td><td class="seating">HH</td><td class="seating">6</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ FOOTBALL -->
+<div id="sport-football" class="sport-banner">
+  <h2>🏈 Football</h2>
+  <span class="sport-count">3 leagues</span>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>National Football League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">19 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Oct 8 1995</td><td class="home">Buffalo</td><td class="away">NY Jets</td><td class="score">29–10</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Nov 17 1996</td><td class="home">Buffalo</td><td class="away">Cincinnati</td><td class="score">31–17</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Dec 13 1998</td><td class="home">Buffalo</td><td class="away">Oakland</td><td class="score">44–21</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Dec 17 2000</td><td class="home">Buffalo</td><td class="away">New England</td><td class="score">10–13</td><td class="ot">OT</td><td class="venue">Ralph Wilson Stadium</td><td class="seating">105</td><td class="seating">34</td><td class="seating">14</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 31 2004</td><td class="home">Buffalo</td><td class="away">Arizona</td><td class="score">38–14</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">103</td><td class="seating">13</td><td class="seating">2</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 21 2004</td><td class="home">Buffalo</td><td class="away">St. Louis</td><td class="score">37–17</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">142</td><td class="seating">27</td><td class="seating">12</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 5 2006</td><td class="home">Buffalo</td><td class="away">Green Bay</td><td class="score">24–10</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">118</td><td class="seating">37</td><td class="seating">19</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 8 2007</td><td class="home">Buffalo</td><td class="away">Dallas</td><td class="score">24–25</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details playoff-note">Monday Night Football</td></tr>
+      <tr><td class="date">Oct 21 2007</td><td class="home">Detroit</td><td class="away">Tampa Bay</td><td class="score">23–16</td><td class="ot"></td><td class="venue">Ford Field</td><td class="seating">132</td><td class="seating">27</td><td class="seating">18</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 18 2007</td><td class="home">Buffalo</td><td class="away">New England</td><td class="score">10–56</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details playoff-note">Sunday Night Football</td></tr>
+      <tr><td class="date">Oct 19 2008</td><td class="home">Buffalo</td><td class="away">San Diego</td><td class="score">23–14</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 17 2008</td><td class="home">Buffalo</td><td class="away">Cleveland</td><td class="score">27–29</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details playoff-note">Monday Night Football</td></tr>
+      <tr><td class="date">Aug 15 2009</td><td class="home">Buffalo</td><td class="away">Chicago</td><td class="score">27–20</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details">Preseason</td></tr>
+      <tr><td class="date">Jan 3 2010</td><td class="home">Buffalo</td><td class="away">Indianapolis</td><td class="score">30–7</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 28 2010</td><td class="home">Buffalo</td><td class="away">Cincinnati</td><td class="score">35–20</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details">Preseason</td></tr>
+      <tr><td class="date">Nov 28 2010</td><td class="home">Buffalo</td><td class="away">Pittsburgh</td><td class="score">16–19</td><td class="ot">OT</td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Dec 12 2010</td><td class="home">Buffalo</td><td class="away">Cleveland</td><td class="score">13–6</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Dec 4 2011</td><td class="home">Buffalo</td><td class="away">Tennessee</td><td class="score">17–23</td><td class="ot"></td><td class="venue">Ralph Wilson Stadium</td><td class="seating">102</td><td class="seating">9</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 14 2018</td><td class="home">Minnesota</td><td class="away">Arizona</td><td class="score">27–17</td><td class="ot"></td><td class="venue">US Bank Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>NCAA Football</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">4 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Sep 17 2005</td><td class="home">Michigan</td><td class="away">E. Michigan</td><td class="score">55–0</td><td class="venue">Michigan Stadium</td><td class="seating">23</td><td class="seating">37</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Jan 5 2008</td><td class="home">Ball State</td><td class="away">Rutgers</td><td class="score">30–52</td><td class="venue">Rogers Centre</td><td class="seating">207</td><td class="seating">1</td><td class="seating">6</td><td class="details">International Bowl</td></tr>
+      <tr><td class="date">Jan 3 2009</td><td class="home">Buffalo</td><td class="away">Connecticut</td><td class="score">20–38</td><td class="venue">Rogers Centre</td><td class="seating">241</td><td class="seating">2</td><td class="seating">10</td><td class="details">International Bowl</td></tr>
+      <tr><td class="date">Oct 11 2014</td><td class="home">Syracuse</td><td class="away">Florida St.</td><td class="score">20–38</td><td class="venue">Carrier Dome</td><td class="seating">127</td><td class="seating">H</td><td class="seating">9</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Canadian Football League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">12 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Sep 15 2012</td><td class="home">Hamilton</td><td class="away">Edmonton</td><td class="score">51–8</td><td class="ot"></td><td class="venue">Ivor Wynne Stadium</td><td class="seating">25</td><td class="seating">P</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Nov 17 2013</td><td class="home">Toronto</td><td class="away">Hamilton</td><td class="score">24–36</td><td class="ot"></td><td class="venue">Rogers Center</td><td class="seating">134A</td><td class="seating">25</td><td class="seating">106</td><td class="details playoff-note">East Finals</td></tr>
+      <tr><td class="date">Aug 27 2015</td><td class="home">Hamilton</td><td class="away">Montreal</td><td class="score">23–26</td><td class="ot"></td><td class="venue">Tim Horton Field</td><td class="seating">203</td><td class="seating">8</td><td class="seating">10</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 23 2016</td><td class="home">Toronto</td><td class="away">Hamilton</td><td class="score">20–42</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">Season Opener</td></tr>
+      <tr><td class="date">Jul 1 2016</td><td class="home">Hamilton</td><td class="away">BC</td><td class="score">3–28</td><td class="ot"></td><td class="venue">Tim Hortons Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Jul 13 2016</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">20–30</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Aug 12 2016</td><td class="home">Toronto</td><td class="away">Winnipeg</td><td class="score">17–34</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Oct 10 2016</td><td class="home">Toronto</td><td class="away">Calgary</td><td class="score">20–48</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Oct 15 2016</td><td class="home">Toronto</td><td class="away">Saskatchewan</td><td class="score">11–29</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Nov 27 2016</td><td class="home">Calgary</td><td class="away">Ottawa</td><td class="score">33–39</td><td class="ot">OT</td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">7</td><td class="seating">5</td><td class="details playoff-note">Grey Cup 103rd</td></tr>
+      <tr class="playoff"><td class="date">Dec 12 2021</td><td class="home">Hamilton</td><td class="away">Winnipeg</td><td class="score">25–33</td><td class="ot">OT</td><td class="venue">Tim Hortons Field</td><td class="seating">101</td><td class="seating">9</td><td class="seating">19</td><td class="details playoff-note">Grey Cup 108th</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ SOCCER -->
+<div id="sport-soccer" class="sport-banner">
+  <h2>⚽ Soccer</h2>
+  <span class="sport-count">6 leagues/tournaments</span>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Major League Soccer</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">78 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">May 23 2007</td><td class="home">Toronto</td><td class="away">Benfica</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">111</td><td class="seating">2</td><td class="seating">1</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Jun 2 2007</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">19</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 25 2007</td><td class="home">Toronto</td><td class="away">Aston Villa</td><td class="score">2–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">6</td><td class="seating">22</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Aug 5 2007</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">111</td><td class="seating">17</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 18 2007</td><td class="home">Toronto</td><td class="away">Chivas</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">105</td><td class="seating">33</td><td class="seating">19</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 25 2007</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">0–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">6</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 15 2007</td><td class="home">Toronto</td><td class="away">Salt Lake</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">6</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 22 2007</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">1–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">3</td><td class="seating">21</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 4 2007</td><td class="home">Toronto</td><td class="away">NYRB</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">126</td><td class="seating">11</td><td class="seating">19</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 20 2007</td><td class="home">Toronto</td><td class="away">New England</td><td class="score">2–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">108</td><td class="seating">22</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 19 2008</td><td class="home">Toronto</td><td class="away">Salt Lake</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 26 2008</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">May 1 2008</td><td class="home">Toronto</td><td class="away">New York</td><td class="score">1–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">May 21 2008</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">May 31 2008</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 14 2008</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">3–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">126</td><td class="seating">3</td><td class="seating">22</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 22 2008</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">1–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details">Canada Qualifying</td></tr>
+      <tr><td class="date">Jul 24 2008</td><td class="home">MLS All Stars</td><td class="away">West Ham Utd</td><td class="score">3–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details playoff-note">MLS All Star Game</td></tr>
+      <tr><td class="date">Aug 8 2008</td><td class="home">Toronto</td><td class="away">Dallas</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">126</td><td class="seating">3</td><td class="seating">22</td><td class="details"></td></tr>
+      <tr><td class="date">Oct 18 2008</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">3–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">32</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 4 2009</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">21</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 22 2009</td><td class="home">Toronto</td><td class="away">Chivas</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">21</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">May 2 2009</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">1–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">111</td><td class="seating">31</td><td class="seating">14</td><td class="details"></td></tr>
+      <tr><td class="date">May 6 2009</td><td class="home">Toronto</td><td class="away">Vancouver</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">111</td><td class="seating">31</td><td class="seating">14</td><td class="details">Canada Qualifying</td></tr>
+      <tr><td class="date">May 16 2009</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">21</td><td class="seating">7</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 22 2009</td><td class="home">Toronto</td><td class="away">River Plate</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">21</td><td class="seating">7</td><td class="details">Friendly (3–4 PKs)</td></tr>
+      <tr><td class="date">Aug 7 2009</td><td class="home">Toronto</td><td class="away">Real Madrid</td><td class="score">1–5</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">107</td><td class="seating">21</td><td class="seating">7</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Apr 15 2010</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">104</td><td class="seating">8</td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">May 8 2010</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">4–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 26 2010</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">104</td><td class="seating">8</td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Aug 21 2010</td><td class="home">Toronto</td><td class="away">NYRB</td><td class="score">1–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 21 2010</td><td class="home">Dallas</td><td class="away">Colorado</td><td class="score">1–2</td><td class="ot">OT</td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details playoff-note">MLS Cup</td></tr>
+      <tr><td class="date">Aug 24 2011</td><td class="home">Toronto</td><td class="away">Dallas</td><td class="score">0–1</td><td class="ot">POSTPONED</td><td class="venue">BMO Field</td><td class="seating">114</td><td class="seating">5</td><td class="seating">2</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Aug 27 2011</td><td class="home">Toronto</td><td class="away">San Jose</td><td class="score">1–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 20 2011</td><td class="home">Toronto</td><td class="away">Tauro FC</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">111</td><td class="seating">28</td><td class="seating">11</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Mar 7 2012</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">2–2</td><td class="ot"></td><td class="venue">Rogers Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">CCL</td></tr>
+      <tr><td class="date">May 5 2012</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 18 2012</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">0–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">120</td><td class="seating">5</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 9 2013</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">2–1</td><td class="ot"></td><td class="venue">Rogers Centre</td><td class="seating">128</td><td class="seating">10</td><td class="seating">3</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Apr 6 2013</td><td class="home">Toronto</td><td class="away">Dallas</td><td class="score">2–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 24 2013</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Apr 27 2013</td><td class="home">Toronto</td><td class="away">NYRB</td><td class="score">1–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 7 2013</td><td class="home">Toronto</td><td class="away">AS Roma</td><td class="score">1–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Mar 22 2014</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 12 2014</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">0–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 12 2014</td><td class="home">Toronto</td><td class="away">Houston</td><td class="score">4–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 24 2014</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">2–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">May 23 2015</td><td class="home">Toronto</td><td class="away">Portland</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 20 2015</td><td class="home">Toronto</td><td class="away">NYCFC</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 15 2015</td><td class="home">Kansas City</td><td class="away">Vancouver</td><td class="score">4–3</td><td class="ot"></td><td class="venue">Sporting Park</td><td class="seating">GA</td><td class="seating"></td><td class="seating"></td><td class="details"></td></tr>
+      <tr><td class="date">Aug 22 2015</td><td class="home">Toronto</td><td class="away">Orlando</td><td class="score">5–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Aug 29 2015</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">May 7 2016</td><td class="home">Toronto</td><td class="away">Dallas</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Jun 18 2016</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Oct 30 2016</td><td class="home">Toronto</td><td class="away">NYCFC</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details playoff-note">East Conf Semi-final</td></tr>
+      <tr class="playoff"><td class="date">Nov 30 2016</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">5–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details playoff-note">East Conf Final</td></tr>
+      <tr class="playoff"><td class="date">Dec 10 2016</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">0–0</td><td class="ot">4–5 PK</td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details playoff-note">MLS Cup</td></tr>
+      <tr><td class="date">Mar 31 2017</td><td class="home">Toronto</td><td class="away">Kansas City</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 8 2017</td><td class="home">Toronto</td><td class="away">Atlanta</td><td class="score">2–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 21 2017</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">3–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">May 13 2017</td><td class="home">Toronto</td><td class="away">Minnesota</td><td class="score">3–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">May 31 2017</td><td class="home">Toronto</td><td class="away">Ottawa</td><td class="score">4–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details">Canadian Championship</td></tr>
+      <tr><td class="date">Oct 15 2017</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">Nov 5 2017</td><td class="home">Toronto</td><td class="away">NYRB</td><td class="score">0–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details playoff-note">East Conf Semi-final</td></tr>
+      <tr class="playoff"><td class="date">Nov 29 2017</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details playoff-note">East Conf Final</td></tr>
+      <tr class="playoff"><td class="date">Dec 9 2017</td><td class="home">Toronto</td><td class="away">Seattle</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details playoff-note">MLS Cup</td></tr>
+      <tr><td class="date">Feb 27 2018</td><td class="home">Toronto</td><td class="away">Colorado</td><td class="score">2–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Mar 3 2018</td><td class="home">Toronto</td><td class="away">Columbus</td><td class="score">0–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 7 2018</td><td class="home">Toronto</td><td class="away">Tigres</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">CCL</td></tr>
+      <tr><td class="date">Mar 30 2018</td><td class="home">Toronto</td><td class="away">Salt Lake</td><td class="score">3–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 3 2018</td><td class="home">Toronto</td><td class="away">Club America</td><td class="score">3–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">CCL</td></tr>
+      <tr class="playoff"><td class="date">Apr 17 2018</td><td class="home">Toronto</td><td class="away">Chivas Guad</td><td class="score">1–2</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details playoff-note">CCL Final</td></tr>
+      <tr><td class="date">Jun 13 2018</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">4–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 1 2018</td><td class="home">Toronto</td><td class="away">LAFC</td><td class="score">2–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 15 2018</td><td class="home">Toronto</td><td class="away">LA Galaxy</td><td class="score">5–3</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 19 2018</td><td class="home">Toronto</td><td class="away">Tigres</td><td class="score">1–3</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">Campeones Cup</td></tr>
+      <tr><td class="date">May 15 2019</td><td class="home">Toronto</td><td class="away">DC</td><td class="score">0–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 27 2019</td><td class="home">Toronto</td><td class="away">Cincinnati</td><td class="score">2–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 6 2020</td><td class="home">Toronto</td><td class="away">NYCFC</td><td class="score">1–0</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details"></td></tr>
+      <tr><td class="date">Sep 4 2022</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">3–4</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details">CNE</td></tr>
+      <tr><td class="date">Aug 20 2023</td><td class="home">Toronto</td><td class="away">Montreal</td><td class="score">2–3</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">117</td><td class="seating">7</td><td class="seating">11</td><td class="details">CNE</td></tr>
+      <tr><td class="date">Oct 5 2024</td><td class="home">Toronto</td><td class="away">Miami</td><td class="score">0–1</td><td class="ot"></td><td class="venue">BMO Field</td><td class="seating">116</td><td class="seating">4</td><td class="seating">24</td><td class="details">Messi</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>English Premier League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">May 7 2017</td><td class="home">Arsenal</td><td class="away">Manchester Utd</td><td class="score">2–0</td><td class="venue">Emirates Stadium</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>La Liga</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Oct 1 2006</td><td class="home">Espanyol</td><td class="away">Osasuna</td><td class="score">0–0</td><td class="venue">Barcelona Olympic Stadium</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Allsvenskan (Sweden)</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">2 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 6 2008</td><td class="home">AIK</td><td class="away">GAIS</td><td class="score">2–2</td><td class="venue">Råsunda</td><td class="seating">103</td><td class="seating">14</td><td class="seating">51</td></tr>
+      <tr><td class="date">Jul 7 2008</td><td class="home">Hammarby</td><td class="away">IFK Norrköping</td><td class="score">4–3</td><td class="venue">Söderstadion</td><td class="seating">K</td><td class="seating"></td><td class="seating"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>FIFA / International</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">14 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Sep 12 2007</td><td class="home">Canada</td><td class="away">Costa Rica</td><td class="score">1–1</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">117</td><td class="seating">1</td><td class="seating">21</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Aug 20 2008</td><td class="home">Canada</td><td class="away">Jamaica</td><td class="score">1–1</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">102</td><td class="seating">3</td><td class="seating">15</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Sep 4 2010</td><td class="home">Canada</td><td class="away">Peru</td><td class="score">0–2</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">116</td><td class="seating">13</td><td class="seating">28</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Jun 1 2011</td><td class="home">Canada</td><td class="away">Ecuador</td><td class="score">2–2</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">113</td><td class="seating">18</td><td class="seating">27</td><td class="details">Friendly</td></tr>
+      <tr><td class="date">Jun 6 2011</td><td class="home">Panama</td><td class="away">Guadeloupe</td><td class="score">3–2</td><td class="ot"></td><td class="venue">Ford Field</td><td class="seating">127</td><td class="seating">22</td><td class="seating">1</td><td class="details">Gold Cup</td></tr>
+      <tr><td class="date">Jun 6 2011</td><td class="home">Canada</td><td class="away">USA</td><td class="score">0–2</td><td class="ot"></td><td class="venue">Ford Field</td><td class="seating">127</td><td class="seating">22</td><td class="seating">1</td><td class="details">Gold Cup</td></tr>
+      <tr><td class="date">Sep 2 2011</td><td class="home">Canada</td><td class="away">St. Lucia</td><td class="score">4–1</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">11</td><td class="seating">27</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Oct 11 2011</td><td class="home">Canada</td><td class="away">Puerto Rico</td><td class="score">0–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">8</td><td class="seating">6</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Nov 15 2011</td><td class="home">Canada</td><td class="away">St. Kitts Nevis</td><td class="score">4–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">6</td><td class="seating">30</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Jun 12 2012</td><td class="home">Canada</td><td class="away">Honduras</td><td class="score">0–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">16</td><td class="seating">14</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Mar 27 2022</td><td class="home">Canada</td><td class="away">Jamaica</td><td class="score">4–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">·</td><td class="seating">·</td><td class="seating">·</td><td class="details">WCQ</td></tr>
+      <tr><td class="date">Jun 10 2025</td><td class="home">New Zealand</td><td class="away">Ukraine</td><td class="score">1–2</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">Canadian Shield</td></tr>
+      <tr><td class="date">Jun 10 2025</td><td class="home">Canada</td><td class="away">Ivory Coast</td><td class="score">0–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">Canadian Shield</td></tr>
+      <tr><td class="date">Mar 28 2026</td><td class="home">Canada</td><td class="away">Iceland</td><td class="score">2–2</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details">Friendly</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>FIFA U-20 World Cup</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">7 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 8 2007</td><td class="home">Austria</td><td class="away">Chile</td><td class="score">0–0</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">1</td><td class="seating">1</td><td class="details"></td></tr>
+      <tr><td class="date">Jul 11 2007</td><td class="home">Uruguay</td><td class="away">USA</td><td class="score">1–2</td><td class="ot">AET</td><td class="venue">National Soccer Stadium</td><td class="seating">104</td><td class="seating">2</td><td class="seating">1</td><td class="details playoff-note">Round of 16</td></tr>
+      <tr><td class="date">Jul 12 2007</td><td class="home">Argentina</td><td class="away">Poland</td><td class="score">3–1</td><td class="ot">AET</td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">4</td><td class="seating">10</td><td class="details playoff-note">Round of 16</td></tr>
+      <tr class="playoff"><td class="date">Jul 14 2007</td><td class="home">Austria</td><td class="away">USA</td><td class="score">2–1</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">114</td><td class="seating">2</td><td class="seating">1</td><td class="details playoff-note">Quarterfinal</td></tr>
+      <tr class="playoff"><td class="date">Jul 19 2007</td><td class="home">Chile</td><td class="away">Argentina</td><td class="score">0–3</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">113</td><td class="seating">13</td><td class="seating">29</td><td class="details playoff-note">Semifinal</td></tr>
+      <tr class="playoff"><td class="date">Jul 22 2007</td><td class="home">Austria</td><td class="away">Chile</td><td class="score">0–1</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">118</td><td class="seating">15</td><td class="seating">14</td><td class="details playoff-note">Third Place</td></tr>
+      <tr class="playoff"><td class="date">Jul 22 2007</td><td class="home">Czech Republic</td><td class="away">Argentina</td><td class="score">1–2</td><td class="ot"></td><td class="venue">National Soccer Stadium</td><td class="seating">118</td><td class="seating">15</td><td class="seating">14</td><td class="details playoff-note">Final</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>Pan Am Games 2015 – Toronto</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">2 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 16 2015</td><td class="home">Peru</td><td class="away">Brazil</td><td class="score">0–4</td><td class="venue">Tim Horton Field</td><td class="seating">102</td><td class="seating">8</td><td class="seating">21</td></tr>
+      <tr><td class="date">Jul 16 2015</td><td class="home">Panama</td><td class="away">Canada</td><td class="score">0–0</td><td class="venue">Tim Horton Field</td><td class="seating">102</td><td class="seating">8</td><td class="seating">21</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ BASKETBALL -->
+<div id="sport-basketball" class="sport-banner">
+  <h2>🏀 Basketball</h2>
+  <span class="sport-count">1 league</span>
+</div>
+
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>National Basketball Association</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">14 games</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jan 18 1996</td><td class="home">Toronto</td><td class="away">Chicago</td><td class="score">89–92</td><td class="ot"></td><td class="venue">Skydome</td><td class="seating">513</td><td class="seating">4</td><td class="seating">106</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 10 1997</td><td class="home">Toronto</td><td class="away">Orlando</td><td class="score">69–105</td><td class="ot"></td><td class="venue">Skydome</td><td class="seating">524B</td><td class="seating">8</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr class="playoff"><td class="date">May 11 2001</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">102–78</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating"></td><td class="seating"></td><td class="seating"></td><td class="details playoff-note">Playoff R2 G3</td></tr>
+      <tr class="playoff"><td class="date">Apr 27 2002</td><td class="home">Toronto</td><td class="away">Detroit</td><td class="score">94–84</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">312</td><td class="seating">14</td><td class="seating">28</td><td class="details playoff-note">Playoff R1 G3</td></tr>
+      <tr><td class="date">Apr 6 2003</td><td class="home">Toronto</td><td class="away">New Jersey</td><td class="score">87–96</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">CRTE</td><td class="seating">A</td><td class="seating">5</td><td class="details"></td></tr>
+      <tr><td class="date">Feb 13 2008</td><td class="home">Toronto</td><td class="away">New Jersey</td><td class="score">109–91</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">108</td><td class="seating">5</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">Nov 24 2009</td><td class="home">Toronto</td><td class="away">Indianapolis</td><td class="score">123–112</td><td class="ot"></td><td class="venue">Air Canada Centre</td><td class="seating">108</td><td class="seating">5</td><td class="seating">8</td><td class="details"></td></tr>
+      <tr><td class="date">Jan 17 2019</td><td class="home">Toronto</td><td class="away">Phoenix</td><td class="score">111–109</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">109</td><td class="seating">22</td><td class="seating">4</td><td class="details"></td></tr>
+      <tr><td class="date">Dec 2 2021</td><td class="home">Toronto</td><td class="away">Milwaukee</td><td class="score">97–93</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">107</td><td class="seating">3</td><td class="seating">15</td><td class="details"></td></tr>
+      <tr><td class="date">Dec 13 2021</td><td class="home">Toronto</td><td class="away">Sacramento</td><td class="score">124–101</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">107</td><td class="seating">3</td><td class="seating">15</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 18 2022</td><td class="home">Toronto</td><td class="away">LA Lakers</td><td class="score">123–128</td><td class="ot">OT</td><td class="venue">Scotiabank Arena</td><td class="seating">109</td><td class="seating">22</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr><td class="date">Mar 28 2022</td><td class="home">Toronto</td><td class="away">Boston</td><td class="score">115–112</td><td class="ot">OT</td><td class="venue">Scotiabank Arena</td><td class="seating">109</td><td class="seating">22</td><td class="seating">3</td><td class="details"></td></tr>
+      <tr><td class="date">Apr 7 2022</td><td class="home">Toronto</td><td class="away">Philadelphia</td><td class="score">119–114</td><td class="ot"></td><td class="venue">Scotiabank Arena</td><td class="seating">109</td><td class="seating">22</td><td class="seating">3</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ LACROSSE -->
+<div id="sport-lacrosse" class="sport-banner">
+  <h2>🥍 Lacrosse</h2>
+  <span class="sport-count">1 league</span>
+</div>
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>National Lacrosse League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Sec</th><th>Row</th><th>Seats</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Apr 1 2005</td><td class="home">Toronto</td><td class="away">Calgary</td><td class="venue">Air Canada Centre</td><td class="seating">105</td><td class="seating">15</td><td class="seating">9</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ RUGBY -->
+<div id="sport-rugby" class="sport-banner">
+  <h2>🏉 Rugby</h2>
+  <span class="sport-count">1 league</span>
+</div>
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>NRL Telstra Premiership</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>Venue</th><th>Sec</th><th>Row</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 16 2010</td><td class="home">Rabbitohs</td><td class="away">Dragons</td><td class="score">13–16</td><td class="venue">ANZ Stadium</td><td class="seating">GEN</td><td class="seating">B</td><td class="details">Sydney, Australia</td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ VOLLEYBALL -->
+<div id="sport-volleyball" class="sport-banner">
+  <h2>🏐 Volleyball</h2>
+  <span class="sport-count">1 tournament</span>
+</div>
+<div class="league-section">
+  <div class="league-banner" onclick="toggleLeague(this)">
+    <h3>FIVB Volleyball World League</h3>
+    <span class="toggle-icon">▲</span>
+    <span class="league-count">1 game</span>
+  </div>
+  <div class="league-body">
+    <div class="table-wrap">
+    <table><thead><tr><th>Date</th><th>Home</th><th>Away</th><th>Score</th><th>OT</th><th>Venue</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="date">Jul 11 2009</td><td class="home">Bulgaria</td><td class="away">Cuba</td><td class="score">3–2</td><td class="ot"></td><td class="venue">Bulgaria</td><td class="details"></td></tr>
+    </tbody></table>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Personal sports log &mdash; 1988–2026</p>
+</footer>
+
+<script>
+  function toggleLeague(bannerEl) {
+    const body = bannerEl.nextElementSibling;
+    const icon = bannerEl.querySelector('.toggle-icon');
+    body.classList.toggle('collapsed');
+    icon.textContent = body.classList.contains('collapsed') ? '▼' : '▲';
+  }
+
+  // Count all data rows for the header total
+  const rows = document.querySelectorAll('tbody tr');
+  let total = 0;
+  rows.forEach(r => {
+    const date = r.querySelector('.date');
+    if (date && date.textContent.trim()) total++;
+  });
+  document.getElementById('total-games').textContent = total;
+</script>
+</body>
+</html>

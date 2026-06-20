@@ -295,7 +295,7 @@ const UK_NATIONS = {"type":"FeatureCollection","features":[{"type":"Feature","pr
 const visitedNames = new Set([
   "Canada","United States of America","Mexico","Costa Rica","Cuba","Dominican Republic",
   "Saint-Barthélemy","Saint Martin","Sint Maarten","Anguilla",
-  "Peru","Bolivia",
+  "Peru","Bolivia","Bolivia, Plurinational State of",
   "Sierra Leone","Ghana","Togo","Benin",
   "Japan","Australia",
   "Ireland",
@@ -316,7 +316,7 @@ const transitNames = new Set(["Panama","Monaco"]);
 const visitedList = [
   "Canada","United States","Mexico","Costa Rica","Cuba","Dominican Republic",
   "St Barths","St Martin","Sint Maarten","Anguilla",
-  "Peru","Bolivia",
+  "Peru","Bolivia","Bolivia, Plurinational State of",
   "Sierra Leone","Ghana","Togo","Benin",
   "Japan","Australia",
   "Ireland","England","Scotland","Wales","Northern Ireland",
@@ -419,10 +419,14 @@ Promise.all([
     "Republic of Kosovo": "visited",
   };
 
+  // These ISO ids should never be colored visited even if their sovereign matches
+  const forceUnvisited = new Set(["254","474","312","175","638","GP","MQ"]);
+
   function getStatus(d) {
     if (d.id === undefined || d.id === null) return "unvisited";
     const idStr = String(d.id).padStart(3,"0");
     if (idStr === UK_ID) return "uk";
+    if (forceUnvisited.has(idStr)) return "unvisited";
     // Kosovo is drawn as a separate overlay (id is undefined in world-atlas)
     const name = ISO_NAMES[idStr] || "";
     if (!name) return "unvisited";
@@ -437,25 +441,44 @@ Promise.all([
     return "unvisited";
   }
 
+  // For France, split multipolygon so French Guiana isn't colored
+  const processedFeatures = [];
+  countries.features.forEach(d => {
+    const idStr = d.id !== undefined ? String(d.id).padStart(3,"0") : null;
+    if (idStr === "250" && d.geometry.type === "MultiPolygon") {
+      // Split each polygon into its own feature
+      d.geometry.coordinates.forEach(poly => {
+        // Compute rough centroid longitude of first ring
+        const lons = poly[0].map(p => p[0]);
+        const avgLon = lons.reduce((a,b) => a+b, 0) / lons.length;
+        const feat = {
+          ...d,
+          geometry: { type: "Polygon", coordinates: poly },
+          _isEuropeanFrance: avgLon > -10
+        };
+        processedFeatures.push(feat);
+      });
+    } else {
+      processedFeatures.push(d);
+    }
+  });
+
   g.selectAll(".country")
-    .data(countries.features)
+    .data(processedFeatures)
     .enter().append("path")
     .attr("class", d => {
+      if (d._isEuropeanFrance === false) return "country unvisited";
       const s = getStatus(d);
       if (s === "uk") return "country unvisited";
       return "country " + s;
     })
     .attr("d", path)
     .on("mousemove", function(event, d) {
+      if (d._isEuropeanFrance === false) { hideTip(); return; }
       const s = getStatus(d);
       if (s === "uk" || s === "unvisited") { hideTip(); return; }
-      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "Kosovo";
-      showTip(event, name, s);
-    })
-    .on("mousemove", function(event, d) {
-      const s = getStatus(d);
-      if (s === "uk" || s === "unvisited") { hideTip(); return; }
-      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "Kosovo";
+      const idStr = d.id !== undefined ? String(d.id).padStart(3,"0") : "";
+      const name = ISO_NAMES[idStr] || "Kosovo";
       showTip(event, name, s);
       moveTip(event);
     })

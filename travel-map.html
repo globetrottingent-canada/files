@@ -300,7 +300,7 @@ const visitedNames = new Set([
   "Italy","Greece","Germany","Austria","Switzerland","Liechtenstein",
   "Czechia","Czech Republic","Slovakia","Hungary","Slovenia","Albania","Croatia",
   "Montenegro","Kosovo","North Macedonia","Bosnia and Herzegovina","Serbia","Romania","Bulgaria",
-  "Türkiye","Turkey","Moldova","Ukraine","Russia","Russian Federation",
+  "Türkiye","Türkiye","Turkey","Moldova","Moldova, Republic of","Ukraine","Russia","Russian Federation",
   "Estonia","Latvia","Lithuania","Poland",
   "Denmark","Norway","Sweden","Finland","Iceland",
   // Vatican handled separately (tiny)
@@ -317,11 +317,11 @@ const visitedList = [
   "Sierra Leone","Ghana","Togo","Benin",
   "Japan","Australia",
   "Ireland","England","Scotland","Wales","Northern Ireland",
-  "Portugal","Spain","France","Belgium","Netherlands","Netherlands, Kingdom of the","Luxembourg",
+  "Portugal","Spain","France","Belgium","Netherlands","Luxembourg",
   "Italy","Vatican City","Greece","Germany","Austria","Switzerland","Liechtenstein",
   "Czech Republic","Slovakia","Hungary","Slovenia","Albania","Croatia",
-  "Montenegro","Kosovo","North Macedonia","Bosnia and Herzegovina","Serbia","Romania","Bulgaria",
-  "Türkiye","Turkey","Moldova","Ukraine","Russia","Russian Federation",
+  "Bosnia","Montenegro","Kosovo","North Macedonia","Serbia","Romania","Bulgaria",
+  "Turkey","Moldova","Ukraine","Russia",
   "Estonia","Latvia","Lithuania","Poland",
   "Denmark","Norway","Sweden","Finland","Iceland"
 ];
@@ -405,10 +405,18 @@ Promise.all([
   isoData.forEach(d => { ISO_NAMES[d["country-code"]] = d.name; });
 
   const countries = topojson.feature(world, world.objects.countries);
+  // Debug: log all IDs to find Kosovo/Moldova
+  countries.features.forEach(d => {
+    const idStr = String(d.id).padStart(3,"0");
+    const name = ISO_NAMES[idStr] || ISO_NAMES[d.id] || "";
+    if (!name || ['Kosovo','Moldova','Republic of Moldova'].some(n => name.includes(n.split(' ')[0]))) {
+      console.log('id:', idStr, 'name:', name || '(no ISO match)');
+    }
+  });
 
   // UK ids to suppress (we draw them separately)
   const UK_ID = "826";
-  const KOSOVO_IDS = new Set(["383","412"]);
+  const KOSOVO_IDS = new Set(["383","412","926","008"]);  // 926 = Kosovo in world-atlas
 
   function getStatus(d) {
     const idStr = String(d.id).padStart(3,"0");

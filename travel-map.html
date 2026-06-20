@@ -405,25 +405,40 @@ Promise.all([
   isoData.forEach(d => { ISO_NAMES[d["country-code"]] = d.name; });
 
   const countries = topojson.feature(world, world.objects.countries);
-  // Debug: log all IDs to find Kosovo/Moldova
+  // Debug Kosovo
   countries.features.forEach(d => {
-    const idStr = String(d.id).padStart(3,"0");
-    const name = ISO_NAMES[idStr] || ISO_NAMES[d.id] || "";
-    if (!name || ['Kosovo','Moldova','Republic of Moldova'].some(n => name.includes(n.split(' ')[0]))) {
-      console.log('id:', idStr, 'name:', name || '(no ISO match)');
+    const idStr = d.id !== undefined ? String(d.id).padStart(3,"0") : "undefined";
+    const name = ISO_NAMES[idStr] || "";
+    if (idStr === "undefined" || idStr === "383" || idStr === "926" || idStr === "412" || name.toLowerCase().includes("kosovo")) {
+      console.log("CANDIDATE id:", idStr, "name:", name || "(no ISO match)");
     }
   });
-
   // UK ids to suppress (we draw them separately)
   const UK_ID = "826";
-  const KOSOVO_IDS = new Set(["383","412","926","008"]);  // 926 = Kosovo in world-atlas
+
+  // Extra name aliases for countries whose ISO names differ from common usage
+  const nameAliases = {
+    "Moldova, Republic of": "visited",
+    "Bosnia and Herzegovina": "visited",
+    "Kosovo": "visited",        // may appear under various names
+    "Republic of Kosovo": "visited",
+  };
 
   function getStatus(d) {
+    if (d.id === undefined || d.id === null) return "unvisited";
     const idStr = String(d.id).padStart(3,"0");
     if (idStr === UK_ID) return "uk";
-    if (KOSOVO_IDS.has(idStr)) return "visited";
-    const name = ISO_NAMES[idStr] || ISO_NAMES[d.id] || "";
+    // Kosovo has no ISO code — catch by numeric ID
+    if (idStr === "383" || idStr === "926" || idStr === "412") return "visited";
+    const name = ISO_NAMES[idStr] || "";
+    if (!name) return "unvisited";
     if (visitedNames.has(name)) return "visited";
+    if (nameAliases[name]) return nameAliases[name];
+    // Fuzzy fallback for names that differ between datasets
+    const lname = name.toLowerCase();
+    if (lname.includes("moldova")) return "visited";
+    if (lname.includes("kosovo")) return "visited";
+    if (lname.includes("bosnia")) return "visited";
     if (transitNames.has(name)) return "transit";
     return "unvisited";
   }

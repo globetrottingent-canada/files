@@ -296,11 +296,11 @@ const visitedNames = new Set([
   "Sierra Leone","Ghana","Togo","Benin",
   "Japan","Australia",
   "Ireland",
-  "Portugal","Spain","France","Belgium","Netherlands","Luxembourg",
+  "Portugal","Spain","France","Belgium","Netherlands","Netherlands, Kingdom of the","Luxembourg",
   "Italy","Greece","Germany","Austria","Switzerland","Liechtenstein",
   "Czechia","Czech Republic","Slovakia","Hungary","Slovenia","Albania","Croatia",
-  "Montenegro","Kosovo","North Macedonia","Serbia","Romania","Bulgaria",
-  "Turkey","Moldova","Ukraine","Russia",
+  "Montenegro","Kosovo","North Macedonia","Bosnia and Herzegovina","Serbia","Romania","Bulgaria",
+  "Türkiye","Turkey","Moldova","Ukraine","Russia","Russian Federation",
   "Estonia","Latvia","Lithuania","Poland",
   "Denmark","Norway","Sweden","Finland","Iceland",
   // Vatican handled separately (tiny)
@@ -317,11 +317,11 @@ const visitedList = [
   "Sierra Leone","Ghana","Togo","Benin",
   "Japan","Australia",
   "Ireland","England","Scotland","Wales","Northern Ireland",
-  "Portugal","Spain","France","Belgium","Netherlands","Luxembourg",
+  "Portugal","Spain","France","Belgium","Netherlands","Netherlands, Kingdom of the","Luxembourg",
   "Italy","Vatican City","Greece","Germany","Austria","Switzerland","Liechtenstein",
   "Czech Republic","Slovakia","Hungary","Slovenia","Albania","Croatia",
-  "Montenegro","Kosovo","North Macedonia","Serbia","Romania","Bulgaria",
-  "Turkey","Moldova","Ukraine","Russia",
+  "Montenegro","Kosovo","North Macedonia","Bosnia and Herzegovina","Serbia","Romania","Bulgaria",
+  "Türkiye","Turkey","Moldova","Ukraine","Russia","Russian Federation",
   "Estonia","Latvia","Lithuania","Poland",
   "Denmark","Norway","Sweden","Finland","Iceland"
 ];
@@ -407,34 +407,38 @@ Promise.all([
   const countries = topojson.feature(world, world.objects.countries);
 
   // UK ids to suppress (we draw them separately)
-  const UK_ID = "826"; // United Kingdom ISO numeric
+  const UK_ID = "826";
+  const KOSOVO_IDS = new Set(["383","412"]);
+
+  function getStatus(d) {
+    const idStr = String(d.id).padStart(3,"0");
+    if (idStr === UK_ID) return "uk";
+    if (KOSOVO_IDS.has(idStr)) return "visited";
+    const name = ISO_NAMES[idStr] || ISO_NAMES[d.id] || "";
+    if (visitedNames.has(name)) return "visited";
+    if (transitNames.has(name)) return "transit";
+    return "unvisited";
+  }
 
   g.selectAll(".country")
     .data(countries.features)
     .enter().append("path")
     .attr("class", d => {
-      if (String(d.id).padStart(3,"0") === UK_ID) return "country unvisited"; // hidden behind UK overlay
-      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "";
-      let s = "unvisited";
-      if (visitedNames.has(name)) s = "visited";
-      else if (transitNames.has(name)) s = "transit";
+      const s = getStatus(d);
+      if (s === "uk") return "country unvisited";
       return "country " + s;
     })
     .attr("d", path)
     .on("mousemove", function(event, d) {
-      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "";
-      let s = "unvisited";
-      if (visitedNames.has(name)) s = "visited";
-      else if (transitNames.has(name)) s = "transit";
-      if (s === "unvisited") { hideTip(); return; }
+      const s = getStatus(d);
+      if (s === "uk" || s === "unvisited") { hideTip(); return; }
+      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "Kosovo";
       showTip(event, name, s);
     })
     .on("mousemove", function(event, d) {
-      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "";
-      let s = "unvisited";
-      if (visitedNames.has(name)) s = "visited";
-      else if (transitNames.has(name)) s = "transit";
-      if (s === "unvisited") { hideTip(); return; }
+      const s = getStatus(d);
+      if (s === "uk" || s === "unvisited") { hideTip(); return; }
+      const name = ISO_NAMES[String(d.id).padStart(3,"0")] || ISO_NAMES[d.id] || "Kosovo";
       showTip(event, name, s);
       moveTip(event);
     })

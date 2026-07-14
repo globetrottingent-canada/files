@@ -242,6 +242,25 @@
     .panel { display: none; }
     .legend { padding: 0.6rem 1.2rem; gap: 1rem; }
   }
+  .home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.75rem;
+    background: transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .home-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
 </style>
 </head>
 <body>
@@ -251,6 +270,7 @@
     <h1>The <em>World</em> So Far</h1>
     <p>A personal travel record</p>
   </div>
+  <a class="home-btn" href="https://globetrottingent-canada.github.io/files/index.html">&#8592; Home</a>
   <div class="stats">
     <div class="stat">
       <div class="stat-num" id="visited-count">—</div>
@@ -282,6 +302,7 @@
   <div class="legend-item"><div class="swatch visited"></div> Visited</div>
   <div class="legend-item"><div class="swatch transit"></div> In transit</div>
   <div class="legend-item"><div class="swatch unvisited"></div> Not yet</div>
+  <a class="home-btn" href="https://globetrottingent-canada.github.io/files/index.html">&#8592; Home</a>
 </div>
 
 <script>

@@ -15,14 +15,17 @@
   }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; font-size:14px; min-height:100vh; }
-  header { background:linear-gradient(135deg,#0d0f14 0%,#151f2e 100%); border-bottom:2px solid var(--accent); padding:40px 32px 32px; text-align:center; }
+  header { background:linear-gradient(135deg,#0d0f14 0%,#151f2e 100%); border-bottom:2px solid var(--accent); padding:32px 32px 24px; text-align:center; }
   header h1 { font-family:'Oswald',sans-serif; font-size:clamp(2rem,5vw,3.6rem); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); text-shadow:0 0 40px rgba(240,165,0,0.3); }
   header p { margin-top:8px; color:var(--subdued); font-size:13px; letter-spacing:0.12em; text-transform:uppercase; }
-  .legend { display:flex; justify-content:center; gap:24px; margin-top:20px; flex-wrap:wrap; align-items:center; }
+  .legend { display:flex; justify-content:center; gap:24px; margin-top:16px; flex-wrap:wrap; align-items:center; }
   .legend-item { display:flex; align-items:center; gap:8px; font-size:11px; color:var(--subdued); letter-spacing:0.08em; text-transform:uppercase; }
   .legend-pill { width:36px; height:22px; border-radius:3px; display:flex; align-items:center; justify-content:center; font-family:'Roboto Mono',monospace; font-size:11px; font-weight:500; }
   .legend-pill.seen  { background:var(--seen-bg);   color:var(--seen-txt);   border:1px solid var(--seen-border); }
   .legend-pill.unseen{ background:var(--unseen-bg); color:var(--unseen-txt); border:1px solid var(--border); }
+  .home-btn { text-align:center; padding:16px 0; }
+  .home-btn a { font-family:'Oswald',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--subdued); text-decoration:none; padding:8px 20px; border:1px solid var(--border); border-radius:3px; transition:all 0.15s; display:inline-block; }
+  .home-btn a:hover { color:var(--accent); border-color:var(--accent); background:rgba(240,165,0,0.06); }
   nav { background:var(--surface); border-bottom:1px solid var(--border); padding:14px 32px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; position:sticky; top:0; z-index:100; }
   nav a { font-family:'Oswald',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--subdued); text-decoration:none; padding:5px 12px; border:1px solid var(--border); border-radius:3px; transition:all 0.15s; }
   nav a:hover { color:var(--accent); border-color:var(--accent); background:rgba(240,165,0,0.06); }
@@ -65,7 +68,9 @@
     <div class="legend-item"><div class="legend-pill unseen">—</div> Not yet seen</div>
     <div class="legend-item" style="font-size:11px;color:var(--subdued)">Home = in their arena/city &nbsp;|&nbsp; Road = anywhere else</div>
   </div>
+  <div class="home-btn"><a href="https://globetrottingent-canada.github.io/files/index.html">← Home</a></div>
 </header>
+
 <nav>
   <a href="#nhl">🏒 NHL</a>
   <a href="#mlb">⚾ MLB</a>
@@ -73,6 +78,7 @@
   <a href="#nba">🏀 NBA</a>
   <a href="#mls">⚽ MLS</a>
 </nav>
+
 <main>
 
 <div class="league-block" id="nhl">
@@ -84,217 +90,217 @@
     <div class="col-headers"><span></span><span>Team</span><span>Home</span><span>Road</span></div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
+        <div class="team-logo"><img src="images/nhl-bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
         <div class="team-name">Bruins<span class="city">Boston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/buf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BUF"><div class="logo-fallback" style="display:none">BUF</div></div>
+        <div class="team-logo"><img src="images/nhl-buf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BUF"><div class="logo-fallback" style="display:none">BUF</div></div>
         <div class="team-name">Sabres<span class="city">Buffalo</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">2</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
+        <div class="team-logo"><img src="images/nhl-det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
         <div class="team-name">Red Wings<span class="city">Detroit</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">3</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/fla.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="FLA"><div class="logo-fallback" style="display:none">FLA</div></div>
+        <div class="team-logo"><img src="images/nhl-fla.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="FLA"><div class="logo-fallback" style="display:none">FLA</div></div>
         <div class="team-name">Panthers<span class="city">Florida</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/mtl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MTL"><div class="logo-fallback" style="display:none">MTL</div></div>
+        <div class="team-logo"><img src="images/nhl-mtl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MTL"><div class="logo-fallback" style="display:none">MTL</div></div>
         <div class="team-name">Canadiens<span class="city">Montreal</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">4</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">8</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/ott.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OTT"><div class="logo-fallback" style="display:none">OTT</div></div>
+        <div class="team-logo"><img src="images/nhl-ott.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OTT"><div class="logo-fallback" style="display:none">OTT</div></div>
         <div class="team-name">Senators<span class="city">Ottawa</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">3</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/tb.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TBL"><div class="logo-fallback" style="display:none">TBL</div></div>
+        <div class="team-logo"><img src="images/nhl-tbl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TBL"><div class="logo-fallback" style="display:none">TBL</div></div>
         <div class="team-name">Lightning<span class="city">Tampa Bay</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
+        <div class="team-logo"><img src="images/nhl-tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
         <div class="team-name">Maple Leafs<span class="city">Toronto</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">61</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/car.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CAR"><div class="logo-fallback" style="display:none">CAR</div></div>
+        <div class="team-logo"><img src="images/nhl-car.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CAR"><div class="logo-fallback" style="display:none">CAR</div></div>
         <div class="team-name">Hurricanes<span class="city">Carolina</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/cbj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CBJ"><div class="logo-fallback" style="display:none">CBJ</div></div>
+        <div class="team-logo"><img src="images/nhl-cbj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CBJ"><div class="logo-fallback" style="display:none">CBJ</div></div>
         <div class="team-name">Blue Jackets<span class="city">Columbus</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/nj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NJD"><div class="logo-fallback" style="display:none">NJD</div></div>
+        <div class="team-logo"><img src="images/nhl-njd.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NJD"><div class="logo-fallback" style="display:none">NJD</div></div>
         <div class="team-name">Devils<span class="city">New Jersey</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/nyi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYI"><div class="logo-fallback" style="display:none">NYI</div></div>
+        <div class="team-logo"><img src="images/nhl-nyi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYI"><div class="logo-fallback" style="display:none">NYI</div></div>
         <div class="team-name">Islanders<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/nyr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYR"><div class="logo-fallback" style="display:none">NYR</div></div>
+        <div class="team-logo"><img src="images/nhl-nyr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYR"><div class="logo-fallback" style="display:none">NYR</div></div>
         <div class="team-name">Rangers<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
+        <div class="team-logo"><img src="images/nhl-phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
         <div class="team-name">Flyers<span class="city">Philadelphia</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
+        <div class="team-logo"><img src="images/nhl-pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
         <div class="team-name">Penguins<span class="city">Pittsburgh</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
+        <div class="team-logo"><img src="images/nhl-wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
         <div class="team-name">Capitals<span class="city">Washington</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
+        <div class="team-logo"><img src="images/nhl-chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
         <div class="team-name">Blackhawks<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/col.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
+        <div class="team-logo"><img src="images/nhl-col.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
         <div class="team-name">Avalanche<span class="city">Colorado</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
+        <div class="team-logo"><img src="images/nhl-dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
         <div class="team-name">Stars<span class="city">Dallas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
+        <div class="team-logo"><img src="images/nhl-min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
         <div class="team-name">Wild<span class="city">Minnesota</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/nsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NSH"><div class="logo-fallback" style="display:none">NSH</div></div>
+        <div class="team-logo"><img src="images/nhl-nsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NSH"><div class="logo-fallback" style="display:none">NSH</div></div>
         <div class="team-name">Predators<span class="city">Nashville</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/stl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
+        <div class="team-logo"><img src="images/nhl-stl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
         <div class="team-name">Blues<span class="city">St. Louis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/utah.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="UTA"><div class="logo-fallback" style="display:none">UTA</div></div>
+        <div class="team-logo"><img src="images/nhl-uta.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="UTA"><div class="logo-fallback" style="display:none">UTA</div></div>
         <div class="team-name">Utah Mammoth<span class="city">Utah</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/wpg.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WPG"><div class="logo-fallback" style="display:none">WPG</div></div>
+        <div class="team-logo"><img src="images/nhl-wpg.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WPG"><div class="logo-fallback" style="display:none">WPG</div></div>
         <div class="team-name">Jets<span class="city">Winnipeg</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/ana.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ANA"><div class="logo-fallback" style="display:none">ANA</div></div>
+        <div class="team-logo"><img src="images/nhl-ana.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ANA"><div class="logo-fallback" style="display:none">ANA</div></div>
         <div class="team-name">Ducks<span class="city">Anaheim</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/cgy.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CGY"><div class="logo-fallback" style="display:none">CGY</div></div>
+        <div class="team-logo"><img src="images/nhl-cgy.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CGY"><div class="logo-fallback" style="display:none">CGY</div></div>
         <div class="team-name">Flames<span class="city">Calgary</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/edm.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="EDM"><div class="logo-fallback" style="display:none">EDM</div></div>
+        <div class="team-logo"><img src="images/nhl-edm.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="EDM"><div class="logo-fallback" style="display:none">EDM</div></div>
         <div class="team-name">Oilers<span class="city">Edmonton</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/la.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAK"><div class="logo-fallback" style="display:none">LAK</div></div>
+        <div class="team-logo"><img src="images/nhl-lak.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAK"><div class="logo-fallback" style="display:none">LAK</div></div>
         <div class="team-name">Kings<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/sj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SJS"><div class="logo-fallback" style="display:none">SJS</div></div>
+        <div class="team-logo"><img src="images/nhl-sjs.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SJS"><div class="logo-fallback" style="display:none">SJS</div></div>
         <div class="team-name">Sharks<span class="city">San Jose</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
+        <div class="team-logo"><img src="images/nhl-sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
         <div class="team-name">Kraken<span class="city">Seattle</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/van.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VAN"><div class="logo-fallback" style="display:none">VAN</div></div>
+        <div class="team-logo"><img src="images/nhl-van.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VAN"><div class="logo-fallback" style="display:none">VAN</div></div>
         <div class="team-name">Canucks<span class="city">Vancouver</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/vgk.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VGK"><div class="logo-fallback" style="display:none">VGK</div></div>
+        <div class="team-logo"><img src="images/nhl-vgk.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VGK"><div class="logo-fallback" style="display:none">VGK</div></div>
         <div class="team-name">Golden Knights<span class="city">Las Vegas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card" style="opacity:0.55">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/hfd.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HFD"><div class="logo-fallback" style="display:none">HFD</div></div>
+        <div class="team-logo"><img src="images/nhl-hfd.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HFD"><div class="logo-fallback" style="display:none">HFD</div></div>
         <div class="team-name">Whalers †<span class="city">Hartford (defunct)</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card" style="opacity:0.55">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATH"><div class="logo-fallback" style="display:none">ATH</div></div>
+        <div class="team-logo"><img src="images/nhl-ath.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATH"><div class="logo-fallback" style="display:none">ATH</div></div>
         <div class="team-name">Thrashers †<span class="city">Atlanta (defunct)</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card" style="opacity:0.55">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/phx.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHX"><div class="logo-fallback" style="display:none">PHX</div></div>
+        <div class="team-logo"><img src="images/nhl-phx.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHX"><div class="logo-fallback" style="display:none">PHX</div></div>
         <div class="team-name">Coyotes (PHX) †<span class="city">Phoenix (defunct)</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card" style="opacity:0.55">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nhl/500/ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
+        <div class="team-logo"><img src="images/nhl-ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
         <div class="team-name">Coyotes (ARI) †<span class="city">Tempe, AZ (defunct)</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
@@ -313,181 +319,181 @@
     <div class="col-headers"><span></span><span>Team</span><span>Home</span><span>Road</span></div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
+        <div class="team-logo"><img src="images/mlb-tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
         <div class="team-name">Blue Jays<span class="city">Toronto</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">55</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
+        <div class="team-logo"><img src="images/mlb-bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
         <div class="team-name">Red Sox<span class="city">Boston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">7</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYY"><div class="logo-fallback" style="display:none">NYY</div></div>
+        <div class="team-logo"><img src="images/mlb-nyy.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYY"><div class="logo-fallback" style="display:none">NYY</div></div>
         <div class="team-name">Yankees<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">2</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/bal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BAL"><div class="logo-fallback" style="display:none">BAL</div></div>
+        <div class="team-logo"><img src="images/mlb-bal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BAL"><div class="logo-fallback" style="display:none">BAL</div></div>
         <div class="team-name">Orioles<span class="city">Baltimore</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">6</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/tb.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TBR"><div class="logo-fallback" style="display:none">TBR</div></div>
+        <div class="team-logo"><img src="images/mlb-tbr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TBR"><div class="logo-fallback" style="display:none">TBR</div></div>
         <div class="team-name">Rays<span class="city">Tampa Bay</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
+        <div class="team-logo"><img src="images/mlb-cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
         <div class="team-name">Guardians<span class="city">Cleveland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">3</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
+        <div class="team-logo"><img src="images/mlb-det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
         <div class="team-name">Tigers<span class="city">Detroit</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/kc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="KCR"><div class="logo-fallback" style="display:none">KCR</div></div>
+        <div class="team-logo"><img src="images/mlb-kcr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="KCR"><div class="logo-fallback" style="display:none">KCR</div></div>
         <div class="team-name">Royals<span class="city">Kansas City</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
+        <div class="team-logo"><img src="images/mlb-min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
         <div class="team-name">Twins<span class="city">Minnesota</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/cws.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CWS"><div class="logo-fallback" style="display:none">CWS</div></div>
+        <div class="team-logo"><img src="images/mlb-cws.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CWS"><div class="logo-fallback" style="display:none">CWS</div></div>
         <div class="team-name">White Sox<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/laa.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAA"><div class="logo-fallback" style="display:none">LAA</div></div>
+        <div class="team-logo"><img src="images/mlb-laa.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAA"><div class="logo-fallback" style="display:none">LAA</div></div>
         <div class="team-name">Angels<span class="city">Anaheim</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/oak.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OAK"><div class="logo-fallback" style="display:none">OAK</div></div>
+        <div class="team-logo"><img src="images/mlb-oak.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OAK"><div class="logo-fallback" style="display:none">OAK</div></div>
         <div class="team-name">Athletics<span class="city">Oakland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
+        <div class="team-logo"><img src="images/mlb-sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
         <div class="team-name">Mariners<span class="city">Seattle</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/tex.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TEX"><div class="logo-fallback" style="display:none">TEX</div></div>
+        <div class="team-logo"><img src="images/mlb-tex.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TEX"><div class="logo-fallback" style="display:none">TEX</div></div>
         <div class="team-name">Rangers<span class="city">Texas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
+        <div class="team-logo"><img src="images/mlb-hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
         <div class="team-name">Astros<span class="city">Houston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/nym.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYM"><div class="logo-fallback" style="display:none">NYM</div></div>
+        <div class="team-logo"><img src="images/mlb-nym.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYM"><div class="logo-fallback" style="display:none">NYM</div></div>
         <div class="team-name">Mets<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">3</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
+        <div class="team-logo"><img src="images/mlb-phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
         <div class="team-name">Phillies<span class="city">Philadelphia</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSN"><div class="logo-fallback" style="display:none">WSN</div></div>
+        <div class="team-logo"><img src="images/mlb-wsn.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSN"><div class="logo-fallback" style="display:none">WSN</div></div>
         <div class="team-name">Nationals<span class="city">Washington</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
+        <div class="team-logo"><img src="images/mlb-atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
         <div class="team-name">Braves<span class="city">Atlanta</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
+        <div class="team-logo"><img src="images/mlb-mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
         <div class="team-name">Marlins<span class="city">Miami</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/chc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHC"><div class="logo-fallback" style="display:none">CHC</div></div>
+        <div class="team-logo"><img src="images/mlb-chc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHC"><div class="logo-fallback" style="display:none">CHC</div></div>
         <div class="team-name">Cubs<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/cin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
+        <div class="team-logo"><img src="images/mlb-cin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
         <div class="team-name">Reds<span class="city">Cincinnati</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
+        <div class="team-logo"><img src="images/mlb-pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
         <div class="team-name">Pirates<span class="city">Pittsburgh</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/stl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
+        <div class="team-logo"><img src="images/mlb-stl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
         <div class="team-name">Cardinals<span class="city">St. Louis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">2</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/mil.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIL"><div class="logo-fallback" style="display:none">MIL</div></div>
+        <div class="team-logo"><img src="images/mlb-mil.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIL"><div class="logo-fallback" style="display:none">MIL</div></div>
         <div class="team-name">Brewers<span class="city">Milwaukee</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/lad.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAD"><div class="logo-fallback" style="display:none">LAD</div></div>
+        <div class="team-logo"><img src="images/mlb-lad.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAD"><div class="logo-fallback" style="display:none">LAD</div></div>
         <div class="team-name">Dodgers<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/sf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SFG"><div class="logo-fallback" style="display:none">SFG</div></div>
+        <div class="team-logo"><img src="images/mlb-sfg.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SFG"><div class="logo-fallback" style="display:none">SFG</div></div>
         <div class="team-name">Giants<span class="city">San Francisco</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/sd.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SDP"><div class="logo-fallback" style="display:none">SDP</div></div>
+        <div class="team-logo"><img src="images/mlb-sdp.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SDP"><div class="logo-fallback" style="display:none">SDP</div></div>
         <div class="team-name">Padres<span class="city">San Diego</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
+        <div class="team-logo"><img src="images/mlb-ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
         <div class="team-name">Diamondbacks<span class="city">Arizona</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/mlb/500/col.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
+        <div class="team-logo"><img src="images/mlb-col.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
         <div class="team-name">Rockies<span class="city">Colorado</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
@@ -505,193 +511,193 @@
     <div class="col-headers"><span></span><span>Team</span><span>Home</span><span>Road</span></div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/buf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BUF"><div class="logo-fallback" style="display:none">BUF</div></div>
+        <div class="team-logo"><img src="images/nfl-buf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BUF"><div class="logo-fallback" style="display:none">BUF</div></div>
         <div class="team-name">Bills<span class="city">Buffalo</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">17</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/ne.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NE"><div class="logo-fallback" style="display:none">NE</div></div>
+        <div class="team-logo"><img src="images/nfl-nep.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NEP"><div class="logo-fallback" style="display:none">NEP</div></div>
         <div class="team-name">Patriots<span class="city">New England</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYJ"><div class="logo-fallback" style="display:none">NYJ</div></div>
+        <div class="team-logo"><img src="images/nfl-nyj.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYJ"><div class="logo-fallback" style="display:none">NYJ</div></div>
         <div class="team-name">Jets<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
+        <div class="team-logo"><img src="images/nfl-mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
         <div class="team-name">Dolphins<span class="city">Miami</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/bal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BAL"><div class="logo-fallback" style="display:none">BAL</div></div>
+        <div class="team-logo"><img src="images/nfl-bal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BAL"><div class="logo-fallback" style="display:none">BAL</div></div>
         <div class="team-name">Ravens<span class="city">Baltimore</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
+        <div class="team-logo"><img src="images/nfl-pit.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PIT"><div class="logo-fallback" style="display:none">PIT</div></div>
         <div class="team-name">Steelers<span class="city">Pittsburgh</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
+        <div class="team-logo"><img src="images/nfl-cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
         <div class="team-name">Browns<span class="city">Cleveland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/cin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
+        <div class="team-logo"><img src="images/nfl-cin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
         <div class="team-name">Bengals<span class="city">Cincinnati</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/ind.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="IND"><div class="logo-fallback" style="display:none">IND</div></div>
+        <div class="team-logo"><img src="images/nfl-ind.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="IND"><div class="logo-fallback" style="display:none">IND</div></div>
         <div class="team-name">Colts<span class="city">Indianapolis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/ten.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TEN"><div class="logo-fallback" style="display:none">TEN</div></div>
+        <div class="team-logo"><img src="images/nfl-ten.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TEN"><div class="logo-fallback" style="display:none">TEN</div></div>
         <div class="team-name">Titans<span class="city">Tennessee</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/jax.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="JAX"><div class="logo-fallback" style="display:none">JAX</div></div>
+        <div class="team-logo"><img src="images/nfl-jax.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="JAX"><div class="logo-fallback" style="display:none">JAX</div></div>
         <div class="team-name">Jaguars<span class="city">Jacksonville</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
+        <div class="team-logo"><img src="images/nfl-hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
         <div class="team-name">Texans<span class="city">Houston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/den.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DEN"><div class="logo-fallback" style="display:none">DEN</div></div>
+        <div class="team-logo"><img src="images/nfl-den.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DEN"><div class="logo-fallback" style="display:none">DEN</div></div>
         <div class="team-name">Broncos<span class="city">Denver</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/kc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="KC"><div class="logo-fallback" style="display:none">KC</div></div>
+        <div class="team-logo"><img src="images/nfl-kcc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="KCC"><div class="logo-fallback" style="display:none">KCC</div></div>
         <div class="team-name">Chiefs<span class="city">Kansas City</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/lv.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LV"><div class="logo-fallback" style="display:none">LV</div></div>
+        <div class="team-logo"><img src="images/nfl-lvr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LVR"><div class="logo-fallback" style="display:none">LVR</div></div>
         <div class="team-name">Raiders<span class="city">Las Vegas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/lac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAC"><div class="logo-fallback" style="display:none">LAC</div></div>
+        <div class="team-logo"><img src="images/nfl-lac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAC"><div class="logo-fallback" style="display:none">LAC</div></div>
         <div class="team-name">Chargers<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
+        <div class="team-logo"><img src="images/nfl-dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
         <div class="team-name">Cowboys<span class="city">Dallas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYG"><div class="logo-fallback" style="display:none">NYG</div></div>
+        <div class="team-logo"><img src="images/nfl-nyg.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYG"><div class="logo-fallback" style="display:none">NYG</div></div>
         <div class="team-name">Giants<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
+        <div class="team-logo"><img src="images/nfl-phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
         <div class="team-name">Eagles<span class="city">Philadelphia</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
+        <div class="team-logo"><img src="images/nfl-wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
         <div class="team-name">Commanders<span class="city">Washington</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/gb.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="GB"><div class="logo-fallback" style="display:none">GB</div></div>
+        <div class="team-logo"><img src="images/nfl-gbp.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="GBP"><div class="logo-fallback" style="display:none">GBP</div></div>
         <div class="team-name">Packers<span class="city">Green Bay</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
+        <div class="team-logo"><img src="images/nfl-min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
         <div class="team-name">Vikings<span class="city">Minnesota</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
+        <div class="team-logo"><img src="images/nfl-chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
         <div class="team-name">Bears<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
+        <div class="team-logo"><img src="images/nfl-det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
         <div class="team-name">Lions<span class="city">Detroit</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
+        <div class="team-logo"><img src="images/nfl-atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
         <div class="team-name">Falcons<span class="city">Atlanta</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/car.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CAR"><div class="logo-fallback" style="display:none">CAR</div></div>
+        <div class="team-logo"><img src="images/nfl-car.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CAR"><div class="logo-fallback" style="display:none">CAR</div></div>
         <div class="team-name">Panthers<span class="city">Carolina</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/no.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NO"><div class="logo-fallback" style="display:none">NO</div></div>
+        <div class="team-logo"><img src="images/nfl-nor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NOR"><div class="logo-fallback" style="display:none">NOR</div></div>
         <div class="team-name">Saints<span class="city">New Orleans</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/tb.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TB"><div class="logo-fallback" style="display:none">TB</div></div>
+        <div class="team-logo"><img src="images/nfl-tam.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TAM"><div class="logo-fallback" style="display:none">TAM</div></div>
         <div class="team-name">Buccaneers<span class="city">Tampa Bay</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
+        <div class="team-logo"><img src="images/nfl-ari.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ARI"><div class="logo-fallback" style="display:none">ARI</div></div>
         <div class="team-name">Cardinals<span class="city">Arizona</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/lar.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAR"><div class="logo-fallback" style="display:none">LAR</div></div>
+        <div class="team-logo"><img src="images/nfl-lar.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAR"><div class="logo-fallback" style="display:none">LAR</div></div>
         <div class="team-name">Rams<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/sf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SF"><div class="logo-fallback" style="display:none">SF</div></div>
+        <div class="team-logo"><img src="images/nfl-sfo.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SFO"><div class="logo-fallback" style="display:none">SFO</div></div>
         <div class="team-name">49ers<span class="city">San Francisco</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nfl/500/sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
+        <div class="team-logo"><img src="images/nfl-sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
         <div class="team-name">Seahawks<span class="city">Seattle</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
@@ -703,187 +709,187 @@
 <div class="league-block" id="nba">
   <div class="league-header" onclick="toggleLeague(this)">
     <h2>🏀 NBA</h2>
-    <div class="league-meta"><span class="league-seen-count">12 of 30 teams seen</span><span class="toggle-icon">▲</span></div>
+    <div class="league-meta"><span class="league-seen-count">13 of 30 teams seen</span><span class="toggle-icon">▲</span></div>
   </div>
   <div class="league-body">
     <div class="col-headers"><span></span><span>Team</span><span>Home</span><span>Road</span></div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
+        <div class="team-logo"><img src="images/nba-tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
         <div class="team-name">Raptors<span class="city">Toronto</span></div>
-        <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">13</div></div>
+        <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">14</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
+        <div class="team-logo"><img src="images/nba-bos.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BOS"><div class="logo-fallback" style="display:none">BOS</div></div>
         <div class="team-name">Celtics<span class="city">Boston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYK"><div class="logo-fallback" style="display:none">NYK</div></div>
+        <div class="team-logo"><img src="images/nba-nyk.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYK"><div class="logo-fallback" style="display:none">NYK</div></div>
         <div class="team-name">Knicks<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/bkn.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BKN"><div class="logo-fallback" style="display:none">BKN</div></div>
+        <div class="team-logo"><img src="images/nba-bkn.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="BKN"><div class="logo-fallback" style="display:none">BKN</div></div>
         <div class="team-name">Nets<span class="city">Brooklyn</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
+        <div class="team-logo"><img src="images/nba-phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
         <div class="team-name">76ers<span class="city">Philadelphia</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
+        <div class="team-logo"><img src="images/nba-chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
         <div class="team-name">Bulls<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
+        <div class="team-logo"><img src="images/nba-cle.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLE"><div class="logo-fallback" style="display:none">CLE</div></div>
         <div class="team-name">Cavaliers<span class="city">Cleveland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
+        <div class="team-logo"><img src="images/nba-det.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DET"><div class="logo-fallback" style="display:none">DET</div></div>
         <div class="team-name">Pistons<span class="city">Detroit</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="IND"><div class="logo-fallback" style="display:none">IND</div></div>
+        <div class="team-logo"><img src="images/nba-ind.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="IND"><div class="logo-fallback" style="display:none">IND</div></div>
         <div class="team-name">Pacers<span class="city">Indianapolis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/mil.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIL"><div class="logo-fallback" style="display:none">MIL</div></div>
+        <div class="team-logo"><img src="images/nba-mil.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIL"><div class="logo-fallback" style="display:none">MIL</div></div>
         <div class="team-name">Bucks<span class="city">Milwaukee</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
+        <div class="team-logo"><img src="images/nba-atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
         <div class="team-name">Hawks<span class="city">Atlanta</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/cha.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHA"><div class="logo-fallback" style="display:none">CHA</div></div>
+        <div class="team-logo"><img src="images/nba-cha.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHA"><div class="logo-fallback" style="display:none">CHA</div></div>
         <div class="team-name">Hornets<span class="city">Charlotte</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
+        <div class="team-logo"><img src="images/nba-mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
         <div class="team-name">Heat<span class="city">Miami</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/orl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ORL"><div class="logo-fallback" style="display:none">ORL</div></div>
+        <div class="team-logo"><img src="images/nba-orl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ORL"><div class="logo-fallback" style="display:none">ORL</div></div>
         <div class="team-name">Magic<span class="city">Orlando</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
+        <div class="team-logo"><img src="images/nba-wsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="WSH"><div class="logo-fallback" style="display:none">WSH</div></div>
         <div class="team-name">Wizards<span class="city">Washington</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DEN"><div class="logo-fallback" style="display:none">DEN</div></div>
+        <div class="team-logo"><img src="images/nba-den.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DEN"><div class="logo-fallback" style="display:none">DEN</div></div>
         <div class="team-name">Nuggets<span class="city">Denver</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
+        <div class="team-logo"><img src="images/nba-min.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
         <div class="team-name">Timberwolves<span class="city">Minnesota</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OKC"><div class="logo-fallback" style="display:none">OKC</div></div>
+        <div class="team-logo"><img src="images/nba-okc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="OKC"><div class="logo-fallback" style="display:none">OKC</div></div>
         <div class="team-name">Thunder<span class="city">Oklahoma City</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/por.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="POR"><div class="logo-fallback" style="display:none">POR</div></div>
+        <div class="team-logo"><img src="images/nba-por.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="POR"><div class="logo-fallback" style="display:none">POR</div></div>
         <div class="team-name">Trail Blazers<span class="city">Portland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/utah.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="UTA"><div class="logo-fallback" style="display:none">UTA</div></div>
+        <div class="team-logo"><img src="images/nba-uta.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="UTA"><div class="logo-fallback" style="display:none">UTA</div></div>
         <div class="team-name">Jazz<span class="city">Utah</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="GSW"><div class="logo-fallback" style="display:none">GSW</div></div>
+        <div class="team-logo"><img src="images/nba-gsw.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="GSW"><div class="logo-fallback" style="display:none">GSW</div></div>
         <div class="team-name">Warriors<span class="city">San Francisco</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
-        <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
+        <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/lac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAC"><div class="logo-fallback" style="display:none">LAC</div></div>
+        <div class="team-logo"><img src="images/nba-lac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAC"><div class="logo-fallback" style="display:none">LAC</div></div>
         <div class="team-name">Clippers<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAL"><div class="logo-fallback" style="display:none">LAL</div></div>
+        <div class="team-logo"><img src="images/nba-lal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAL"><div class="logo-fallback" style="display:none">LAL</div></div>
         <div class="team-name">Lakers<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/phx.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHX"><div class="logo-fallback" style="display:none">PHX</div></div>
+        <div class="team-logo"><img src="images/nba-phx.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHX"><div class="logo-fallback" style="display:none">PHX</div></div>
         <div class="team-name">Suns<span class="city">Phoenix</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/sac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SAC"><div class="logo-fallback" style="display:none">SAC</div></div>
+        <div class="team-logo"><img src="images/nba-sac.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SAC"><div class="logo-fallback" style="display:none">SAC</div></div>
         <div class="team-name">Kings<span class="city">Sacramento</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
+        <div class="team-logo"><img src="images/nba-dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
         <div class="team-name">Mavericks<span class="city">Dallas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
+        <div class="team-logo"><img src="images/nba-hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
         <div class="team-name">Rockets<span class="city">Houston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MEM"><div class="logo-fallback" style="display:none">MEM</div></div>
+        <div class="team-logo"><img src="images/nba-mem.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MEM"><div class="logo-fallback" style="display:none">MEM</div></div>
         <div class="team-name">Grizzlies<span class="city">Memphis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/no.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NOP"><div class="logo-fallback" style="display:none">NOP</div></div>
+        <div class="team-logo"><img src="images/nba-nop.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NOP"><div class="logo-fallback" style="display:none">NOP</div></div>
         <div class="team-name">Pelicans<span class="city">New Orleans</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/nba/500/sas.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SAS"><div class="logo-fallback" style="display:none">SAS</div></div>
+        <div class="team-logo"><img src="images/nba-sas.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SAS"><div class="logo-fallback" style="display:none">SAS</div></div>
         <div class="team-name">Spurs<span class="city">San Antonio</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
@@ -901,181 +907,181 @@
     <div class="col-headers"><span></span><span>Team</span><span>Home</span><span>Road</span></div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/399.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TFC"><div class="logo-fallback" style="display:none">TFC</div></div>
+        <div class="team-logo"><img src="images/mls-tor.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="TOR"><div class="logo-fallback" style="display:none">TOR</div></div>
         <div class="team-name">Toronto FC<span class="city">Toronto</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">79</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/341.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MTL"><div class="logo-fallback" style="display:none">MTL</div></div>
+        <div class="team-logo"><img src="images/mls-mon.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MON"><div class="logo-fallback" style="display:none">MON</div></div>
         <div class="team-name">CF Montréal<span class="city">Montreal</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">7</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/403.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NE"><div class="logo-fallback" style="display:none">NE</div></div>
+        <div class="team-logo"><img src="images/mls-ner.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NER"><div class="logo-fallback" style="display:none">NER</div></div>
         <div class="team-name">New England Revolution<span class="city">Boston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/337.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYRB"><div class="logo-fallback" style="display:none">NYRB</div></div>
+        <div class="team-logo"><img src="images/mls-nyr.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYR"><div class="logo-fallback" style="display:none">NYR</div></div>
         <div class="team-name">NY Red Bulls<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/18919.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYC"><div class="logo-fallback" style="display:none">NYC</div></div>
+        <div class="team-logo"><img src="images/mls-nyc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NYC"><div class="logo-fallback" style="display:none">NYC</div></div>
         <div class="team-name">NYCFC<span class="city">New York</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/16629.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
+        <div class="team-logo"><img src="images/mls-phi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="PHI"><div class="logo-fallback" style="display:none">PHI</div></div>
         <div class="team-name">Philadelphia Union<span class="city">Philadelphia</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/456.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DC"><div class="logo-fallback" style="display:none">DC</div></div>
+        <div class="team-logo"><img src="images/mls-dcu.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DCU"><div class="logo-fallback" style="display:none">DCU</div></div>
         <div class="team-name">DC United<span class="city">Washington</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">6</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/18396.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
+        <div class="team-logo"><img src="images/mls-atl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ATL"><div class="logo-fallback" style="display:none">ATL</div></div>
         <div class="team-name">Atlanta United<span class="city">Atlanta</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/17362.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ORL"><div class="logo-fallback" style="display:none">ORL</div></div>
+        <div class="team-logo"><img src="images/mls-orl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="ORL"><div class="logo-fallback" style="display:none">ORL</div></div>
         <div class="team-name">Orlando City<span class="city">Orlando</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/20906.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
+        <div class="team-logo"><img src="images/mls-mia.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIA"><div class="logo-fallback" style="display:none">MIA</div></div>
         <div class="team-name">Inter Miami<span class="city">Miami</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/21373.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLT"><div class="logo-fallback" style="display:none">CLT</div></div>
+        <div class="team-logo"><img src="images/mls-cha.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHA"><div class="logo-fallback" style="display:none">CHA</div></div>
         <div class="team-name">Charlotte FC<span class="city">Charlotte</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/19714.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NSH"><div class="logo-fallback" style="display:none">NSH</div></div>
+        <div class="team-logo"><img src="images/mls-nsh.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="NSH"><div class="logo-fallback" style="display:none">NSH</div></div>
         <div class="team-name">Nashville SC<span class="city">Nashville</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/392.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
+        <div class="team-logo"><img src="images/mls-chi.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CHI"><div class="logo-fallback" style="display:none">CHI</div></div>
         <div class="team-name">Chicago Fire<span class="city">Chicago</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/393.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLB"><div class="logo-fallback" style="display:none">CLB</div></div>
+        <div class="team-logo"><img src="images/mls-clb.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CLB"><div class="logo-fallback" style="display:none">CLB</div></div>
         <div class="team-name">Columbus Crew<span class="city">Columbus</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/17085.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MIN"><div class="logo-fallback" style="display:none">MIN</div></div>
+        <div class="team-logo"><img src="images/mls-mnu.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="MNU"><div class="logo-fallback" style="display:none">MNU</div></div>
         <div class="team-name">Minnesota United<span class="city">Minnesota</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/396.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SKC"><div class="logo-fallback" style="display:none">SKC</div></div>
+        <div class="team-logo"><img src="images/mls-skc.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SKC"><div class="logo-fallback" style="display:none">SKC</div></div>
         <div class="team-name">Sporting KC<span class="city">Kansas City</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill yes">1</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">4</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/21723.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
+        <div class="team-logo"><img src="images/mls-stl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="STL"><div class="logo-fallback" style="display:none">STL</div></div>
         <div class="team-name">St. Louis City SC<span class="city">St. Louis</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/411.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
+        <div class="team-logo"><img src="images/mls-hou.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="HOU"><div class="logo-fallback" style="display:none">HOU</div></div>
         <div class="team-name">Houston Dynamo<span class="city">Houston</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/389.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
+        <div class="team-logo"><img src="images/mls-dal.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="DAL"><div class="logo-fallback" style="display:none">DAL</div></div>
         <div class="team-name">FC Dallas<span class="city">Dallas</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/398.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="RSL"><div class="logo-fallback" style="display:none">RSL</div></div>
+        <div class="team-logo"><img src="images/mls-rsl.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="RSL"><div class="logo-fallback" style="display:none">RSL</div></div>
         <div class="team-name">Real Salt Lake<span class="city">Salt Lake City</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/401.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
+        <div class="team-logo"><img src="images/mls-col.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="COL"><div class="logo-fallback" style="display:none">COL</div></div>
         <div class="team-name">Colorado Rapids<span class="city">Colorado</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">5</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/395.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAG"><div class="logo-fallback" style="display:none">LAG</div></div>
+        <div class="team-logo"><img src="images/mls-lag.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAG"><div class="logo-fallback" style="display:none">LAG</div></div>
         <div class="team-name">LA Galaxy<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">6</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/20207.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAFC"><div class="logo-fallback" style="display:none">LAFC</div></div>
+        <div class="team-logo"><img src="images/mls-laf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="LAF"><div class="logo-fallback" style="display:none">LAF</div></div>
         <div class="team-name">LAFC<span class="city">Los Angeles</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/9726.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
+        <div class="team-logo"><img src="images/mls-sea.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SEA"><div class="logo-fallback" style="display:none">SEA</div></div>
         <div class="team-name">Seattle Sounders<span class="city">Seattle</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">3</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/10007.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="POR"><div class="logo-fallback" style="display:none">POR</div></div>
+        <div class="team-logo"><img src="images/mls-por.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="POR"><div class="logo-fallback" style="display:none">POR</div></div>
         <div class="team-name">Portland Timbers<span class="city">Portland</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/13012.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VAN"><div class="logo-fallback" style="display:none">VAN</div></div>
+        <div class="team-logo"><img src="images/mls-van.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="VAN"><div class="logo-fallback" style="display:none">VAN</div></div>
         <div class="team-name">Vancouver Whitecaps<span class="city">Vancouver</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">2</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/400.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SJ"><div class="logo-fallback" style="display:none">SJ</div></div>
+        <div class="team-logo"><img src="images/mls-sje.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SJE"><div class="logo-fallback" style="display:none">SJE</div></div>
         <div class="team-name">San Jose Earthquakes<span class="city">San Jose</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/17332.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
+        <div class="team-logo"><img src="images/mls-cin.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="CIN"><div class="logo-fallback" style="display:none">CIN</div></div>
         <div class="team-name">FC Cincinnati<span class="city">Cincinnati</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill yes">1</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/20712.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="AUS"><div class="logo-fallback" style="display:none">AUS</div></div>
+        <div class="team-logo"><img src="images/mls-aus.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="AUS"><div class="logo-fallback" style="display:none">AUS</div></div>
         <div class="team-name">Austin FC<span class="city">Austin</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
       </div>
       <div class="team-card">
-        <div class="team-logo"><img src="https://a.espncdn.com/i/teamlogos/soccer/500/21975.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SD"><div class="logo-fallback" style="display:none">SD</div></div>
+        <div class="team-logo"><img src="images/mls-sdf.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="SDF"><div class="logo-fallback" style="display:none">SDF</div></div>
         <div class="team-name">San Diego FC<span class="city">San Diego</span></div>
         <div class="seen-cell"><span class="col-label">Home</span><div class="seen-pill no">—</div></div>
         <div class="seen-cell"><span class="col-label">Road</span><div class="seen-pill no">—</div></div>
@@ -1085,7 +1091,12 @@
 </div>
 
 </main>
-<footer><p>Personal sports tracker &mdash; every team, every city</p></footer>
+
+<footer>
+  <p>Personal sports tracker &mdash; every team, every city</p>
+  <div class="home-btn" style="margin-top:16px;"><a href="https://globetrottingent-canada.github.io/files/index.html">← Home</a></div>
+</footer>
+
 <script>
   function toggleLeague(headerEl) {
     const body = headerEl.nextElementSibling;

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austria — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 52 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Austria</h1>
+      <p class="subhead">Wiener Schnitzel, Sachertorte, and the Viennese coffee house — the refined legacy of a Habsburg court kitchen that absorbed the best of Central Europe.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HABSBURG · MEHLSPEISEN · MELANGE · HABSBURG · MEHLSPEISEN · MELANGE ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACYklEQVR4nO3WsQ0CQRAEQQ4hcvkQ3sUhHXxifosAjjDa2KoIxmlp1nWcN6BzrwfAdCKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBij+f7VW+A0dbeu94Ao7mjEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQW7/Pt94Ao63rOOsNMJo7CjERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIsT8vFAmXR2ViYQAAAABJRU5ErkJggg==" alt="Flag of Austria">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Austrian cuisine is the refined legacy of one of history's great empires — a tradition shaped by the Habsburg court kitchen that ruled Central Europe for over six centuries, absorbing culinary influences from the empire's vast and diverse territories. Bohemian dumplings, Hungarian paprika and goulash, Italian pasta and pastry technique, Polish and Jewish cooking traditions from Galicia, and the Ottoman spice trade that ran through Vienna all left permanent traces in the Austrian kitchen. The result is a cuisine of considerable sophistication built on the principle that the best Central European traditions, collected and refined in Vienna, produce something greater than any of its parts.</p>
+        <p>The Habsburg court was one of the most important culinary centres in Europe from the 16th to 19th centuries — its banquets and pastry traditions shaped cooking across the empire and beyond. The Viennese café tradition, which emerged in the late 17th century after the Ottoman siege of 1683 left abandoned coffee supplies, became one of the world's great social institutions and UNESCO recognised it as Intangible Cultural Heritage in 2011. The Biedermeier period of the early 19th century produced the bourgeois cooking tradition — warm, comforting, and built on quality ingredients — that defines everyday Austrian food today.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Austrian cooking is defined by warmth, quality, and the satisfaction of doing simple things exceptionally well. The Wiener Schnitzel — veal pounded thin, breaded, and fried in clarified butter until it billows and crisps — is the emblematic dish: few ingredients, total precision, no shortcuts tolerated. Tafelspitz — prime boiled beef with horseradish, chive sauce, and rösti — was Emperor Franz Joseph's favourite daily lunch and represents the Austrian conviction that fine ingredients treated with patience produce elegance without ostentation.</p>
+        <p>The Mehlspeisen tradition — the extraordinary Austrian sweet dumpling, pastry, and dessert culture — is perhaps the cuisine's greatest contribution. Apfelstrudel, paper-thin pastry stretched by hand until a newspaper can be read through it; Kaiserschmarrn, the shredded pancake dusted with icing sugar; Marillenknödel, apricot-filled potato dumplings rolled in buttered breadcrumbs — these are dishes of genuine technical difficulty. The Sachertorte, subject of a seven-year legal battle between the Hotel Sacher and the Demel bakery, is the most legally contested dessert in history.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Viennese coffee house is a UNESCO Intangible Cultural Heritage institution — a place to sit for hours over a single Melange, read the newspaper, and be left entirely undisturbed. The waiter's refined indifference is tradition, not rudeness.</li>
+        <li>Brunch does not exist in Austria — the mid-morning Frühstück is a serious affair of bread rolls, cold cuts, cheese, and coffee, eaten slowly.</li>
+        <li>The Heuriger wine tavern culture of the Vienna Woods is unique — open only when the current vintage is ready, announced by a pine branch above the door, serving cold cuts and new wine.</li>
+        <li>Wiener Schnitzel protocol is strict — it must be veal, pounded thin, breaded, and fried until it billows in the pan. A schnitzel that lies flat is overcooked. Served with lemon and potato salad, nothing else.</li>
+        <li>Austrian cuisine is deeply seasonal — Spargel (white asparagus) in May, Marillen (apricots) in July, Steinpilze (porcini) in autumn, and game throughout winter, each treated as a distinct culinary event.</li>
+        <li>Vienna's café culture produced some of Europe's greatest cultural life — Freud, Klimt, Mahler, and Wittgenstein all worked in the same cafés, an intellectual institution as much as a place to eat.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Veal</li>
+        <li><span class="n">06</span> Sour cream</li>
+        <li><span class="n">02</span> White asparagus</li>
+        <li><span class="n">07</span> Caraway</li>
+        <li><span class="n">03</span> Apricots / Marillen</li>
+        <li><span class="n">08</span> Horseradish</li>
+        <li><span class="n">04</span> Porcini mushrooms</li>
+        <li><span class="n">09</span> Poppy seeds</li>
+        <li><span class="n">05</span> Clarified butter</li>
+        <li><span class="n">10</span> Grüner Veltliner</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Sachertorte was created in 1832 by 16-year-old apprentice chef Franz Sacher for Prince Metternich. It sparked a seven-year court battle (1954–1963) between the Hotel Sacher and the Demel bakery over the right to call their version 'Original Sachertorte.' The Hotel Sacher won.</li>
+        <li>Austria is the birthplace of croissant culture — the crescent-shaped pastry was created in Vienna as the kipferl long before it became the French croissant, according to legend to commemorate a victory over the Ottoman siege of 1683, though historians dispute the story.</li>
+        <li>Red Bull was invented in Austria — Dietrich Mateschitz discovered the Thai energy drink Krating Daeng, adapted the formula for Western palates, and launched Red Bull in 1987, one of the most successful Austrian product exports in history.</li>
+        <li>The Wiener Schnitzel is genuinely Viennese in origin, and its spread through Central and Eastern Europe — as the Czech řízek, the Polish kotlet schabowy, and the Israeli schnitzel — reflects the reach of Habsburg culinary influence.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wiener Schnitzel</span><span class="dish-tag">Breaded fried veal cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Veal pounded thin, breaded, and fried in clarified butter until it billows and crisps.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tafelspitz</span><span class="dish-tag">Boiled beef, horseradish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Prime boiled beef served with horseradish, chive sauce, and rösti, Emperor Franz Joseph's favourite lunch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gulasch</span><span class="dish-tag">Paprika beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, paprika-forward beef stew adopted from Hungarian cuisine and made distinctly Austrian.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zwiebelrostbraten</span><span class="dish-tag">Roast beef, crispy onions</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roast beef topped with a heap of crispy fried onions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Backhendl</span><span class="dish-tag">Breaded fried chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Breaded, deep-fried chicken pieces, an Austrian fried chicken tradition predating the American one.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beuschel</span><span class="dish-tag">Offal ragout</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy ragout of veal lung and heart in a creamy sauce, a traditional Viennese offal dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaiserschmarrn</span><span class="dish-tag">Shredded sugared pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A shredded, caramelized pancake dusted with icing sugar, eaten as main course or dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Erdäpfelgulasch</span><span class="dish-tag">Potato paprika stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A vegetarian goulash of potatoes in a paprika-spiced sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rindsuppe</span><span class="dish-tag">Clear beef broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A clear, rich beef broth often served with thin pancake strips or dumplings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Liptauer</span><span class="dish-tag">Spiced paprika cheese spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced cheese spread mixed with paprika, capers, and onion.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Mehlspeisen Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sachertorte</span><span class="dish-tag">Apricot chocolate cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense chocolate cake layered with apricot jam and coated in chocolate glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Apfelstrudel</span><span class="dish-tag">Hand-stretched apple pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Paper-thin pastry stretched by hand and filled with spiced apple and cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaiserschmarrn</span><span class="dish-tag">Shredded sugared pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A shredded, caramelized pancake dusted with icing sugar, eaten as main course or dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Topfenstrudel</span><span class="dish-tag">Sweet quark cheese strudel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A strudel filled with sweetened quark cheese instead of fruit.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Marillenknödel</span><span class="dish-tag">Apricot potato dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole apricot wrapped in potato dough, boiled, and rolled in buttered breadcrumbs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palatschinken</span><span class="dish-tag">Thin filled crepes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin Austrian crepes rolled around jam, chocolate, or nut fillings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Germknödel</span><span class="dish-tag">Plum-filled yeast dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fluffy steamed yeast dumpling filled with plum jam, topped with poppy seeds and butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Punschkrapfen</span><span class="dish-tag">Rum-soaked pink cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small rum-soaked cake coated in bright pink fondant icing.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Café &amp; Street</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Semmel mit Butter</span><span class="dish-tag">Bread roll, butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple crusty bread roll spread with good butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Liptauer</span><span class="dish-tag">Spiced paprika cheese spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced cheese spread mixed with paprika, capers, and onion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leberkäsesemmel</span><span class="dish-tag">Meatloaf sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick slice of baked meatloaf served in a crusty roll, an Austrian fast-food staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Würstelstand sausage</span><span class="dish-tag">Street sausage stand</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled or boiled sausage bought from a street corner sausage stand.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salzstangerl</span><span class="dish-tag">Salted bread stick</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small, crusty, salt-topped bread stick.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brettljause</span><span class="dish-tag">Cold cuts, cheese board</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rustic wooden board of cold cuts, cheese, pickles, and bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kümmelbraten</span><span class="dish-tag">Caraway roast pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roast pork seasoned generously with caraway seed.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ofenkäse</span><span class="dish-tag">Baked melted cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small wheel of cheese baked until molten, served with bread for dipping.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Austrian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Caraway</li>
+        <li><span class="n">06</span> Clarified butter</li>
+        <li><span class="n">02</span> Sour cream</li>
+        <li><span class="n">07</span> Apricot</li>
+        <li><span class="n">03</span> Horseradish</li>
+        <li><span class="n">08</span> Poppy seeds</li>
+        <li><span class="n">04</span> Paprika</li>
+        <li><span class="n">09</span> Lard</li>
+        <li><span class="n">05</span> Marjoram</li>
+        <li><span class="n">10</span> White wine vinegar</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Grüner Veltliner</li>
+              <li>Riesling Wachau</li>
+              <li>Zweigelt</li>
+              <li>Sturm</li>
+              <li>Rotes Veltliner</li>
+              <li>Obstler</li>
+              <li>Slivovitz Austrian</li>
+              <li>Inländerrum</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Melange</li>
+              <li>Verlängerter</li>
+              <li>Einspänner</li>
+              <li>Almdudler</li>
+              <li>Fruchtsaft</li>
+              <li>Holunderschorle</li>
+              <li>Most apple cider</li>
+              <li>Sturm grape juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Ottakringer</li>
+              <li>Schwechater</li>
+              <li>Schwechater Zwickl</li>
+              <li>Zipfer</li>
+              <li>Wieselburger</li>
+              <li>Stiegl</li>
+              <li>Schwechater Märzen</li>
+              <li>Schwechater Lager</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

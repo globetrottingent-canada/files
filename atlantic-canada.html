@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlantic Canada — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 49 / 68 · North America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Atlantic Canada</h1>
+      <p class="subhead">Nova Scotia, New Brunswick, PEI, Newfoundland, and Acadian country — Mi'kmaq, French, and British maritime traditions layered around the world-class seafood of the North Atlantic.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            MARITIME · BAY OF FUNDY · GRAND BANKS · MARITIME · BAY OF FUNDY ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Atlantic Canada">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Atlantic Canada is the oldest European-settled part of the country outside Quebec, and its food culture reflects the extraordinary layering of Indigenous Mi'kmaq, Acadian French, British colonial, and maritime fishing traditions that have accumulated since the 16th century. The Mi'kmaq and Maliseet peoples developed sophisticated food systems built on the marine resources of the North Atlantic — salmon, lobster, scallops, clams, eels, and tidal seaweeds — and their knowledge shaped the European fishing communities that followed. The Acadian French settlers who arrived in the 17th century established farming communities forcibly expelled by the British in the Great Deportation of 1755, scattering Acadian communities but leaving their food culture — rappie pie, fricot, poutine râpure — alive in the communities that returned.</p>
+        <p>Newfoundland stands apart in its isolation and food culture — a British dominion independent of Canada until 1949, whose population survived for centuries on salt cod fished from the Grand Banks. The salt fish economy shaped every aspect of Newfoundland food: fish & brewis, fish cakes, and preserved fish preparations that sustained communities through long subarctic winters. The result is the most distinct English-speaking food culture in Canada — dishes that exist nowhere else, and a fierce pride in the Newfoundland table that newcomers quickly learn to respect.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Atlantic Canadian cooking is defined by the sea — lobster, scallops, oysters, mussels, clams, and world-class cold-water fish are the ingredients that make the region distinctive. A Maritime summer meal means lobster boiled in seawater and eaten outside with butter and cold beer, or a chowder thick with cream and potatoes. The PEI potato — grown in the island's distinctive red iron soil — is used in soups, chowders, and fishcakes, and considered superior to potatoes from anywhere else in Canada by islanders who will accept no argument on the subject.</p>
+        <p>Newfoundland's cuisine is the most unusual in the region: jiggs dinner (salt beef, root vegetables, and split peas boiled together), toutons (bread dough fried in pork fat, eaten with molasses), figgy duff (a steamed raisin pudding), and flipper pie (harp seal flippers in pastry) have no equivalent elsewhere. Dulse — the dried purple seaweed of the Bay of Fundy — is Nova Scotia and New Brunswick's most distinctive food. Halifax's donair, invented in 1973 by a Greek immigrant, was declared the city's official food in 2015.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lobster is the measure of summer in Atlantic Canada — eaten outdoors at a picnic table with butter, crackers, and a cold Keith's, preferably cooked in seawater. Cracking a whole lobster is both skill and ritual.</li>
+        <li>Newfoundland food is its own world — fish & brewis, toutons fried in pork fat, seal flipper pie, and figgy duff are dishes virtually unknown outside the island.</li>
+        <li>The donair is Atlantic Canada's late-night institution — a Halifax invention of the 1970s, spiced beef in a pita with a uniquely sweet garlic sauce, and the official food of Halifax.</li>
+        <li>PEI potatoes are a point of serious island pride — the red iron-rich soil produces potatoes of exceptional quality, woven into island identity at a level approaching cultural significance.</li>
+        <li>The rappie pie of Clare, Nova Scotia is an Acadian dish of grated potato with chicken or pork, made in the same communities since the Acadian deportation and return.</li>
+        <li>Dulse — dried purple-red seaweed from the Bay of Fundy — is sold in bags and eaten as a snack, salty and chewy, the most distinctive single ingredient of the region.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Atlantic lobster</li>
+        <li><span class="n">06</span> Blueberries</li>
+        <li><span class="n">02</span> Salt cod</li>
+        <li><span class="n">07</span> Solomon Gundy</li>
+        <li><span class="n">03</span> Dulse</li>
+        <li><span class="n">08</span> Rappie pie</li>
+        <li><span class="n">04</span> PEI potatoes</li>
+        <li><span class="n">09</span> Flipper pie</li>
+        <li><span class="n">05</span> Fiddleheads</li>
+        <li><span class="n">10</span> Screech rum</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Prince Edward Island is the smallest Canadian province and produces roughly 25% of Canada's entire potato crop — an extraordinary agricultural concentration for an island of 160,000 people. The potato is so central to identity that it appears on provincial licence plates.</li>
+        <li>Halifax's donair was invented in 1973 by Peter Gamoulakos, a Greek immigrant who adapted gyros into something specifically suited to Halifax tastes — spicier beef, and a uniquely sweet condensed milk and garlic sauce with no equivalent in Greek cooking. It became the official food of Halifax in 2015, the first city in Canada to designate one.</li>
+        <li>Newfoundland was an independent dominion — not a Canadian province — until 1949, the most recently joined part of Canada. This late confederation and extreme isolation allowed it to develop the most distinct English-speaking food culture in Canada.</li>
+        <li>The Bay of Fundy between Nova Scotia and New Brunswick has the highest tides in the world — up to 16 metres — producing nutrient-rich waters supporting extraordinary populations of lobster, scallop, dulse, and wild Atlantic salmon.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Maritime Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lobster Roll</span><span class="dish-tag">Cold lobster, buttered bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold lobster meat dressed simply with mayonnaise or butter in a toasted bun.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish &amp; Brewis</span><span class="dish-tag">Salt cod, hard bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salt cod and hardtack bread soaked and cooked together, a foundational Newfoundland dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rappie Pie</span><span class="dish-tag">Grated potato, chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grated potato baked with chicken or pork, an Acadian dish tracing back to 18th-century Nova Scotia.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hodge Podge</span><span class="dish-tag">Creamy new vegetable stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy stew of the season's first new potatoes, carrots, and beans in cream.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flipper Pie</span><span class="dish-tag">Seal flippers in pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Harp seal flippers baked in a savoury pastry crust, a distinctly Newfoundland dish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Newfoundland &amp; More</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Donair Halifax</span><span class="dish-tag">Spiced beef, sweet garlic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced beef in a pita with a uniquely sweet garlic sauce, Halifax's official food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Solomon Gundy</span><span class="dish-tag">Pickled herring salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pickled herring mixed with onion, a traditional Maritime preserved fish dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seafood Chowder</span><span class="dish-tag">Cream, potato, seafood</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, cream-based chowder loaded with whatever seafood the boat brought in that morning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baked Beans Maritime</span><span class="dish-tag">Molasses-baked beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White beans slow-baked with molasses and salt pork.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jiggs Dinner</span><span class="dish-tag">Boiled salt beef, vegetables</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salt beef boiled together with root vegetables and split peas, a Sunday Newfoundland tradition.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Figgy Duff</span><span class="dish-tag">Steamed raisin pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A steamed pudding of raisins and molasses, a classic Newfoundland dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blueberry Grunt</span><span class="dish-tag">Steamed berry dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wild blueberries simmered and topped with steamed dumplings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Butter Tart</span><span class="dish-tag">Sweet syrup pastry tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small pastry tart filled with a gooey butter and syrup filling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Touton with Molasses</span><span class="dish-tag">Fried dough, molasses</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick rounds of fried bread dough served with molasses for dipping.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Acadian Cream Puffs</span><span class="dish-tag">Cream-filled choux pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light choux pastry shells filled with sweetened cream, an Acadian community favourite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blueberry Cake</span><span class="dish-tag">Wild blueberry cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist cake studded with wild Maritime blueberries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Molasses Bread</span><span class="dish-tag">Dark sweet quick bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark quick bread sweetened with molasses.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">PEI Potato Fudge</span><span class="dish-tag">Potato-based fudge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy fudge made using mashed potato as its unlikely smooth base.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Toutons</span><span class="dish-tag">Fried dough, molasses</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick rounds of bread dough fried in pork fat, eaten with molasses.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Donair</span><span class="dish-tag">Spiced beef, sweet garlic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced beef in a pita with a uniquely sweet garlic sauce, Halifax's official food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dulse</span><span class="dish-tag">Dried purple seaweed</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dried purple-red seaweed from the Bay of Fundy, eaten as a salty, chewy snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lobster Roll</span><span class="dish-tag">Cold lobster, buttered bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold lobster meat dressed simply with mayonnaise or butter in a toasted bun.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Digby Scallops</span><span class="dish-tag">Pan-seared sweet scallops</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, plump scallops from Digby, Nova Scotia, typically pan-seared simply.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rappie Pie</span><span class="dish-tag">Grated potato, chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grated potato baked with chicken or pork, an Acadian dish tracing back to 18th-century Nova Scotia.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Cakes</span><span class="dish-tag">Fried salt cod patties</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Patties of salt cod and mashed potato, pan-fried until golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poutine Râpure</span><span class="dish-tag">Grated potato dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense dumpling of grated potato surrounding a meat filling, the Acadian name for rappie pie.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Atlantic Canadian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Salt cod</li>
+        <li><span class="n">06</span> Butter</li>
+        <li><span class="n">02</span> Dulse</li>
+        <li><span class="n">07</span> Seafood broth</li>
+        <li><span class="n">03</span> Molasses</li>
+        <li><span class="n">08</span> Savory herb</li>
+        <li><span class="n">04</span> Blueberry</li>
+        <li><span class="n">09</span> Smoked fish</li>
+        <li><span class="n">05</span> Fiddleheads</li>
+        <li><span class="n">10</span> Maple</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Rum</p>
+            <ol class="plain">
+              <li>Alexander Keith's IPA</li>
+              <li>Screech Rum</li>
+              <li>Garrison Brewing</li>
+              <li>Big Spruce</li>
+              <li>PEI Brewing</li>
+              <li>Tatamagouche</li>
+              <li>Propeller</li>
+              <li>Jost Wine NS</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Molasses tea</li>
+              <li>Blueberry juice</li>
+              <li>Fiddlehead tea</li>
+              <li>Digby apple cider</li>
+              <li>Ginger ale</li>
+              <li>PEI apple juice</li>
+              <li>Seabuckthorn</li>
+              <li>Spruce beer</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Alexander Keith's</li>
+              <li>Propeller</li>
+              <li>Garrison</li>
+              <li>Big Spruce</li>
+              <li>PEI Brewing</li>
+              <li>Tatamagouche</li>
+              <li>Loyalist City</li>
+              <li>Picaroons</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

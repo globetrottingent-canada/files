@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Argentina — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 48 / 68 · South America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Argentina</h1>
+      <p class="subhead">A country that reinvented itself through immigration — Italian and Spanish waves layered onto Pampas cattle culture, asado ritual, and dulce de leche.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PAMPAS · ASADO · MATE · PAMPAS · ASADO · MATE ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Argentina">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Argentine cuisine is the product of a country that largely reinvented itself through immigration. The indigenous Quechua, Guaraní, and Mapuche peoples contributed corn, potatoes, squash, quinoa, and the mate tradition, but it was the extraordinary wave of European immigration between 1880 and 1930 — primarily from Italy and Spain, with significant numbers from Germany, France, and the Middle East — that shaped the Argentina on the plate today. Italian immigrants outnumbered all others, and their culinary legacy is embedded in everyday Argentine life: pasta, pizza, and gnocchi are as native as asado and empanadas.</p>
+        <p>The Spanish colonial period established the cattle ranching tradition on the vast Pampas grasslands, which would define Argentine identity more than any other single factor. The grass-fed cattle of the Pampas — raised on some of the world's finest pasture — produced a beef of exceptional quality, and the asado culture that developed around it became the central ritual of Argentine social life. Lebanese and Syrian immigrants contributed empanadas' stuffed pastry cousins, visible in the stuffed bread and baked pastry traditions found across the country.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Argentine food is European in technique, South American in ingredient, and utterly its own in spirit. Beef is the obsession and the art — cuts unfamiliar elsewhere, cooked low and slow over wood or charcoal, served simply with chimichurri and salmuera. The asado is not just a cooking method but a ceremony: the asador controls the fire, the timing, and the sequence of cuts with total authority. Offal — mollejas, chinchulines, riñones — is eaten with pleasure as part of the parrillada.</p>
+        <p>Dulce de leche is the defining sweet flavor of Argentina — a slow-cooked caramel made from sweetened milk that appears in alfajores, medialunas, cakes, and is spread on everything from toast to pancakes. Italian influence shows in the quality of the helado, the ubiquity of pizza, and the Sunday pasta lunch that rivals the asado as a family institution. Malbec from Mendoza is the national wine, and mate is the national drink — a bitter, grassy herb tea shared communally throughout the day.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The asado is the heart of Argentine social life — a Sunday barbecue ritual that can last all afternoon, presided over by the asador with religious seriousness. Showing up hungry is essential.</li>
+        <li>Dinner is eaten late — rarely before 9pm, and often starting at 10pm or later. Restaurants in Buenos Aires don't fill until after 10pm. Lunch is the lighter meal.</li>
+        <li>Mate is not just a drink but a social ritual — shared from a single gourd passed around a group, sipped through a bombilla straw. Offering mate is an act of friendship; refusing it, mildly offensive.</li>
+        <li>Beef is not merely food in Argentina — it is identity. The quality of the grass-fed Pampas cattle is a point of national pride, and overcooking a steak is considered close to a crime.</li>
+        <li>Dulce de leche appears at every meal context — spread on toast, inside medialunas, in alfajores, on pancakes, and eaten directly from the jar. It is Argentina's defining sweet flavor.</li>
+        <li>Italian immigration in the late 19th and early 20th centuries transformed Argentine food — pasta, pizza, and gelato are as embedded in the culture as asado and empanadas.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Beef</li>
+        <li><span class="n">06</span> Malbec</li>
+        <li><span class="n">02</span> Yerba mate</li>
+        <li><span class="n">07</span> Empanada dough</li>
+        <li><span class="n">03</span> Dulce de leche</li>
+        <li><span class="n">08</span> Provoleta cheese</li>
+        <li><span class="n">04</span> Chimichurri</li>
+        <li><span class="n">09</span> Morcilla</li>
+        <li><span class="n">05</span> Chorizo criollo</li>
+        <li><span class="n">10</span> Dulce de membrillo</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Argentina consumes more beef per capita than almost any other country on earth — though consumption has declined from a peak of 100kg per person per year, it still hovers around 50kg, nearly double the global average.</li>
+        <li>The empanada varies dramatically by region — Salta uses potatoes and hard-boiled eggs, Tucumán uses only beef and spices, Mendoza adds olives, and each province considers its version superior. The fold pattern on the edge traditionally indicated the filling, so illiterate workers could tell them apart.</li>
+        <li>Malbec — now Argentina's signature grape — is a French variety from Cahors that nearly died out in France after a devastating frost in 1956. Argentine winemakers in Mendoza had been cultivating it since the 1850s and preserved what France almost lost.</li>
+        <li>Yerba mate, the bitter herb used to make the national drink, is consumed in quantities that dwarf coffee in Argentina — the average Argentine drinks 6–8kg of yerba per year, compared to roughly 1kg of coffee.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Asado</span><span class="dish-tag">Wood-grilled mixed meats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A ceremonial barbecue of mixed cuts and offal, slow-grilled over wood or charcoal by the asador.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Empanadas</span><span class="dish-tag">Stuffed baked pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-folded stuffed pastries filled with beef, chicken, or vegetables, varying dramatically by region.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Milanesa</span><span class="dish-tag">Breaded fried cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A breaded, fried beef or chicken cutlet, Argentina's everyday comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Locro</span><span class="dish-tag">Corn, bean, squash stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick stew of corn, beans, and squash, a national dish especially eaten on independence holidays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chimichurri Steak</span><span class="dish-tag">Grilled steak, herb sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled steak served with the tangy, herby chimichurri sauce of parsley, garlic, and vinegar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Choripán</span><span class="dish-tag">Grilled sausage sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grilled chorizo sausage split and served in crusty bread, Argentina's classic asado starter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carbonada</span><span class="dish-tag">Beef, fruit, squash stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stew of beef, squash, corn, and sometimes fruit like peaches, showing Argentina's sweet-savory range.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Matambre a la Pizza</span><span class="dish-tag">Pizza-topped flank steak</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flank steak topped with tomato sauce, cheese, and oregano like a pizza, then grilled or baked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Humita en Chala</span><span class="dish-tag">Corn paste in husk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet-savory corn paste steamed inside its own corn husk, an Andean-influenced dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cordero Patagónico</span><span class="dish-tag">Patagonian roast lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole lamb slow-roasted over an open fire, a specialty of Argentina's Patagonian south.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweets &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Alfajores</span><span class="dish-tag">Dulce de leche cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two soft cookies sandwiching dulce de leche, often coated in chocolate or powdered sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dulce de Leche Pancakes</span><span class="dish-tag">Rolled caramel crepes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pancakes rolled around dulce de leche, a beloved everyday dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Facturas</span><span class="dish-tag">Argentine breakfast pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small sweet breakfast pastries sold by weight at any Argentine bakery.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vigilante</span><span class="dish-tag">Cheese, quince paste</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple dessert of sliced cheese paired with sweet quince paste.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Torta Negra</span><span class="dish-tag">Dark spiced fruit cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark fruit cake spiced and often soaked in liquor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">Sweet cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy rice pudding sweetened and dusted with cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Postre Balcarce</span><span class="dish-tag">Layered caramel, meringue cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A showstopper layered cake of sponge, dulce de leche, meringue, and cream, from the town of Balcarce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bizcochitos de Grasa</span><span class="dish-tag">Lard pastry biscuits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flaky, savory-sweet biscuits made with lard, a rustic Argentine baking tradition.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Bakery &amp; Bar</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Medialunas</span><span class="dish-tag">Sweet glazed croissant</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, sweet glazed croissants, the standard Argentine breakfast pastry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Choripán</span><span class="dish-tag">Grilled sausage sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grilled chorizo sausage split and served in crusty bread, Argentina's classic asado starter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Provoleta a la Parrilla</span><span class="dish-tag">Grilled provolone cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick slab of provolone cheese grilled until molten and lightly charred.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tostadas con Dulce de Leche</span><span class="dish-tag">Toast, caramel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Toasted bread spread thickly with dulce de leche, a common breakfast.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Picada</span><span class="dish-tag">Shared cured meat platter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A shared platter of cured meats, cheeses, and olives, eaten before or alongside drinks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Papas Fritas con Chimichurri</span><span class="dish-tag">Fries, herb sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried potatoes tossed or served with tangy chimichurri sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sandwichitos de Miga</span><span class="dish-tag">Thin crustless sandwiches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, thin crustless sandwiches layered with ham, cheese, or vegetables, a party staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Facturas de Panadería</span><span class="dish-tag">Bakery pastry assortment</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An assortment of small sweet pastries sold at any neighbourhood bakery.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Argentine:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Chimichurri</li>
+        <li><span class="n">06</span> Chimichurri rojo</li>
+        <li><span class="n">02</span> Dulce de leche</li>
+        <li><span class="n">07</span> Provoleta cheese</li>
+        <li><span class="n">03</span> Oregano & red pepper</li>
+        <li><span class="n">08</span> Salmuera</li>
+        <li><span class="n">04</span> Smoked paprika</li>
+        <li><span class="n">09</span> Dulce de membrillo</li>
+        <li><span class="n">05</span> Cumin</li>
+        <li><span class="n">10</span> Ahumado</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Malbec</li>
+              <li>Torrontés</li>
+              <li>Fernet con Coca</li>
+              <li>Vino tinto de Mendoza</li>
+              <li>Clericó</li>
+              <li>Grappa criolla</li>
+              <li>Sidra argentina</li>
+              <li>Gin tónica</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Mate</li>
+              <li>Tereré</li>
+              <li>Submarino</li>
+              <li>Licuado de banana</li>
+              <li>Jugo de naranja exprimido</li>
+              <li>Agua con gas</li>
+              <li>Café cortado</li>
+              <li>Té con leche</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Quilmes</li>
+              <li>Brahma Argentina</li>
+              <li>Schneider</li>
+              <li>Isenbeck</li>
+              <li>Patagonia Amber Lager</li>
+              <li>Antares IPA</li>
+              <li>Beagle Fueguina</li>
+              <li>Jerónimo</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belgium — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 51 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Belgium</h1>
+      <p class="subhead">Moules-frites, Trappist beer, and praline chocolate — a small crossroads country synthesizing French, Dutch, and Germanic traditions into an outsized food culture.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            FLANDERS · WALLONIA · TRAPPIST · FLANDERS · WALLONIA · TRAPPIST ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAADgCAIAAABqyI99AAACQklEQVR4nO3TsQ1BUQBAUV9iADGCOUyhsYc5jGIWE6jVEoXK09wdnsQ5E9zmLpfj/ny9r/7Ybrt53A6zKyZ7nd7jOWZXzLR8xnp2A/wKM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMADEDxAwQM0DMAPkC1ecODTeuF4cAAAAASUVORK5CYII=" alt="Flag of Belgium">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Belgian cuisine is one of Europe's most underrated and genuinely accomplished food cultures — a small country at the crossroads of French, Dutch, and Germanic culinary traditions that has synthesised them into something entirely its own. Belgium's position as a historic trading crossroads — the port of Antwerp was the richest city in Europe in the 16th century, and Brussels became the de facto capital of the European Union in the 20th — has continuously exposed its food culture to outside influence while maintaining a fierce local identity. The linguistic divide between Dutch-speaking Flanders and French-speaking Wallonia runs through the cuisine: Flemish cooking is richer and more butter-cream-based, while Walloon cooking follows French principles more closely.</p>
+        <p>The Spanish and later Austrian Habsburg rule of the Low Countries from the 16th to 18th centuries brought Mediterranean spice use and confectionery traditions. The Burgundian period of the 15th century established the tradition of fine cooking and lavish hospitality embedded in Belgian food culture. Belgian Congo, administered as a colonial possession from 1908 to 1960, brought limited but traceable African culinary influences to Brussels's Congolese community. The monastic brewing tradition that produced Belgium's extraordinary Trappist beer culture dates to the medieval period and continues uninterrupted today.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Belgian cooking is rich, generous, and built on the conviction that good food requires good ingredients and unhurried preparation. The moules-frites pairing — mussels steamed with white wine, celery, and cream, served with double-fried frites and mayonnaise — is the national dish and a perfect expression of Belgian culinary values. Carbonnade flamande — beef braised slowly in Belgian dark ale with bread and mustard — is the other great national dish, its malty sauce produced by hours of patient cooking. Stoofvlees, the Flemish name, is slightly different from the Walloon carbonnade, and Belgians are particular about the distinction.</p>
+        <p>The beer culture is without parallel in Europe — over 1,500 distinct beers including Trappist ales brewed by monks, spontaneously fermented lambic and gueuze, and the witbier tradition revived by Pierre Celis in Hoegaarden. Belgians drink beer with the same seriousness the French bring to wine. Belgian chocolate — specifically the filled praline invented in Brussels in 1912 — and Belgian frites (fried in beef tallow, double-fried, served with mayonnaise) complete the holy trinity of Belgian food exports.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Belgian food culture is defined by conviviality and quality — the neighbourhood brasserie, serving moules-frites and a cold Trappist, is the social institution of Belgian life.</li>
+        <li>Frites are eaten with mayonnaise, not ketchup — the Belgian fritkot is a national institution, and double-fried beef tallow frites set a standard the rest of the world struggles to match.</li>
+        <li>Beer is as complex a subject in Belgium as wine is in France — over 1,500 distinct beers, from Trappist ales to lambic to witbier, reward serious study.</li>
+        <li>Chocolate is eaten daily and with discrimination — Belgian praline chocolates, invented by Jean Neuhaus in Brussels in 1912, are bought from specialist chocolatiers rather than supermarkets.</li>
+        <li>The linguistic divide between Flanders and Wallonia runs through the food culture too — Flemish cooking is richer and cream-based, Walloon cooking leans more French in technique.</li>
+        <li>Sunday lunch is the most important meal of the week — a long, multi-course affair of soup, a roast, seasonal vegetables, and dessert, eaten with the extended family.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Belgian endive</li>
+        <li><span class="n">06</span> Jenever</li>
+        <li><span class="n">02</span> Mussels</li>
+        <li><span class="n">07</span> Speculoos</li>
+        <li><span class="n">03</span> Beer</li>
+        <li><span class="n">08</span> Belgian witloof</li>
+        <li><span class="n">04</span> Praline chocolate</li>
+        <li><span class="n">09</span> Trappist cheese</li>
+        <li><span class="n">05</span> White asparagus</li>
+        <li><span class="n">10</span> Butter</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>French fries are Belgian, not French — frying potatoes in oil was documented in the Meuse valley from at least the late 17th century. American soldiers in WWI called them French because local soldiers spoke French, and the name stuck.</li>
+        <li>Belgium has twelve Trappist breweries producing beer, six of them in Belgium. Westvleteren 12, brewed by the monks of Saint Sixtus Abbey and sold only at the abbey gate or by phone, is regularly rated the world's finest beer.</li>
+        <li>Belgian chocolate's reputation rests on the praline — invented by Brussels pharmacist Jean Neuhaus in 1912 when he replaced the bitter medicinal coating on pills with sweet chocolate. His wife invented the ballotin box to carry them without crushing.</li>
+        <li>Belgium has the world's highest density of Michelin-starred restaurants per capita — more than France, Italy, or Spain, driven partly by Brussels's role as the EU's de facto capital.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Moules-Frites</span><span class="dish-tag">Steamed mussels, fries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh mussels steamed with white wine, celery, and cream, served with a mountain of double-fried frites.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Waterzooi</span><span class="dish-tag">Creamy chicken or fish stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy Flemish stew of chicken or fish with vegetables in a rich, silky broth.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carbonnade Flamande</span><span class="dish-tag">Beer-braised beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef braised slowly in Belgian dark ale with bread and mustard, until deeply malty and savoury.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stoemp</span><span class="dish-tag">Mashed potato, vegetables</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed potato blended with root vegetables, traditionally served with sausage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vol-au-Vent</span><span class="dish-tag">Puff pastry, creamy filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A puff pastry case filled with a creamy chicken, meatball, and mushroom ragout.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lapin à la Gueuze</span><span class="dish-tag">Rabbit braised in beer</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rabbit slow-braised in tart gueuze beer with prunes, a Walloon classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicons au Gratin</span><span class="dish-tag">Baked endive, ham, cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Belgian endive wrapped in ham, baked in a creamy cheese sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gentse Stoverij</span><span class="dish-tag">Ghent beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ghent's version of the beer-braised beef stew, slightly different from Walloon carbonnade.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Filet Américain</span><span class="dish-tag">Belgian beef tartare</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Belgium's raw minced beef preparation, seasoned and mixed with mayonnaise, often on a sandwich.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boudin Blanc</span><span class="dish-tag">White pudding sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pale, delicately spiced pork sausage, milder than its black pudding cousin.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Waffles &amp; Chocolate</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gaufre de Liège</span><span class="dish-tag">Caramelized sugar waffle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy waffle studded with pearl sugar that caramelizes on the iron.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Praline Chocolates</span><span class="dish-tag">Filled chocolate shells</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chocolate shells filled with ganache, cream, or nut pastes, invented in Brussels in 1912.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Speculoos</span><span class="dish-tag">Spiced caramelized biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp, spiced caramel-brown biscuit traditionally eaten at Saint Nicholas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarte au Riz</span><span class="dish-tag">Baked rice custard tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tart filled with a creamy baked rice custard, a specialty of Verviers.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cramique</span><span class="dish-tag">Raisin milk bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, slightly sweet milk bread studded with raisins.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dame Blanche</span><span class="dish-tag">Vanilla ice cream, chocolate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vanilla ice cream topped with warm chocolate sauce, Belgium's classic sundae.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gaufre de Bruxelles</span><span class="dish-tag">Light crisp rectangular waffle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, crisp, deep-pocketed rectangular waffle, usually topped rather than caramelized.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rijstpap</span><span class="dish-tag">Sweet rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy sweetened rice pudding, often dusted with cinnamon.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Fritkot &amp; Street</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Frites &amp; Mayonnaise</span><span class="dish-tag">Double-fried potato chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Twice-fried potato chips served in a paper cone with mayonnaise.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gaufre de Liège</span><span class="dish-tag">Caramelized sugar waffle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy waffle studded with pearl sugar that caramelizes on the iron.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mitraillette</span><span class="dish-tag">Fries, meat, sauce baguette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baguette stuffed with fries, a fried meat, and sauce, Belgium's ultimate late-night sandwich.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Broodje Martino</span><span class="dish-tag">Raw beef, pickle baguette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baguette filled with seasoned raw beef (filet américain), pickles, onion, and egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cuberdon</span><span class="dish-tag">Cone-shaped raspberry candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, cone-shaped raspberry-flavoured candy with a gummy centre, a Ghent specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pistolet</span><span class="dish-tag">Round crusty bread roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small, round, crusty bread roll used for simple sandwiches.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boudin</span><span class="dish-tag">Belgian blood sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich blood sausage, often pan-fried and served with mashed potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jenever &amp; bitterballen</span><span class="dish-tag">Gin, fried meat croquettes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dutch-style gin served alongside crisp-fried, creamy meat croquettes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Belgian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Beer</li>
+        <li><span class="n">06</span> Malt</li>
+        <li><span class="n">02</span> Butter</li>
+        <li><span class="n">07</span> Jenever</li>
+        <li><span class="n">03</span> Cream</li>
+        <li><span class="n">08</span> Thyme</li>
+        <li><span class="n">04</span> Belgian endive</li>
+        <li><span class="n">09</span> Bay leaf</li>
+        <li><span class="n">05</span> Speculoos</li>
+        <li><span class="n">10</span> Witloof bitterness</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Jenever &amp; Wine</p>
+            <ol class="plain">
+              <li>Westvleteren 12</li>
+              <li>Chimay Blue</li>
+              <li>Orval</li>
+              <li>Duvel</li>
+              <li>Gueuze Lambic</li>
+              <li>Jenever</li>
+              <li>Rochefort 10</li>
+              <li>Kwak</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Chocolat chaud</li>
+              <li>Café liégeois</li>
+              <li>Limonata</li>
+              <li>Cerise juice</li>
+              <li>Peket</li>
+              <li>Fanta Cassis</li>
+              <li>Spa mineral water</li>
+              <li>Kriek</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Trappist &amp; Craft Beers</p>
+            <ol class="plain">
+              <li>Westvleteren</li>
+              <li>Chimay</li>
+              <li>Duvel</li>
+              <li>Orval</li>
+              <li>Rochefort</li>
+              <li>Westmalle Tripel</li>
+              <li>Delirium Tremens</li>
+              <li>Leffe Blonde</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

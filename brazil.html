@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 53 / 68 · South America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Brazil</h1>
+      <p class="subhead">Feijoada, churrasco, and Bahian dendê — a continental cuisine synthesizing Indigenous, Portuguese, West African, and immigrant traditions across vast regional variety.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BAHIA · AMAZÔNIA · PAMPA · BAHIA · AMAZÔNIA · PAMPA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADSCAIAAAB/8Gr/AAAq3klEQVR4nO3dd3yT1foA8JM92qRJ96AzXeluKaNly5SpyJClqEBZFeGnMq/IVS6CXKaMFgQRUKGAbAGpUEZboHulK510j3Rlr98f4SKW0fWutOf7hx9M0/Oepnl63pzxPCRwJBxAEIQfMt4dgKC+DgYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGIQThDAYhBOEMBiEE4QwGoXEL4UpDuFK8ewH1CAxCY8Wi6Da7lScMyEgMzdjjVWxK0eLdI6ibSDANvjEazmuJ8hF7seXPHymWM5eJ3G418vDrFNRNcCQ0Mjyq5rBQfCc068UIBAC4shQ3QnLOBORZ0tR49Q3qHhiExmSmdUNueOoShxpSR0/AtFtQz8AgNA72DNX5gNwzAXnW9A4GOnOa5rBQfC1I5MxUYtM3qIdgEBIdmQSWONSIwlPftW7s/He9bSnJDktd61JBIenR6xuECDgxQ2h+JrJoH/Fgs9Zut5DaarJY5J7SYoJgryBkwZGQoGgk/VqXiqTB6T2JQABAMEeaGJqxzb2USdYh1TcIWXAkJKKhvJYooVhoIu/4qZ0mljGX5gpiG80QbBNCBBwJicWMqt3jVXy3fxayEQgAELAVt0KyT/gVWNA0yLYM9RAcCQlkimXjAWFRP4YK1atUq2jrClx+rrJC9SpQ58GRkBDsGKqzAXmXgnLRjkAAgC1d/ZNvweUgkSMDrmEQAgxCnJEA+MCuLnNw2gzrBiyvO9lSkhmetsqpivy6hX8IK/B2FE/uLEWUj3gUvxnHPsQ3cZaIBDlSNo596OPgSIgPwwpEZlgavhEIAAjntaYOTt/mXsqAaxg4gSMhDsLMWqOFYl9TGd4d+YcCGTNCJLgrgWsYWIMjIabYFN0299J7oVlEi0AAgAdbEds/+7BQzIVHE7EFR0LsTLSUHPQuciL8vuoqJT0yz/VCrQXeHekr4EiIBRu6+oRfwdUgEfEjEABgx1CdC8i7HCRyYKK+XgIBGIQYmGndkBmWtsC2Du+OdM1kS0nm4LQ3nF2EkAJvR1HkxlIcForHmOM8/9lD95u4ESJBrpSFd0d6LTgSooJK0q9yqkofnGbsEQgAGMZrSRmUvtmtnA6PJqIDjoTIC+JIo33EoZw2vDuCsIw29pIc98ctpnh3pLeBIyGSWBTdNvfSJwMzel8EAgACTGXxAzIOC8UwvSKy4EiImJH85iih2IOtwLsjqCuRM5blCm428PDuSC8BR0IE8Gmaw0JxbP/svhCBAAAXlvKP4JwzAXlWML0iEuBI2FMzrRt+EBZh83ZsljLyK8ybpXRJG1OqoLUp6FI5DQBgwlKbMlUmTDXfVMEzVXrYS8xMsFiQlKip6wudj1TYwBmbnoBB2H0uLOUhb/F4iyaU2tfpSGlF1vcyHXPLLPIr+LnlFtWSzuZrsuVLvR0bPB0k3k4Nw/3Lg9xqyWS0IuWuxCxCJCiQMVFqv9eDQdgdZBJYZF+z07MEjSkKUZnF7TTnO2nOcRmOkjZk3tnmHMWIgPKRgaVjg0u9HZE/uCjXkv9d7Liz1F6rh2v7XQaDsMsCTGXRPoUDuQjPf1Y1mp6953Uq1je5wBbZltvxcW5YMDrrgzHZduYI/whprSZLcgRJrXANo2tgEHYBk6xb61Kx3vUpgsvWWi3pQrzn8ZsBf6a6aLXYDSMUin5cSPHCcZnTw/MpFMR+HI2OdLDCdmOhk1RLQarNXg8GYWcN47VECcXeyCVBU2vJv94RfndmcG45nucV3OyaIqclL52UxqAhdmtdJGcuFQluw/SKnQODsGM8quY7j9LFyG1lVqopR24E7jw7sKyOi1CTPeVs3fL5jMeL3k5HMBRjai1WiNzq1TSkGuytYBB2YIpl40HvIgQP9dxJd1p5YKyojIin9dztJPtW3J4QWoxUgzUq2lqYXrEjMAhfy46h2u9VPB25JGhVjabrfhxxMtYXqQZRMnmg+IfIP52sWpBq8Ho9f3muW5mCgVSDvQwMwlcgAbDYoWaHZwmCiR4OXA7ZcHx4q5yOVIOo4rBU2z6OWz4lFakGZVryN3AN4zVgELbnwVZECcUjkUuC1iKjR+ydcCbOG6kGMTMtrODY//3BN0VsL15CM2eJSJDdBtMr/gMMwr/RSPo1zpVfu5UjmPwvucD2/W1TxZU8pBrEmJNVy68bLocJK5FqUK0n7Sq1/7rIUamD+5afgUH4TDivNVoo9jFBMgnaoavBqw+/pdIY94oZnarduzw2YmIagm0WypkROYI7ML0iAAAGIQCAS9H+271sZT+EE8JvPzto/bERSLaIq7WzHm37OA7BBvUAnKq2Wp3n2qimItisMerrQTjZUnJAWIRsaRStlrTywNio60EItkkEC8dmRX92g0pBMlF3lZK+Ks/1XN9Or9h3g9CWrt7uWYJ4EjSFijpv+5TfH3og2yxBTB+Sf3rdFQQX9A2u1vOXiwRPlcYxdYy4vvjh+FkhpLBUxCNQqyV9sGNSb41AAMCFh56zt07TaBF+20y2lGSGpfbZElF9LggNBWt/8kWlYO3qw6PPPfBCvFlCuZzovvKHsYg3a0bV7vZEpUQx8fWhIKQaCiENThuNThrCf50Y9sOVEDRaJproPwK/PjkUjZaH8lrSBqdtcy/tU+kV+8pnwmCO9IiwMIQrRan9Q1eDV6AwPhDZoU9vIbtu8aIsKXtJjiCxmYNS+4TS+0dCQyGkxwMz0IvAJ/l2qw+/hVLjhPXpgTGJufYoNe5nInsQmnlYKOb0gfSKvTwI37aUZIelrnWpoKB2e9PUxnj/P1ONfUW+G9Ra8pz/TG1sRSu1DJkEljjUiMJT37VuROkSBNFrg9CcpjksFF8LEjmjXAhp0e63i6v76M6P0lpuxN4JqF7CnqE6H5B7JiDPmt5r0yv2ziCcad2QG566xKEG7QsduBxy4aEn2lchsvMPPA9eCUb7Ks9/ob1yCaO3Tcy4shSHhEXjzJswuFZVo6nP4k+apX39mByHpco5ctTBEovM//eauBE5gjxZryoR1XtGwv8VQkrHJgIBAJ8dGg0jEADQKqd/cXQUNtca/r8SUbRetIbRS4Iw0FT6cEDmbs9izGqV/JnqEnO/l6/Ld95vd4U3klyxuRaLotvsVv54UMYApLNO4sXogxCXX4lKQ/n0wBjMLmcUVh0co1RjN0UcaCp9GJq5xwu7P7voMe4gxOvmJPqPwLyn5lhekfgKKvnHbgZgeUUqWf+pI6YfQFBirEHIo2oOC8V3QrO82FhvNVRryf+NGYjxRY3C9jODsF8vdWUpboTknAnIszTaElFGeZ5ypnXDfu8ivBaOTt72La39R75QEolkyWdb8k34XBaPy+KYMMxMmQw6lc2iAQAYdCqbSQMASOUqlVoLAJDJ1UqVprlN0SpVSprlkhZZQ5OsrhGtDT2YKavj/nJHuHBsFvaXnmndMJrfvKHQObrCBvur95CRLVHYM1T7vYpw3EKh1VIjf9rNYDm79uM72/P72ZrZW3OtLUyplPb3FDXyxqfSOq1ea87gunP7GR5Mrs8DADApdBaVYcHgmtH/Ltug0epqG9oqalqeVjeVVTUVlTcWP20sKK0vKm80hK5RcLeTiI4eRTCvflf9Uc9fnutWalTpFY0mCA2FkL73LMF3M2Fi2aqw4XvUOs1flcnmDO4AK6Hh8YGXFlXK6uUapRnd5Nr4nUKey56sM/uzzwl5LnnNZXMFY7f0XwQAcD87y5Vjr9KqpRr5lwHzZ7m9dbviyQdx32RMP6nVaz9/9MPXIZ8IuA4vXlGj1RU/bcwuqMkqqE4TVaWKKorKCb2N6+ymSzOG5uHYAaNLr2gct6N+JrJoH/Fgs1a8OwJoZgu1et2Y66vM6Cbl0trJTkO+6b8YAFAjbyyYeYZFZax7cuh04a1vQ5dQydT57uO39F8k1yiF5+auDZzPpjJ1et3agHl0Cs2KyRPyXAAAlbL6OkVTSkNeWkPBqcKbG4M+bHfFSnmdpS37HWffd8Y8yxrc1CJ/nFn+KL08Ia00PrW0uZVY5YF/uuWPbxAatuzPsqlfLHJPaelsRUccET0IDWkItwjKiHDArE4qCPYLiKtKZVEZl8ftkGuUnjHvr/F7n8/gMCj0+Xe31MgbRU0lV8fvBABQSRSNXgsAYFEZtmzzVrWMTWWqdJpzxXe1eq01i781NAIAUCOXhFn7JdfnxRT95caxt2W3z7byWeLe3KZSlU7twXW8Nv57MonM47LGDfEcN8QTAKDT6dNzq+4+FscmFsY9LmqTdZyu39XBvLgCxbH0VpJLtcTElo/zR9xgjjQxNOO/ZfZbihwVxE6vSOggHMpriRKKiXPUOqf+05EUslyr5DM4AAAWlWHF5DUqW/gMjhnNZJbbaE8zx88Tf1Bp1QAAGplar2gWt1Q8qMloVLZaMXmGB78MnMemMhhkukqnppNpdQrJhH6Do0QXh9oGPKrNMaO3/8udJSla6fNeiIWXOZNLJrV/M+3PialXNr81vv+yBfMoesrDlNIb9/Ou3c3NKqh+5Y/A57L2fzVtcsRxxF+c5zQ68q93hKunJ6F3iU6ikvVrXSpmWDcszRXEErhEFEH/QphRtXu8CJfswM7xXQDASLvgJ3WiQ6Lfd2b+ogd6N649AIBDYwt5zsEWnh95TUprKAAA2LD4yfW57//11fXy+EtjvyOTyHqgdzSxnhW7afS1T0Mvfnwo53cAQI1cMsw2UKJsXeQ1FQBAAv/4GCPXKNU6jUyjOJz7u1L7ilEuKvcSh8belfmbx9nZZbLqkQPd/rNmfOaV1UW31+5aN3lofxfyC2lb5kwOKopdN3G4171Ty/rZ8tB7oU79RaB6G4aEJif8UElogggiTsxMsWw8ICzqx0CsEBIiiurDBKHxz/7dWrkz4xcambo2cL492xIAUNxaZc+2ZFC6XAZMoVXRyNRsSZEPz/Vaefw052EvfjWlPm/Onc0bgj7047v58FxY1H9M+pW2VQ+6tPj8mK0DrXw+ubctzMZvmfDdK2UPP0vY847L8OkuI4bYBFTWtsTcyPjtWnpiehkAIPnCKkdbs1VbL/96La3bL0Vn5Bz5EY263D1RraKtI2SJKGIFoR1DtdereAZyhZAQFFeyY+TIL57/r0arK69qKq9qLqtqqm1oq6htrmuUNjbLJM3y5laFTKFuapEDACQt/xjJKRQy14QBAOBxWSYsuhmHyeMyLXhsS76Jg7WZtYWpsz3P0Y7Xz9bMsObRpGqLrUjKbirOaiya6jx0vvv4F1s7knv5VOFNBoWWXJ9nyTT7a+J+BxOrD+O+HWYbqNSqjuRe/sDj7TX+7xueXFjWcPJSSkp2xbW43BAfh+Tsp6i+XPuX314xNQXVS3TP1Xr+CpFbuZJAaxhECUISAAvs6nZ5FpsT9Z7hl5RTLUpBdmF1QUlDQWl9eVWTRotkGtwXUSlkJ3ueu5Olp4ulr4eNj8DG38uWz21/fmdm7KZFXlPG9xv0/BGVTm1zavJ89/Gz3cY8rst5VJd95q1vAAD5zeUJtVnDbYOcTWz/jC84cvbx5b9y1BoUF3veG5ofs+kieu33RIuWslnstL/cTof/ZB8ABAlCd5Yiykc8CrlCSIjT6UhWsyIlbWilcugMZ3t+f1+H/n4OgwKcBgY4ckwYJa1VtmwLJuXvnLnXyuMP5Jx/2zHsaO5lrU53atTmIAuPK2UPP03YPdVp6MXSe5fH7Qg0dwcAVNW1Rp95FHUmsaoOlYUfc46i9sx+MpkYb/NXiW/iLBEJcqT4l4jCOQjRKISEhuQC2wGRH7z8OJlMChaifmv3MgqF7O9pO6y/66hBbiMGupmbPXsn7cg47cqxm+n61t2q1FOFN44OWw8ACLjwwemRm/3NBUdyL2c3Fe8ZvOp5Oyq1NuZGxq7j91NyKhDvZPIPJ4LdUU9u0BMEKRGF5xJFmFlrtFDsa4pkISSUPMh2ePlBTxerwUGO86eErPz2YkV1i1SO3UySVqtLE1WmiSr3n3pIJpNCfBzGDfGcOMLr/wLnUChkAIBCqwwwdzc8uUbe6GHmCABo08gNw2ajsmXR/e/iqlLfsu//09sb500Jjk0o3H7k7p/xBQh28n52P4IHIY2kX+tSMd26IUIkuItfiSh8RkI2Rfcv1/LPnSvRS4KGrKV7x0f/EdjuwfcnBZ74bhaNSvnhdMKqrZf1evx/Fgsee9JI73dG+04Y5sViPpuqXfbwe4myNdjC86Dowp1JP7hx7Ofd2eLFc9oQ+EFkwi5nU9t1gQsMz3ycUf7NwdhrcbmI/CxLJ6UdjLzV83YwoAfgSIXNl/kuLVocsubhEIQTLSUHvYucUE6ChqxRX8yJy3Rs9yCJRMq8slqv1y/514WEtFJcOvY6Jiz65FHC2W8HTBzhTaLqj+ZeqVM0zXMfZ9hKbnVqYsXcSzVyCdCD3ObSsQ4DtHrdpJufT3cZsdBzYqao9qt9t67H5fawD6MCy2K3/4bET4ORKiU9Ms/1AuYlojC9Fbahq0/4FVwNEhlXBAIAcstfcYTXhEUfNveQ/5Td5dVNmPeoA1K56sz19OmRJ+2Gfhv59ZUgZf/NIR8/P8zhZGp7vzo9s1Hse35eUn0uAOBU4U02lXm/Ol0YM7fNvPZa1Ef3Ty8bEuLSkz4Y3blnO4bqXEDe5SCRAxPTNWrsRsKZ1g0HhEXGePKyWcrgv7eq4+cRm7eb1aKZAxe+G2rBYyfV5y6M+1aibKWRqTkzTtPIVO+YObPdRn8V8vHNp492Zf4WN/mA4bsuxeas3Xk9r7ib5auaLuzhsom16aIzmjTUdQXORypssPmAgcVI6MZS3ArJNt6zzwWVfLy7gIDcorrPt1/rN2LrwnVnQbVp1nun0qf/vDU0gk1lHsu/GmThUSNvdDsz4+uUo6FW3gCACmndgIuf0DybM6+s3r1+Cu+lVcrOKDTOl86Qt+FuaJY3Jrsm0R0JqST9CsfqbwWlJoiWd8XYrRSXCRtm4d0LBJDJZJ3u2S9iaH+XNQuHTRvtSyaTVsbvWuP/vhvHfu3jQywqbXPIJyRA+jDuWwe25Z8VT+zYFt8PWsnXmG/YfeP4hSRdV1a4b207MyaYWJ+Wu0ShI28vcdhW3E+F5tFEFEfCII40fmDmbs9io45AAECrzOgryFIoZKHAZv+mqQ62zybiHySXTI88KZy488dzT3YNWOXGsQcAFLdWjnMYRAKkpPrcs0WxNXLJpXHbZ7iO2pnxi7WF6dFvZzz4ZVmgt13nr2vsLx2TbMjllz4QzVx+qAQhi6Lb5l76ZGBGKKc3ZIZslRv3OwkAoNXqvlo+etHMge32vuWX1C/adM5j3I6DvySo1NqvQj4Kt/EHAPxf4v7bE/cOsw1861qkC8fuyLB1hueHBTknnf90xxcTn69/vFkveOkAAAGmsvgBGYeFYpTSKyIfhCP5zWmD0lAthISx3vFO2vvzg/D3DxS/KjVGWVXTin9f9Bi3I/F2vUara1S2KHWqrWknBlr7JL97LNTS2/C0GbEbrU5NXHBvy4dzAzIurx4+oONsv60yAu2T7glDiaiMwWnjLZqQbxzBtvg0zWGhOLZ/tgebWAkXesjY76kMEtPLkrMr3rCtp6yqafG/zvtN3nX3XlnC1Oj57uOn3Pziy8cHaeRn26qS6nKPDd84yTF8+u0N7k4Wd05E7N04lf3GIbGlV/z9es6FpfwjOOdMQJ4VolOMBD3U26c4O/Cd7Xl49+KZvOK69yJPDpt72F0qzHrv1BAbfxqZqtCqNiVF/zRi05L72wVcB3euAwCATCZ9umBIyu+rQv364d1r44ZkEErU1KUiwehk3wIZnqcNEMdBc6Vr2mifK4cWXj700bTRPuhdpaseppQMnn1g6aaLo7hhAAAyiXQs/6oty3zHoOUfxW09PmIjAECt05wsvFHHqor/bfm6JSNfPML/HJdlfIuEb1AiZ7yd6jM7w6tO3eXT22+A/Eh4V2IW9Choe4mDsSSc6xAHzXfS1bu5Lg58l378q3d7uk0MWXq9/ueLKd5v79xz4gFZTzk3euuM2I1Hc69o9FrDztIDOee/Sf1pd9ZvEfHbt64ef/PoJ7aW7UvMc9hGtjXqdXR6EF1hE5AYdLOBh3jjqNyOyrXk9YXOAx4HJLWadvxswkM1CMlk0vtrfpmz5vQrRxLctbQpVm+7MmDGflotP+mdY1tDIx5NO0ImkRuUzUEWnlqdNmro2oKW8htPH40J90i79NmoQYIXvx3Vlw4zGW3s8CcBS0WCNnS2d6P4mTCt1ST8sf/qfFep1rg/eaJ6O6pWa6/H5V6Py1MTOM12mqgy7P0DG3fe6s8TWjDMAACf3Num1mnmuo+bGbtxW+gyD24/AICNhemfxxatWzKSRHr2BwXVlw4DCh15S5HjwEeBj1tQHE7QDQ+NnrS3zC4wMeg2gRPOdcic06sme7tHq9XtOn4/cNqehyklAIA5grHfpB5f6DFR1FQq1cgN5xXL2moS6rK2fDbm3L75HBMGMPKX7n4TN+RR4JYiR1S3ywBsDvUWyZnjUnyNdwO3h70E7y68limbDgDoTM5fRBSU1o9YEPX5x8P//ek4Gpk6I3ajl5mTYa/pd+kno3MveZo51cgbH045HP/b8mnLT7gT+KV7A4w3cGN6ntCGrt7hWbLAtptb8nFkP2dFtYRwCdXdHC0WTA3W6fSnr6ZiXKAixMfhl//O8XJ9lj6woLl84s3PU949zqGx59/d8q7ziPdcR+aXVHkAeyx7hYir9fxluYIKBXYrnJh+WqtR0T7M8picJiwzqqI5AACvft15i3u7WXVye1f3sJm09RGjNi5/i83Cek08Jaei//R9Jy4mG/43r7lssLUvh8YGALSqZYb8qDIpoQvXvKxKSZ+R4TU1TYhlBAJcFuuv1/N9EoKNaw2jG0FIIpHO7VtwauccNPpjkFdS98Op+B9OxXf7vF9PSOWqhevOfrQ+RqZQD7b2u1edtjPzl4gHO2rlknEOAwEALc0l2Peqe/QARFfYCOODsT9WD/DNtmZEiZ72Xuy/+vDoDp/m426TU/h3aiPDbul2+X97nwAvuwv7F2jNZKcLb1qx+B97TmJTmQCAuLidw52/6PDbcVcgY+Kb6AnPxYOEZk7Io8D1hc74JpzrjKG+HWQEpNOofC5rz4YpAwOcnp9/lbTIEY9AHreD3UimbEawD6afxDLyqgbM2F+UIdvSf9FKn/cMEQgAsGHexLIb3aDWk7aXOAQkBuEYgQD3vaOGV8E/IegOrq9Ch4IFNRbcN4UTlUo6uPndseEed3+OeHcsWuVQhoS4xP60OHLBECr11b+4MeEet35cdHbv/LlTglDqwytJWuSTl/6089i95480Nks9rO5g2Yeuim/iBCcSYgwgxBBUKGeOSfZdmO3RqCZoqTYyWT/c/00ZfmVy9c+XkksrJeLyhuPn0aoKlpxd4eVq7WRrptG8+px0bEKhu7OFg7XZuRuZKPXhdbRa3Rc7rn28IcZQ3LtAnEkmE3T7QYuWsjrfdXiyPxHSbwPi1CfUA/BzldWfjWaELQgzMrD094ceb3hCUXmj6+jtAidzGo2C0vYXMgnYDf3W5PVzoXq9/uONMXKFmkGn4lLp/viFpNJKyfl9CxQtcYCQydZgQZhOIWZpNFGZhe+ST158xNmBX1qB22I0m0mXKYj1Ej3n52F7cfNJN8tUvDvyD4QtjUaI29F2rtSb+ycE7yNM0RwDoVNDoFut4d9WfJNxQzx/2zV3TLj7832SnbH6w6Fdev7rDA50zLq2xtysOxnQemLSCO/O9J+uTydUBOoBOFlt5Z8QTMAIBMQMQgBAs4byWZ7ryGQ/kRTr99kbzB+dbfhHfZNs7eIRgwIcHWzMOpkxnkQibV09YcfaSUnnI9369fRG7WlNy/5TDxqbsVv84Jux5k4O2rlu8uqFwyYM83rxSzQqxfWfP9HzF4oIxDLmuBTfD7M8Ggg744B3B97kQRM3KDFofaEz2jtoO2n+6BwqWQcA0Ov1l2JzZn52uqq2s3XF9Hr98QtJkmZ5fnF90dOebiV5Wt28+/iDHjbSJZJmuauDuber1Tefji0q//tDO9+MFXdqadzppS4Oz1KMUsm690eKsOzb62h0pO0lDv6JQUQuWA+IMzHzOoY1jGt1/Ggf8WAzVCrpdZ4NTzompPRGkisAYN/Jh139dqlcZRP+jZ1V+5OvxqKkUhJzI5PPZeaX1D9/UNIsr6pt1un0Jf/7eDwutMSWL8Wpj39LbTVZLHJPaSHcjt+XEXFi5pXIJLDIvuZ7zxIOOmnnOinmvtfsrdNw7ACOTNmMNpmSQafq9PoXp38Ni5bPV03Obro0Y2gePl0EAAAg05K/KXbcWWpvLPsiCX07+iJDfgFhfPDvtXjOfE8Pz/d06ObNpLU58gdDHWy4DjYY3Wu1yZQAAKVKM8Cv34sbdzQa3fMIdLeTvBuWj01/XumPer6vse1MNpogNKhU0t/L8J6d4VWrQvF0whtQKPovZz3q6neZsumHtkz/6+fFfp62SPWESiV7uVqtXTzyy0+Ge7lavW4PDeLmTwk+t29B/OkVY8JesWq6cV4ChYLPpHajmrpUJJiUJiw1tjM6RhaEBjG1Ft7xwdFYnblsZ8GYbBeb5i59S5tMZWfJsTAzzcqvRqobGo1u2ls+K+aGr5g/ZNpbPq/bQ4O4X66lcU0ZZlzm7YT2ZX2drFrm4DQl8/wtgcvVe8hoPhO+0nBeS5SP2IuN9TGFA5dDIg+O6dK38LgsoAdNrUh21ZLHjv9thVavHz73UJ0Eo7kQUzbd283ahEWPe1LU7ksHI28tnZSGTTeeK5Yzl4ncbjXyML4ugow7CAEALIruS+eKDa5PaRhm3VdpKEHLFuaWI3D2jG/GampRdK88tY2laYNEBgCw4LNr6lEv++HtZpVb9NqDix72koyoYwwadtNmGh3pYIXtpkInlJKgYcYob0dfJNca8mEFPEEzH1Y7dKp23/LbiDT16fwho8Pcu/e9NfVtGq1Oo9VhEIEzxvv/tnve8nlh/WxfPQ90MPIWlhGY3mYyJMn/szxXY49A0AuC0CC9zWTIE//V+dj9SsYEl84a3qN0vUwG7adts75aMeZq1MJtayaQyfj/Ll7e+/JcVV2rv6ftB9P6V9S0vPzVOSNFo7GqQ4jLn11U4f+LR8r/0isGYvbxYM+yWDOT7meYVijVK7+5qFBpZDLVht03n5fvRBbXlPntqvH8TtTZfXnvCwDA83+pnFQqzcTFx46ff/LynTOHpdqxCKOjg/f+l4ZQbTwrEB3qPUFoUCxnTkjxmZ3hVY9otYBXsuVLty681/HzXs/D2dJ/yq4py07YoraNZsJQz7WLR66c94pP/iQSaWz438sMhr0vZRVNz/e+LJox4HFM5KKZAwEAT7Ke3nyQH3XmFcsz330S52CJ+v1wk4a6VCQYleSXJyPQdmJEGP3EzOuY0zT/cS9d4lDT8VN7Zua375x/4In2VbpN4GRhZ8lRa7SPMspffJxGo5zbO39MuMfQOQdTRZWGB9vtfQkPcTn9/ew5a35NTC97Xfszhuad3XQJte4/E1NrEZnrhtfiMNp6bRAavG0pOehd5MxEsSxJUxsjNPLDoioeepdAyeqFw/w8bSO+uqDRvHpChUolazQ6w39f+QSBfVPS/hM9uSfvUKWSHpnnhu82KbT18iAEALApun+5ln/uXIle5eCkAttha+Yp1UY/TQcAmDDM68b9Tu38ZNC0D3ad7u+B2PaDdnR6cLTS5ot8l1bjn/98s972mfBlMi15faHzwMcB6G2oD/Wo3rMsFqXGkeX8wqRLO+5OFlcOLzy7Z95XK0Z3Zqp23/Lb6EVglpQ9NMl/qUjQ6yMQ9IUgNEhtNRn8JGB9obMCndRaERPTvpoXj0bLCBo1WHD6+zmTRwrtrbkvf7WwrAEAwGLQjl9I7nCqdvP8h4vfTkejk4bDa6GJgYnNxnrmq6v6ShACADR6dI94fr3gQeTUFDRaRoopixEW7PTNZ+NrGl49mbnzxziH4Vu5Jh1sgI6YmLZ5fpePU3YG0Y5xY6P3fyZ8GQmABXZ1//UstqBpkG1ZpyPN2TY15r5Xx0/Fw6AAR09XKxsL0xcThHbVtLCCc5suIn5UollD+brIaT/BEgthoy8GoYEtXb0dhRJRSjVl3ndTLjwk7qLFm5HJ5Dfci743NP/U2iuIb0+7Ws9fLhI8VWJd1oYg+tDtaDvVKtqHWR5T04TIpqBk0LRnNlzC/jBBzzHo1ABP293rJ78uAcdH4zJ/XX8Z2QisUtJnZXhNTRP22QgEfTkIDa7W8/3jg5BNr0ih6A9G3tr2cRxiLWJCqdLsWj8lYtagV5ZzWzvr0Y9r/qBSENtb9ywNYWLQOTwKIRFK370dbSec1xotFPuYIFkiKup60KqDo1UaFCfZw4IdSSRSfMprd7R0sTVnoNc/yXr64uo8g6bdt/w2snOhhXJmRI6A4AVIMAOD8G80kn6Nc+XXbuUMMmJ/71MKbWb/Z5q4kodUg+0sfCcEAPDTRbRmZZ2tW37dcHmwdyVSDar1pF2l9l8XOeJehoU4YBC258FWRAnFI/ldS2DxBi0yesTeCWfivJFqEDPvhBf8uOYPvqkCqQYTmjlLRILsNkKUYSEOGISvQAJgsUPNDs8SLnLpFQ9eCV5/bESr3DimH7hs1baP45ZNRiyVvdGlIcQSDMLXsmOo9nsVT0euRFRVo+m6H0ec+su3W7kssDN5oPhA5C1HK8RSLV+v5y/PdSsztiRomIFB2IEplo0HvYscmIjVP7qb4bTywNicUiJOCXrYS/atuD2+fzFSDdaoaGsJWQiJUGAQdoxH1XznUbrYoQapGymVhnL0j4DvYwaV1r5iDycuXGyav5j5+JMJGXQqYnfgMbUWK0RuGJyuNnYwCDtrGK8lSij2NkEsZ6FaS/71jvC7M4MRydrWbW52TV/OevTRuEwacmuARXLmUpHgNrHLsBAHDMIuYJJ1a10q1rs+pSN3NFGnI12I9zx+0/9WiqtWi92kBZWsGxdasnBc5vTwfDIZsR/HkIZwY6GTtA8cQUIKDMIuCzCVRfsUDuQinFWlsZV57oHXydt+D7MdkG25HR/nhgWjsz4cm4V47aS0VpMlOYKk1l6SBA0zMAi7w1AiaqdniSkKJaLynprfTnG5k+50N8OpsZXZ8Td0ggVXPsK/fFRg2ZiQEq9+Pa2O+DK5lvxvuALRXTAIu8+FpTzkLR5v0YRS+zodKb3I+l5Wv9wyi/wK87yn5pUNnR1k7C3avPo1ejo0Cp0bhvk+DXSrRfCes527ErMIkaBAhszfiz4IBmFPzbRu+EFYZEVTY3CtVjm9sILf0MpsljLaFPQ2Gb1NQQMAmDLVpmyVKVNlZqK04CjcHSQcFmJrKm8gUVPXFzofwakyT68BgxABfJpmmzuSaxhGIabWYqXIrQ6uQPQYDELEjOQ3RwnFHmzEdloSVomcsSxXcLOBh3dHegm4kx0xdyVmQY+CjKtGbFcZ6iUHJAbBCEQQHAmRF8SRRvuIQzmoZ4bHWEYbe0mO++PeUoaFOOBIiLy0VpPwx/6r812l2l7y8ip0hkJIgTAC0QBHQhS5sRSHheIx5ogdTcTF/SZuhEiQK+1tZViIo5f8qSamIjlzXIovNiWi0GAohDQyyQ9GIKpgEKIuptbCPyHoZLWRHee5Ws/3TwyKhmuA6INBiIUaFe3DLI/JaUKjONhapaTPyPCamiasUBhHHgBjB4MQO9fr+T4JwURew9ADEF1hI4wPvtDn0xBiCU7M4CDMrDVaKPY1RTK9Ys8VyJgRIsFdmIYQc3AkxEFCMyfkUeD6QmeCpP0zFEIKSAyCEYgLOBLiyZ2liPIRj0IuvWI3xDdxlogEOVKYhhA3hPhL3GcVypljkn0XZns0qqnYX71FS1md7zo82R9GIL7gSEgIdgzVXq/iGcilV+zQ1Xr+CpEbssVwoO6BIyEhGIoTTUvzxqA4UbWKtjAb+XJUULfBICSQK/Xm/gnByJaIetGzQkgJwTARKKHA21EiGspriRKKhcilVwQAiGXMpbkClEqFQz0BR0IiQrZ0u0ZH2l7i4J8YBCOQmOBISGh+JrJoH/Fgs+6XhUhtNVksck9pMUGwVxCy4EhIaFlS9tAk/6UiQWvXc+nKtOT1hc4DHwfACCQ4OBIaB3uGar9X0bvWnU0Z+kc9f3muW6kx7BeH4EhoHCqV9PcyvGdneNWqOjia2KimLhUJJqUJYQQaCxiExiSm1sI7PvgNZ/yePwHTbkE9A29HjdJwXkuUj9iL/fcaRrGcuUzkdquRh1+noG6CI6FRutfEDXkUuKXIUa0naXSkfeV2gYmBMAKNFBwJjVsIVwoAgPOfRg2HzfsQgmD49QLwdhSCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnAGgxCCcAaDEIJwBoMQgnD2/+c8yknl6bVLAAAAAElFTkSuQmCC" alt="Flag of Brazil">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Brazilian cuisine is one of the most diverse in the world — a vast country of continental scale whose food reflects its indigenous Tupi and Guaraní heritage, three centuries of Portuguese colonialism, the deep imprint of West African culinary traditions brought by enslaved people, and successive waves of immigration from Italy, Germany, Japan, Lebanon, and beyond. No other cuisine has synthesized so many distinct influences across such enormous geographical variety.</p>
+        <p>The indigenous peoples contributed the foundational pantry: cassava in all its forms, açaí, guaraná, tucupi, and techniques of smoking and fermenting tropical ingredients. The Portuguese brought cattle, pigs, chickens, sugar, and rice. West Africans enslaved and transported to Brazil — particularly to Bahia — introduced dendê oil, coconut milk, okra, black-eyed peas, and the deeply spiced philosophy that defines Bahian food today, making it closer in spirit to West African cuisine than to anything European.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Brazilian cooking is warm, generous, and deeply social. It varies enormously by region: the Amazon relies on river fish, cassava, and tropical fruits; the northeast is shaped by sun-dried beef, tapioca, and the African-influenced Bahian tradition; Minas Gerais is the heartland of comfort food — feijão tropeiro, pork, and queijo minas; the south is cattle and churrasco country with strong European immigrant influence.</p>
+        <p>Rice and black beans form the backbone of everyday eating. Feijoada — the grand black bean and pork stew — is the national dish and a Saturday social institution. The sweetness of Brazilian food is notable: condensed milk appears in everything from brigadeiro to pudim, and fresh tropical fruits — mango, papaya, passion fruit, guava — bring natural sweetness year-round.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The prato feito is the daily lunch of most working Brazilians — rice, beans, protein, and salad served in boteco restaurants across the country for a few reais.</li>
+        <li>Feijão is eaten daily in most homes. Full feijoada is a Saturday institution — a slow-cooked black bean and pork stew shared with family over hours, with caipirinhas.</li>
+        <li>Churrasco runs deep — the Sunday barbecue is a serious weekly ritual, especially in the south. Rodízio steakhouses, where meat arrives on swords until you say stop, are a Brazilian institution.</li>
+        <li>Açaí is not a dessert in the Amazon — it is a savory staple eaten with fish and tapioca. The sweet açaí bowl familiar abroad is a southern invention.</li>
+        <li>Pão de queijo is eaten for breakfast throughout Brazil — small, warm, chewy cheese rolls made from cassava flour, found in every padaria every morning.</li>
+        <li>Caipirinha protocol: lime muddled with sugar first, then cachaça and ice. A good caipirinha is assembled to order — never pre-mixed.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Black beans</li>
+        <li><span class="n">06</span> Coconut milk</li>
+        <li><span class="n">02</span> Cassava / mandioca</li>
+        <li><span class="n">07</span> Farofa</li>
+        <li><span class="n">03</span> Rice</li>
+        <li><span class="n">08</span> Malagueta pepper</li>
+        <li><span class="n">04</span> Cachaça</li>
+        <li><span class="n">09</span> Açaí</li>
+        <li><span class="n">05</span> Dendê oil</li>
+        <li><span class="n">10</span> Guaraná</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Brazil has been the world's largest coffee producer and exporter for over 150 years, producing roughly a third of global supply. Culture ranges from the thick sweet cafezinho to filtered café coado in every home.</li>
+        <li>Cassava is so central it has two names — mandioca when boiled, macaxeira in the northeast, aipim in the southeast. It appears as flour, starch, tapioca, chips, and boiled vegetable.</li>
+        <li>Feijoada was long believed invented by enslaved Africans using unwanted pork offcuts discarded by slave owners. Historians debate this origin, but the dish is undeniably African-Brazilian in character.</li>
+        <li>Cachaça is distilled from fresh sugarcane juice, not molasses like rum. Brazil has over 4,000 registered producers and an estimated 30,000 informal ones.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Feijoada</span><span class="dish-tag">Black bean, pork stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grand slow-cooked stew of black beans and various cuts of pork, Brazil's national dish and Saturday ritual.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Churrasco / Picanha na Brasa</span><span class="dish-tag">Fire-grilled sirloin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered picanha and other cuts grilled over open fire, the centerpiece of Brazilian barbecue culture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Moqueca Baiana</span><span class="dish-tag">Coconut fish stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Bahian fish stew simmered in coconut milk and dendê oil with peppers and tomato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pato no Tucupi</span><span class="dish-tag">Duck in fermented cassava sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Duck cooked in tucupi, a tangy fermented cassava broth, an Amazonian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Frango com Quiabo</span><span class="dish-tag">Chicken, okra stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken stewed with okra, a Minas Gerais comfort classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vatapá</span><span class="dish-tag">Bread, shrimp, nut puree</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy Bahian puree of bread, shrimp, coconut milk, and ground nuts, spiced with dendê.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carne de Sol</span><span class="dish-tag">Sun-dried salted beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lightly salted, sun-dried beef, grilled and served with beans or cassava, a northeastern staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bobó de Camarão</span><span class="dish-tag">Shrimp, cassava puree</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shrimp cooked in a creamy cassava puree with coconut milk and dendê oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz com Feijão</span><span class="dish-tag">Rice and beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The everyday combination of rice and black or carioca beans that forms the base of most Brazilian meals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bacalhau à Brasileira</span><span class="dish-tag">Brazilian salt cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salt cod prepared in the Portuguese tradition, adapted with Brazilian ingredients.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweets &amp; Custards</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brigadeiro</span><span class="dish-tag">Chocolate condensed-milk truffle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fudgy truffle of condensed milk and cocoa, rolled in chocolate sprinkles, Brazil's most beloved sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pudim de Leite Condensado</span><span class="dish-tag">Caramel flan</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky caramel flan made from condensed milk, a staple of Sunday lunch dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quindim</span><span class="dish-tag">Coconut egg yolk custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A glossy, dense custard of egg yolk, sugar, and coconut, baked until set.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bolo de Cenoura com Chocolate</span><span class="dish-tag">Carrot cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist carrot cake topped with a rich chocolate sauce or ganache.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Açaí na Tigela</span><span class="dish-tag">Frozen açaí bowl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A frozen açaí puree served in a bowl topped with granola, banana, and honey.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Canjica</span><span class="dish-tag">Sweet corn, coconut pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy sweet corn pudding made with coconut milk, traditionally eaten at June festivals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pamonha</span><span class="dish-tag">Steamed sweet corn tamale</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh corn puree steamed inside its own husk, sweet or savory.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cocada</span><span class="dish-tag">Coconut sugar candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy coconut candy cooked down with sugar.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Bakery</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pão de Queijo</span><span class="dish-tag">Cassava cheese roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, warm, chewy cheese rolls made from cassava flour, eaten every morning across Brazil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coxinha</span><span class="dish-tag">Fried chicken dough drop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A teardrop-shaped fried snack filled with shredded chicken, coated in breadcrumbs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastel</span><span class="dish-tag">Thin fried pastry pocket</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin, crispy fried pastry pocket filled with meat, cheese, or hearts of palm.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Acarajé</span><span class="dish-tag">Black-eyed pea fritter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deep-fried black-eyed pea fritter filled with shrimp and spicy sauce, a Bahian street food icon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Salgados</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Esfiha</span><span class="dish-tag">Lebanese-Brazilian meat pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open-faced or folded pastry filled with spiced minced meat, adopted from Lebanese immigrants.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bolinho de Bacalhau</span><span class="dish-tag">Fried salt cod fritter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fried fritter of salt cod and mashed potato, a Portuguese-Brazilian favourite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tapioca</span><span class="dish-tag">Cassava starch crepe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A gluten-free crepe made from cassava starch, folded around sweet or savory fillings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pé de Moleque</span><span class="dish-tag">Peanut brittle candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense peanut brittle candy sweetened with sugar or rapadura.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Brazilian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dendê oil</li>
+        <li><span class="n">06</span> Lime</li>
+        <li><span class="n">02</span> Malagueta pepper</li>
+        <li><span class="n">07</span> Coentro / cilantro</li>
+        <li><span class="n">03</span> Coconut milk</li>
+        <li><span class="n">08</span> Pimenta de cheiro</li>
+        <li><span class="n">04</span> Farofa</li>
+        <li><span class="n">09</span> Urucum / annatto</li>
+        <li><span class="n">05</span> Tucupi</li>
+        <li><span class="n">10</span> Cachaça</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Cachaça &amp; Cocktails</p>
+            <ol class="plain">
+              <li>Caipirinha</li>
+              <li>Cachaça — Leblon</li>
+              <li>Caipiroska</li>
+              <li>Batida de Coco</li>
+              <li>Chopp</li>
+              <li>Catuaba</li>
+              <li>Vinho do Vale dos Vinhedos</li>
+              <li>Cerveja gelada</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Cafezinho</li>
+              <li>Café coado</li>
+              <li>Guaraná Antarctica</li>
+              <li>Suco de Açaí</li>
+              <li>Caldo de Cana</li>
+              <li>Água de Coco</li>
+              <li>Limonada Suíça</li>
+              <li>Suco de Maracujá</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Skol</li>
+              <li>Brahma</li>
+              <li>Antarctica</li>
+              <li>Itaipava</li>
+              <li>Bohemia</li>
+              <li>Colorado Indica</li>
+              <li>Eisenbahn</li>
+              <li>Original</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctic Canada &amp; Greenland — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 47 / 68 · North America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Arctic Canada & Greenland</h1>
+      <p class="subhead">Inuit, First Nations, Nunavut, Yukon, NWT, and Kalaallit Nunaat — 5,000 years of ecological knowledge built on marine mammals, caribou, and fish at the edge of human survival.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TUNDRA · MUKTUK · COUNTRY FOOD · TUNDRA · MUKTUK · COUNTRY FOOD ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAADO0lEQVR4nO3aO3ITQQBFUZvyAmAjELL/DEJWwhJEQlEFWNJ8uufKnnNCRR3o1usZ6flyuTwBnQ/1AeDsRAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEHupD8AK3z99+f/Drz9/HH8SBhLhQ3u1Ot4ZET4c4Z2NCB+F9k5LhD35nZwIS/LjSYQV+fGHCI8mP/4hwuPIj1f5x8xBFMg1lnA6+XGbJZxLgdwlwokUyBKuo1PIj+Us4XgKZBURDqZA1hLhSApkAxEOo0C2EeEYCmQzEQ6gQPYQIcREuJcZZCcR7qJA9hPhdgpkCBFCTIQbmUFGEeEWCmQgEUJMhKuZQcYSIcREuI4ZZDgRQkyEK5hBZhAhxES4lBlkEhFCTISLmEHmESHERAgxEd7nLspUIoSYCCEmQoiJ8A4PhMwmQoiJEGIihJgIISbCW7yV4QAihJgIISZCiIkQYiKEmAgh9uItPMfwTbvGEkJMhBATIcRECDERQkyEEBMhxETIEfxIeIMIISZCiIkQYiKEmAiZzluZ20QIMRFCTIQQEyFzeSC8S4QQEyHERMhE7qJLiBBiImQWM7iQCCEmQqYwg8uJEGIiZDwzuIoIISZCBjODa4kQYiJkJDO4gQgZRoHbiBBiImQMM7iZCBlAgXuIkL0UuJMIISZCdjGD+4mQ7RQ4hAjZSIGjiJAtFDiQCFlNgWOJkHUUONxLfQDeDPlNYglZRIHziJD7FDiV6yi3yO8AlpCrFHgMS8gr5HckEfIX+R1PhPwmv4oIkV9MhKcmv0cgwjPS3kMR4VkI72GJ8N1S3Vvx/O3j5/oMcGr+MQMxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEPsFaFpNEMXGF2gAAAAASUVORK5CYII=" alt="Flag of Arctic Canada &amp; Greenland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Arctic Canada and Greenland share the oldest and most environmentally extreme food culture in the Americas — a tradition developed over 5,000 years by the Inuit peoples (Kalaallit in Greenland, Inuit across Canada's Nunavut, Northwest Territories, and Yukon) in conditions so harsh that every aspect of food practice is a direct response to survival at minus 50 degrees Celsius in a landscape with no agriculture. The food culture of the circumpolar Arctic is an extraordinarily sophisticated ecological knowledge system built on hunting marine mammals, caribou, and fish, and the techniques of preservation and fermentation that extract maximum nutrition from these resources.</p>
+        <p>The Inuit food tradition is among the most nutritionally complete in the world despite its apparent monotony to outside eyes — raw and fermented animal foods, marine mammal blubber, and organ meats provide all essential vitamins where no vegetables grow through the long polar night. The fur trade era from the 17th century introduced European foods — bannock, tea, sugar, and flour — that were rapidly adopted and transformed into new hybrid traditions. Bannock, the Scottish flatbread introduced by fur traders, is now so embedded in Indigenous Canadian food culture it's considered traditional. Greenland adds a Danish colonial layer — Danish rule from 1721 brought smørrebrød, pastry, and coffee culture alongside traditional Kalaallit food in modern Nuuk.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Arctic food is defined by fat, fermentation, and the cold itself as a preservation and cooking medium. Marine mammal fat — the blubber of seal, beluga, and bowhead whale — is the caloric foundation of the traditional Arctic diet. Muktuk — frozen raw whale skin and blubber — is eaten with the appreciation a European brings to cheese: different whales produce different flavours and textures, and the quality of muktuk is a matter of considered preference. Arctic char, the cold-water salmonid that thrives in glacial lakes, is eaten raw, frozen, dried, or smoked and considered one of the finest-tasting fish in the world.</p>
+        <p>Bannock is the most visible bridge between traditional and introduced food cultures — made with flour, fat, and water, fried in a pan or baked over a fire, it is now the comfort food of the Arctic and subarctic. Akutaq, sometimes called Eskimo ice cream, is a traditional preparation of whipped fat mixed with berries, fish, or snow, providing calories and vitamin C in a dessert that could only have been invented in the Arctic. The short summer brings cloudberries, crowberries, and wild herbs — a seasonal counterpoint to the winter diet of preserved meat and fish.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Country food — the Inuit term for traditionally hunted and gathered food — is not merely sustenance but identity, medicine, and culture. Seal, caribou, Arctic char, and beluga muktuk are shared within communities according to customary protocols.</li>
+        <li>Eating is communal and sharing is obligatory — hoarding food while others go hungry is a profound social violation. Successful hunters distribute their catch to the entire community, particularly elders.</li>
+        <li>Raw and frozen food are not emergency measures but preferences — raw frozen caribou, fish eaten like popsicles, and kiviak (fermented birds) are delicacies whose flavour is completely different from cooked equivalents.</li>
+        <li>Bannock, introduced by Scottish fur traders in the 18th century, is now considered a First Nations and Inuit food — a story of cultural absorption running the opposite direction from most colonial food history.</li>
+        <li>Greenland adds Danish layers — colonial presence from the 18th century brought smørrebrød, pastries, and coffee culture alongside traditional Greenlandic food in modern Nuuk.</li>
+        <li>The seasons define everything — short summer brings berries and fish runs; long winter means preserved and frozen meat, seal hunting at breathing holes, and the fat that protects against extreme cold.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Caribou</li>
+        <li><span class="n">06</span> Cloudberries</li>
+        <li><span class="n">02</span> Seal</li>
+        <li><span class="n">07</span> Crowberries</li>
+        <li><span class="n">03</span> Arctic char</li>
+        <li><span class="n">08</span> Wild herbs</li>
+        <li><span class="n">04</span> Muktuk</li>
+        <li><span class="n">09</span> Dried fish</li>
+        <li><span class="n">05</span> Bannock</li>
+        <li><span class="n">10</span> Whale blubber</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Muktuk — the frozen skin and blubber of the beluga or bowhead whale — is one of the most nutritionally dense foods on earth, containing exceptionally high levels of Vitamin C, Vitamin D, and essential fatty acids, essential for preventing scurvy where no plant foods grow for most of the year.</li>
+        <li>Greenland's population of approximately 57,000 people — the world's largest island with one of the smallest populations — has maintained a food culture almost entirely dependent on marine mammals and fish for thousands of years, a diet associated with remarkably low rates of cardiovascular disease.</li>
+        <li>Kiviak — a Greenlandic delicacy made by stuffing a seal carcass with 400–500 little auks, sewing it shut, and fermenting it under rocks for 18 months — is one of the most extreme preserved foods in the world, eaten whole, bones and all, at celebrations.</li>
+        <li>The fur trade from the 17th century onwards introduced bannock, tea, sugar, and flour, which were rapidly adopted and woven into existing food cultures. Bannock became so thoroughly Indigenous in preparation and meaning that most people today consider it a traditional food.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Country Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caribou Stew</span><span class="dish-tag">Slow-cooked caribou meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Caribou meat slow-simmered with root vegetables into a hearty, warming stew.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Muktuk</span><span class="dish-tag">Raw whale skin, blubber</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Frozen raw whale skin and blubber, eaten with the connoisseurship a European brings to cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arctic Char Grilled</span><span class="dish-tag">Grilled cold-water fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The cold-water salmonid grilled simply, prized as one of the finest-tasting fish in the world.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seal Soup</span><span class="dish-tag">Traditional seal broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warming broth-based soup made from seal meat, a country food staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kiviak</span><span class="dish-tag">Fermented birds in sealskin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Little auks fermented for 18 months inside a sealskin, eaten whole at celebrations.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Greenlandic &amp; More</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bannock &amp; Smoked Fish</span><span class="dish-tag">Fried bread, fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried flatbread served alongside smoked Arctic fish, a staple pairing across the North.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Char Tartare</span><span class="dish-tag">Raw diced Arctic char</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Finely diced raw Arctic char, dressed simply to let the fish's flavour speak.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Musk Ox Stew</span><span class="dish-tag">Slow-cooked musk ox meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rich, slow-cooked musk ox meat stewed with root vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smørrebrød Greenlandic</span><span class="dish-tag">Danish open sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open-faced sandwich in the Danish style, topped with local Arctic ingredients.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Reindeer Roast</span><span class="dish-tag">Roasted reindeer meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-roasted reindeer, a lean and richly flavoured Arctic meat.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Arctic Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Akutaq</span><span class="dish-tag">Whipped fat, berries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whipped fat mixed with berries or fish, known as Eskimo ice cream.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cloudberry Jam</span><span class="dish-tag">Golden Arctic berry jam</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tart, golden jam made from cloudberries foraged in the short Arctic summer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bannock with Berries</span><span class="dish-tag">Fried bread, wild berries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried bannock topped with foraged wild berries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crowberry Dessert</span><span class="dish-tag">Sweetened dark berries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple sweetened preparation of dark Arctic crowberries.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Danish Pastry Greenlandic</span><span class="dish-tag">Danish-style pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flaky Danish pastry, a legacy of Greenland's colonial ties to Denmark.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rye Bread Greenlandic</span><span class="dish-tag">Dense Danish-style rye</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark rye bread reflecting Greenland's Danish culinary influence.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arctic Berry Cake</span><span class="dish-tag">Wild berry sponge cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple sponge cake studded with foraged Arctic berries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wild Rose Hip Jelly</span><span class="dish-tag">Tart foraged rose hip jelly</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tart jelly made from foraged wild rose hips.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Traditional</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bannock</span><span class="dish-tag">Fried flour flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple flatbread of flour, fat, and water, fried in a pan or baked over a fire.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dried Caribou</span><span class="dish-tag">Air-dried caribou strips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Strips of caribou meat air-dried for preservation, eaten as a portable protein snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Muktuk</span><span class="dish-tag">Raw whale skin, blubber</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Frozen raw whale skin and blubber, eaten with the connoisseurship a European brings to cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Arctic Char</span><span class="dish-tag">Smoked cold-water fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Arctic char smoked over a fire for preservation and flavour.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wild Berries</span><span class="dish-tag">Foraged Arctic berries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cloudberries, crowberries, and other wild berries foraged during the short summer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pemmican</span><span class="dish-tag">Dried meat, fat cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, portable cake of dried meat pounded with rendered fat and berries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pilot Biscuits</span><span class="dish-tag">Hardtack ship biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, long-lasting hardtack biscuit, a staple provision across the North.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cloudberry Tea</span><span class="dish-tag">Foraged berry infusion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warming tea infused with foraged cloudberries.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Arctic:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Smoked fish</li>
+        <li><span class="n">06</span> Sea salt</li>
+        <li><span class="n">02</span> Rendered fat</li>
+        <li><span class="n">07</span> Birch sap</li>
+        <li><span class="n">03</span> Cloudberry</li>
+        <li><span class="n">08</span> Fermented meat</li>
+        <li><span class="n">04</span> Crowberry</li>
+        <li><span class="n">09</span> Dried fish</li>
+        <li><span class="n">05</span> Wild thyme</li>
+        <li><span class="n">10</span> Juniper berry</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Homebrew</p>
+            <ol class="plain">
+              <li>Greenlandic Aquavit</li>
+              <li>Nunavut homebrew</li>
+              <li>Hudson's Bay rum</li>
+              <li>Polar beer</li>
+              <li>Carlsberg Greenland</li>
+              <li>Labrador ale</li>
+              <li>Mead local</li>
+              <li>Arctic berry wine</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Labrador tea</li>
+              <li>Cloudberry juice</li>
+              <li>Arctic char broth</li>
+              <li>Crowberry juice</li>
+              <li>Rosehip tea</li>
+              <li>Birch sap water</li>
+              <li>Coffee Danish style</li>
+              <li>Seal broth</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Carlsberg Greenland</li>
+              <li>Greenlandic Brewery</li>
+              <li>Nunavut Brewing</li>
+              <li>Arctic Brewing</li>
+              <li>Greenland Rock</li>
+              <li>Polar</li>
+              <li>Midnight Sun</li>
+              <li>Nanook</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

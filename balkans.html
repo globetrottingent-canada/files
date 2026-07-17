@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Balkans — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 50 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">The Balkans</h1>
+      <p class="subhead">Slovenia, Croatia, Bosnia, Serbia, Montenegro, North Macedonia &amp; Kosovo — Ottoman, Austro-Hungarian, and Slavic traditions fused around ćevapi, kajmak, and rakija.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            MANGAL · RAKIJA · KAJMAK · MANGAL · RAKIJA · KAJMAK ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAEPklEQVR4nO3cMVIcVxRA0RmXQy9EoRJXmZ14d069EjsgIWQ3OECgQUJiAE/f/5pzApVESaOuUl2994fuOR7++PsAdH6pLwA+OhFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERDje3V9/1pfAuxzv7u7qa+B9bo+HT/4RBzMJh7s9fv2RmUQ43r+/f64vgXcR4WSnA9AwHEuEs92PQcNwNBGOZfTthQgH+3YAynImEc70XW820rlEuC+G4UAiHOj2eDD6dkSE+yHLoUS4OzbSaUQ4jV10d0S4K1/iNAxHEeEoxuAeiXCnDMM5RDjHeV2Zk+OIcBiN7Y8Ih3jDemkjHUKEO2RaziLCCR5m2qvrMgwnECHEfNpa7exh9doxeHV9c+5v9WFtqV/rC9i1KdvgOdcp1IsxCS9s+D0uX8apAi/JmfDCPt0dXrUZrkSB2zAJtzJqJMpvSybhVuaMRAVuTIQbmtChArcnwm2t3aECE86EhTffAXMxX/9fUODmRNhZ5q0aA7BlHe2ssZoqMGcS1rrV1Aq6CJOw9hDAxiNRgesQ4QI271CBS7GOrmSTt2ocAlcjwsVc8ohoAK7JOrqYi62mClyWCCEmwkX97+voCncF8CwRLmaDh/GnPO//YYgQYiKEmAhXdKHzm2PhmkQIMRGuZLO3TLw3sxIRLueiS6ONdEE+/He2x/tg1DWXSTjY6a1t+cPBvJlJONKzyd1/0Ugcx1MUyzj7OaYnBT7ejX3yXsuLL+JppqWYhJM8n9/jLx86NBJncSac4er65mcFPn7x5OtOiVNYR5dxe/zR7Ho5v+de7fGnz77s1fWNdXQRJuEafvDd8ycD8Omge8E5I9G37NfgTLiu9z4Lf/+nbo8Hp8S1mYQr+nYAvsfJ/HRKXJMz4RpODoSX+jCY706JjoWLsI4u5LKfxfR0O7WarsMkXMDpGyTbjKbt/0Z+zJlwJZv1ILyVWEfXsH0VJ9spLesoxKyjEBMhxI7//Pa5vgb40ExCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoTYf5DeHiuiLlRhAAAAAElFTkSuQmCC" alt="Flag of The Balkans">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Balkan cuisine is the product of a crossroads — a region where the Ottoman Empire, the Austro-Hungarian Empire, the Byzantine tradition, and Slavic folk culture all met, overlapped, and fused over centuries. The former Yugoslav republics of Slovenia, Croatia, Bosnia and Herzegovina, Serbia, Montenegro, North Macedonia, and Kosovo share a culinary foundation far deeper than their political divisions suggest: the same phyllo pastries, grilled minced meats, fermented dairy, rakija, and reverence for the mangal charcoal grill unite a region that has often defined itself by its differences.</p>
+        <p>Ottoman rule from the 14th to 19th centuries left the most profound culinary imprint — burek, ćevapi, baklava, sarma, ajvar, and coffee culture are all Ottoman in origin or character, most deeply embedded in Bosnia and the south. The Austro-Hungarian inheritance shaped Slovenia and Croatia most strongly, introducing Central European pastry traditions, schnitzel culture, and the Mitteleuropa café. The Adriatic coastline of Croatia and Montenegro absorbed Italian and Venetian influence into a seafood tradition quite unlike the inland Balkan meat-and-starch cooking.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The shared Balkan table is built on grilled meat, fermented dairy, slow-cooked stews, and the versatility of phyllo pastry. Ćevapi — small handmade skinless sausages of minced beef and lamb, grilled over charcoal and served in flatbread with raw onion and kajmak — are the common currency of the regional street food tradition. Kajmak, the clotted cream skimmed from slowly heated milk, is spread on bread, served alongside grilled meat, and stirred into eggs. Ajvar, the roasted red pepper relish made in vast autumn batches, appears on every table.</p>
+        <p>Sarma — cabbage or vine leaves stuffed with minced meat and rice, slow-cooked in sour cabbage brine — is the definitive winter dish and centerpiece of every celebration. Pasulj, the white bean soup slow-cooked with smoked meats, is the democratic comfort dish. Burek — phyllo filled with meat, cheese, or spinach — is eaten for breakfast, lunch, or as a late-night snack from bakeries that never close. Rakija, the fruit brandy distilled from whatever grows locally, is the social lubricant, the medicine, the gift, and the measure of a host's generosity.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Balkan meals are slow and social — a table of meze, grilled meats, bread, and rakija can extend for hours. Rushing a meal is considered disrespectful to both host and food.</li>
+        <li>Rakija is the universal spirit — plum, grape, quince, or apricot, home-distilled by virtually every rural family. Offering rakija to a guest is a gesture of welcome; refusing it is mildly offensive.</li>
+        <li>Bread is sacred across the region — a loaf is placed on the table before anything else and is never wasted. In Serbia, bread and salt greet an honoured guest.</li>
+        <li>Coffee culture is serious and Ottoman in character — thick, unfiltered Turkish-style coffee brewed in a džezva, drunk slowly, is the punctuation of every social visit.</li>
+        <li>The mangal — charcoal grill — is the centrepiece of warm-weather socialising. Ćevapi, pljeskavica, and grilled meats are the shared grammar of Balkan outdoor eating.</li>
+        <li>Regional variation is real despite shared foundations — Bosnia's Ottoman-inflected cooking, Slovenia's Central European dairy and pork tradition, and Dalmatia's Adriatic seafood are distinct expressions within the same family.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lamb & pork</li>
+        <li><span class="n">06</span> Paprika</li>
+        <li><span class="n">02</span> Kajmak</li>
+        <li><span class="n">07</span> Sour cream / pavlaka</li>
+        <li><span class="n">03</span> Ajvar</li>
+        <li><span class="n">08</span> Cornmeal</li>
+        <li><span class="n">04</span> Phyllo / yufka pastry</li>
+        <li><span class="n">09</span> Walnuts</li>
+        <li><span class="n">05</span> Cabbage</li>
+        <li><span class="n">10</span> Dried plums</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ajvar — the roasted red pepper and aubergine relish — is made across the former Yugoslav countries every autumn in a ritual of collective labour, roasting and grinding hundreds of kilos of peppers over open fires. Each family considers its own recipe superior.</li>
+        <li>Burek is the great pan-Balkan pastry, and its precise origin is disputed with genuine feeling. Bosnians insist that only the meat version is true burek; Serbs and Croats apply the name to all varieties. The Ottoman word börek is the common ancestor.</li>
+        <li>Ćevapi are so central to Bosnian identity that Sarajevo hosts an annual ćevapi festival. The Sarajevo style, served in somun flatbread with raw onion and kajmak, is considered the gold standard, though every city insists its version is finest.</li>
+        <li>Rakija production is a deeply embedded folk tradition — almost every village family in Serbia, Bosnia, Croatia, and North Macedonia distils their own from whatever fruit grows on the property, and a bottle of aged šljivovica is a prized gift.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ćevapi</span><span class="dish-tag">Grilled minced meat sausages</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small skinless sausages of minced beef and lamb, grilled over charcoal and served in flatbread with onion and kajmak.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Burek</span><span class="dish-tag">Meat-filled phyllo pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of thin phyllo dough filled with minced meat, cheese, or spinach, eaten any time of day.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sarma</span><span class="dish-tag">Stuffed cabbage rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cabbage or vine leaves stuffed with minced meat and rice, slow-cooked in sour cabbage brine.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pljeskavica</span><span class="dish-tag">Grilled meat patty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A large grilled patty of spiced minced meat, served in bread with condiments like a Balkan burger.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pasulj</span><span class="dish-tag">Smoked bean soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A white bean soup slow-cooked with smoked meats, the democratic everyday comfort dish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ćorba</span><span class="dish-tag">Traditional soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A category of hearty traditional soups, often thickened with a roux and soured with vinegar or lemon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Punjene Paprike</span><span class="dish-tag">Stuffed peppers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bell peppers stuffed with minced meat and rice, simmered in tomato sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jagnjetina ispod sača</span><span class="dish-tag">Under-the-bell roast lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-roasted under a metal dome covered in embers, producing exceptionally tender meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roštilj</span><span class="dish-tag">Mixed grilled meats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mixed grill of sausages, patties, and cuts, the centerpiece of any mangal gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Musaka</span><span class="dish-tag">Layered potato, meat bake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of potato, minced meat, and a savory custard topping, the Balkan take on moussaka.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baklava</span><span class="dish-tag">Honeyed nut phyllo pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of phyllo filled with chopped nuts and soaked in sweet syrup, the pan-Balkan Ottoman classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tufahije</span><span class="dish-tag">Walnut-stuffed poached apple</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole poached apple stuffed with walnuts and topped with whipped cream, a Bosnian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Krempita</span><span class="dish-tag">Vanilla custard slice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick vanilla custard set between layers of puff pastry, dusted with powdered sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sutlijaš</span><span class="dish-tag">Cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy rice pudding dusted with cinnamon, a comforting Balkan dessert.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palačinke</span><span class="dish-tag">Thin filled crepes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin crepes rolled around chocolate, jam, or nut fillings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hurmašice</span><span class="dish-tag">Syrup-soaked cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small semolina cookies soaked in sweet syrup, similar to a Balkan version of basbousa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kadaif</span><span class="dish-tag">Shredded phyllo pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded phyllo dough baked and soaked in syrup, an Ottoman-inherited sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vanilice</span><span class="dish-tag">Vanilla crescent cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small buttery crescent cookies dusted in vanilla sugar and sandwiched with jam.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Spreads &amp; Pastry</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kajmak on bread</span><span class="dish-tag">Clotted cream spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rich clotted cream from slowly heated milk, spread thickly on fresh bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ajvar on bread</span><span class="dish-tag">Roasted pepper relish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted red pepper and aubergine relish spread on bread as a simple snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Börek / Pita</span><span class="dish-tag">Filled phyllo pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Regional names for the pan-Balkan phyllo pastry filled with cheese, meat, or vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Proja</span><span class="dish-tag">Cornbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, savory cornbread, often made with cheese or kajmak mixed in.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Breads &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gibanica</span><span class="dish-tag">Layered cheese pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered pastry pie of cheese, eggs, and phyllo, a beloved Serbian comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lepinja</span><span class="dish-tag">Soft flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, pillowy flatbread traditionally served alongside ćevapi.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kiseli kupus</span><span class="dish-tag">Fermented sour cabbage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole heads of cabbage fermented until sour, used in winter cooking and as a side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Urnebes</span><span class="dish-tag">Spicy cheese pepper spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spicy spread of crumbled cheese, roasted peppers, and chili.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Balkan:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Ajvar</li>
+        <li><span class="n">06</span> Fresh parsley</li>
+        <li><span class="n">02</span> Kajmak</li>
+        <li><span class="n">07</span> Garlic</li>
+        <li><span class="n">03</span> Paprika</li>
+        <li><span class="n">08</span> Sour cream / pavlaka</li>
+        <li><span class="n">04</span> Dried red pepper</li>
+        <li><span class="n">09</span> Smoked pork fat</li>
+        <li><span class="n">05</span> Sumac</li>
+        <li><span class="n">10</span> Bay leaf</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Rakija &amp; Wine</p>
+            <ol class="plain">
+              <li>Šljivovica</li>
+              <li>Loza</li>
+              <li>Rakija</li>
+              <li>Medovina</li>
+              <li>Vranac wine</li>
+              <li>Plavac Mali</li>
+              <li>Graševina</li>
+              <li>Traminac</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Džezva coffee</li>
+              <li>Boza</li>
+              <li>Ayran / Kiselo mlijeko</li>
+              <li>Šipurak tea</li>
+              <li>Kompot</li>
+              <li>Elderflower cordial</li>
+              <li>Mineral water</li>
+              <li>Sok od višnje</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Nikšićko</li>
+              <li>Jelen</li>
+              <li>Karlovačko</li>
+              <li>Sarajevsko</li>
+              <li>Union</li>
+              <li>Laško</li>
+              <li>Skopsko</li>
+              <li>Pan</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

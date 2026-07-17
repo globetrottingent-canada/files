@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Australia &amp; New Zealand — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 44 / 68 · Oceania</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Australia & New Zealand</h1>
+      <p class="subhead">BBQ, hāngi, flat white, bush tucker, and pavlova — British settler foundations built over tens of thousands of years of Aboriginal and Māori food knowledge, remade again by waves of immigration.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TASMAN · BUSH TUCKER · HĀNGI · TASMAN · BUSH TUCKER · HĀNGI ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Australia &amp; New Zealand">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Australian and New Zealand cuisine share the common roots of British settler-colonial societies built on top of rich indigenous food traditions, shaped by waves of immigration that transformed what were once purely Anglo food cultures into some of the most diverse and exciting in the Southern Hemisphere. Australia was colonised by Britain from 1788, New Zealand from 1840, and both countries inherited the British food tradition of meat, potatoes, and bread. The indigenous peoples of both countries had been eating sophisticated diets for tens of thousands of years before European arrival: Aboriginal Australians had the world's oldest continuous food culture, built on bush tucker — kangaroo, emu, witchetty grubs, quandongs, wattleseed, lemon myrtle — while the Māori of New Zealand developed the hāngi feast tradition and deep knowledge of the Pacific seafood environment.</p>
+        <p>The 20th century transformed both food cultures through immigration. The post-WWII migration boom brought Italian, Greek, Lebanese, and Chinese communities to Australia's cities, shifting the food culture away from its Anglo-Irish base. The 1970s removal of the White Australia Policy opened both countries to Asian immigration, and Vietnamese, Thai, Chinese, and Indian restaurant traditions transformed everyday eating in Sydney, Melbourne, and Auckland. The 1990s and 2000s saw both countries develop serious fine dining scenes — Melbourne became regarded as one of the world's best restaurant cities. The flat white, developed in both countries simultaneously, became the global coffee standard.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Australian food is casual, outdoor, and produce-driven — a culture that takes its extraordinary natural ingredients (barramundi, mud crab, Tasmanian salmon, Wagyu beef, Margaret River wine) seriously but eats them without ceremony. The BBQ — a flat hotplate grill, not an American charcoal smoker — is the social centre of Australian weekend life. The café culture of Melbourne and Sydney is among the world's finest, built on espresso technique imported by Italian immigrants and refined into the flat white and the long black. Vegemite, the intensely savoury yeast extract, is the taste that most defines Australian identity to outsiders.</p>
+        <p>New Zealand food has a quieter confidence — a country of 5 million people producing world-class lamb, dairy, seafood, and wine that largely exports its finest produce while eating well at home. The Māori hāngi tradition remains a living food ceremony rather than a tourist attraction, and Māori ingredients — huhu grubs, kawakawa, pāua (abalone), kina (sea urchin), and the kumara sweet potato — are increasingly finding their way into mainstream New Zealand restaurants. The rivalry between Australia and New Zealand over pavlova, the flat white, and Phar Lap is conducted with genuine competitive spirit.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Australian BBQ — a flat metal hotplate on a gas grill, not charcoal — is the social centrepiece of the Australian weekend. Sausages, lamb chops, and prawns are cooked communally, eaten with bread and tomato sauce (never ketchup).</li>
+        <li>The Māori hāngi is New Zealand's most significant food tradition — a feast cooked by lowering baskets of meat, fish, vegetables, and kumara into an earth pit lined with heated stones, covered and left to steam for hours. It is ceremony as much as cooking.</li>
+        <li>Flat white culture defines both countries' café identity — developed independently in Sydney and Auckland in the late 1980s, it is Australia and New Zealand's contribution to global coffee culture.</li>
+        <li>Vegemite is a genuine cultural marker in Australia — the dark, intensely savoury yeast extract spread on toast is eaten by most Australians from childhood and almost universally rejected by everyone else. It is applied thinly, not thickly.</li>
+        <li>The pavlova dispute — both Australia and New Zealand claim to have invented the meringue dessert named after ballerina Anna Pavlova — is one of the most passionately argued food origin debates in the Southern Hemisphere. Evidence slightly favours New Zealand.</li>
+        <li>Seafood defines the coastal eating culture — Sydney rock oysters, Moreton Bay bugs, Tasmanian salmon, Bluff oysters, and the green-lipped mussel are all world-class products eaten with directness.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lamb</li>
+        <li><span class="n">06</span> Barramundi</li>
+        <li><span class="n">02</span> Vegemite</li>
+        <li><span class="n">07</span> Anzac biscuits</li>
+        <li><span class="n">03</span> Macadamia nuts</li>
+        <li><span class="n">08</span> Manuka honey</li>
+        <li><span class="n">04</span> Kumara</li>
+        <li><span class="n">09</span> Lemon myrtle</li>
+        <li><span class="n">05</span> Pavlova</li>
+        <li><span class="n">10</span> Pāua / abalone</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Australia produces some of the world's finest wine from Barossa Valley, McLaren Vale, Coonawarra, and Margaret River — Penfolds Grange is consistently rated among the world's greatest red wines. Australian winemakers were among the first to embrace screwcaps over corks, a decision initially mocked internationally and now widely adopted as superior.</li>
+        <li>The meat pie is the closest thing Australia has to a national dish — a hand-sized pastry filled with minced meat and gravy, eaten at football matches and from servo pie warmers. The pie floater — a meat pie floating in a bowl of pea soup — is a South Australian institution.</li>
+        <li>New Zealand lamb is considered among the finest in the world — grass-fed pastoral farming and careful breeding produce exceptional quality exported globally. New Zealand is also the world's largest exporter of dairy products per capita, and its Anchor butter has been a British household staple since the 1880s.</li>
+        <li>Tim Tams — the Australian chocolate biscuit — are consumed at a rate of 35 million packets per year in Australia alone, and the Tim Tam Slam (biting opposite corners and using the biscuit as a straw to suck hot coffee before the chocolate melts) is a ritual practised by virtually every Australian.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Australia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Australian Meat Pie</span><span class="dish-tag">Minced meat, gravy pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hand-sized pastry case filled with minced meat and gravy, eaten at football matches and from servo pie warmers across the country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Māori Hāngi</span><span class="dish-tag">Earth-pit steamed feast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat, fish, vegetables, and kumara lowered in baskets into a heated stone-lined earth pit and steamed for hours — ceremony as much as cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Barramundi</span><span class="dish-tag">Mild flaky native fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A prized native Australian fish with firm, flaky white flesh, typically grilled or pan-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lamb Roast</span><span class="dish-tag">Sunday roast lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-roasted leg of lamb served with roast vegetables and mint sauce, the classic Sunday family meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Prawn on the Barbie</span><span class="dish-tag">Grilled hotplate prawns</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole prawns grilled on the flat hotplate BBQ, eaten communally with bread at weekend gatherings.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New Zealand</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pavlova</span><span class="dish-tag">Meringue, cream, fruit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp-shelled, marshmallow-soft meringue dessert topped with whipped cream and fresh fruit, at the centre of a trans-Tasman origin dispute.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish &amp; Chips</span><span class="dish-tag">Battered fish, chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered fried fish served with thick-cut chips, wrapped in paper and eaten by the water.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Whitebait Fritters</span><span class="dish-tag">Egg-bound tiny fish patty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tiny whole whitebait fish bound in egg batter and fried into a delicate patty, a New Zealand seasonal delicacy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roast Lamb with Mint</span><span class="dish-tag">Roast lamb, mint sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-roasted lamb served with a sharp mint sauce, showcasing New Zealand's famous grass-fed lamb.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smashed Avo on Toast</span><span class="dish-tag">Avocado on toast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed avocado on toasted sourdough, a café brunch dish that spread globally from Australian and New Zealand cafés.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pavlova</span><span class="dish-tag">Meringue, cream, fruit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp-shelled, marshmallow-soft meringue dessert topped with whipped cream and fresh fruit, at the centre of a trans-Tasman origin dispute.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lamington</span><span class="dish-tag">Sponge, chocolate, coconut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Squares of sponge cake dipped in chocolate icing and rolled in desiccated coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tim Tam</span><span class="dish-tag">Chocolate biscuit sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chocolate-coated biscuit sandwich filled with chocolate cream, Australia's best-selling biscuit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">ANZAC Biscuits</span><span class="dish-tag">Oat, golden syrup cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy oat and golden syrup biscuit originally sent to WWI soldiers, still baked every ANZAC Day.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Anzac Slice</span><span class="dish-tag">Baked oat slice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traybake version of the ANZAC biscuit, pressed into a pan and cut into bars.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hokey Pokey Ice Cream</span><span class="dish-tag">Honeycomb toffee bits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vanilla ice cream studded with crunchy honeycomb toffee pieces, a New Zealand favourite flavour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Golden Syrup Dumplings</span><span class="dish-tag">Syrup-poached dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft dumplings poached in a sweet golden syrup sauce, a classic Australian comfort dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Weet-Bix Slice</span><span class="dish-tag">Cereal biscuit traybake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A no-bake traybake made from crushed Weet-Bix cereal, chocolate, and butter.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Meat Pie with Sauce</span><span class="dish-tag">Pie, tomato sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hot meat pie topped with a squeeze of tomato sauce, the everyday Australian snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sausage Sizzle</span><span class="dish-tag">BBQ sausage on bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grilled sausage on a slice of white bread with onions and sauce, sold at hardware stores and community fundraisers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vegemite on Toast</span><span class="dish-tag">Thin savoury spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Toast spread thinly with butter and the intensely savoury yeast extract Vegemite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fairy Bread</span><span class="dish-tag">Sprinkles on buttered bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White bread spread with butter and covered in rainbow sprinkles, a staple of Australian children's parties.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Meat Pie Floater</span><span class="dish-tag">Pie in pea soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A meat pie served floating upside-down in a bowl of thick pea soup, a South Australian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pikelet</span><span class="dish-tag">Small sweet pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small, thick pancake served with butter and jam, similar to a Scotch pancake.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chiko Roll</span><span class="dish-tag">Fried vegetable spring roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deep-fried pastry roll filled with cabbage, barley, and meat, an Australian take on the spring roll.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cheese &amp; Marmite Toast</span><span class="dish-tag">Marmite, melted cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Toast spread with Marmite yeast extract and topped with melted cheese.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Australian or Kiwi:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Vegemite</li>
+        <li><span class="n">06</span> Mint sauce</li>
+        <li><span class="n">02</span> Manuka honey</li>
+        <li><span class="n">07</span> Tomato sauce</li>
+        <li><span class="n">03</span> Lemon myrtle</li>
+        <li><span class="n">08</span> Bush tomato</li>
+        <li><span class="n">04</span> Wattleseed</li>
+        <li><span class="n">09</span> Sea salt</li>
+        <li><span class="n">05</span> Macadamia</li>
+        <li><span class="n">10</span> Lemon aspen</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Penfolds Grange</li>
+              <li>Jacobs Creek Shiraz</li>
+              <li>XXXX Gold</li>
+              <li>Victoria Bitter</li>
+              <li>Speight's</li>
+              <li>Steinlager</li>
+              <li>Sauvignon Blanc Marlborough</li>
+              <li>Coopers Pale Ale</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Flat White</li>
+              <li>Milo</li>
+              <li>L&amp;P</li>
+              <li>Hokey Pokey milkshake</li>
+              <li>Bundaberg ginger beer</li>
+              <li>OAK chocolate milk</li>
+              <li>Iced Coffee</li>
+              <li>Moccona</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>XXXX Gold</li>
+              <li>Victoria Bitter</li>
+              <li>Coopers</li>
+              <li>Carlton Draught</li>
+              <li>Speight's</li>
+              <li>Steinlager</li>
+              <li>Lion Red</li>
+              <li>Tui</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

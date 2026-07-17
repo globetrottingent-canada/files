@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mexico — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">NORTH AMERICA / MESOAMERICAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Mexico</h1>
+      <p class="subhead">A 10,000-year corn tradition — fiercely regional, built on chili, and one of the deepest food cultures on earth.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            OAXACA · YUCATÁN · VERACRUZ · CDMX · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Mexico">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Mexican cuisine has some of the deepest roots of any food culture in the world — a 10,000-year tradition of corn cultivation, and pre-Columbian civilizations (Olmec, Maya, Aztec) that developed sophisticated agricultural systems, complex cooking techniques, and a pantry of ingredients that would go on to reshape global food. Corn (maize), beans, squash, chili peppers, tomatoes, avocados, chocolate, and vanilla all originate in Mesoamerica, and their introduction to Europe via Spain after 1492 fundamentally transformed world cuisine.</p>
+        <p>The Spanish conquest of 1519–1521 brought new proteins (beef, pork, chicken, dairy) and introduced cooking fats (lard), wheat, rice, and sugar. Rather than displacing indigenous cooking, these elements merged with it — creating the mestizo culinary tradition that defines Mexican food today. African influences arrived via the transatlantic slave trade, particularly in coastal Veracruz. Later migrations of French, Lebanese, and Chinese communities left culinary traces visible in pan dulce (French pastry heritage), al pastor (Lebanese shawarma adapted to pork), and in Chinese-Mexican restaurants found throughout northern cities.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Mexican cooking is defined by its extraordinary diversity of chilies, the centrality of corn in all its forms, and a layering of complex flavors built slowly through toasting, charring, and long simmering. The 'holy trinity' of Mexican cooking is corn, beans, and chili — three crops that have sustained civilizations for millennia and remain the daily foundation. Mole sauces represent the cuisine's pinnacle of complexity: some contain over thirty ingredients including multiple dried chilies, chocolate, nuts, seeds, and spices, requiring days of patient preparation.</p>
+        <p>The cuisine is fiercely regional — Oaxaca is called 'the land of seven moles' and is known for tlayudas, black beans, and mezcal; the Yucatán uses achiote and citrus marinades reflecting Mayan and Caribbean influences; Veracruz is the most Spanish-influenced region with its seafood dishes; the north is cattle country with beef, flour tortillas, and cheese at the center. Street food culture is profound — tacos in dozens of varieties, elote (corn), tlayudas, and sopes are the daily pulse of Mexican urban life.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The main meal (comida) is eaten midday — a multi-course affair of soup, rice, beans, main dish, and dessert. The evening meal (cena) is lighter: tamales, tacos, or leftovers.</li>
+        <li>Tortillas are the foundation of the table — corn tortillas, freshly pressed and griddled, accompany virtually every meal. Store-bought flour tortillas are a northern and Tex-Mex convention, not universal.</li>
+        <li>Salsas are not condiments but essential components — a table without multiple fresh salsas (green, red, smoky) is incomplete. Making good salsa is a point of household pride.</li>
+        <li>Mexican food is intensely regional — what counts as authentic varies dramatically: Oaxaca (moles, tlayudas), Yucatán (achiote, cochinita pibil), Veracruz (seafood, Spanish influence), and the north (beef, flour tortillas, cheese) are almost different cuisines.</li>
+        <li>Día de los Muertos (Day of the Dead) is a profound food occasion — altars are laden with the favorite dishes of deceased relatives, and pan de muerto (sweet egg bread) is made specifically for the celebration.</li>
+        <li>Mezcal is drunk slowly and with respect — a shot glass, not a cocktail. 'Para todo mal, mezcal; para todo bien, también' ('For everything bad, mezcal; for everything good, also') is the toast.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Corn / maize (tortillas, tamales, atole)</li>
+        <li><span class="n">06</span> Beans (black, pinto, refried)</li>
+        <li><span class="n">02</span> Dried chilies (ancho, pasilla, guajillo, chipotle)</li>
+        <li><span class="n">07</span> Cilantro (fresh — divides opinion globally)</li>
+        <li><span class="n">03</span> Fresh chilies (jalapeño, serrano, habanero)</li>
+        <li><span class="n">08</span> Lime (on everything)</li>
+        <li><span class="n">04</span> Tomatoes & tomatillos (salsas, sauces)</li>
+        <li><span class="n">09</span> Epazote (herb — black beans, quesadillas)</li>
+        <li><span class="n">05</span> Avocado (guacamole, garnish)</li>
+        <li><span class="n">10</span> Chocolate & cacao (mole, drinks, desserts)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Mexican cuisine was inscribed on UNESCO's Intangible Cultural Heritage list in 2010 — the first cuisine from the Americas to receive the honor, recognized for its ancient techniques, community significance, and biodiversity of ingredients.</li>
+        <li>Chocolate originates in Mesoamerica — the Olmec, Maya, and Aztec civilizations consumed cacao as a bitter, spiced drink for thousands of years before it was brought to Europe by the Spanish, who added sugar and transformed it into the sweet product the world knows today.</li>
+        <li>Mexico is the world's largest producer of avocados, accounting for roughly 30% of global production. The Aztec word for avocado was 'ahuacatl,' from which the Spanish 'aguacate' and English 'avocado' both derive.</li>
+        <li>Mole — Mexico's most complex sauce — can contain over 30 ingredients including multiple types of dried chili, chocolate, nuts, seeds, spices, and tomato. The mole negro of Oaxaca and mole poblano of Puebla are considered the most elaborate, and each can take two days to prepare.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tacos al Pastor</span><span class="dish-tag">spit-roasted pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated pork shaved from a vertical spit, traditionally topped with pineapple — a Lebanese-Mexican fusion dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mole Poblano</span><span class="dish-tag">complex chili sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Turkey or chicken bathed in a deeply complex chili sauce built from dozens of ingredients including chocolate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chiles en Nogada</span><span class="dish-tag">walnut cream, pomegranate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stuffed poblano peppers draped in walnut cream sauce and topped with pomegranate seeds.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cochinita Pibil</span><span class="dish-tag">Yucatán achiote pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork slow-roasted in achiote paste and citrus, traditionally wrapped in banana leaf and pit-cooked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pozole</span><span class="dish-tag">hominy &amp; pork/chicken soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty hominy soup with pork or chicken, garnished with lettuce, radish, and lime.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Enchiladas</span><span class="dish-tag">tortillas in chili sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tortillas rolled around a filling and bathed in chili sauce, with countless regional and family variations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamales</span><span class="dish-tag">steamed in corn husk/leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn masa filled and steamed inside a corn husk or banana leaf wrapper.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Birria</span><span class="dish-tag">spiced goat/beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, spiced stew of goat or beef, originating in Jalisco, often served with consommé for dipping.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chiles Rellenos</span><span class="dish-tag">stuffed fried poblanos</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Poblano peppers stuffed with cheese or meat, battered, and fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tlayudas</span><span class="dish-tag">Oaxacan crispy tortilla</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A large, crispy toasted tortilla piled with beans, cheese, and meat — Oaxaca's answer to the pizza.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Custards &amp; Cakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tres Leches Cake</span><span class="dish-tag">soaked in three milks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light sponge cake soaked in a blend of three milks until saturated and creamy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Churros con Chocolate</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried dough sticks dusted in sugar, served with a thick drinking chocolate for dipping.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flan Napolitano</span><span class="dish-tag">cream cheese custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense caramel custard enriched with cream cheese, denser than a classic French flan.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice pudding gently spiced with cinnamon, a comforting home-style dessert.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pan de Muerto</span><span class="dish-tag">Day of the Dead bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, orange-blossom-scented egg bread baked specifically for Día de los Muertos altars.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buñuelos</span><span class="dish-tag">piloncillo syrup pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, crisp fried pastry disks drizzled with raw sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cajeta</span><span class="dish-tag">goat's milk caramel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, dark caramel made from slow-cooked goat's milk, a specialty of Celaya.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chongos Zamoranos</span><span class="dish-tag">milk curds in syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Curdled milk set into firm curds and simmered in cinnamon syrup.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guacamole con Totopos</span><span class="dish-tag">with corn chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed avocado with lime, onion, and chili, scooped up with fried corn chips.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Elote / Esquites</span><span class="dish-tag">grilled street corn</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled or cupped corn dressed with mayonnaise, cheese, chili, and lime.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quesadilla</span><span class="dish-tag">tortilla, cheese &amp; filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A corn tortilla folded around cheese and other fillings, griddled until melted.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tostadas</span><span class="dish-tag">crispy tortilla toppings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flat, crisp fried tortilla piled with beans, meat, and fresh toppings.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Antojitos</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sopes</span><span class="dish-tag">thick corn base</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick corn masa base with pinched edges, topped with beans, meat, and salsa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gorditas</span><span class="dish-tag">stuffed masa pocket</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick corn masa pocket split and stuffed with savory fillings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tacos de Canasta</span><span class="dish-tag">steamed basket tacos</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft tacos steamed and stacked in a basket, sold from bicycles across Mexican cities.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Memelas</span><span class="dish-tag">Oaxacan corn masa</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oval corn masa bases topped with beans, salsa, and cheese, an Oaxacan specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Mexican:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Chipotle in adobo (smoky, spicy, complex)</li>
+        <li><span class="n">06</span> Tomatillo (sharp, green, acidic)</li>
+        <li><span class="n">02</span> Ancho chili (earthy, mild heat, chocolate notes)</li>
+        <li><span class="n">07</span> Mexican oregano (stronger than Mediterranean)</li>
+        <li><span class="n">03</span> Lime juice (finishing acid — on everything)</li>
+        <li><span class="n">08</span> Cumin (earthy — beans, meats, salsas)</li>
+        <li><span class="n">04</span> Epazote (pungent herb — black beans)</li>
+        <li><span class="n">09</span> Piloncillo (raw brown sugar)</li>
+        <li><span class="n">05</span> Achiote / annatto paste (earthy, rust-red)</li>
+        <li><span class="n">10</span> Cinnamon (canela — sweet & savory)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Mezcal, Tequila &amp; More</p>
+            <ol class="plain">
+              <li>Mezcal</li>
+              <li>Tequila (Blanco, Reposado, Añejo)</li>
+              <li>Michelada</li>
+              <li>Margarita</li>
+              <li>Paloma</li>
+              <li>Pulque</li>
+              <li>Tepache</li>
+              <li>Raicilla</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Agua de Jamaica</li>
+              <li>Horchata</li>
+              <li>Agua de Tamarindo</li>
+              <li>Atole</li>
+              <li>Champurrado</li>
+              <li>Café de Olla</li>
+              <li>Tejate</li>
+              <li>Limonada con Chía</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Corona Extra</li>
+              <li>Modelo Especial</li>
+              <li>Modelo Negra</li>
+              <li>Dos Equis Lager (XX)</li>
+              <li>Tecate</li>
+              <li>Bohemia</li>
+              <li>Pacifico</li>
+              <li>Carta Blanca</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

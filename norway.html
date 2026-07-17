@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norway — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SCANDINAVIA / NORDIC</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Norway</h1>
+      <p class="subhead">A coastal and mountain tradition of curing, smoking, and salting — built on exceptional seafood and the honest simplicity of Nordic ingredients.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            FJORDS · LOFOTEN · OSLO · ARCTIC WATERS · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADaCAIAAACTo+iSAAADqUlEQVR4nO3cv2tVZwDH4ZxwJUgRI4QIGYJdBIemUIQMbQlurv4J4uIgFJwEQXRzEl0LRRfBKUOHDqWDUNxEVNCCiz/AgCLoIihCbvdCicO9fiL3eebDe77Lh/NOZ/hz3/dz47mZsnd15adHf3zOkxevbl66tjnBV2+sH7l96/znPPno9IWtm79P8NXsUsPcfD0BZp0IISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBio8UffxiG2UpxYXmpnrCzbw5/e+Dno/UKpm483h6t/XZ5YWW5XsJ/HTp78tDZk/UKpu7j1uvZ+gbCLiRCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNjwy7lf333armfsUvcfP3/wz4sJHnhwaf/xjbUJHsjXbnHP/LC6fubFq7f1EphRqwcPuI5CTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCbHTi2Jrf4P8fv8Fn2hb3zA8fXr5aWFmul+xSF69uXrq2OcEDN9aP3L51foIH8rX7uPXadRRiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIjR6eOjcMs5XiwvLSdzcu1yt28OzK9Td/3alXMHXj8fbo3Z17c+N6yJe1d3WlnrCz90+evv37br2C6RtcR6EmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKE2L8XZVHRiXeLUgAAAABJRU5ErkJggg==" alt="Flag of Norway">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Norwegian cuisine is shaped by the sea, the fjord, and the mountain — a coastal and agricultural tradition that has been defined for thousands of years by the extraordinary abundance of Norwegian waters and the demands of surviving long, dark winters in a northern climate. The Norse Viking culture, which dominated Scandinavia from the 8th to 11th centuries, was built on a food system of remarkable practical sophistication: preserved fish, dried meat, dairy fermentation, and the cultivation of grain in a challenging climate. The techniques developed in this period — salting, smoking, drying, and curing — remain at the heart of Norwegian food culture today, refined rather than abandoned.</p>
+        <p>Denmark's four-century union with Norway and later Swedish influence shaped the culinary upper classes, introducing continental European techniques and ingredients to the elite kitchen, while peasant food remained deeply rooted in local tradition. The 19th century's potato adoption transformed the Norwegian diet, becoming a staple eaten at virtually every meal. The 20th century brought industrialisation, refrigeration, and the globalisation of the Norwegian diet, while simultaneously triggering a revival of traditional food culture. The New Nordic movement, emerging from Copenhagen in the 2000s, found fertile ground in Norway's extraordinary larder of wild and farmed ingredients and has elevated Norwegian fine dining to international prominence.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Norwegian cooking is honest, seasonal, and built on the principle that exceptional raw ingredients require minimal intervention. Gravlaks — salmon cured with salt, sugar, and dill — is perhaps the most perfect expression of this philosophy: a few simple ingredients transforming a world-class fish into something of extraordinary elegance. Fårikål — the national dish of lamb and cabbage slow-cooked together with black pepper — achieves its status not through complexity but through the quality of Norwegian lamb, the simplicity of the preparation, and the depth of flavour that develops from long cooking. It is eaten every autumn when the new season's lamb arrives.</p>
+        <p>The sea dominates the Norwegian table — salmon, cod, mackerel, herring, and the extraordinary Norwegian langoustine and king crab from northern waters appear in everything from everyday home cooking to the finest restaurants. Rakfisk — trout fermented for months in salt — is the Norwegian equivalent of gravlaks but more challenging, with an intensity that requires acclimatisation. Brunost, the brown whey cheese, is the food that most surprises visitors: sweet, slightly caramelised, fudge-like in texture, eaten on crispbread or melted on waffles, it is a taste that divides opinion sharply but is deeply embedded in Norwegian daily life.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Norwegian breakfast is open-faced — smørbröd, slices of bread topped with smoked salmon, brown cheese, cold cuts, or egg, eaten without ceremony but with great attention to the quality of each ingredient.</li>
+        <li>Brown cheese — brunost — is one of Norway's most distinctive foods: a sweet, fudge-like whey cheese made by caramelising the lactose, giving it its characteristic amber colour and toffee flavour. It is eaten on crispbread for breakfast and is deeply divisive outside Norway.</li>
+        <li>Coffee is consumed in enormous quantities — Norway is consistently among the world's top five per-capita coffee consumers. The Norwegian coffee break, kaffepause, is a daily social institution at work and at home.</li>
+        <li>Norwegian seafood is taken with enormous pride — the quality of Norwegian salmon, cod, and mackerel is a point of national identity. Eating fish twice a week is deeply embedded in the culture.</li>
+        <li>Christmas food is fiercely regional — pinnekjøtt (salted dried lamb ribs) in the west, ribbe (pork belly) in the east, and lutefisk (lye-cured dried cod) across the country are the subjects of genuine regional loyalty and friendly argument.</li>
+        <li>Matpakke — the packed lunch of open sandwiches wrapped in paper, taken to school and work — is so culturally embedded that it is considered a defining feature of Norwegian egalitarianism. Even wealthy Norwegians bring their own lunch.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Atlantic salmon</li>
+        <li><span class="n">06</span> Sour cream / rømme</li>
+        <li><span class="n">02</span> Cod / stockfish</li>
+        <li><span class="n">07</span> Cloudberries</li>
+        <li><span class="n">03</span> Brown cheese / brunost</li>
+        <li><span class="n">08</span> Flatbrød</li>
+        <li><span class="n">04</span> Lamb</li>
+        <li><span class="n">09</span> Aquavit</li>
+        <li><span class="n">05</span> Dill</li>
+        <li><span class="n">10</span> Cured meats</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Norway is the world's second-largest seafood exporter after China, and Norwegian salmon farming — developed from the 1970s onwards — transformed the global food industry. Before Norwegian aquaculture, salmon was an expensive luxury food eaten rarely. Norwegian farmed Atlantic salmon made it affordable worldwide and fundamentally changed how the world eats fish. Japan's sushi revolution in the 1990s was partly driven by Norwegian salmon exporters who convinced Japanese buyers to eat salmon raw.</li>
+        <li>Lutefisk — dried stockfish reconstituted in lye water until it becomes gelatinous — is one of the most controversial traditional foods in Scandinavia. It is either a beloved Christmas tradition or a cultural ordeal depending on who you ask. Norwegian-Americans in the American Midwest consume more lutefisk than Norway itself, and communities in Minnesota hold lutefisk festivals with genuine enthusiasm.</li>
+        <li>The Vikings were accomplished food traders as well as warriors — dried and salted Norwegian cod, known as stockfish, was one of the most important traded commodities in medieval Europe, providing protein to Catholic populations who needed fish on fasting days. Norwegian stockfish fed medieval Europe from Portugal to Italy, and the trade routes it established were among the first pan-European commercial networks.</li>
+        <li>Aquavit — the Scandinavian spirit flavoured with caraway and dill — is traditionally aged at sea on Norwegian ships, where the movement of the vessel and the changing temperatures as it crosses the equator produce a distinctively mellow, complex spirit. Linie Aquavit, the most famous, crosses the equator twice in its oak casks before being bottled.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gravlaks</span><span class="dish-tag">salt &amp; dill cured salmon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salmon cured with salt, sugar, and dill — a simple technique that transforms the fish into something of elegant depth.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fårikål</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb and cabbage slow-cooked together with black pepper, eaten every autumn when new-season lamb arrives.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lutefisk</span><span class="dish-tag">lye-cured cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dried stockfish reconstituted in lye water until gelatinous, a divisive but beloved Christmas tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pinnekjøtt</span><span class="dish-tag">salted dried lamb ribs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salted, dried lamb ribs steamed over birch branches, a fiercely regional Christmas favorite in western Norway.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fiskesuppe</span><span class="dish-tag">creamy fish soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy, delicate fish soup made from the day's fresh catch and root vegetables.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rakfisk</span><span class="dish-tag">fermented trout</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Trout fermented for months in salt, an intense, acquired-taste relative of gravlaks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kjøttkaker</span><span class="dish-tag">Norwegian meatballs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Norwegian meatballs served in brown gravy with potatoes and lingonberry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Raspeballer</span><span class="dish-tag">potato dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense potato dumplings, traditionally served with salted meat and bacon fat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bacalao</span><span class="dish-tag">salt cod stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tomato-based salt cod stew with olives and peppers, adapted from Portuguese trading influence.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fiskebollar</span><span class="dish-tag">fish balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft, mild fish balls served in a white cream sauce, a comforting home-style dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Krumkake</span><span class="dish-tag">rolled waffle cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin, delicate waffle cookie rolled into a cone shape while warm, often served at Christmas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Multekrem</span><span class="dish-tag">cloudberry cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whipped cream folded with sweet-tart cloudberries, a beloved simple dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Riskrem</span><span class="dish-tag">rice pudding cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy rice pudding folded with whipped cream, often topped with berry sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Julekake</span><span class="dish-tag">Christmas fruit bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, spiced Christmas bread studded with raisins and candied fruit.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lefse</span><span class="dish-tag">soft potato flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, thin potato flatbread, rolled with butter and sugar or served with savory toppings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kvæfjordkake</span><span class="dish-tag">"world's best cake"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered sponge and meringue cake with custard cream, nicknamed 'verdens beste' — the world's best.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blotkake</span><span class="dish-tag">cream layer cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A celebratory layered sponge cake filled with cream and fresh fruit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fatigmann</span><span class="dish-tag">fried Christmas cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A delicate, diamond-shaped fried cookie flavored with cardamom, a Christmas classic.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Smørbröd &amp; Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smørbröd</span><span class="dish-tag">open sandwiches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Open-faced sandwiches topped with cold cuts, fish, cheese, or egg, the backbone of the Norwegian meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brunost on Crispbread</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, fudge-like brown whey cheese sliced thin over crisp rye bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Røkelaks</span><span class="dish-tag">smoked salmon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold-smoked salmon, thinly sliced and served on bread or with scrambled eggs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rekesalat</span><span class="dish-tag">shrimp salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy shrimp salad often piled onto bread or served with lemon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sursild</span><span class="dish-tag">pickled herring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Herring pickled in a sweet-sour brine, a staple of the smørbröd table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flatbrød med Ost</span><span class="dish-tag">flatbread &amp; cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp, thin flatbread served with cheese, a simple everyday snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pølse med Lompe</span><span class="dish-tag">sausage in potato wrap</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grilled sausage wrapped in a soft potato flatbread instead of a bun.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skillingsbolle</span><span class="dish-tag">cinnamon bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, generously spiced cinnamon bun, a beloved bakery treat.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Norwegian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dill</li>
+        <li><span class="n">06</span> Aquavit</li>
+        <li><span class="n">02</span> Sour cream</li>
+        <li><span class="n">07</span> Mustard</li>
+        <li><span class="n">03</span> Brown cheese</li>
+        <li><span class="n">08</span> Caraway</li>
+        <li><span class="n">04</span> Smoked salmon</li>
+        <li><span class="n">09</span> Pickled herring</li>
+        <li><span class="n">05</span> Cloudberry</li>
+        <li><span class="n">10</span> Butter</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Aquavit &amp; Spirits</p>
+            <ol class="plain">
+              <li>Aquavit / Linie</li>
+              <li>Haakon Aquavit</li>
+              <li>Mack Arctic Beer</li>
+              <li>Ringnes</li>
+              <li>Frydenlund</li>
+              <li>Aass Bryggeri</li>
+              <li>Nøgne Ø IPA</li>
+              <li>Borg Brygghus</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kaffi</li>
+              <li>Brumost på Brødet</li>
+              <li>Saft</li>
+              <li>Eplejuice</li>
+              <li>Solo</li>
+              <li>Urtethe</li>
+              <li>Kvelde Te</li>
+              <li>Sjokolade</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Ringnes</li>
+              <li>Mack</li>
+              <li>Frydenlund</li>
+              <li>Hansa</li>
+              <li>Aass</li>
+              <li>Nøgne Ø</li>
+              <li>7 Fjell</li>
+              <li>Lervig</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

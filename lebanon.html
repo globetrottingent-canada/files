@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lebanon — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">LEVANT / MEZZE</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Lebanon</h1>
+      <p class="subhead">The most refined and internationally influential cuisine of the Arab world — built on freshness, olive oil, and the mezze table.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BEKAA VALLEY · BEIRUT · MEDITERRANEAN · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Lebanon">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Lebanese cuisine is widely regarded as the most refined, diverse, and internationally influential food culture in the Arab world — a tradition shaped by the ancient Phoenician trading civilization that carried viticulture, olive cultivation, and culinary techniques across the Mediterranean, and refined over millennia by successive waves of civilization: Canaanite, Greek, Roman, Byzantine, Arab, Crusader, Ottoman, and French. The Levantine coastal geography — mountains, fertile valleys, and Mediterranean coastline within a country smaller than Connecticut — produces an extraordinary variety of ingredients from multiple climatic zones. The Bekaa Valley yields wine and wheat; the coast produces seafood and citrus; the mountains supply lamb, truffles, and wild herbs.</p>
+        <p>The Arab conquest of the 7th century established Islam and its culinary traditions, including the meze culture of shared small plates, the use of tahini, chickpeas, and bulgur wheat, and the principle that generosity at the table is a spiritual obligation. Ottoman rule from the 16th to 20th centuries embedded further layers — kibbeh, kafta, rice pilafs, and the sweet phyllo pastry tradition. The French Mandate period from 1920 to 1943 introduced French culinary technique and café culture to Beirut, creating the distinctive Lebanese fusion of Levantine ingredients with European presentation that characterises the refined Beirut restaurant tradition. The Lebanese diaspora — one of the world's largest and most widely distributed — has carried this food culture to every continent.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Lebanese cooking is defined by freshness, generosity, and balance — a Mediterranean food culture in which olive oil, lemon, and fresh herbs are applied with an abundance that makes everything taste alive. The mezze tradition is the great Lebanese contribution to world food culture: not a collection of starters but a philosophy of eating in which multiple small dishes arrive simultaneously and continuously, creating a meal of constant variety and sociability. A proper Lebanese mezze can encompass thirty or forty dishes — cold salads, warm pastries, dips, grilled meats, fried vegetables, raw fish, and cheese — and can last an entire afternoon.</p>
+        <p>Tabbouleh — the finely chopped parsley, tomato, mint, and bulgur salad dressed with lemon and olive oil — is perhaps the most widely eaten Lebanese dish globally, though the version most people know outside Lebanon uses far more bulgur and far less parsley than the original. True Lebanese tabbouleh is a parsley salad with a small amount of bulgur, not the reverse. Hummus, labneh, baba ghanouj, and fattoush are the foundations of the daily mezze table. Kibbeh — minced lamb and bulgur in its many forms — is the national dish. Arak, the anise-flavoured grape spirit, is the drink of the Lebanese table, drunk long and slowly alongside food.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The mezze table is the heart of Lebanese eating — not a starter before a main course but a meal in itself, a slowly expanding spread of cold and warm dishes shared over hours of conversation.</li>
+        <li>Bread is the universal utensil — khobz arabie, the thin flatbread, arrives first and is used to scoop, wrap, and eat throughout. Every dish on the mezze table is eaten with bread.</li>
+        <li>Lebanese hospitality is legendary and non-negotiable — a guest must be fed and the table must be laden. The phrase 'tafaddal' — please help yourself — is the constant refrain of a Lebanese host.</li>
+        <li>Arak is the national spirit and the drink of long lunches — diluted with water and ice, turning cloudy white, it is drunk slowly alongside mezze, never rushed or taken as a shot.</li>
+        <li>Fresh vegetables and herbs are eaten as freely as cooked dishes — raw tomatoes, cucumbers, mint, parsley, and spring onions appear on every table and are eaten throughout a meal.</li>
+        <li>Sharing food is an act of love in Lebanese culture — placing the best pieces on another's plate, insisting they eat more, and ensuring no one leaves hungry are expressions of affection as much as politeness.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Fresh parsley</li>
+        <li><span class="n">02</span> Lemon juice</li>
+        <li><span class="n">07</span> Sumac</li>
+        <li><span class="n">03</span> Tahini</li>
+        <li><span class="n">08</span> Za'atar</li>
+        <li><span class="n">04</span> Chickpeas</li>
+        <li><span class="n">09</span> Pomegranate molasses</li>
+        <li><span class="n">05</span> Bulgur wheat</li>
+        <li><span class="n">10</span> Pine nuts</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lebanon produces some of the oldest and finest wine in the world — the Bekaa Valley has been producing wine for at least 6,000 years, making it one of the oldest wine regions on earth. The Phoenicians, who originated in what is now Lebanon, spread viticulture across the Mediterranean, and Lebanese wine producers like Château Musar, Ksara, and Kefraya are now internationally acclaimed.</li>
+        <li>Hummus — now one of the most consumed dips in the world — has become the subject of genuine diplomatic tension between Lebanon and Israel, both of which have claimed it as a national dish. Lebanon set a Guinness World Record for the largest dish of hummus in 2008 (300kg), only for Israel to break it the following year. The dish is ancient and pan-Levantine, predating both modern states.</li>
+        <li>Kibbeh — a mixture of minced lamb and bulgur wheat shaped into ovals, stuffed with spiced meat and pine nuts, and fried or baked — is considered the national dish of Lebanon and is one of the most technically demanding preparations in Middle Eastern cooking. There are said to be over thirty distinct regional varieties of kibbeh across Lebanon alone.</li>
+        <li>Lebanese emigrants have spread their food culture across the world more widely than almost any other small nation — large Lebanese diaspora communities in Brazil, Argentina, Australia, West Africa, and North America have exported fattoush, kibbeh, kafta, and shawarma to countries that had no prior Middle Eastern food tradition. Lebanese-Brazilian cooking has become so embedded that kibbeh is now considered a Brazilian national food.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kibbeh</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced lamb and bulgur wheat shaped into ovals, stuffed with spiced meat and pine nuts, then fried or baked — Lebanon's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kafta</span><span class="dish-tag">spiced ground meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Seasoned ground lamb or beef mixed with onion and parsley, grilled on skewers or baked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shawarma</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated meat stacked and slow-roasted on a vertical spit, shaved thin and wrapped in flatbread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mloukhieh</span><span class="dish-tag">jute leaf stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A garlicky stew of jute mallow leaves, typically cooked with chicken and served over rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samkeh Harra</span><span class="dish-tag">spicy fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole fish baked or fried under a spicy, walnut-and-chili tahini sauce, a coastal specialty.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mansaf</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A festive dish of lamb cooked in fermented dried yogurt, served over rice or bulgur.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ouzi</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced rice and meat baked in a wrapped pastry, traditionally served at celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kafta bil Saniyeh</span><span class="dish-tag">baked kafta tray</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Kafta baked in a tray with tomatoes and potatoes in a rich sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arnabeet Mekli</span><span class="dish-tag">fried cauliflower</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried cauliflower served with a garlicky tahini sauce, a beloved mezze and side dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Freekeh</span><span class="dish-tag">roasted cracked wheat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoke-roasted cracked wheat, often cooked pilaf-style with chicken or lamb.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baklava</span><span class="dish-tag">phyllo &amp; nuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layered phyllo pastry filled with chopped nuts and soaked in sweet syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Knafeh</span><span class="dish-tag">cheese pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, stretchy cheese pastry topped with shredded phyllo and soaked in sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maamoul</span><span class="dish-tag">date-filled cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Molded shortbread cookies filled with date paste or nuts, traditional for holidays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mouhalabieh</span><span class="dish-tag">milk pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A delicate rosewater-scented milk pudding topped with crushed pistachios.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Awamat</span><span class="dish-tag">fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried dough balls soaked in fragrant sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaak el Eid</span><span class="dish-tag">holiday cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Semolina cookies filled with date paste, baked especially for religious holidays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halawet el Jibn</span><span class="dish-tag">sweet cheese rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate sweet cheese rolls filled with clotted cream and scented with rosewater.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Layali Lubnan</span><span class="dish-tag">"Lebanese nights" pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered semolina pudding topped with cream and crushed pistachios.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Mezze Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hummus</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth chickpea and tahini dip, one of the most consumed dishes in the world and central to the mezze table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Moutabal / Baba Ghanouj</span><span class="dish-tag">smoky eggplant dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted eggplant blended with tahini, garlic, and lemon into a smoky, creamy dip.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tabbouleh</span><span class="dish-tag">parsley salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A finely chopped parsley salad with tomato, mint, and a small amount of bulgur, dressed in lemon and olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fattoush</span><span class="dish-tag">toasted bread salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bright salad of mixed greens, tomato, and crisp toasted or fried flatbread, dressed with sumac and lemon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mezze</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Falafel</span><span class="dish-tag">fried chickpea patties</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp, spiced fried patties of ground chickpeas, a staple street food and mezze dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Warak Enab</span><span class="dish-tag">stuffed grape leaves</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grape leaves rolled around seasoned rice and herbs, served warm or cold.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Labneh</span><span class="dish-tag">strained yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick, tangy strained yogurt, typically drizzled with olive oil and eaten with bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Manakeesh</span><span class="dish-tag">za'atar flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flatbread baked with a topping of za'atar and olive oil, or cheese, eaten any time of day.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Lebanese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Za'atar</li>
+        <li><span class="n">06</span> Lemon juice</li>
+        <li><span class="n">02</span> Sumac</li>
+        <li><span class="n">07</span> Olive oil</li>
+        <li><span class="n">03</span> Tahini</li>
+        <li><span class="n">08</span> Dried mint</li>
+        <li><span class="n">04</span> Pomegranate molasses</li>
+        <li><span class="n">09</span> Rose water</li>
+        <li><span class="n">05</span> Seven-spice blend</li>
+        <li><span class="n">10</span> Pine nuts</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Arak &amp; Wine</p>
+            <ol class="plain">
+              <li>Arak</li>
+              <li>Château Musar</li>
+              <li>Ksara Wine</li>
+              <li>Kefraya Wine</li>
+              <li>Almaza Beer</li>
+              <li>Laziza Beer</li>
+              <li>Lebanese Cognac</li>
+              <li>Jallab</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Jallab</li>
+              <li>Lemonade with Mint</li>
+              <li>Rose Water Drink</li>
+              <li>Tamarind Juice</li>
+              <li>Ayran / Laban</li>
+              <li>Sahlab</li>
+              <li>Kamar el Din</li>
+              <li>Qahwe Arabic Coffee</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Almaza</li>
+              <li>Laziza</li>
+              <li>961 Beer</li>
+              <li>Beirut Beer</li>
+              <li>Colonel Beer</li>
+              <li>Gold Beer</li>
+              <li>Arak Brun</li>
+              <li>Cedars Beer</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

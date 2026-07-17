@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peru — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTH AMERICA / ANDEAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Peru</h1>
+      <p class="subhead">Unmatched agricultural biodiversity meets African, Chinese, and Japanese fusion — bold, acid-forward, and globally acclaimed.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            LIMA · ANDES · AMAZON · CUSCO · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Peru">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Peruvian cuisine is widely regarded as one of the most important and exciting food cultures in the world — a distinction earned through extraordinary biodiversity, ancient indigenous knowledge, and a series of cultural collisions that produced something genuinely unlike anything else. The foundation is Andean and Amazonian: pre-Incan and Incan civilizations cultivated thousands of varieties of potato, corn, chili, quinoa, and other crops across dramatically different ecosystems, from arid coast to high sierra to rainforest. This agricultural biodiversity — unmatched anywhere on earth — gives Peruvian chefs an ingredient library that other cuisines can only envy.</p>
+        <p>Spanish colonization brought new proteins, dairy, wheat, and cooking techniques that merged with the indigenous tradition. Then came the great immigration waves: West Africans enslaved and brought to coastal Peru contributed anticuchos and deep frying techniques; Chinese coolies who arrived in the 19th century created chifa — a Peruvian-Chinese fusion so embedded it is now simply part of the national cuisine; and Japanese immigrants from 1899 onwards developed Nikkei, the Japanese-Peruvian fusion that has since conquered the world's finest restaurants. Italian and Arab communities also left lasting traces.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Peruvian cooking is bold, acid-forward, and layered with complexity. The aji amarillo — a fruity, moderately hot yellow pepper found nowhere else — is the soul of the cuisine, appearing in virtually every sauce and stew. Lime and citrus are used with extraordinary generosity. Ceviche, the national dish, embodies the Peruvian palate: raw fish cured in citrus with aji, red onion, and cilantro — bright, sharp, marine, and addictive. Leche de tigre, the curing liquid left in the bowl, is drunk as a pick-me-up.</p>
+        <p>The regional contrast is vast: Lima's sophisticated restaurant scene is among the world's best, with Virgilio Martínez, Gastón Acurio, and Mitsuharu Tsumura among the chefs who have made it a global culinary capital. Meanwhile, the Andes maintain ancient traditions — freeze-dried potato, quinoa stews, cuy roasted over fire — that stretch back thousands of years. Peru's three ecosystems (coast, sierra, jungle) each produce radically different ingredients, and the best Peruvian cooking draws from all three simultaneously.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lunch is the main meal — a multi-course affair of soup, a main dish, and dessert. Restaurants fill at midday; dinner is lighter and later.</li>
+        <li>Ceviche is eaten fresh and at lunch, never at night — the raw fish should be consumed shortly after preparation. Peruvians are bewildered by the concept of 'dinner ceviche.'</li>
+        <li>Peruvian hospitality means abundant portions — leaving food on the plate is not offensive, but finishing everything may prompt the host to serve more.</li>
+        <li>Lima is considered one of the world's great restaurant cities — multiple Lima restaurants consistently rank in the global top 10, and dining out is a serious cultural pursuit.</li>
+        <li>Chicha morada is the everyday non-alcoholic drink — a deep purple corn-based drink served with meals in the same way that water or juice might be served elsewhere.</li>
+        <li>The aji amarillo pepper is the soul of Peruvian cooking — its fruity, moderately hot flavor appears in virtually every sauce, marinade, and stew across the country.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Aji amarillo</li>
+        <li><span class="n">06</span> Aji panca</li>
+        <li><span class="n">02</span> Potato</li>
+        <li><span class="n">07</span> Huacatay</li>
+        <li><span class="n">03</span> Corn / maize</li>
+        <li><span class="n">08</span> Quinoa</li>
+        <li><span class="n">04</span> Lime</li>
+        <li><span class="n">09</span> Lucuma</li>
+        <li><span class="n">05</span> Cilantro</li>
+        <li><span class="n">10</span> Purple corn</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Peru is the world's most biodiverse country for food crops — it has over 3,000 varieties of potato, 55 varieties of corn, and hundreds of varieties of chili pepper, all originating in the Andean highlands and Amazon basin.</li>
+        <li>Ceviche — Peru's national dish — was declared a Cultural Heritage of the Nation by the Peruvian government in 2004. The technique of 'cooking' fish in citrus juice (leche de tigre) predates the Spanish conquest, with indigenous coastal peoples using fermented chicha before lime arrived.</li>
+        <li>Nikkei cuisine — the fusion of Japanese and Peruvian cooking — was created by the large Japanese immigrant community that arrived from 1899 onwards. Chefs like Nobu Matsuhisa trained in Peru and brought this fusion global. It is now one of the most sought-after food styles in the world.</li>
+        <li>The pisco sour is the subject of serious diplomatic dispute — both Peru and Chile claim to have invented pisco. Peru insists that true pisco can only come from its coastal valleys, and the two countries have fought the battle in trade courts internationally.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceviche</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish cured in citrus with aji, red onion, and cilantro — bright, sharp, and Peru's defining dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lomo Saltado</span><span class="dish-tag">stir-fried beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stir-fried beef with onions, tomatoes, and fries, a Chinese-Peruvian chifa fusion classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aji de Gallina</span><span class="dish-tag">creamy chili chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded chicken in a creamy, mildly spicy aji amarillo sauce with walnuts and cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Anticuchos</span><span class="dish-tag">grilled beef heart skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated grilled beef heart skewers, an African-Peruvian street food classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Causa Limeña</span><span class="dish-tag">layered potato dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold mashed yellow potato layered with chicken or seafood salad and avocado.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seco de Cordero</span><span class="dish-tag">lamb &amp; herb stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb stewed in a cilantro-forward green sauce, a hearty Andean-coastal dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche y Frejoles</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A regional dish pairing sweet rice pudding with savory beans.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tiradito</span><span class="dish-tag">Nikkei-style sashimi</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of raw fish dressed in citrus and aji, showing clear Japanese-Peruvian influence.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Papa a la Huancaína</span><span class="dish-tag">potatoes in cheese sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled potatoes draped in a creamy, spicy aji amarillo and cheese sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carapulcra</span><span class="dish-tag">dried potato &amp; pork stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stew of sun-dried potato and pork, one of the oldest surviving Peruvian dishes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Suspiro de Limeña</span><span class="dish-tag">caramel meringue</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered dessert of caramelized condensed milk topped with port-spiked meringue.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Picarones</span><span class="dish-tag">squash &amp; sweet potato rings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried rings of squash and sweet potato dough, drizzled with spiced syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mazamorra Morada</span><span class="dish-tag">purple corn pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick purple corn pudding sweetened and spiced with fruit and cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy cinnamon rice pudding, often paired with mazamorra morada.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Alfajores de Maicena</span><span class="dish-tag">cornstarch cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate cornstarch cookies sandwiched with dulce de leche.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Turrón de Doña Pepa</span><span class="dish-tag">anise nougat bars</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Anise-scented layered nougat bars topped with colorful sprinkles, a October tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crema Volteada</span><span class="dish-tag">Peruvian flan</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense caramel custard, Peru's take on flan.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Helado de Lucuma</span><span class="dish-tag">lucuma ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ice cream made with lucuma, a subtropical fruit with a maple-like flavor unique to the Andes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leche de Tigre</span><span class="dish-tag">ceviche curing liquid</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The citrus-aji curing liquid left from ceviche, drunk on its own as a bracing pick-me-up.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tequeños</span><span class="dish-tag">fried cheese sticks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried pastry sticks filled with melting cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Papa Rellena</span><span class="dish-tag">stuffed potato balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed potato balls stuffed with seasoned meat, then fried until golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Empanadas Peruanas</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baked or fried pastry pockets filled with seasoned meat, olives, and egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sides &amp; Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Choclo con Queso</span><span class="dish-tag">corn &amp; cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Large-kernel Peruvian corn served with a slice of fresh cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salchipapas</span><span class="dish-tag">sausage &amp; fries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried sausage slices over french fries, a beloved casual street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Canchita</span><span class="dish-tag">toasted corn kernels</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crunchy toasted corn kernels, served as a snack or ceviche garnish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamales Limeños</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn tamales filled with pork or chicken, steamed in banana leaf.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Peruvian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Aji amarillo</li>
+        <li><span class="n">06</span> Lime</li>
+        <li><span class="n">02</span> Huacatay</li>
+        <li><span class="n">07</span> Soy sauce</li>
+        <li><span class="n">03</span> Leche de tigre</li>
+        <li><span class="n">08</span> Red onion</li>
+        <li><span class="n">04</span> Aji panca</li>
+        <li><span class="n">09</span> Cumin</li>
+        <li><span class="n">05</span> Culantro / cilantro</li>
+        <li><span class="n">10</span> Rocoto pepper</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Pisco &amp; Cocktails</p>
+            <ol class="plain">
+              <li>Pisco Sour</li>
+              <li>Pisco Puro</li>
+              <li>Chilcano de Pisco</li>
+              <li>Algarrobina</li>
+              <li>Cusqueña Dorada</li>
+              <li>Chicha de Jora</li>
+              <li>Ron Cartavio</li>
+              <li>Machu Picchu Cocktail</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Chicha Morada</li>
+              <li>Inca Kola</li>
+              <li>Emoliente</li>
+              <li>Maracuyá Juice</li>
+              <li>Lucuma Milkshake</li>
+              <li>Agua de Coco</li>
+              <li>Té de Manzanilla</li>
+              <li>Refresco de Cebada</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Cusqueña</li>
+              <li>Pilsen Callao</li>
+              <li>Cristal</li>
+              <li>Arequipeña</li>
+              <li>Trujillo</li>
+              <li>Backus Ice</li>
+              <li>Cuzco Brewing IPA</li>
+              <li>Sierra Andina Quinua</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

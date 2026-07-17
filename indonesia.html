@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesia — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 37 / 68 · Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Indonesia</h1>
+      <p class="subhead">Bumbu spice pastes, sambal, and 17,000 islands — one of the most diverse and complex food cultures on earth.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ARCHIPELAGO · SPICE ISLANDS · MALUKU · ARCHIPELAGO ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACR0lEQVR4nO3VsQ0AIBADMUDsv/IzxhXYE6Q5Zc8CSqceAL8TIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECLG7ZuoN8DVPCDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEHsqAASPo4obFQAAAABJRU5ErkJggg==" alt="Flag of Indonesia">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Indonesian cuisine is one of the most diverse and complex food cultures on earth — a vast archipelago of over 17,000 islands spanning nearly 5,000 kilometres, home to over 300 ethnic groups each with their own cooking tradition, shaped by millennia of trade with India, China, Arabia, and later Portugal and the Netherlands. The spice islands of Maluku — the only source of nutmeg and cloves in the world for centuries — made the Indonesian archipelago the most commercially valuable territory on earth during the age of European exploration, and the Dutch colonial empire that resulted from the spice trade left deep culinary traces in a cuisine that was already extraordinarily rich.</p>
+        <p>Indian Hindu and Buddhist influence, arriving through maritime trade from at least the 1st century CE, introduced complex spice cooking, the use of coconut milk, and the ceremonial food traditions still visible in Balinese Hindu cuisine today. Chinese immigrants, present in coastal trading communities for over a thousand years, contributed noodle dishes, soy sauce, tofu, and stir-frying techniques that became thoroughly Indonesianized. Arab traders brought Islam from the 13th century onwards, and with it dietary restrictions that shaped the majority Muslim cuisine of Java, Sumatra, and Sulawesi — halal cooking now defines the mainstream while Bali's Hindu minority maintains its distinct pork-centred tradition. Dutch colonialism introduced bread, dairy, and the rijsttafel — a colonial dining format of dozens of small Indonesian dishes served simultaneously that has since become iconic.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Indonesian cooking is defined by the depth and variety of its spice pastes — bumbu — which form the aromatic foundation of virtually every dish. Unlike the curry powders of South Asian cooking, Indonesian bumbu are freshly ground from combinations of shallots, garlic, galangal, ginger, lemongrass, turmeric, candlenut, and chili, producing pastes of extraordinary fragrance that are fried in oil before other ingredients are added. Sambal, the chili-based condiment or sauce, exists in dozens of regional varieties — sambal oelek, sambal terasi, sambal matah — and is considered essential to the Indonesian table in a way that has no Western parallel.</p>
+        <p>Rendang from West Sumatra represents the philosophical peak of Indonesian cooking — beef slow-cooked with coconut milk and a complex spice paste for four to six hours until the liquid is entirely absorbed and the meat is dark, intensely flavoured, and shelf-stable without refrigeration. Nasi goreng, the fried rice made with kecap manis sweet soy sauce and whatever protein is available, is the universal everyday dish eaten from Jakarta street stalls to five-star hotel breakfasts. The nasi padang tradition of West Sumatra — dozens of small dishes placed before the diner, paying only for what is eaten — is one of the world's great democratic restaurant formats. Tempeh, the fermented soybean cake unique to Java, is one of Indonesia's most important gifts to world food.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Rice is the centre of every Indonesian meal — nasi is eaten three times a day across most of the archipelago, and a meal without rice is not considered a proper meal, regardless of how much other food is present.</li>
+        <li>Eating is communal but often informal — dishes are placed in the centre and shared, with rice served individually. Warung street stalls and nasi padang restaurants where you eat whatever is in the glass cases are the daily eating culture.</li>
+        <li>Nasi padang restaurants serve Minangkabau food from West Sumatra — one of the world's great street dining experiences. Dozens of small dishes are placed on the table and you pay only for what you eat.</li>
+        <li>Sambal is not a condiment but a structural component — the chili-based paste or sauce appears in dozens of varieties across the archipelago and is considered essential to virtually every meal.</li>
+        <li>Indonesian hospitality means food is always offered — arriving at any Indonesian home at any time of day will result in being offered tea and something to eat. Refusing is mildly impolite.</li>
+        <li>Ramadan transforms food culture across Muslim-majority regions — the breaking of the fast with kolak, dates, and sweet drinks, followed by a full iftar meal, is a major social occasion across Java, Sumatra, and Sulawesi.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sambal</li>
+        <li><span class="n">06</span> Kecap manis</li>
+        <li><span class="n">02</span> Tempeh</li>
+        <li><span class="n">07</span> Palm sugar</li>
+        <li><span class="n">03</span> Coconut milk</li>
+        <li><span class="n">08</span> Candlenut</li>
+        <li><span class="n">04</span> Galangal</li>
+        <li><span class="n">09</span> Shrimp paste / terasi</li>
+        <li><span class="n">05</span> Lemongrass</li>
+        <li><span class="n">10</span> Turmeric</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Indonesia comprises over 17,000 islands and is home to over 300 distinct ethnic groups, each with its own culinary tradition. The diversity is so vast that it is more accurate to speak of Indonesian cuisines — Balinese Hindu cooking bears no resemblance to the fish-centred cooking of Sulawesi or the sago-based diet of Papua.</li>
+        <li>Rendang — the slow-cooked dry beef curry of the Minangkabau people of West Sumatra — was voted the world's most delicious food in multiple international polls, most notably CNN Travel's reader survey. It is cooked for hours until the meat becomes dark, intensely flavoured, and almost dry.</li>
+        <li>Tempeh — fermented soybean cake — was invented in Java at least several centuries ago and is one of Indonesia's most important contributions to global food. Unlike tofu, which is a Chinese invention, tempeh is uniquely Indonesian, produced by fermenting soybeans with a Rhizopus mould.</li>
+        <li>The spice islands of Maluku — the Banda Islands and the Moluccas — were the only source of nutmeg and cloves in the world for centuries, and control of these islands was the primary motivation for the Portuguese and Dutch colonisation of the Indonesian archipelago.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The curries, sweets, and drinks that define the everyday Indonesian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nasi Goreng</span><span class="dish-tag">Sweet soy fried rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried rice with kecap manis sweet soy sauce, Indonesia's everyday dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rendang</span><span class="dish-tag">Slow-cooked dry beef curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef slow-cooked in coconut milk and spice paste until dark and intensely flavoured.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Satay / Sate</span><span class="dish-tag">Grilled skewered meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered grilled meat served with a rich peanut sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gado-Gado</span><span class="dish-tag">Vegetable &amp; peanut salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Blanched vegetables and tofu dressed in a rich peanut sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soto Ayam</span><span class="dish-tag">Turmeric chicken soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fragrant turmeric-yellow chicken soup with noodles and boiled egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nasi Padang</span><span class="dish-tag">Minangkabau small dishes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dozens of small West Sumatran dishes presented at once, pay for what you eat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bakso</span><span class="dish-tag">Meatball noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef meatballs in a clear broth with noodles, a beloved street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Opor Ayam</span><span class="dish-tag">Coconut chicken curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken simmered gently in a mild coconut milk curry, a festive dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rawon</span><span class="dish-tag">Black beef soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dark, earthy beef soup coloured and flavoured with black keluak nut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nasi Uduk</span><span class="dish-tag">Coconut rice, sides</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in coconut milk, served with a variety of side dishes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Es Teler</span><span class="dish-tag">Iced fruit &amp; coconut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet iced dessert of avocado, coconut, jackfruit, and condensed milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Klepon</span><span class="dish-tag">Palm sugar rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pandan-coloured rice cakes filled with molten palm sugar, coated in coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dadar Gulung</span><span class="dish-tag">Coconut pandan crepe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A green pandan crepe rolled around sweetened grated coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Martabak Manis</span><span class="dish-tag">Sweet stuffed pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, fluffy sweet pancake folded around chocolate, cheese, or nuts.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kolak</span><span class="dish-tag">Coconut compote</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Banana and sweet potato simmered in coconut milk and palm sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Onde-Onde</span><span class="dish-tag">Sesame sweet balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sesame-coated balls filled with sweet mung bean paste.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pisang Goreng</span><span class="dish-tag">Fried banana</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered, deep-fried banana, a common sweet street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Serabi</span><span class="dish-tag">Coconut rice pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft coconut milk rice pancake, often topped with palm sugar syrup.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tempeh Goreng</span><span class="dish-tag">Fried tempeh</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fermented soybean cake sliced and fried until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tahu Goreng</span><span class="dish-tag">Fried tofu</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried tofu, often served with sweet soy and chili sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Perkedel</span><span class="dish-tag">Potato fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed potato fritters mixed with herbs and fried golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lumpia</span><span class="dish-tag">Fried spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried spring rolls filled with vegetables and sometimes meat.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kerupuk</span><span class="dish-tag">Crackers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried crackers, often shrimp-flavoured, served alongside meals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Siomay</span><span class="dish-tag">Steamed fish dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed fish dumplings served with peanut sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Batagor</span><span class="dish-tag">Fried dumplings, peanut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried tofu and fish dumplings served with a rich peanut sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Otak-Otak</span><span class="dish-tag">Grilled fish cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced fish paste grilled in a banana leaf wrapper.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Indonesian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sambal</li>
+        <li><span class="n">06</span> Shrimp paste</li>
+        <li><span class="n">02</span> Kecap manis</li>
+        <li><span class="n">07</span> Palm sugar</li>
+        <li><span class="n">03</span> Galangal</li>
+        <li><span class="n">08</span> Turmeric</li>
+        <li><span class="n">04</span> Lemongrass</li>
+        <li><span class="n">09</span> Candlenut</li>
+        <li><span class="n">05</span> Coconut milk</li>
+        <li><span class="n">10</span> Salam leaf</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Arak</p>
+            <ol class="plain">
+              <li>Bintang Beer</li>
+              <li>Anker Beer</li>
+              <li>Arak Bali</li>
+              <li>Tuak</li>
+              <li>Brem</li>
+              <li>Bir Bintang Pilsner</li>
+              <li>Sopi</li>
+              <li>Arak Flores</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Es Teh Manis</li>
+              <li>Jamu</li>
+              <li>Wedang Jahe</li>
+              <li>Es Cendol</li>
+              <li>Bajigur</li>
+              <li>Teh Botol</li>
+              <li>Kopi Tubruk</li>
+              <li>Bandrek</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Bintang</li>
+              <li>Anker</li>
+              <li>Stark</li>
+              <li>Heineken Indonesia</li>
+              <li>Prost</li>
+              <li>Storm</li>
+              <li>Bir Bintang Grande</li>
+              <li>Hatten</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

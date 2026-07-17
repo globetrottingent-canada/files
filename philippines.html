@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philippines — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTHEAST ASIA / SOUR-SAVORY</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Philippines</h1>
+      <p class="subhead">The only Asian cuisine with a deep Iberian-Catholic imprint — sour, savory, and built on the philosophy of adobo.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            LUZON · VISAYAS · MINDANAO · MANILA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Philippines">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Philippine cuisine is one of the most distinctive and layered food cultures in Southeast Asia — a tradition built on ancient Austronesian foundations, transformed by 333 years of Spanish colonial rule, briefly reshaped by American governance, and enriched by centuries of Chinese immigrant influence. The result is a cuisine unlike any other in the region: the only food culture in Asia with a substantial Iberian-Catholic heritage, expressed in dishes whose names and techniques come directly from Spain but whose ingredients, souring agents, and flavour sensibilities are entirely of the islands. The Philippine archipelago of over 7,600 islands encompasses extraordinary ecological diversity, and the regional variation in cooking is correspondingly vast.</p>
+        <p>The indigenous Austronesian foundation — the oldest layer of Philippine food — is characterised by the use of vinegar as a preservative and flavouring agent, coconut milk as a cooking medium, fermented fish and shrimp pastes for umami depth, and rice as the absolute dietary centre. This ancient layer predates any outside influence and gives Philippine cuisine its most distinctive characteristic: the sour-savoury combination that appears in adobo, sinigang, kinilaw, and the dozens of regional dishes built on the souring principles of vinegar, tamarind, kamias, and calamansi. Chinese traders and immigrants, present in the Philippines since at least the 10th century, contributed noodles, tofu, soy sauce, and the spring roll tradition that became lumpia.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Filipino cooking is bold, sour, savoury, and generous — a cuisine that does not shy from strong flavours or abundant quantities. The adobo method — braising any protein in a mixture of vinegar, soy sauce, garlic, bay leaf, and black pepper until the liquid reduces and the meat becomes tender and glossy — is so fundamental that it functions less as a single recipe than as a philosophical approach to cooking that can be applied to chicken, pork, seafood, or vegetables in dozens of regional variations. Every family considers its adobo definitive. Sinigang — the tamarind-soured soup of pork, prawns, or fish with vegetables — is the other great national dish, its sharp sourness as restorative as the most refined consommé.</p>
+        <p>Lechon — a whole pig slow-roasted over charcoal for four to six hours until the skin achieves an almost supernatural crackling crispness — is the great Filipino celebration food, the centrepiece of every fiesta, birthday, and major occasion. The best lechon comes from Cebu, where it is stuffed with lemongrass, garlic, and spring onions and eaten without sauce; in Manila it is traditionally eaten with liver sauce. Halo-halo — the layered dessert of shaved ice, evaporated milk, and a dozen sweet toppings including purple yam ube, red beans, coconut jelly, and leche flan — is perhaps the most theatrical dessert in Southeast Asia and the clearest expression of the Filipino love of abundance and contrast.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Rice is eaten at every meal — sinangag fried rice for breakfast, steamed rice at lunch and dinner. The Filipino greeting 'kumain ka na ba?' — have you eaten yet? — reflects how central rice and meals are to social life.</li>
+        <li>Filipino food is characterised by a love of sour and salty flavours together — vinegar, calamansi, and fermented shrimp paste bagoong appear constantly, and the sour-savoury combination is the defining taste profile of the cuisine.</li>
+        <li>Boodle fights — military-style communal eating where food is laid directly on banana leaves and everyone eats with their hands — have become a popular Filipino social dining format, reflecting the indigenous kamayan hand-eating tradition.</li>
+        <li>Merienda — the afternoon snack break between lunch and dinner — is a serious institution. Sweet breads, kakanin rice cakes, and savoury snacks are eaten at 3pm by much of the country regardless of age or class.</li>
+        <li>Lechon — whole roasted pig slow-cooked over charcoal for hours until the skin is shatteringly crisp — is the centrepiece of every major Filipino celebration, from fiestas to birthdays to weddings.</li>
+        <li>Adobo is not a single dish but a cooking method — any protein braised in vinegar, soy sauce, garlic, and bay leaf becomes adobo. Every family considers its own recipe definitive, and the dish varies by region, protein, and the ratio of vinegar to soy.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Calamansi</li>
+        <li><span class="n">06</span> Gata coconut milk</li>
+        <li><span class="n">02</span> Vinegar</li>
+        <li><span class="n">07</span> Annatto / achuete</li>
+        <li><span class="n">03</span> Bagoong</li>
+        <li><span class="n">08</span> Pork belly</li>
+        <li><span class="n">04</span> Patis fish sauce</li>
+        <li><span class="n">09</span> Dried fish</li>
+        <li><span class="n">05</span> Banana blossom</li>
+        <li><span class="n">10</span> Kamias</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Philippines was colonised by Spain for 333 years (1565–1898), and the Spanish culinary imprint is deeper here than anywhere else in Asia. Dishes like arroz caldo, afritada, mechado, menudo, and caldereta all derive directly from Spanish cooking, Filipinized through local ingredients. The result is the only cuisine in Asia with a substantial Iberian-Catholic foundation — reflected even in the names of dishes.</li>
+        <li>Vinegar is the defining condiment of Filipino cooking — the Philippines produces a remarkable variety of native vinegars from coconut, sugarcane, nipa palm, and pineapple, each with its own character. Filipino vinegar culture is ancient, predating Spanish contact, and the use of souring agents to preserve and flavour food is the oldest layer of the cuisine.</li>
+        <li>Balut — a fertilised duck egg with a partially developed embryo, boiled and eaten from the shell — is the most internationally notorious Filipino street food, sold by vendors at night throughout the Philippines. It is a genuine delicacy to Filipinos, rich in protein and flavour, eaten with salt and vinegar. The embryo at the preferred stage is 16-18 days old.</li>
+        <li>Kare-kare — the oxtail and vegetables in peanut sauce stew — is believed to have been introduced to the Philippines by Indian sepoys who accompanied British forces during the brief British occupation of Manila from 1762 to 1764. The peanut-based sauce with coconut milk has no parallel in Spanish cooking, and its South Asian origin is the most plausible explanation for its presence in an otherwise Iberian-inflected cuisine.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Adobo</span><span class="dish-tag">vinegar-braised</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Any protein braised in vinegar, soy sauce, garlic, and bay leaf — a cooking philosophy as much as a single dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sinigang</span><span class="dish-tag">tamarind-soured soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sharp, tamarind-soured soup of pork, prawns, or fish with vegetables, restorative and sour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lechon</span><span class="dish-tag">whole roasted pig</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole pig slow-roasted over charcoal for hours until the skin turns supernaturally crisp — the great celebration dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kare-Kare</span><span class="dish-tag">oxtail in peanut sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oxtail and vegetables in a rich peanut sauce, likely introduced by South Asian soldiers in the 1760s.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crispy Pata</span><span class="dish-tag">deep-fried pork leg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole pork leg deep-fried until the skin is crackling crisp and the meat tender.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bistek Tagalog</span><span class="dish-tag">Filipino beef steak</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin beef slices marinated in soy sauce and calamansi, pan-fried with onions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caldereta</span><span class="dish-tag">tomato beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich tomato-based beef stew with vegetables and liver sauce, Spanish in origin.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kinilaw</span><span class="dish-tag">vinegar-cured raw fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish cured in vinegar and calamansi, the indigenous ancestor of ceviche-style dishes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pinakbet</span><span class="dish-tag">vegetable &amp; shrimp paste stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mixed vegetable stew flavored with fermented shrimp paste, a Luzon classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dinuguan</span><span class="dish-tag">pork blood stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory stew of pork simmered in blood and vinegar, deeply flavorful despite its intimidating reputation.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halo-Halo</span><span class="dish-tag">layered shaved ice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shaved ice layered with evaporated milk, ube, red beans, coconut jelly, and leche flan — pure theatrical abundance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leche Flan</span><span class="dish-tag">caramel custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, silky caramel custard, richer than the Spanish original it derives from.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bibingka</span><span class="dish-tag">rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, coconut rice cake traditionally baked in banana leaf over charcoal, a Christmas favorite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Puto Bumbong</span><span class="dish-tag">purple rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed purple glutinous rice cake, a beloved Christmas-season street treat.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buko Pandan</span><span class="dish-tag">coconut pandan salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy dessert salad of young coconut, pandan jelly, and cream.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maja Blanca</span><span class="dish-tag">coconut corn pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A firm, milky coconut pudding studded with corn kernels.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Turon</span><span class="dish-tag">fried banana rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet plantain rolled in spring roll wrapper, fried until caramelized and crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palitaw</span><span class="dish-tag">coconut rice cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flattened glutinous rice cakes coated in coconut and sugar.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Balut</span><span class="dish-tag">fertilized duck egg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A boiled fertilized duck egg eaten from the shell with salt and vinegar, the most famous Filipino street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lumpia Shanghai</span><span class="dish-tag">fried spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, crisp fried spring rolls filled with seasoned ground meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kwek-Kwek</span><span class="dish-tag">battered fried quail eggs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hard-boiled quail eggs coated in orange batter and deep-fried, sold from street carts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fishball</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried fish balls on a stick, served with sweet and spicy dipping sauces.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Isaw</span><span class="dish-tag">grilled chicken intestine</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled skewered chicken or pork intestine, a beloved late-night street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Taho</span><span class="dish-tag">silken tofu dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm silken tofu topped with sago pearls and caramel syrup, sold each morning by vendors.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Puto</span><span class="dish-tag">steamed rice cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, soft steamed rice cakes, mildly sweet and often topped with grated coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kakanin</span><span class="dish-tag">rice cake sweets</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An umbrella term for the many sticky rice cake sweets eaten during merienda.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Filipino:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Calamansi</li>
+        <li><span class="n">06</span> Coconut milk</li>
+        <li><span class="n">02</span> Vinegar</li>
+        <li><span class="n">07</span> Soy sauce</li>
+        <li><span class="n">03</span> Bagoong</li>
+        <li><span class="n">08</span> Bay leaf</li>
+        <li><span class="n">04</span> Patis</li>
+        <li><span class="n">09</span> Black pepper</li>
+        <li><span class="n">05</span> Annatto</li>
+        <li><span class="n">10</span> Kamias</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Lambanog</p>
+            <ol class="plain">
+              <li>San Miguel Beer</li>
+              <li>Red Horse</li>
+              <li>Tanduay Rum</li>
+              <li>Ginebra San Miguel</li>
+              <li>Lambanog</li>
+              <li>Tapuy</li>
+              <li>Tuba</li>
+              <li>Basi</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Calamansi Juice</li>
+              <li>Sago at Gulaman</li>
+              <li>Buko Juice</li>
+              <li>Salabat</li>
+              <li>Milo</li>
+              <li>Gulaman</li>
+              <li>Taho</li>
+              <li>Kapeng Barako</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>San Miguel Pale Pilsen</li>
+              <li>Red Horse</li>
+              <li>San Miguel Light</li>
+              <li>Gold Eagle</li>
+              <li>Colt 45</li>
+              <li>Lone Star</li>
+              <li>San Mig Zero</li>
+              <li>Cerveza Negra</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

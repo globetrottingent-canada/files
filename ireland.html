@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Republic of Ireland — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 40 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Republic of Ireland</h1>
+      <p class="subhead">Potatoes, grass-fed dairy, and Atlantic seafood — honest, produce-led cooking shaped by land and famine.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ATLANTIC COAST · EMERALD ISLE · CONNEMARA · ATLANTIC COAST ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAIAAADrOSKFAAABzElEQVR4nO3TQRGAMADAsA1tWEEJLrCCOLDAr7cjUdBP57j2wTfPcdcJ6zhnXbCMrQ6AvzMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQMyHETAgxE0LMhBAzIcRMCDETQsyEEDMhxEwIMRNCzIQQewH7/AStrBxwUAAAAABJRU5ErkJggg==" alt="Flag of Republic of Ireland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Irish cuisine is rooted in an agricultural society shaped by Atlantic weather, fertile pasture, and a long history of subsistence farming. For centuries the diet was simple and land-dependent: potatoes, dairy, oats, cabbage, and pork were the pillars of everyday eating for most of the population. The Great Famine of the 1840s — caused by potato blight — was a civilizational rupture that killed over a million people and sent another million into emigration, leaving a permanent mark on Ireland's relationship with food, land, and identity.</p>
+        <p>Norman and English influence brought more sophisticated cooking to the Anglo-Irish ascendancy, while the monasteries of medieval Ireland preserved culinary knowledge and developed dairy and bread traditions. The 20th century saw a long period of economic conservatism keep Irish food simple and unadorned. Since the Celtic Tiger boom of the 1990s, a confident modern Irish food movement has emerged — celebrating grass-fed beef, West Coast seafood, farmhouse cheeses, and artisan bread with genuine international recognition.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Irish cooking is honest, produce-led, and deeply connected to the land and sea. The grass-fed dairy and beef are genuinely world-class — Irish butter (Kerrygold) is exported globally, and the mild wet climate produces some of the finest grazing in Europe. Bread is a cultural touchstone: soda bread and brown bread, made with buttermilk and bicarbonate of soda, are baked fresh and eaten daily.</p>
+        <p>Seafood along the Atlantic coastline — oysters from Galway, mussels from Connemara, smoked salmon from Kerry — is outstanding but historically undervalued domestically. The modern Irish kitchen has rediscovered this bounty. Stews, chowders, and one-pot dishes remain the backbone of home cooking, while the pub gastropub scene has elevated traditional ingredients into a serious contemporary cuisine.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The main meal of the day was historically dinner at midday; 'tea' in the evening is still common in rural areas, reflecting agricultural working rhythms.</li>
+        <li>The Irish breakfast ('full Irish') is a point of serious regional and personal pride — white and black pudding, soda bread, and brown bread distinguish it from its English counterpart.</li>
+        <li>Bread is central: soda bread and brown bread are baked fresh daily in many homes, and shop-bought versions are considered a poor substitute.</li>
+        <li>The pub is the community hub — food now plays a major role, with gastropubs serving modern Irish cuisine alongside the pint of Guinness.</li>
+        <li>St. Patrick's Day (March 17) traditionally calls for corned beef and cabbage in the Irish-American diaspora, though bacon and cabbage is more authentically Irish.</li>
+        <li>Tea (strong, with milk) is consumed throughout the day in extraordinary quantities — Ireland is among the highest per-capita tea-drinking nations in the world.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Potatoes</li>
+        <li><span class="n">06</span> Cabbage & kale</li>
+        <li><span class="n">02</span> Beef & lamb</li>
+        <li><span class="n">07</span> Salmon</li>
+        <li><span class="n">03</span> Pork</li>
+        <li><span class="n">08</span> Oysters & mussels</li>
+        <li><span class="n">04</span> Dairy</li>
+        <li><span class="n">09</span> Oats</li>
+        <li><span class="n">05</span> Soda bread & brown bread</li>
+        <li><span class="n">10</span> Root vegetables</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Great Famine (1845–1852) killed over one million people and caused another million to emigrate, fundamentally reshaping Irish food culture and the nation itself — the potato's central role made the blight catastrophic.</li>
+        <li>Ireland is one of the world's largest exporters of beef and dairy despite its small size, thanks to a mild, wet climate ideal for grass-fed cattle.</li>
+        <li>Guinness was first brewed at St. James's Gate in Dublin in 1759 — Arthur Guinness signed a 9,000-year lease on the property at £45 per year.</li>
+        <li>Soda bread, now iconic, only became possible in the 1840s when baking soda arrived in Ireland — it spread rapidly because it required no yeast and suited soft Irish wheat perfectly.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The stews, breads, and drinks that define the everyday Irish table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Irish Stew</span><span class="dish-tag">Lamb, potato, onion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, slow-cooked stew of lamb, potato, and onion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Full Irish Breakfast</span><span class="dish-tag">Fried breakfast plate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sausage, bacon, eggs, black and white pudding, and soda bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bacon &amp; Cabbage</span><span class="dish-tag">Boiled bacon, parsley sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled bacon served with cabbage and a creamy parsley sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Colcannon</span><span class="dish-tag">Mashed potato &amp; cabbage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed potato mixed with cooked cabbage or kale and butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coddle</span><span class="dish-tag">Sausage &amp; bacon stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Dublin stew of sausage, bacon, potato, and onion, slow-simmered.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boxty</span><span class="dish-tag">Potato pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grated and mashed potato pancake, served with various fillings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beef &amp; Guinness Stew</span><span class="dish-tag">Beef braised in stout</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef slow-braised in Guinness stout until rich and tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Salmon on Brown Bread</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold-smoked Irish salmon served simply on dense brown bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Champ</span><span class="dish-tag">Mashed potato, spring onion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Buttery mashed potato mixed with chopped spring onion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seafood Chowder</span><span class="dish-tag">Creamy fish soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy chowder of local fish and shellfish, an Atlantic coast staple.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Puddings</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bread &amp; Butter Pudding</span><span class="dish-tag">Baked custard bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Buttered bread baked in a sweet egg custard, a homely dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Barmbrack</span><span class="dish-tag">Spiced fruit loaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced yeasted fruit loaf, traditionally baked with hidden charms for Halloween.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Apple Tart</span><span class="dish-tag">With cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple baked apple tart, served warm with cream.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Porter Cake</span><span class="dish-tag">Guinness fruit cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense fruit cake made with Guinness stout, rich and dark.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Cakes &amp; Breads</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rhubarb Crumble</span><span class="dish-tag">Baked fruit crumble</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stewed rhubarb topped with a buttery oat crumble, baked until golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carrageen Moss Pudding</span><span class="dish-tag">Seaweed set cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A delicate set cream pudding made using Irish seaweed as a natural setting agent.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guinness Chocolate Cake</span><span class="dish-tag">Stout chocolate cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, moist chocolate cake made with Guinness stout.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shortbread</span><span class="dish-tag">Sea salt butter biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Buttery shortbread finished with a scattering of sea salt.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Light Meals</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soda Bread with Butter</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slice of dense soda bread with a generous layer of butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tayto Crisps</span><span class="dish-tag">Cheese &amp; onion crisps</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ireland's iconic cheese and onion flavoured potato crisps.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Colcannon Cakes</span><span class="dish-tag">Fried leftover mash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Leftover colcannon formed into patties and fried until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Salmon Blini</span><span class="dish-tag">Salmon on blini</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold-smoked salmon served on a small savory pancake.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wheaten Bread with Smoked Mackerel</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense wheaten bread topped with smoked mackerel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scotch Egg</span><span class="dish-tag">Sausage-wrapped egg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hard-boiled egg wrapped in sausage meat, breaded and fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Battered Sausage</span><span class="dish-tag">Chipper classic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sausage dipped in batter and fried, a classic chip shop order.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Drisheen</span><span class="dish-tag">Blood pudding, Cork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional Cork blood pudding, milder and softer than black pudding.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Irish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Guinness</li>
+        <li><span class="n">06</span> Bay leaf & thyme</li>
+        <li><span class="n">02</span> Fresh dill & parsley</li>
+        <li><span class="n">07</span> Smoked fish brine</li>
+        <li><span class="n">03</span> Kerrygold butter</li>
+        <li><span class="n">08</span> Cashel Blue cheese</li>
+        <li><span class="n">04</span> Wholegrain mustard</li>
+        <li><span class="n">09</span> Caraway seeds</li>
+        <li><span class="n">05</span> Cider vinegar</li>
+        <li><span class="n">10</span> Sea salt</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Alcoholic</p>
+            <ol class="plain">
+              <li>Guinness</li>
+              <li>Jameson Irish Whiskey</li>
+              <li>Baileys Irish Cream</li>
+              <li>Tullamore D.E.W. Whiskey</li>
+              <li>Poitín</li>
+              <li>Magners / Bulmers Cider</li>
+              <li>Irish Coffee</li>
+              <li>Redbreast Single Pot Still</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Barry's or Lyons Tea</li>
+              <li>Kerrygold milk</li>
+              <li>Club Orange</li>
+              <li>TK Red Lemonade</li>
+              <li>Ribena</li>
+              <li>Lucozade</li>
+              <li>Fresh apple juice</li>
+              <li>Hot Powers</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Stouts</p>
+            <ol class="plain">
+              <li>Guinness</li>
+              <li>Murphy's Stout</li>
+              <li>Beamish Stout</li>
+              <li>Smithwick's Ale</li>
+              <li>Harp Lager</li>
+              <li>Kilkenny Cream Ale</li>
+              <li>Galway Hooker Pale Ale</li>
+              <li>8 Degrees Knockmealdown Porter</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

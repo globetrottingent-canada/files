@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mongolia — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">CENTRAL ASIA / STEPPE</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Mongolia</h1>
+      <p class="subhead">A nomadic herding tradition of mutton and fermented dairy, unchanged by the demands of the steppe for a thousand years.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            STEPPE · GOBI · ULAANBAATAR · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPwAAAB+CAIAAACPsevjAAALVklEQVR4nO3deWwc1R0H8N8cuzN7eQ/verO248R27BhoRRuVAoUGKBIUQREICE0FahsVxKGWEqmRWkG41FKpLRWqOKpefxhaKKi0hKCKRlSkQYQ/WsSRpHGcBNsbr+31nt5j7ukf47rxEWe93fem6vt9/rLGM/Hvj29Gv3nz5j1uZOMWYNXgVY+4XYJrRt54yO0SXMO7XQBCtGHoEXMw9Ig5GHrEHAw9Yg6GHjEHQ4+Yg6FHzMHQI+Zg6BFzMPSIOS6HXggZ7haAGORm6OXBmrdXcbEAxCY3Q992dU45EnCxAMQml9sbT5fqbgGIQW6GXj0px3eccrEAxCY3Q8/LVuDCUnBrwcUaEINcCD0fNINbC0LIiN48AwCRG7LBzxdwGAdR40LoY9umOQ7arskJUR0AvJ0qABfdPkW/EsQmkf6flIeqnGza+vz/N/WETz6nIg/V6FeC2ET7Ts8HTKm/Jm2q1/4Rco6U9sblgbq0sc4HTcrFIDbRDn3HN8c50Z7+8QZ11O8cqR8OTP+0BwQ7+e1xysUgNlENvZjQQpcXbIMzi6LYrs8fjOtmUbQ1PnhpQezQaNaD2ES1pxcTOnDAB83e4Y84j+0cXP/EiK1xTm/jSWjGjJdmSYhBVEOvpyUwORDs09t3zmtxTs5NTpuQadaD2ES1vTHLYuWd8Jl+WzkYNssujCYh1tB+kM0+223kPcuPmwVP9tluysUgNtEOvZH1pu/fXH8/dPrB+gehiZ2D2M0jOlxoJ/Qpb3rXgLdHkQdrAKCM+LVxbOURPa710Nq4jFlHrnAn9ELE8J8/J7TrAGDmPbX3g2ZhhUYfIRJoh17qq7d/fTLwmdKipwkLqn9vy/26Sz3ho1wPYhDV0IevnU3cO8EJ9tJf8BC4oOzfMpd9an1pb5xmSYhB9ELfdlWu41urza7hBNs5AXOPiKI0ZOntUjvua2g+WeKeCW83LpGACKIU+tjtk5y4rKtZCSfa7V/NkK4HsYxG6DnZCl5cavz8wMVF3odz6xEpNEIvD9Y42Wr8fM5j44dUiBwaoV+YOk/0EoQaRCP0ts6t+RJjzZcg1CAaoTeya37bquPkM0QMydD/+99WRv1rmihvVQT1qH/JP4JQqxDMVPCSAjhNismV32hv/MLyX9ptc769CVy4hmEfhBpBMPSedVroirzzc+HFpFls6GZvlsT8b9c5P4euKHi78EUVajGCodfG5Y57JzzrNAAwy2Lm0b6zPtHaOpd5tM/phcQOLXHPhHoSp6ChFiMY+vqHQU6yOh8bFcIGANQPBdO7Blf8VtBh5D3pXYP1j4IAIISNrsdGeclSDgXJVYjYRDD0Vk2ovhPx9ijdT4w402mUw4GxHefmn0vpU4sGZ/Rpb/751NiOc5XDAQDwdqndPxnxblQqb0csBZ9kUYuRnWWZfzEZvLTg7VbWP/XP3G86S3sSVl3IDadywylPp+q8gTJyHn1Scs7neDt83Wz7jkneZ4LJ5V9IEi0PsYls6NVRf/G1ROT6LC9bibvTkRuypT2Juf0RI+vVJ6WFrAOAGNdDlxXC12U9nfN7kxRfTWhj2NCj1iM+n372l13yYE0eqgKAJ6XG70zH70zrGUkbl82iaNucGNG9PcpC1h3K4cDsr7pI14bYRDz0tspPPtDf+f3j8ubqwkFPSvWkzrjblHIkMLm7v4nJCwg1gsZjojknpr8zUHotDmedUW9B8dVEeteAOYdLnSFSKGXLVvmZn/WU/xyPbp8KXFRa/pmsbXDVg+H879YtLOGNECFUb6jKMX/m0T4hZPjOr3g31MWYATYYBVE76at9ELIqAs1iELNc6CLMObFyIAIHIvT/NELQdOg5yQp8drWpYOqoX89IQlT3faLS3J8AgPpHQbPg8aRUadNqH1JV3w3bGr7DQo1qMvRC0Ew9cHKVE2ae7CllJLPgsXU+cVd6lbGaFekZKftMt7PsmX/L3Oprh5zc/kkjj6FHjSLe3lQPhmvvhWLbpqPbpjnv2b+UtVW+8FIy/2ISb96IEBo9va3yueFUeV8scXd69fnx1XfD2We69Yy0yjkI/ZfoPcjqGWlyd3/gotKK3Y7Tz1TfPeM+JQi1Cu3Rm+XdDvYziDIXhixP73bAhuyz2M8gqlx72+90O279dcQy7CgQc8je6aO3TsW2TTd9ef6FdYWX8DsS1GJkQ897F+2TvFactIYVMBFqELY3iDkYesQcsu1NeV/MWdKjOUsWTUCoJciGXs9IOAaP/te4ME7Py5bvU3PSppoY022DU44GKgcitoqNFqKEaujFuB77SqbtyvzijUmy+te8mUf61FE/HzCtKn4/hciid38NfSG/4ReHw9fOLt+Kx9Ohdf1gVIzp4Wtmg1sL1EpCbKJ0p4/ePB2/49TpR9TjvvzzKeAgdltG6q0LYSN663Th98ne5z7MxvTiHzvoFIYYRONOH9xaiH9jUeJtk5t8cFPl7UjlQGTywX4wOQDwX1Aych591pu4Kx1Yy26ECK0J8dALYSN53zgsXrjJqgpGbn75YiPrNWsCAAhB0/kVcJDcOSaEDNK1ITYRD330lunlMxGENmPhu/LAhSUn3/qkBByIcd05IXLTDOnaEJvI9vQcb7ddnVvxV6mHTlTejgBA8JKic6S8LyYPVRdu8OEv5nLDKTBxcT/UYmTv9NJQTWhbuUvhRDt0WSF0WYETbQCovRcqvx6PbZ9aOEGI6vKqK38g1BzCoe+tn/UcW+OLr3RM7u6P3Jhd8tm41Hf2yxFaK7LtjRBeeeNvZcRfeSuqjfmsGq8e94Nox+84Fbk+u/TyKD7LotYjPE5vL+3ILYWfebJn7q8x37kVaXON95mRG2f8F5T5ZW+sAMBufio+QmdENvQL45IO2+QyD/XrGWn9k0dPX67+jJfP4ixL1HpkQ68cXbTudmlPQhn19zx9xJPUGrlcPYbLdqPWIxt6bcynT0r/2UbqlY7oLdNO4o1ZT/GVDgCI3DjjjM0vvfaUpI3LRMtDbCL+cqr4p4Tzg5H16lPe4OeKAAAWnPruQOHlZOHl5KnvbVpxh5ISTr9BZBAPfWlvQkvLAGCWBQAQIgYAmGVx4S6ujfmWb7ajjcml1+Oka0NsIh56W+emHt9oKbwTd+fRVggb8sD8iyd5qLrkBZal8FM/7LUNfBeLiKAxtVgd9Wce7k89fNzbo1T2R6TeOnDQ+fhoaW+c4yB87aLheasuZB7pU0/gDrKIFErz6WvvhSbuG/J/eq74h2To8qJ3Q10IGbEvTy05TR31T/1oo/YxPr8iguh9Lqh9LGvjMliQ3jWQ3Dm2aMaBDcrRQOm1ePnNGM4wQ6TR/TDcAgAwi+Lk7n5vtyJtrnGibcx61BM+Z6cdhChwbdViLS07ozoIUUY29L7zKvJ5Z59ucCbKoUD9UPNrRSG0IrKh92+Zi92Wafry3HAKQ49aDpdYQszB0CPmkG1v1DG58rdo05drH+MrKtR6ZENf2R+t7G8+9AiRQHgnkqC5fMvYxukZyarg0paoxciG3qoK0gYlfmdaCK/ta1erIuSGUzgDB5FA+htZKO+LVQ6G22/PRL6UBWGlifPLLpl7M5b9ebdZcu3FGfr/RiNYVkXIPtNd3hfruHdCPme1d1XqMf/MU+uVIwEKVSFm0bubqsf8E/dvbrsyv2K34/QzxT0JnHCGSKPbQqzY7WA/g+hyIWendzucaGM/gyhrMvRGwXP8pvNXOeGse0ipx/wTOzcDzM83XkX5jfa5t1Yb7LdqOKyJ1qDZO70FLRhBb2w/cFvnbB1jjVoG594g5mDoEXMw9Ig5GHrEHAw9Yg6GHjEHQ4+Yg6FHzMHQI+Zg6BFzMPSIORh6xBwMPWIOhh4xB0OPmIOhR8zB0CPm/AsvrAYeHqVF3AAAAABJRU5ErkJggg==" alt="Flag of Mongolia">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Mongolian cuisine is among the most distinctive and least altered food cultures in the world — a nomadic herding tradition that has remained fundamentally unchanged for over a thousand years, shaped entirely by the demands of life on the vast Eurasian steppe. With no arable land to speak of and winters that plunge to minus 40 degrees Celsius, the Mongolian diet evolved with ruthless practicality around two categories: the animals that could survive the steppe, and the dairy products they yielded. Mutton is the cornerstone protein; horse, beef, camel, and goat also feature. Dairy — in fermented, dried, and fresh forms — provides nutrition and calories through the summer months.</p>
+        <p>The Mongol Empire of the 13th and 14th centuries was the largest contiguous land empire in history, stretching from Korea to Hungary, and the mobile military lifestyle that built it was directly fuelled by this portable, high-calorie, preservable food culture — dried meat, fermented dairy, and the horses that provided both transport and sustenance. Despite ruling an empire that encompassed the great culinary traditions of China, Persia, and the Arab world, Mongolian court food remained resolutely steppe in character. Chinese influence filtered in through proximity and the long Yuan dynasty period, adding noodles and dumplings that became thoroughly Mongolianized. Russian Soviet influence in the 20th century introduced bread, flour-based products, and preserved vegetables.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Mongolian food is honest, calorie-dense, and built for survival in extreme conditions. The flavor profile is minimal by global standards — salt, fat, and the deep savory richness of well-raised mutton are the primary notes. Spices are used sparingly: black pepper, cumin, and bay leaf appear, but the cuisine does not pursue complexity of seasoning. What it pursues instead is quality of protein and fat — a perfectly made buuz dumpling filled with hand-minced mutton and steamed to order, or khorkhog with lamb slow-cooked in a sealed vessel with hot stones, are dishes that derive their excellence entirely from the quality of the animal and the skill of the cook.</p>
+        <p>The dairy tradition — tsagaan idee or 'white food' — is the warm-season counterpart to meat: airag (fermented mare's milk), tarag (yogurt), aaruul (dried curds), öröm (clotted cream), and shar tos (clarified butter) constitute a sophisticated fermentation and preservation culture that is entirely pastoral in origin. Suutei tsai — salt milk tea — is drunk throughout the day and functions as both hydration and nutrition. The cuisine rewards understanding its context: eating buuz in a ger on the steppe in winter, with suutei tsai in a wooden bowl and airag in a leather pouch, is a profoundly different experience from any restaurant approximation.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Mongolian hospitality demands that any traveller arriving at a ger is offered food and drink without question — airag or tea first, then whatever the household has. Refusing is impolite.</li>
+        <li>Eating is efficient and unpretentious on the steppe — meals are eaten quickly and with purpose, fuelling nomadic labour. Long, leisurely dining is not a traditional steppe value.</li>
+        <li>The right hand is used for offering and receiving food and drink — using the left hand, or passing with one hand while the other hangs free, is considered disrespectful.</li>
+        <li>Naadam festival in July brings out the full range of celebration foods — khorkhog and boodog cooked over open fires, airag in abundance, and the communal feasting that defines Mongolian summer.</li>
+        <li>Bones are not wasted — marrow is prized, and the careful cracking and sucking of bones at the table is entirely acceptable and signals appreciation for the meal.</li>
+        <li>Tea in Mongolia is suutei tsai — milk tea made with green tea, water, salt, and often butter or fat. It is drunk throughout the day and is as much a food as a drink.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Mutton</li>
+        <li><span class="n">06</span> Wild onion / garlic</li>
+        <li><span class="n">02</span> Horse meat</li>
+        <li><span class="n">07</span> Suutei tsai</li>
+        <li><span class="n">03</span> Dairy / tsagaan idee</li>
+        <li><span class="n">08</span> Camel milk</li>
+        <li><span class="n">04</span> Airag</li>
+        <li><span class="n">09</span> Aaruul</li>
+        <li><span class="n">05</span> Wheat flour</li>
+        <li><span class="n">10</span> Tallow / fat</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Mongolia has one of the lowest population densities of any country on earth — roughly 2 people per square kilometre — and its food culture directly reflects this. The vast majority of the country is steppe, desert, or mountain, and the nomadic herding lifestyle that produces the diet of meat and dairy has shaped Mongolian food for thousands of years with minimal outside influence.</li>
+        <li>Mongolian cuisine is sometimes called the 'white food and red food' tradition — tsagaan idee (white foods) are the dairy products of summer: airag, tarag, aaruul, and öröm; ulaan idee (red foods) are the meats of winter: mutton, beef, horse, and camel. The seasonal alternation between these two categories structures the annual food calendar.</li>
+        <li>Boodog — a whole goat or marmot cooked from the inside using hot stones placed in the body cavity — is one of the most unusual cooking techniques in the world. The animal is filled with fire-heated rocks, sealed, and the heat cooks the meat from within while the skin browns on the outside. The rocks are brought out red-hot and passed hand to hand as part of the eating ritual.</li>
+        <li>Airag — fermented mare's milk — has been the national drink for over 2,000 years. It is mildly alcoholic, slightly fizzy, and sour, made by fermenting fresh mare's milk in a leather sack that is beaten hundreds of times daily. Mongolians consume enormous quantities during the summer and prize it for health and vitality.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buuz</span><span class="dish-tag">steamed mutton dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-minced mutton dumplings steamed to order, a defining dish of Mongolian home cooking and Naadam.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khuushuur</span><span class="dish-tag">fried mutton pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flat, fried pastry stuffed with minced mutton, a portable steppe classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tsuivan</span><span class="dish-tag">stir-fried noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-pulled noodles stir-fried with mutton and vegetables in one pot.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khorkhog</span><span class="dish-tag">hot-stone lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-cooked in a sealed vessel with fire-heated stones, producing exceptionally tender meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boodog</span><span class="dish-tag">cooked from within</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole goat or marmot cooked from the inside using hot stones placed in the body cavity.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guriltai Shul</span><span class="dish-tag">noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty mutton and noodle soup, a staple everyday dish across Mongolian households.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banshtai Tsai</span><span class="dish-tag">dumplings in milk tea</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small dumplings served submerged in salty milk tea, a warming winter dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Borts</span><span class="dish-tag">sun-dried meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat dried in strips in open air, a portable preservation method dating to the Mongol Empire.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lavsha</span><span class="dish-tag">flat noodle dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty flat-noodle dish typically cooked with mutton and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mongolian Barbecue</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A modern stir-fry style dish inspired loosely by Mongolian cooking, popularized internationally.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">White Foods</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aaruul</span><span class="dish-tag">dried milk curds</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sun-dried curds of soured milk, chewy and tangy, eaten as a snack or trail food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Öröm</span><span class="dish-tag">clotted cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rich clotted cream skimmed from boiled milk, eaten on its own or with bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ul Boov</span><span class="dish-tag">ceremonial layered cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An elaborately stacked, decorated cookie cake used for ceremonial occasions like Tsagaan Sar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarag</span><span class="dish-tag">fermented yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Traditional fermented yogurt, a staple of the summer dairy diet.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Dairy &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boortsog</span><span class="dish-tag">fried dough biscuits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, fried dough biscuits, crisp and lightly sweet, a staple snack and festival food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shar Tos</span><span class="dish-tag">clarified butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Clarified butter rendered from milk fat, used in tea and cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Milk Candy</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hardened sweet made by reducing milk with sugar until firm and chewy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Urum</span><span class="dish-tag">clotted cream skin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The thick skin of cream formed on boiled milk, eaten fresh or dried.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boortsog</span><span class="dish-tag">fried dough biscuits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, fried dough biscuits, crisp and lightly sweet, a staple snack and festival food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khuushuur</span><span class="dish-tag">fried mutton pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flat, fried pastry stuffed with minced mutton, a portable steppe classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Suutei Tsai</span><span class="dish-tag">salt milk tea</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Milk tea made with green tea, water, salt, and often butter, drunk throughout the day.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aaruul</span><span class="dish-tag">dried milk curds</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sun-dried curds of soured milk, chewy and tangy, eaten as a snack or trail food.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Fermented &amp; Dairy</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dried Meat / Borts</span><span class="dish-tag">sun-dried meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat dried in strips in open air, a portable preservation method dating to the Mongol Empire.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Öröm on Bread</span><span class="dish-tag">clotted cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rich clotted cream spread over bread, a simple, indulgent snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Airag</span><span class="dish-tag">fermented mare's milk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mildly alcoholic, fizzy, sour fermented mare's milk — Mongolia's national drink for over 2,000 years.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarag</span><span class="dish-tag">fermented yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Traditional fermented yogurt, a staple of the summer dairy diet.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Mongolian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Mutton fat</li>
+        <li><span class="n">06</span> Black pepper</li>
+        <li><span class="n">02</span> Wild garlic / onion</li>
+        <li><span class="n">07</span> Cumin</li>
+        <li><span class="n">03</span> Salt</li>
+        <li><span class="n">08</span> Bay leaf</li>
+        <li><span class="n">04</span> Suutei tsai</li>
+        <li><span class="n">09</span> Tallow</li>
+        <li><span class="n">05</span> Fermented dairy</li>
+        <li><span class="n">10</span> Dried meat</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Airag &amp; Spirits</p>
+            <ol class="plain">
+              <li>Airag</li>
+              <li>Shimiin Arkhi</li>
+              <li>Mongolian Vodka</li>
+              <li>Arkhi</li>
+              <li>Chinggis Khan Vodka</li>
+              <li>Soyombo Vodka</li>
+              <li>Tarag</li>
+              <li>Fermented Camel Milk</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Suutei Tsai</li>
+              <li>Tarag</li>
+              <li>Airag</li>
+              <li>Aaruul Tea</li>
+              <li>Camel Milk</li>
+              <li>Mare's Milk</li>
+              <li>Mongolian Green Tea</li>
+              <li>Fruit Kompot</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Chinggis Beer</li>
+              <li>Sengur Beer</li>
+              <li>Borgio</li>
+              <li>Gem Beer</li>
+              <li>Khan Brau</li>
+              <li>Dark Chinggis</li>
+              <li>Mongolian Craft Beer</li>
+              <li>Altan Gobi</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

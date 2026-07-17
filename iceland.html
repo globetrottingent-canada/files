@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceland — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 36 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Iceland</h1>
+      <p class="subhead">Lamb, cold-water fish, and skyr — a North Atlantic larder of extraordinary quality shaped by preservation and isolation.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            NORTH ATLANTIC · GLACIAL · VOLCANIC · NORTH ATLANTIC ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADYCAIAAADea0mZAAACwUlEQVR4nO3dMU4DMRBA0TXiNKkIuVxuQC4XpSLXMTXVNos+4Pdqyx5p9TXlju3tY1vVfFx3zzzH5ZC3TvO+e2acb4e8xd/yUg8AqxMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECLEx56xn+NWe43LIPad5P+Qe/h+bEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCE2Prf3egZYmk0IMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEPPP+h3+Wc9PswkhJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYq/jfKtnyMzHtR7hm5W/xcpsQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoTYF69aGSHCPc4CAAAAAElFTkSuQmCC" alt="Flag of Iceland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Icelandic cuisine is one of the most geographically determined food cultures in the world — shaped almost entirely by what a remote North Atlantic island, settled by Norse Vikings in the 9th century, could produce, catch, and preserve through long winters of near-total darkness. The island's volcanic soil, glacial rivers, unpolluted coastal waters, and extensive highland pastures define a larder of extraordinary quality but limited variety: world-class lamb, pristine cold-water fish, Arctic char from glacial rivers, langoustine from the sea floor, wild berries in late summer, and the dairy tradition that produced skyr. For over a thousand years this was essentially the entire Icelandic diet, supplemented by preserved and fermented foods developed to survive the winter.</p>
+        <p>The Norse settlers brought with them the Scandinavian tradition of preservation — smoking, salting, drying, and fermentation — and Iceland's isolation meant these techniques remained central to the food culture long after refrigeration made them redundant elsewhere. Dried salt cod, smoked lamb, fermented shark, and rúgbrauð — the dense rye bread slow-baked underground in geothermal heat — are all survivals of this preservation culture. Danish colonial rule from 1380 to 1944 brought some continental European influence to elite cooking, but the peasant food of Iceland remained largely unchanged. The great transformation came with the New Nordic cuisine movement of the 2000s, which reframed Iceland's austere larder as a virtue and placed Reykjavík restaurants on the international map.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Icelandic cooking is defined by the exceptional quality of its primary ingredients and a philosophy of minimal interference. The lamb — raised on highland pastures grazed with wild herbs including thyme, sorrel, and angelica — is considered among the finest in the world, with a distinctive herbal flavour that needs nothing added to it. The seafood — cod, haddock, langoustine, and Arctic char from rivers so clean they are drinkable — is simply prepared: grilled, poached, or smoked, with butter, dill, and perhaps a squeeze of lemon. The New Nordic movement that emerged from Copenhagen's Noma and spread to Reykjavík has added foraging, fermentation, and hyperlocal creativity to this tradition, finding food value in sea purslane, birch leaves, crowberries, and the island's extraordinary volcanic mineral water.</p>
+        <p>Traditional Icelandic food has a more challenging dimension: the Þorrablót midwinter festival celebrates the old preservation foods — hákarl (fermented shark), svið (singed sheep's head), hrútspungar (pickled ram's testicles), and blood pudding — eaten with brennivín, the caraway-flavoured schnapps sometimes called Black Death. These foods are less a daily diet than a cultural ritual, connecting modern Icelanders to their Viking past. Skyr, the thick cultured dairy product made since the settlement of the island, is the great everyday food — eaten for breakfast with berries, used in cooking, and recently exported to the world as a fashionable high-protein dairy product.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Fish and lamb are the twin pillars of the Icelandic table — the sea and the highland pasture define what is eaten, and both are of extraordinary quality, shaped by clean cold water and unpolluted grazing.</li>
+        <li>Skyr — the thick, high-protein cultured dairy product — is eaten at breakfast daily, often with berries and a drizzle of cream. It is technically a fresh cheese but eaten as a yogurt, and has been made in Iceland since the settlement of the island in the 9th century.</li>
+        <li>Coffee culture is serious and strong — Iceland consistently ranks among the world's highest per-capita coffee consumers. The kaffi break is a social institution, and Icelanders drink their coffee dark, strong, and frequently.</li>
+        <li>The traditional Þorrablót midwinter festival in January and February brings out the old preserved foods — hákarl, svið, hrútspungar, and blood sausage — eaten with brennivín. It is an act of cultural memory as much as appetite.</li>
+        <li>New Nordic cuisine has transformed Icelandic fine dining — Reykjavík restaurants now rank internationally, built on hyperlocal ingredients: wild crowberries, sea purslane, Arctic char, skyr, and the extraordinary quality of Icelandic lamb and seafood.</li>
+        <li>Alcohol was prohibited in Iceland until 1989 — beer was banned until March 1, 1989 (now celebrated as Beer Day), and the legacy is visible in the strong coffee culture and the social centrality of the State Alcohol and Tobacco Company Vínbúðin.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Skyr</li>
+        <li><span class="n">06</span> Wild crowberries</li>
+        <li><span class="n">02</span> Lamb</li>
+        <li><span class="n">07</span> Rye bread / rúgbrauð</li>
+        <li><span class="n">03</span> Atlantic cod</li>
+        <li><span class="n">08</span> Smoked salmon</li>
+        <li><span class="n">04</span> Arctic char</li>
+        <li><span class="n">09</span> Dried fish / harðfiskur</li>
+        <li><span class="n">05</span> Langoustine</li>
+        <li><span class="n">10</span> Brennivín</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Iceland has no McDonald's and has never had a permanent one — the last franchise closed in 2009 during the financial crisis and was never replaced. Iceland is one of very few countries in the world without a McDonald's presence, and Icelanders are generally proud of this fact.</li>
+        <li>Hákarl — fermented Greenlandic shark — is one of the most challenging traditional foods in the world. The shark contains high levels of trimethylamine oxide and urea that make it toxic when fresh. Traditional preparation involves burying the shark for several months to ferment and then hanging it to dry. Anthony Bourdain called it the single worst thing he ever ate.</li>
+        <li>Iceland is home to some of the world's finest wild Atlantic salmon and Arctic char, both of which thrive in the island's pristine glacial rivers. Icelandic fish — particularly cod, haddock, and langoustine — are considered among the finest in the world and are exported to the finest restaurants across Europe.</li>
+        <li>Skyr has been made in Iceland for over 1,000 years and is one of the few Viking-age foods still eaten in virtually unchanged form today. Its recent global popularity — marketed as a high-protein yogurt alternative — has made it Iceland's most successful food export.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The fish, sweets, and drinks that define the everyday Icelandic table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Plokkfiskur</span><span class="dish-tag">Mashed fish &amp; potato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A comforting mash of white fish, potato, and béchamel, a homely everyday dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kjötsúpa</span><span class="dish-tag">Lamb &amp; vegetable soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty lamb and root vegetable soup, Iceland's classic comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hangikjöt</span><span class="dish-tag">Smoked lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoked, cured lamb, traditionally smoked over birch or dried sheep dung.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grilled Langoustine</span><span class="dish-tag">Grilled sea-floor shrimp</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, delicate langoustine simply grilled with butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Humar Soup</span><span class="dish-tag">Langoustine bisque</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, creamy langoustine bisque, an Icelandic seafood classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grilled Arctic Char</span><span class="dish-tag">Grilled river fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Arctic char from glacial rivers, simply grilled with butter and dill.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salt Cod</span><span class="dish-tag">Preserved cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dried, salted cod, rehydrated and cooked, a preservation-era staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lambachops</span><span class="dish-tag">Grilled lamb chops</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Herb-grazed lamb chops, grilled simply to let the meat's flavour speak.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skyr-marinated Salmon</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salmon marinated in tangy skyr before cooking, a modern Icelandic touch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rúgbrauð with Smoked Salmon</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense geothermal rye bread topped with cold-smoked salmon.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skyr with Berries</span><span class="dish-tag">Cultured dairy, berries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick cultured skyr topped with fresh or preserved wild berries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kleina</span><span class="dish-tag">Twisted fried pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A twisted, deep-fried cardamom-scented pastry, similar to a doughnut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pönnukökur</span><span class="dish-tag">Thin pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, delicate pancakes rolled with sugar or jam and cream.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vinarterta</span><span class="dish-tag">Layered prune cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered cardamom cake filled with prune jam, an Icelandic-Canadian heritage cake.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skúffukaka</span><span class="dish-tag">Chocolate sheet cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple chocolate sheet cake topped with chocolate glaze and coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rjómaís</span><span class="dish-tag">Icelandic ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rich, creamy Icelandic ice cream, eaten enthusiastically year-round.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hjónabandssæla</span><span class="dish-tag">Rhubarb oat cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rhubarb jam cake topped with an oat crumble, whose name means 'marital bliss'.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Möndlukaka</span><span class="dish-tag">Almond cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, buttery almond cake, often served with coffee.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Harðfiskur</span><span class="dish-tag">Dried fish, butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wind-dried fish, eaten in strips with butter, a traditional protein snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skyr</span><span class="dish-tag">Cultured dairy snack</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick cultured skyr eaten plain or with a touch of sugar, any time of day.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rúgbrauð with Butter</span><span class="dish-tag">Rye bread &amp; butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense geothermally-baked rye bread with a thick layer of butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pylsur</span><span class="dish-tag">Icelandic hot dog</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lamb-and-pork hot dog topped with crispy onions and remoulade, a beloved snack.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Humar Bisque</span><span class="dish-tag">Langoustine bisque</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smaller, snack-portion version of Iceland's rich langoustine bisque.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Lamb</span><span class="dish-tag">Cold smoked lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold-smoked lamb slices, eaten as a light snack on bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rye Bread Ice Cream</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vanilla ice cream mixed with toasted rye bread crumbs, a beloved local treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laufabrauð</span><span class="dish-tag">Fried leaf bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, decoratively cut fried bread, traditionally made at Christmas.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Icelandic:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dill</li>
+        <li><span class="n">06</span> Butter</li>
+        <li><span class="n">02</span> Cold-smoked salmon</li>
+        <li><span class="n">07</span> Wild thyme</li>
+        <li><span class="n">03</span> Skyr</li>
+        <li><span class="n">08</span> Smoked lamb</li>
+        <li><span class="n">04</span> Crowberries</li>
+        <li><span class="n">09</span> Sea salt</li>
+        <li><span class="n">05</span> Brennivín</li>
+        <li><span class="n">10</span> Rye</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Brennivín &amp; Spirits</p>
+            <ol class="plain">
+              <li>Brennivín</li>
+              <li>Reyka Vodka</li>
+              <li>Ölvisholt Craft Beer</li>
+              <li>Einstök Arctic Pale Ale</li>
+              <li>Borg Brewery</li>
+              <li>Egils Malt</li>
+              <li>Víking Beer</li>
+              <li>Lava Schnapps</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kaffi</li>
+              <li>Skyr smoothie</li>
+              <li>Birch sap water</li>
+              <li>Crowberry juice</li>
+              <li>Malt og appelsín</li>
+              <li>Hot cocoa</li>
+              <li>Þorramatur tea</li>
+              <li>Sparkling Icelandic water</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Víking</li>
+              <li>Gull</li>
+              <li>Egils</li>
+              <li>Einstök White Ale</li>
+              <li>Borg Garún Stout</li>
+              <li>Ölvisholt Lava</li>
+              <li>Kaldi</li>
+              <li>Bríó</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

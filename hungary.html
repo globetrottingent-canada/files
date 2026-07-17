@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hungary — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 34 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Hungary</h1>
+      <p class="subhead">Paprika and sour cream, gulyás and pálinka — a hearty steppe tradition refined by Ottoman and Habsburg influence.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PUSZTA · DANUBE · CARPATHIAN BASIN · PUSZTA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAIAAADrOSKFAAABy0lEQVR4nO3VMRGAMAAEQYIbJKCAFilRiqUg44rsKvjm5sd33QfQOesBsDsRQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECLGx1qo3wNY8IcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcTGM996A2zNE0JMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEULsBztJBl5kHmMQAAAAAElFTkSuQmCC" alt="Flag of Hungary">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Hungarian cuisine is one of the most distinctive in Central Europe — a tradition shaped by the Magyar nomadic heritage of the Central Asian steppe, the medieval Kingdom of Hungary's position at the crossroads of European trade routes, four centuries of Ottoman occupation, and the Habsburg imperial period that brought Viennese refinement to the Budapest café and pastry culture. The Magyars who arrived in the Carpathian Basin in the 9th century brought with them a steppe diet of dried and smoked meats, fermented dairy, and the cattle-herding culture of the Great Hungarian Plain — the Puszta — whose vast grasslands supported the grey cattle and Racka sheep that defined Hungarian meat traditions. This nomadic foundation gives Hungarian cooking its hearty, protein-centred character.</p>
+        <p>The Ottoman occupation from 1541 to 1699 left profound culinary traces — the introduction of paprika (brought from the Americas via Turkey), coffee culture, stuffed vegetables, and sweet pastry traditions all arrived with or were accelerated by Ottoman influence. The Habsburg period, which made Budapest one of the great imperial capitals of Europe, brought French culinary technique, Viennese pastry sophistication, and the grand café culture that produced the Dobos torte, Gerbeaud, and the extraordinary patisserie tradition of Budapest. Jewish communities, present in Hungary for centuries and thriving in Budapest by the 19th century, contributed to the city's food culture significantly — the Jewish quarter's food traditions and the goose liver preparations that became distinctly Hungarian both carry this heritage.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Hungarian cooking is defined by paprika and sour cream — a combination so fundamental that it appears in one form or another in almost every savoury dish. Paprika is not a sprinkling but a structural ingredient: a good chicken paprikash uses three or four tablespoons of sweet paprika to produce a sauce of deep, rich, rust-red colour and warm, round flavour. Sour cream — tejföl — is stirred in at the end of cooking to give the sauce its characteristic creamy, slightly acidic finish, or served alongside to cut the richness of fried dishes. Lard is the traditional cooking fat, used without apology, and its flavour underpins the best traditional Hungarian cooking in a way that oil cannot replicate.</p>
+        <p>Gulyás — the paprika-spiced beef soup of the Hungarian herdsmen — is the national dish and one of the most misunderstood foods in the world. What the rest of the world calls goulash is actually pörkölt in Hungarian — a thick meat stew. True gulyás is a soup, thinner and more fragrant, served with small pinched csipetke noodles. The distinction matters deeply to Hungarians. The Great Hungarian Plain produces exceptional goose liver — Hungary is the world's second-largest producer of foie gras — and the Hungarian treatment of libamáj is considered by many chefs superior to the French original. Tokaj's botrytised Aszú wine, the world's first classified wine appellation, is one of the great sweet wines of the world and a point of enormous national pride.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Hungarian meals are substantial and structured — a traditional lunch begins with soup, then a main course of meat with a starch, then a dessert. Sunday lunch is the most important meal of the week and is not rushed.</li>
+        <li>Paprika is not a garnish but the foundational spice — it appears in virtually every savoury Hungarian dish, used in quantities measured by the tablespoon not the pinch, and its quality (sweet, hot, smoked, or a blend) determines the character of the entire dish.</li>
+        <li>Lard — zsír — is the traditional cooking fat of the Hungarian kitchen, used for frying, spreading on bread, and enriching pastry. The Hungarian breakfast of rye bread spread with lard and topped with raw onion and paprika is considered a fine start to the day.</li>
+        <li>Pálinka must be offered to any guest upon arrival — the fruit brandy, ideally homemade from plum, pear, cherry, or apricot, is the Hungarian gesture of welcome. Refusing it at a first meeting requires some explanation.</li>
+        <li>The csárda roadside inn tradition — a rural restaurant serving hearty traditional food with live folk music — is a Hungarian institution that has been feeding travellers since the 18th century. The best csárda is found off the main road, slightly shabby, and run by the same family for generations.</li>
+        <li>Wine is taken seriously in Hungary — Tokaj is one of the world's great wine regions and the Aszú dessert wine was described by Louis XIV as the wine of kings. The Eger region's Egri Bikavér (Bull's Blood) is a robust red blend with considerable history.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Paprika — sweet & hot</li>
+        <li><span class="n">06</span> Mangalica pork</li>
+        <li><span class="n">02</span> Lard / zsír</li>
+        <li><span class="n">07</span> Dill</li>
+        <li><span class="n">03</span> Sour cream</li>
+        <li><span class="n">08</span> Caraway seeds</li>
+        <li><span class="n">04</span> Goose liver</li>
+        <li><span class="n">09</span> Savoy cabbage</li>
+        <li><span class="n">05</span> Tokaj wine</li>
+        <li><span class="n">10</span> Csipetke noodles</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Paprika — the spice that defines Hungarian cooking more than any other — was introduced to Hungary from the Americas via the Ottoman Empire in the 16th century. Within two centuries it had become so thoroughly the defining Hungarian spice that Albert Szent-Györgyi, the Hungarian biochemist who discovered Vitamin C in 1937, used paprika as his primary research material. Hungarian paprika from Kalocsa and Szeged is still considered the finest in the world.</li>
+        <li>Tokaji Aszú — the legendary Hungarian sweet wine made from botrytised grapes in the Tokaj region — was the first wine in the world to receive a classified appellation, established by Prince Rákóczi in 1700, predating the Bordeaux classification by over 150 years. King Louis XIV of France called it the wine of kings, the king of wines.</li>
+        <li>The Hungarian café culture of Budapest — the grand coffee houses of the 19th century including Gerbeaud, New York Café, and Central Kávéház — was among the most sophisticated in the world. The New York Café, opened in 1894, was reportedly so popular with writers that the owner threw the keys into the Danube to ensure it would never close.</li>
+        <li>Goulash — gulyás in Hungarian — was originally not a stew but a dried meat preparation carried by Hungarian herdsmen on the Great Hungarian Plain. The slow-cooked stew that the world knows as goulash is actually pörkölt in Hungarian — gulyás is specifically a soup. The distinction matters enormously to Hungarians.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The stews, pastries, and drinks that define the everyday Hungarian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gulyás</span><span class="dish-tag">Paprika beef soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin, fragrant paprika-spiced beef soup with pinched csipetke noodles, the true national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pörkölt</span><span class="dish-tag">Thick meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>What the world calls goulash — a thick, richly paprika-spiced meat stew.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Paprikash</span><span class="dish-tag">Paprika chicken, cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken braised in a rich paprika and sour cream sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Töltött Káposzta</span><span class="dish-tag">Stuffed cabbage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cabbage leaves stuffed with rice and pork, simmered in a paprika tomato sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halászlé</span><span class="dish-tag">Fisherman's paprika soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fiery paprika-based fish soup, traditionally made with river fish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lángos</span><span class="dish-tag">Fried dough, toppings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried dough topped with sour cream and cheese, a beloved street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pacalpörkölt</span><span class="dish-tag">Tripe stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, paprika-spiced tripe stew.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hortobágyi Palacsinta</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Savoury crepes filled with meat ragout and topped with paprika sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lecsó</span><span class="dish-tag">Pepper &amp; tomato stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stewed mix of peppers, tomatoes, and onion, often with sausage or egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mangalica Pork Chop</span><span class="dish-tag">Heritage pork chop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chop from the fatty, curly-haired Mangalica pig breed, prized for its rich flavour.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dobos Torte</span><span class="dish-tag">Caramel layer cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A many-layered sponge cake with chocolate buttercream and a caramel top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Somlói Galuska</span><span class="dish-tag">Sponge, cream, chocolate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sponge cake soaked in rum, layered with custard, cream, and chocolate sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kürtőskalács</span><span class="dish-tag">Chimney cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cylindrical spit cake with a caramelized sugar crust, cooked over an open flame.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rétes</span><span class="dish-tag">Hungarian strudel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin layered pastry filled with apple, cherry, or poppy seed.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gundel Palacsinta</span><span class="dish-tag">Walnut crepes, chocolate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crepes filled with walnut and rum, topped with chocolate sauce, a Budapest classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rigó Jancsi</span><span class="dish-tag">Chocolate cream cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich chocolate sponge cake filled with chocolate cream, named after a famous violinist.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Túrós Csusza</span><span class="dish-tag">Pasta, cheese &amp; bacon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pasta tossed with sweetened curd cheese and topped with crispy bacon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Máglyarakás</span><span class="dish-tag">Bread &amp; apple pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baked pudding of layered bread, apple, and meringue.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lángos</span><span class="dish-tag">Fried dough, toppings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried dough topped with sour cream and cheese, sold at markets and fairs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kürtőskalács</span><span class="dish-tag">Chimney cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cylindrical spit cake with caramelized sugar, a popular market treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zsíros Kenyér</span><span class="dish-tag">Lard &amp; onion bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bread spread with lard, topped with raw onion and paprika.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hurka &amp; Kolbász</span><span class="dish-tag">Sausages</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Traditional Hungarian pork and rice or liver sausages.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Körözött</span><span class="dish-tag">Spiced cheese spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A paprika-spiced cheese spread, often served with bread or peppers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pogácsa</span><span class="dish-tag">Savory scone</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small, dense savory scone, often flavoured with cheese or bacon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hájas Pogácsa</span><span class="dish-tag">Lard biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered, flaky savory biscuit made with lard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lecsó with Eggs</span><span class="dish-tag">Pepper stew &amp; egg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic pepper and tomato stew cooked through with scrambled egg.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Hungarian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sweet paprika</li>
+        <li><span class="n">06</span> Lard</li>
+        <li><span class="n">02</span> Hot paprika</li>
+        <li><span class="n">07</span> Savoy cabbage</li>
+        <li><span class="n">03</span> Sour cream</li>
+        <li><span class="n">08</span> Smoked meats</li>
+        <li><span class="n">04</span> Caraway</li>
+        <li><span class="n">09</span> Goose fat</li>
+        <li><span class="n">05</span> Dill</li>
+        <li><span class="n">10</span> Marjoram</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Pálinka &amp; Wine</p>
+            <ol class="plain">
+              <li>Pálinka</li>
+              <li>Tokaji Aszú</li>
+              <li>Egri Bikavér</li>
+              <li>Unicum</li>
+              <li>Villányi Cabernet</li>
+              <li>Dreher Beer</li>
+              <li>Borsodi</li>
+              <li>Sopron wine</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café au lait Budapest</li>
+              <li>Kávé</li>
+              <li>Meggylé</li>
+              <li>Almabor</li>
+              <li>Mineral water Theodora</li>
+              <li>Házi limonádé</li>
+              <li>Csipkebogyó tea</li>
+              <li>Meggy juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Dreher</li>
+              <li>Borsodi</li>
+              <li>Arany Ászok</li>
+              <li>Soproni</li>
+              <li>Pécsi</li>
+              <li>Pécs Brew</li>
+              <li>Mad Scientist</li>
+              <li>Monyo Brewing</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

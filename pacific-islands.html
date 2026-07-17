@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pacific Islands — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 46 / 68 · Oceania</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">The Pacific Islands</h1>
+      <p class="subhead">Polynesia, Melanesia, and Micronesia — Fiji, Samoa, Tonga, Tahiti, Papua New Guinea — an ecologically intelligent food culture carried across the largest ocean on earth by history's greatest navigators.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            UMU · KAVA · COCONUT · UMU · KAVA · COCONUT ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAF3klEQVR4nO3dUXLbNhiFUbnTpSVLyiaSJWVx6YNnXI9C0RBI6P4gznmrG8sirG8gCgT9dvv28wbk/JN+ArA6EUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwv5NPwH6/fn94/N/vn3/lXomHGEmnNVdgZtfYQpvt28/08+B/zVObju9NX6LabMOM2EhjZPb/ozX+C2mzTpEWMWjKo7XMu6ROYUIS+iY3OKPzFlECGEihDARzmf/g00fe07HYv1wI9YG3r7/2jydO6tA6xmvZCYcq3FtoGNy+/uLjf/sy/8bX89Y7eMii/UDPbukPm5ya3/kjssATvfn94+l5l4z4SgdawONk1uHxkeusJ7x/lOWmgydE9YybgZYam6Zi5mQQpaaAD+IkKLWCdLbUQIaAxu6DFOHmXCUGZfUX/acux+q5rgdJMKBHr1iKr+SXvacOx6w8rgdYZ3wkJYrS2a8+uSVx9Xy1nSKQesmwn6LnLFsOvfY9zu8/JB6O9pp5Z2ypx/7TmaXL/Amwj4VrixJWfnYBxEheTvprlC1CCFMhNTy9v3XCueBn4mQQj7yWypFSxSdKuy7Szn32N8fbf+exdceUjNhpxmvhjnL6ce++BKFmfCQGa+GOcvKx34uEUKYt6MQZj9hE2+92hmrZ5kJvxa/BeBEjFUHEX5h5Qu1n2Ws+ohwj4uV2xmrbiKEMBFyZVPMwCKEMBFyWVNMgzcR7pvxtoUpZceqfooi/MLKF2o/q9RY1W/vg2tHm7gKpF1krJ5NrtRvUIRcRHuHpQq8iZCLmfEWps4JuZQZ9weLEMJsZXrIhzHHGcMWZsJttuQcZwwbiXCDLTnHpcbw8+Pf3Tex7K9PhPdsyTmuwhhOdAtTEXI1m9VV7lCEXIolCuBpIoQwEd4ruyVnIsbwKSLcUGpLzqSMYTsRbpvr47WajGEjuyggzEwIYSKEMBFCmAghzH7Ch+yFO+6UMfzz+8e1B99MuM1euOOMYSMRbrCf8LizxnCFMRfhvQp74WZ3+hhee9idE1LITmwXPkU3E1JIY1pXKvBmJqSa98AeTYkXy++dmZCKNmNrL3Cuc0gR3rMX7rjsGM5V4E2Em+yFO+7gGG6G9FRdE6VoK9NDF/447mW6x/DjG+9OER89wox/B+aDCCnnUXLvX98p6u8Ui+f3zttRKuq7d+jdP5iiwJsIKWjGe4ceIUIIc07YxIc07YJj9fmk8csTyDrMhF+zJaddfKw+/x2YV/7cI8yEX9h5DU30a34NY9XHTLjHtqZ2xqqbCCFMhBAmQggTIYSJcI9tTe2MRjcRfsG2pnb7Y+ID0kesEzZxxUy7xtiM4QcRMspS94k5wttRRjl4n5h1uNvaISu/TV352M9lJuwXv1g5aOVjP51zwk4rX6zceOx/36Viou1Fr2Qm7LHyxcpPHfvdXSrkt0mEjOKDmUYihDARQpgIIUyEPVa+sHvlYx9EhJ1WvrB75WMfwTrhIS1Xjcx4ZclVj6smEY61uapW/PU643OemrejAz1a1668mj/jc56dCEeZ8aqaGZ/zBYgQwkQIYSKEMJt6axn3ub8VhbLMhKN0XFkybqds4yO7GibCOuFY7a/1jl3CjZPbs49snfDFzIRjNf7h9Y61gcbJreORO/5YPEc4JxxuxCt4Z0n9lB+nulcyE87HkvrFiBDCRAhhIixh3NqAVYf6RFjFuJ2y9uAWJ8JCGtcGOiY3qw6VWayflSX1yzATzsrkdhlmQggzE0KYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwv4DCc+MnHAtPgAAAAAASUVORK5CYII=" alt="Flag of The Pacific Islands">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Pacific Island cuisine is one of the oldest and most ecologically intelligent food cultures on earth — built over three millennia by seafaring peoples who settled the largest ocean on the planet, carrying with them a carefully curated set of food plants and animals selected for ocean crossing and island colonisation. The ancestors of today's Polynesian, Melanesian, and Micronesian peoples are among history's greatest navigators, and the food systems they established across tens of thousands of islands represent an extraordinary achievement of agricultural adaptation. At the heart of this food culture are the staple crops: taro, the sacred starchy root that sustained Pacific civilisations; breadfruit, one of the most productive food plants on earth; coconut, a complete pantry in a single palm; and the pig, brought by canoe across the open ocean.</p>
+        <p>European colonialism from the 16th century onwards transformed Pacific food cultures in ways that varied enormously by island group and colonial power — Tahiti's French food culture, the British meat-and-bread tradition in Samoa and Tonga, the German influence in Papua New Guinea. The most significant colonial transformation came in Fiji, where British planters brought approximately 60,000 Indian indentured workers between 1879 and 1916, creating a parallel South Asian food culture that now sits alongside the indigenous Fijian tradition. Canned and processed foods arrived with colonialism and World War II's military presence, and spam, corned beef, and white rice became embedded in Pacific diets.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Pacific Island cooking is defined by simplicity, abundance, and the umu — the underground earth oven that is the universal Pacific cooking method. Food wrapped in banana or taro leaves is placed on heated stones in a pit, covered with earth, and left to slow-cook in steam for hours. The umu is not merely a cooking technique but a social institution: its preparation is communal work, and the feast it produces is eaten communally. The flavours it produces — the smoky sweetness of taro steamed in coconut cream, the tender richness of pork cooked underground — cannot be fully replicated by other methods.</p>
+        <p>Coconut cream is the defining cooking medium and flavour of the Pacific kitchen — used to cook taro, fish, and meat, to make desserts, and drunk fresh from the nut. Kokoda (raw fish marinated in citrus and coconut cream, the Pacific ceviche) is the dish that most clearly expresses Pacific Island flavour philosophy. Kava, the ceremonial root drink prepared by mixing powdered piper methysticum with water, governs social life across most of the Pacific with a ceremony and protocol that varies by island group but everywhere signals welcome, respect, and community.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The umu or imu — the underground earth oven — is the most universal Pacific cooking method, used from Samoa to Fiji to the Cook Islands. Heated stones are layered with leaf-wrapped food, covered with earth, and steamed for hours — the centrepiece of any feast.</li>
+        <li>Eating is communal and generous — Pacific Island hospitality requires that guests are fed first and fed abundantly. A feast table that does not overflow is considered a failure of generosity.</li>
+        <li>Kava is the social and ceremonial drink of most of the Pacific — a mildly sedative beverage from the ground root of the piper methysticum plant, drunk from a coconut shell bowl in ceremonies that govern social rank and welcome.</li>
+        <li>Taro is sacred in many Pacific cultures — in Samoa, Fiji, and Tonga, taro cultivation carries spiritual significance, and specific varieties are associated with chiefly status.</li>
+        <li>Coconut is not an ingredient but a complete pantry — providing drinking water, cooking cream, frying oil, flesh, fuel, weaving material, and timber. A Pacific meal without coconut in some form is unusual.</li>
+        <li>Regional variation within the Pacific is significant — Fiji's food shows strong Indian influence, Tahiti's shows French influence, and Papua New Guinea's cultural diversity produces dozens of distinct food traditions within one country.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Taro</li>
+        <li><span class="n">06</span> Pig</li>
+        <li><span class="n">02</span> Coconut</li>
+        <li><span class="n">07</span> Banana leaf</li>
+        <li><span class="n">03</span> Breadfruit</li>
+        <li><span class="n">08</span> Kava</li>
+        <li><span class="n">04</span> Cassava</li>
+        <li><span class="n">09</span> Pawpaw / papaya</li>
+        <li><span class="n">05</span> Tropical fish</li>
+        <li><span class="n">10</span> Sea cucumber</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Lapita people — the ancestors of all Polynesian cultures — undertook the greatest navigational feat in human history between roughly 1500 and 500 BCE, sailing outrigger canoes across thousands of kilometres of open ocean to settle Polynesia from Tonga to Samoa to Hawaii to Easter Island, bringing the canoe plants that define Pacific food.</li>
+        <li>Fiji has two parallel food cultures existing side by side — the indigenous iTaukei Fijian tradition of taro, cassava, and kokoda; and the Indo-Fijian tradition brought by Indian indentured workers from 1879 to 1916, who introduced curry, roti, and dal. Indo-Fijians now constitute roughly 37% of the population.</li>
+        <li>Breadfruit — the starchy tropical fruit that Captain Bligh was transporting on the Bounty when the famous 1789 mutiny occurred — is one of the most productive food plants on earth. A single tree can produce up to 200 fruits per year for decades.</li>
+        <li>Kava has been used in Pacific Island cultures for at least 3,000 years, producing mild sedation without impairing cognitive function. Vanuatu produces the most potent kava in the world and has the highest per-capita kava consumption of any nation.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Polynesia &amp; Melanesia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Umu / Lovo Feast</span><span class="dish-tag">Earth-oven whole feast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole communal feast of meat, fish, and root vegetables slow-cooked together in the underground earth oven.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kokoda</span><span class="dish-tag">Fijian coconut-lime fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish marinated in citrus juice and coconut cream, Fiji's version of the Pacific-wide raw fish salad.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palusami</span><span class="dish-tag">Coconut-baked taro leaves</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Taro leaves parcelled around coconut cream (and often corned beef or onion) and baked until tender, a Samoan classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ika Mata</span><span class="dish-tag">Cook Islands raw fish salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish marinated in lime juice and coconut cream with vegetables, the Cook Islands' version of the regional raw fish dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lu Pulu</span><span class="dish-tag">Corned beef, taro leaves</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corned beef or chicken wrapped and cooked with taro leaves in coconut cream, a common Samoan and Tongan weeknight dish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fafaru</span><span class="dish-tag">Fermented fish, seawater</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish fermented in seawater until pungent, a strong-flavoured Tahitian delicacy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poisson Cru</span><span class="dish-tag">Tahitian raw fish salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw tuna marinated in lime juice and coconut milk with vegetables, Tahiti's iconic dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lap Lap</span><span class="dish-tag">Grated root, coconut, banana leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grated taro, yam, or breadfruit mixed with coconut milk, wrapped in banana leaf and earth-oven baked — Vanuatu's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Umu Chicken</span><span class="dish-tag">Earth-oven roasted chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole chicken slow-roasted in the underground earth oven alongside root vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roast Pork &amp; Taro</span><span class="dish-tag">Earth-oven pork, taro</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole pork roasted in the umu and served with steamed taro, a feast-day staple across the Pacific.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poi</span><span class="dish-tag">Pounded fermented taro</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cooked taro root pounded into a smooth, slightly fermented paste, a foundational Polynesian staple food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coconut Bread</span><span class="dish-tag">Sweet coconut-milk bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, lightly sweet bread enriched with coconut milk and shredded coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana Cake</span><span class="dish-tag">Moist spiced banana cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist cake made with mashed ripe banana, popular across the Pacific for gatherings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Faiai Eleni</span><span class="dish-tag">Corned beef, coconut milk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Samoan savoury dish of corned beef simmered in coconut milk, tomato, and onion.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coconut Rice Pudding</span><span class="dish-tag">Coconut milk rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice slow-cooked in sweetened coconut milk until thick and creamy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baked Pawpaw</span><span class="dish-tag">Roasted sweet papaya</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe papaya baked with sugar and lime until soft and caramelized.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ota Ika</span><span class="dish-tag">Tongan raw fish, citrus</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Raw fish marinated in citrus and coconut cream, the Tongan version of the Pacific-wide raw fish dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Faikakai</span><span class="dish-tag">Tongan coconut dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet dumplings served in a warm coconut caramel sauce, a Tongan festive dessert.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chop Suey Pacific</span><span class="dish-tag">Stir-fried noodle dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Pacific-adapted stir-fried noodle dish reflecting Chinese plantation-era influence across the islands.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Breadfruit Chips</span><span class="dish-tag">Fried breadfruit crisps</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of breadfruit fried until crisp, a popular island snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Taro Chips</span><span class="dish-tag">Fried taro crisps</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of taro root fried into crunchy chips.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coconut Buns</span><span class="dish-tag">Sweet coconut-filled bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft buns filled or topped with sweetened shredded coconut.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana Fritters</span><span class="dish-tag">Fried battered banana</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe banana slices dipped in batter and deep-fried until golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Panikeke</span><span class="dish-tag">Samoan fried dough ball</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, round, pillowy fried dough balls, a beloved Samoan street food and church fundraiser staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rourou</span><span class="dish-tag">Coconut taro leaf stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Taro leaves stewed in coconut milk, a Fijian side dish or light soup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cassava Cake</span><span class="dish-tag">Dense coconut cassava cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy baked cake made from grated cassava and coconut milk.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Pacific Island:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Coconut cream</li>
+        <li><span class="n">06</span> Turmeric</li>
+        <li><span class="n">02</span> Lime</li>
+        <li><span class="n">07</span> Ginger</li>
+        <li><span class="n">03</span> Banana leaf</li>
+        <li><span class="n">08</span> Chili</li>
+        <li><span class="n">04</span> Taro</li>
+        <li><span class="n">09</span> Sea salt</li>
+        <li><span class="n">05</span> Fish sauce Pacific</li>
+        <li><span class="n">10</span> Lemongrass</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Kava &amp; Spirits</p>
+            <ol class="plain">
+              <li>Kava</li>
+              <li>SP Lager Papua New Guinea</li>
+              <li>Fiji Bitter</li>
+              <li>Vailima Samoa</li>
+              <li>Hinano Tahiti</li>
+              <li>Tusker Vanuatu</li>
+              <li>Mahou Fiji</li>
+              <li>Coconut arrack</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kava</li>
+              <li>Coconut water</li>
+              <li>Pawpaw juice</li>
+              <li>Pineapple juice</li>
+              <li>Sugarcane juice</li>
+              <li>Mango juice</li>
+              <li>Cocoa drink</li>
+              <li>Passionfruit cordial</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>SP Lager</li>
+              <li>Fiji Bitter</li>
+              <li>Vailima</li>
+              <li>Hinano</li>
+              <li>Tusker</li>
+              <li>South Pacific Export</li>
+              <li>Tonga Beer</li>
+              <li>Island Gold</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

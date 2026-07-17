@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamaica — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">CARIBBEAN / CREOLE</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Jamaica</h1>
+      <p class="subhead">A Creole fusion of African, Taíno, British, Indian, and Chinese influences — bold, spicy, and inseparable from music and community.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BLUE MOUNTAINS · KINGSTON · CARIBBEAN SEA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Jamaica">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Jamaican cuisine is one of the most vivid and distinctive in the Caribbean — a Creole fusion of African, indigenous Taíno, British colonial, Spanish, Indian, Chinese, and Middle Eastern influences, all compressed onto a single island over five centuries. The Taíno people introduced cassava, corn, sweet potatoes, and the barbecue method of cooking meat over an open fire — the word 'barbecue' itself derives from the Taíno 'barabicu.' The Spanish and later British colonial periods brought sugar, cattle, citrus, and enslaved Africans whose culinary knowledge became the foundation of the island's cooking.</p>
+        <p>West African influence is the deepest thread in Jamaican food: ackee (brought on a slave ship from Ghana), callaloo, okra, and cooking techniques involving one-pot stews and the use of every part of the animal all reflect African heritage. Indian indentured workers who arrived after emancipation in the 1840s brought curry, which was enthusiastically adopted and adapted — curried goat is now one of Jamaica's most iconic dishes. Chinese immigrants added soy sauce, rice preparations, and a community of Chinese-Jamaican restaurants that persist in Kingston today.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Jamaican food is bold, aromatic, and unapologetically spicy. The scotch bonnet pepper — fruity, fiercely hot, and completely irreplaceable — appears in virtually every savory preparation. Jerk is the defining cooking tradition: meat (originally wild boar, now chicken, pork, and fish) marinated in a paste of scotch bonnet, allspice, thyme, and spices, then slow-smoked over pimento wood, producing a flavor that has influenced kitchens worldwide. The technique originated with the Maroons — escaped enslaved Africans who retreated to the Blue Mountains and developed it as both preservation and stealth cooking method.</p>
+        <p>Rice and peas (kidney beans cooked in coconut milk with thyme and scallion) is the cornerstone starch, appearing at every proper Sunday dinner. Stews are slow-cooked and deeply flavored — oxtail with butter beans, brown stew chicken, and mannish water (goat soup) all require patience and reward it generously. Tropical fruits — ackee, breadfruit, plantain, mango, soursop, and Scotch bonnet — give the cuisine its Caribbean identity. The island's food culture is warm, generous, and inseparable from music, community, and pride.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Sunday dinner is the most important meal of the week — rice and peas (cooked with coconut milk and kidney beans), roast chicken or oxtail, and festival (sweet fried dough) are the archetypal spread.</li>
+        <li>Food is deeply communal — large pots are made to share, and hospitality means offering food to anyone who visits. Refusing to eat at someone's home is considered rude.</li>
+        <li>Scotch bonnet peppers appear in virtually everything savory — the heat level is real and not toned down for guests. If you can't handle it, say so early.</li>
+        <li>The Rastafari Ital food tradition — a plant-based, natural diet avoiding processed foods, salt, and meat — has influenced Jamaican vegetarian cooking significantly and is widely available.</li>
+        <li>Jerk cooking is not just a flavor but a method: meat is slow-cooked over pimento (allspice) wood, which imparts a smoky, aromatic quality that cannot be replicated with charcoal or gas alone.</li>
+        <li>Street food is central to daily life — roadside jerk stands, higglers (market vendors), and bakeries selling patties are the pulse of Jamaican food culture.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Scotch bonnet peppers (defining heat)</li>
+        <li><span class="n">06</span> Saltfish / salt cod (national dish partner)</li>
+        <li><span class="n">02</span> Allspice / pimento (jerk's backbone)</li>
+        <li><span class="n">07</span> Kidney beans (rice and peas)</li>
+        <li><span class="n">03</span> Thyme (fresh — in everything savory)</li>
+        <li><span class="n">08</span> Plantains & green bananas</li>
+        <li><span class="n">04</span> Coconut milk (rice, stews, desserts)</li>
+        <li><span class="n">09</span> Ginger (drinks, marinades, baking)</li>
+        <li><span class="n">05</span> Ackee (national fruit)</li>
+        <li><span class="n">10</span> Browning sauce (Worcestershire-style, dark colour)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Jerk seasoning — the blend of scotch bonnet, allspice, thyme, and spices used to marinate and smoke meat — originates with the Maroons, escaped enslaved Africans who lived in Jamaica's Blue Mountains and developed the technique to preserve and cook wild boar without detection.</li>
+        <li>Jamaica is the birthplace of Red Stripe beer, Blue Mountain coffee (considered among the world's finest), and Appleton Estate rum — three of the most internationally recognized Caribbean food and drink exports.</li>
+        <li>The Scotch bonnet pepper, Jamaica's defining chili, measures 100,000–350,000 on the Scoville scale — roughly 40 times hotter than a jalapeño. Despite the name, it has no connection to Scotland; the shape resembles a Tam o' Shanter hat.</li>
+        <li>Ackee — one half of Jamaica's national dish (ackee and saltfish) — is a West African fruit introduced to Jamaica on a slave ship in the 1700s. When unripe, it is highly toxic; only the properly opened yellow arils are safe to eat. It is banned from import into the United States in its fresh form.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ackee &amp; Saltfish</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sautéed ackee fruit with salt cod, onions, peppers, and tomato — Jamaica's national dish, traditionally eaten at breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jerk Chicken</span><span class="dish-tag">pimento wood-smoked</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken marinated in scotch bonnet, allspice, and thyme, then slow-smoked over pimento wood for a deep, smoky heat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oxtail Stew</span><span class="dish-tag">with butter beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-braised oxtail in a rich, dark gravy with butter beans — a Sunday dinner staple requiring hours of patient cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Curried Goat</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Goat meat slow-cooked in a fragrant curry, brought by Indian indentured workers after emancipation and fully adopted as a Jamaican icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rice &amp; Peas</span><span class="dish-tag">coconut, kidney beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Kidney beans and rice cooked together in coconut milk with thyme and scallion — the cornerstone starch of the Sunday table.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brown Stew Chicken</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken browned in sugar and seasoning, then stewed in a savory dark gravy with peppers and carrots.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Escovitch Fish</span><span class="dish-tag">pickled pepper topping</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried whole fish topped with a vinegar-pickled medley of peppers, onion, and carrot.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mannish Water</span><span class="dish-tag">goat head soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A potent goat soup made with the head and other parts, seasoned heavily and traditionally served at celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Callaloo with Saltfish</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The leafy green callaloo sautéed with salt cod, onion, and pepper — a hearty breakfast or side dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pepper Pot Soup</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark soup of callaloo, okra, and meat, seasoned generously with scotch bonnet and spice.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Tarts</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rum Cake</span><span class="dish-tag">Christmas classic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark, fruit-soaked cake heavily laced with rum — the centerpiece of Jamaican Christmas tables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gizzada</span><span class="dish-tag">coconut tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pinched pastry shell filled with sweetened, spiced coconut — a beloved handheld tart.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bulla Cake</span><span class="dish-tag">molasses &amp; ginger</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, round molasses-and-ginger cake, often eaten sliced with butter or avocado.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grater Cake</span><span class="dish-tag">coconut sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A striking pink-and-white coconut confection made by grating and boiling coconut with sugar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sweet Potato Pudding</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced steamed pudding made from grated sweet potato, coconut milk, and warm spices.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Duckunoo</span><span class="dish-tag">steamed in banana leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Also called Blue Drawers — cornmeal and coconut sweetened and steamed inside a banana leaf parcel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Totoes</span><span class="dish-tag">coconut squares</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense, chewy baked coconut squares, deeply sweet and cut into bars.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana Fritters</span><span class="dish-tag">cinnamon sugar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe banana batter fried until golden and dusted with cinnamon sugar.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jamaican Beef Patty</span><span class="dish-tag">flaky turmeric pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A golden, turmeric-tinted flaky pastry filled with spiced ground beef — the island's definitive handheld street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Festival</span><span class="dish-tag">sweet fried dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, slightly cornmeal-flecked fried dough sticks, the classic accompaniment to jerk and fried fish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bammy</span><span class="dish-tag">cassava flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flatbread made from grated cassava, either fried crisp or steamed soft, often soaked in coconut milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jerk Pork</span><span class="dish-tag">roadside stand classic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork marinated and slow-smoked jerk-style, typically sold chopped from roadside drum-pit stands.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sides &amp; Breads</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roast Breadfruit</span><span class="dish-tag">with ackee</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole breadfruit roasted over open flame until tender inside and charred outside, often paired with ackee.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stamp and Go</span><span class="dish-tag">saltfish fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp saltfish fritters, traditionally eaten as a quick snack or breakfast on the go.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hard Dough Bread</span><span class="dish-tag">with butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, slightly sweet white bread with a tight crumb, a breakfast-table staple slathered in butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried Dumplings</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple fried dough dumplings, crisp outside and soft inside, served alongside almost any savory breakfast.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Jamaican:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Scotch bonnet (fruity, fierce heat)</li>
+        <li><span class="n">06</span> Green onion / scallion (in jerk, rice, stews)</li>
+        <li><span class="n">02</span> Allspice / pimento berries (warm, complex)</li>
+        <li><span class="n">07</span> Ginger (fresh & dried — punchy)</li>
+        <li><span class="n">03</span> Fresh thyme (in every savory dish)</li>
+        <li><span class="n">08</span> Soy sauce (in brown stew, jerk marinades)</li>
+        <li><span class="n">04</span> Coconut milk (richness, sweetness)</li>
+        <li><span class="n">09</span> Lime juice (finishing acid)</li>
+        <li><span class="n">05</span> Browning sauce (dark color, savory depth)</li>
+        <li><span class="n">10</span> Habanero-range heat (not for the faint-hearted)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Rum &amp; Cocktails</p>
+            <ol class="plain">
+              <li>Appleton Estate Rum</li>
+              <li>Wray &amp; Nephew Overproof</li>
+              <li>Rum Punch</li>
+              <li>Dark &amp; Stormy</li>
+              <li>Rum &amp; Coconut Water</li>
+              <li>Sorrel Drink with Rum</li>
+              <li>Dragon Stout</li>
+              <li>Rum Old Fashioned</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Blue Mountain Coffee</li>
+              <li>Jamaican Ginger Beer</li>
+              <li>Sorrel</li>
+              <li>Coconut Water</li>
+              <li>Carrot Juice</li>
+              <li>Peanut Punch</li>
+              <li>Sky Juice</li>
+              <li>Irish Moss Drink</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Stouts</p>
+            <ol class="plain">
+              <li>Red Stripe</li>
+              <li>Dragon Stout</li>
+              <li>Guinness Foreign Extra Stout</li>
+              <li>Red Stripe Light</li>
+              <li>Carib</li>
+              <li>Heineken</li>
+              <li>Smirnoff Ice</li>
+              <li>Magners Cider</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portugal — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">IBERIA / ATLANTIC</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Portugal</h1>
+      <p class="subhead">An Age of Discovery cuisine shaped by the sea — bacalhau, grilled sardines, and a convent-born pastry tradition of egg yolks and sugar.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            LISBON · PORTO · ALGARVE · ALENTEJO · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Portugal">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Portuguese cuisine is shaped by the sea, the land, and an extraordinary Age of Discovery that made Portugal one of the most globally connected nations on earth. For two centuries from the 1400s, Portuguese explorers opened trade routes to Africa, India, Brazil, and East Asia — and in doing so, created a culinary exchange of almost unparalleled breadth. Spices from India and the Moluccas, chilis from the Americas, and ingredients from Africa all flowed through Lisbon, transforming Portuguese cooking and leaving Portuguese culinary fingerprints across the globe.</p>
+        <p>At home, the cuisine reflects the country's geography: a long Atlantic coastline defined by fish and seafood; the fertile Minho valley producing wine and corn; the dry Alentejo plains where pigs roam cork oak forests and olive oil flows freely; the Algarve with its Moorish legacy of almonds, figs, and citrus; and Madeira and the Azores with their distinct island traditions. The Moors occupied southern Portugal for centuries, contributing almonds, figs, rice, and a taste for sweetness that persists in the country's exceptional pastry tradition.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Portuguese cooking is honest, generous, and deeply ingredient-focused. Olive oil, garlic, coriander, and bay leaf form the aromatic foundation of virtually everything. The cuisine is one of the great fish-eating traditions in Europe — bacalhau (salt cod) alone has hundreds of recorded preparations, and fresh sardines grilled over charcoal are a near-religious summer experience. Bread is central: corn bread (broa) in the north, wheat rolls in the south, and the bread-thickened açorda soups of the Alentejo.</p>
+        <p>Portugal has one of the world's great pastry traditions, driven by a historical quirk: convents used egg whites to starch nuns' habits, leaving vast surpluses of egg yolks that were turned into elaborate sweets. Pastel de nata, toucinho do céu, ovos moles, and queijadas are all products of this convent confectionery tradition. Wine culture runs equally deep — Port, Madeira, Vinho Verde, and the robust reds of the Douro and Alentejo are among Europe's most distinctive wines.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lunch (almoço) is the main meal — typically eaten between 1pm and 3pm, often a full two-course affair even on weekdays. Dinner (jantar) is lighter and eaten later, around 8–9pm.</li>
+        <li>Bread is placed on the table before ordering in many restaurants — note that it is not free; you will be charged for what you eat. Sending it back is perfectly acceptable.</li>
+        <li>The Portuguese have a deep attachment to bacalhau (salt cod) — said to have 365 recipes, one for every day of the year. It is the true national ingredient, not a mere tradition.</li>
+        <li>Coffee culture is serious: a bica (espresso) is taken standing at the counter, quickly, often multiple times a day. A galão (milky coffee in a glass) is the morning drink.</li>
+        <li>Fado music and food are intertwined — the melancholic national music genre is most authentically experienced in a tasca (small traditional tavern) over wine and petiscos.</li>
+        <li>Sunday lunch is a long family gathering — grilled fish, roast meats, and abundant wine, eaten unhurried over several hours.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Bacalhau (salt cod — the national ingredient)</li>
+        <li><span class="n">06</span> Garlic (used constantly)</li>
+        <li><span class="n">02</span> Olive oil (produced throughout the country)</li>
+        <li><span class="n">07</span> Tomatoes & bell peppers (base of many dishes)</li>
+        <li><span class="n">03</span> Piri piri (African bird's eye chili)</li>
+        <li><span class="n">08</span> Clams & seafood (Atlantic coastline)</li>
+        <li><span class="n">04</span> Chouriço & linguiça (smoked pork sausages)</li>
+        <li><span class="n">09</span> Cornbread & rye bread (north)</li>
+        <li><span class="n">05</span> Presunto (air-cured ham, Alentejo)</li>
+        <li><span class="n">10</span> Eggs (custards, pastries, rich sauces)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Portugal introduced chili peppers, tempura, and many other ingredients and cooking techniques to Japan during the Age of Discovery — the Japanese word 'tempura' is derived from the Portuguese 'têmporas' (Ember Days, when Catholics ate fried food).</li>
+        <li>Pastéis de nata (custard tarts) were invented by monks at the Jerónimos Monastery in Belém, Lisbon, in the early 19th century. The original recipe remains a closely guarded secret held by the Pastéis de Belém bakery, which has been making them since 1837.</li>
+        <li>Portugal produces roughly half of the world's cork supply — the cork oak forests of the Alentejo are also where the iconic black Iberian pigs roam, producing Portugal's finest presunto (cured ham).</li>
+        <li>Vinho Verde ('green wine') is not named for its color but for its youth — it is released young and fresh, often slightly sparkling, and accounts for a significant portion of Portugal's wine production in the Minho region.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bacalhau à Brás</span><span class="dish-tag">salt cod, egg &amp; potato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded salt cod scrambled with eggs, onions, and thin fried potatoes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Francesinha</span><span class="dish-tag">Porto meat &amp; cheese melt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A towering meat and cheese sandwich drenched in a rich beer-tomato sauce, a Porto specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caldo Verde</span><span class="dish-tag">kale &amp; chouriço soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, silky kale soup with slices of smoky chouriço, Portugal's most beloved soup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sardinhas Assadas</span><span class="dish-tag">grilled sardines</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh sardines grilled whole over charcoal, a near-religious summer ritual.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz de Marisco</span><span class="dish-tag">seafood rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A brothy, saffron-tinted rice loaded with mixed shellfish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leitão da Bairrada</span><span class="dish-tag">roast suckling pig</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole suckling pig roasted until the skin turns deeply crackling, a Bairrada specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cataplana</span><span class="dish-tag">clam &amp; pork stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Clams and pork cooked together in a hinged copper vessel, an Algarve classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ameijoas à Bulhão Pato</span><span class="dish-tag">clams, garlic &amp; coriander</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Clams steamed in white wine, garlic, and fresh coriander.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Frango no Churrasco com Piri Piri</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Charcoal-grilled chicken basted with a fiery piri piri sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Açorda Alentejana</span><span class="dish-tag">bread soup, egg &amp; coriander</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick bread soup infused with garlic and coriander, topped with a poached egg.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Custards &amp; Tarts</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastel de Nata</span><span class="dish-tag">iconic custard tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, caramelized custard tart, Portugal's most famous dessert, invented by Lisbon monks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz Doce</span><span class="dish-tag">cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy rice pudding dusted with cinnamon, a staple of Portuguese celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pudim Flan</span><span class="dish-tag">Portuguese caramel custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense caramel custard, richer and denser than the French original.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Toucinho do Céu</span><span class="dish-tag">almond &amp; egg yolk cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, moist almond cake made largely from egg yolks, a convent confectionery classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Cakes &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ovos Moles</span><span class="dish-tag">egg yolk &amp; sugar sweets</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate egg yolk and sugar sweets from Aveiro, often shell-shaped and wafer-wrapped.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bolo de Mel</span><span class="dish-tag">molasses cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced molasses cake from Madeira, traditionally made at Christmas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Queijadas de Sintra</span><span class="dish-tag">cheese &amp; cinnamon tarts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small tarts of fresh cheese and cinnamon, a specialty of Sintra.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Serradura</span><span class="dish-tag">"sawdust pudding"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered dessert of whipped cream and crushed biscuit, named for its sawdust-like texture.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Bar &amp; Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Petiscos</span><span class="dish-tag">Portuguese tapas</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small shared bar snacks, the Portuguese answer to Spanish tapas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastéis de Bacalhau</span><span class="dish-tag">salt cod fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried croquettes of shredded salt cod and mashed potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bifanas</span><span class="dish-tag">pork sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pork slices simmered in a garlicky sauce, served in a simple bread roll.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Prego</span><span class="dish-tag">steak roll with garlic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A garlicky steak sandwich, a classic quick bite at any Portuguese café.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rissóis</span><span class="dish-tag">crescent fried pastries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crescent-shaped fried pastries filled with shrimp or meat, a petiscos staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chouriço à Brasa</span><span class="dish-tag">flamed sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoked sausage set alight at the table in a small clay dish, dramatic and smoky.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pão com Manteiga</span><span class="dish-tag">bread with butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple bread with butter, always on the table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tremoços</span><span class="dish-tag">lupin beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salted, pickled lupin beans, the classic accompaniment to a cold beer.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Portuguese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Piri piri (fiery heat — African influence)</li>
+        <li><span class="n">06</span> Laurel / bay leaf (stocks, rice, soups)</li>
+        <li><span class="n">02</span> Coriander (fresh, on everything in Alentejo)</li>
+        <li><span class="n">07</span> Cumin (Alentejo seasoning)</li>
+        <li><span class="n">03</span> Garlic (raw & fried)</li>
+        <li><span class="n">08</span> Vinegar & lemon (for fish & seafood)</li>
+        <li><span class="n">04</span> Olive oil (fruity, Alentejo & Trás-os-Montes)</li>
+        <li><span class="n">09</span> Cinnamon (in pastries & rice pudding)</li>
+        <li><span class="n">05</span> Smoked paprika (in sausages & stews)</li>
+        <li><span class="n">10</span> Massa de pimentão (red pepper paste)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Vinho Verde</li>
+              <li>Douro Red Wines</li>
+              <li>Port Wine</li>
+              <li>Moscatel de Setúbal</li>
+              <li>Ginjinha</li>
+              <li>Medronho</li>
+              <li>Bagaço</li>
+              <li>Madeira Wine</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Bica</li>
+              <li>Galão</li>
+              <li>Sumol Laranja</li>
+              <li>Água das Pedras</li>
+              <li>Limonada / Laranjada</li>
+              <li>Cevada</li>
+              <li>Compal</li>
+              <li>Chá de Tília</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Super Bock</li>
+              <li>Sagres</li>
+              <li>Cristal</li>
+              <li>Tagus</li>
+              <li>Sovina</li>
+              <li>Letra</li>
+              <li>Dois Corvos</li>
+              <li>Musa</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

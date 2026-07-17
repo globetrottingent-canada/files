@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malaysia &amp; Singapore — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTHEAST ASIA / HAWKER</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Malaysia &<br>Singapore</h1>
+      <p class="subhead">Hawker culture, Nyonya fusion, and the crossroads cooking of Malay, Chinese, and Indian traditions.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PENANG · KUALA LUMPUR · SINGAPORE · MELAKA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Malaysia &amp; Singapore">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Malaysian and Singaporean cuisine together constitute one of the most extraordinary food cultures in the world — a diversity of culinary traditions compressed into a small geography by centuries of trade, migration, and colonial intersection. The Malay Peninsula has been a crossroads of maritime trade for over two thousand years, sitting astride the sea routes connecting China, India, the Arab world, and the spice islands of Southeast Asia. The indigenous Malay culinary tradition — built on rice, coconut milk, sambal, belacan shrimp paste, and the aromatic spice pastes of lemongrass, galangal, and kaffir lime leaf — formed the foundation onto which successive waves of immigrant cooking were layered.</p>
+        <p>Chinese immigration to the Malay Peninsula, intensifying from the 19th century onwards, brought the full breadth of Chinese regional cooking: Hokkien, Cantonese, Teochew, Hainanese, and Hakka communities each established their own food traditions that then creolised with the Malay environment. Hokkien noodle dishes became distinctly Malaysian; Hainanese chicken rice became the national dish of Singapore; the Teochew tradition produced the clear broth bak kut teh. Indian immigration — Tamil workers on British rubber plantations, Punjabi merchants, and South Indian traders — contributed roti canai, banana leaf curry, and the mamak stall tradition. The Peranakan Straits Chinese community, descended from Chinese merchants who married Malay women, developed the nyonya cooking tradition that merges Chinese technique with Malay spice in dishes of remarkable complexity. British colonial rule added the kopitiam coffee shop and the institutional framework of the hawker centre.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The food of Malaysia and Singapore is defined by bold aromatics, the interplay of coconut richness and tamarind sourness, and the extraordinary hawker stall culture that has made eating out the default mode of daily life. Sambal — the chili and belacan paste that appears in dozens of forms — is the universal condiment, applied with generosity to almost everything. Coconut milk softens and enriches curries, rice dishes, and desserts. The dried shrimp and belacan fermented shrimp paste provide the umami depth that makes Malaysian food immediately recognisable — a slightly funky, savoury richness that is the culinary signature of the region.</p>
+        <p>Laksa — the spiced coconut milk noodle soup — is perhaps the most emblematic single dish: curry laksa in Kuala Lumpur (rich, coconut-heavy, with cockles and tofu puffs) and Penang asam laksa (sour, fish-based, with tamarind and torch ginger flower) are not variations of the same dish but completely different preparations sharing only a name. Penang stands alone as the greatest hawker food city on earth — char kway teow stir-fried in a wok over fierce heat until just charred, prawn mee in a prawn-shell broth of deep intensity, and cendol shaved ice with pandan jelly and coconut milk represent some of the finest street food anywhere. Singapore's hawker centres, regulated and permanent, have elevated the tradition to an institution UNESCO felt worthy of protection.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The hawker centre is the great democratic institution of Malaysia and Singapore — open-air or covered food courts where dozens of independent stalls each specialise in a single dish perfected over decades. Eating out at a hawker centre is the daily meal for millions, not a budget compromise.</li>
+        <li>Malaysian meals are not sequential — rice or noodles, protein, vegetables, and sambal arrive simultaneously and are eaten together. At a nasi kandar or nasi campur stall, you point to what you want and it is ladled over rice.</li>
+        <li>Food is the great social equaliser and conversation topic of Malaysia and Singapore — discussing where to eat, which stall is best, and debating the finest chicken rice or laksa in town is a national pastime that crosses ethnic and class lines.</li>
+        <li>Nasi lemak — coconut milk rice with sambal, fried anchovies, peanuts, cucumber, and a hard-boiled egg — is the national breakfast of Malaysia, eaten from banana leaf parcels sold from roadside stalls before dawn across the country.</li>
+        <li>Kopitiam culture — the old-school Chinese coffee shop serving thick, condensed milk kopi, half-boiled eggs, and kaya toast — is a cherished institution in both countries, threatened by but not yet replaced by the international café chains.</li>
+        <li>Penang is regarded by serious food travellers as one of the greatest eating cities on earth — char kway teow, Penang laksa, asam laksa, cendol, and Penang prawn mee are each considered the finest versions of their dish, and Penang hawkers defend this status with complete conviction.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Coconut milk</li>
+        <li><span class="n">06</span> Kaffir lime leaf</li>
+        <li><span class="n">02</span> Sambal</li>
+        <li><span class="n">07</span> Pandan</li>
+        <li><span class="n">03</span> Belacan</li>
+        <li><span class="n">08</span> Palm sugar</li>
+        <li><span class="n">04</span> Lemongrass</li>
+        <li><span class="n">09</span> Dried shrimp</li>
+        <li><span class="n">05</span> Galangal</li>
+        <li><span class="n">10</span> Tamarind</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Singapore's hawker culture was inscribed on UNESCO's Intangible Cultural Heritage list in 2020 — the first street food culture to receive this recognition. Singapore's hawker centres were created in the 1970s when the government resettled street food vendors from the roadside into managed, hygienic centres. What began as a public health measure became one of the world's most celebrated food institutions, where Michelin-starred stalls charge less than five dollars a plate.</li>
+        <li>Hainanese chicken rice — the dish considered Singapore's national food — was brought by immigrants from Hainan island in southern China and transformed by the Hainanese community in Singapore into something distinct from the Chinese original. The rice is cooked in chicken fat and stock, the chicken poached to just-cooked silkiness, and served with three sauces: ginger, chili, and dark soy. Hawker Tian Tian at Maxwell Food Centre has had a queue every day for decades.</li>
+        <li>Penang was a British colonial trading port from 1786 and the meeting point of Malay, Chinese, Indian, Thai, and British culinary traditions for over two centuries. The Straits-born Peranakan community — descendants of Chinese merchants who married local Malay women — developed the nyonya cooking tradition: a fusion of Chinese technique with Malay spices and ingredients that produced dishes like laksa lemak, ayam pongteh, and kueh swee that are found nowhere else in the world.</li>
+        <li>The durian — the famously pungent, custard-fleshed tropical fruit banned from Singapore's MRT and most hotels — is considered the King of Fruits across Malaysia and Singapore with a devotion that approaches religious fervour. Durian season in June and July brings Malaysians to the orchards in their thousands; specific varieties like Musang King and D24 command extraordinary prices; and the smell, described by outsiders as combining onions, turpentine, and gym socks, is to devotees the most complex and rewarding fragrance in the fruit world.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Hawker Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nasi Lemak</span><span class="dish-tag">national breakfast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Coconut milk rice served with sambal, fried anchovies, peanuts, cucumber, and a hard-boiled egg — Malaysia's national breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hainanese Chicken Rice</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in chicken fat and stock, paired with silky poached chicken and ginger, chili, and dark soy sauces.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laksa</span><span class="dish-tag">regional variants differ</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced coconut milk noodle soup with wildly different regional forms, from rich KL curry laksa to sour Penang asam laksa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Char Kway Teow</span><span class="dish-tag">wok-charred noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flat rice noodles stir-fried over fierce heat with prawns, egg, and dark soy until lightly charred.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rendang</span><span class="dish-tag">slow-cooked in coconut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef or chicken slow-cooked in coconut milk and spices until the sauce reduces to a thick, caramelized coating.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nasi Kandar</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice served with a choice of curries and side dishes ladled generously over the top, a Penang specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roti Canai</span><span class="dish-tag">flaky flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, layered flatbread cooked on a griddle, torn and dipped in curry — an Indian-Malaysian breakfast staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bak Kut Teh</span><span class="dish-tag">herbal pork rib soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork ribs simmered in a fragrant herbal broth, a Teochew-origin dish beloved across the region.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Satay</span><span class="dish-tag">grilled skewers, peanut sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered, marinated meat grilled over charcoal and served with a rich peanut dipping sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chilli Crab</span><span class="dish-tag">Singapore icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole crab cooked in a thick, sweet-spicy tomato and chili sauce, one of Singapore's most iconic dishes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cendol</span><span class="dish-tag">shaved ice dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shaved ice topped with pandan jelly noodles, coconut milk, and palm sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kueh Lapis</span><span class="dish-tag">layered steamed cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A colorful, multi-layered steamed cake with a soft, dense texture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ondeh Ondeh</span><span class="dish-tag">palm sugar rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pandan-flavored glutinous rice balls filled with liquid palm sugar and rolled in grated coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tau Foo Fah</span><span class="dish-tag">silken tofu dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm, silky soybean pudding served with a light sugar syrup.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Durian Pengat</span><span class="dish-tag">durian coconut dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, creamy dessert of durian pulp simmered with coconut milk and palm sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bubur Cha Cha</span><span class="dish-tag">sweet potato coconut stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm coconut milk stew of sweet potato, taro, and sago pearls.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pandan Cake</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, fragrant chiffon cake flavored and colored with pandan leaf.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ice Kacang</span><span class="dish-tag">shaved ice, red beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shaved ice piled with red beans, sweet corn, jelly, and colorful syrups.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Kopitiam &amp; Street</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roti Canai</span><span class="dish-tag">flaky flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, layered flatbread cooked on a griddle, torn and dipped in curry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Popiah</span><span class="dish-tag">fresh spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh, unfried spring rolls wrapped around turnip, egg, and shrimp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Curry Puff</span><span class="dish-tag">fried curry pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fried or baked pastry filled with spiced curried potato and chicken.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rojak</span><span class="dish-tag">fruit &amp; vegetable salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy fruit and vegetable salad tossed in a thick, sweet shrimp-paste dressing.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wonton Mee</span><span class="dish-tag">noodles with dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin egg noodles served with wonton dumplings and char siu pork in a light broth or dry with sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Murtabak</span><span class="dish-tag">stuffed griddle bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stuffed, folded flatbread filled with minced meat, egg, and onion, griddled until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Otak-Otak</span><span class="dish-tag">grilled fish paste</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced fish paste wrapped in banana leaf and grilled over charcoal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaya Toast &amp; Eggs</span><span class="dish-tag">coconut jam toast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Toasted bread spread with coconut-egg jam and butter, served with soft-boiled eggs and kopi.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Malaysian or Singaporean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Belacan</li>
+        <li><span class="n">06</span> Tamarind</li>
+        <li><span class="n">02</span> Sambal</li>
+        <li><span class="n">07</span> Galangal</li>
+        <li><span class="n">03</span> Pandan</li>
+        <li><span class="n">08</span> Palm sugar</li>
+        <li><span class="n">04</span> Coconut milk</li>
+        <li><span class="n">09</span> Kaffir lime</li>
+        <li><span class="n">05</span> Lemongrass</li>
+        <li><span class="n">10</span> Dried shrimp</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Beer &amp; Spirits</p>
+            <ol class="plain">
+              <li>Tiger Beer</li>
+              <li>Anchor Beer</li>
+              <li>Carlsberg Malaysia</li>
+              <li>Heineken SG</li>
+              <li>Somersby Cider</li>
+              <li>Archipelago Brewing</li>
+              <li>Brewerkz</li>
+              <li>1925 Brewing</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Kopi &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kopi</li>
+              <li>Teh Tarik</li>
+              <li>Bandung</li>
+              <li>Cendol Drink</li>
+              <li>Sugarcane Juice</li>
+              <li>Milo Dinosaur</li>
+              <li>Soya Bean Milk</li>
+              <li>Air Sirap</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Tiger</li>
+              <li>Anchor</li>
+              <li>Carlsberg</li>
+              <li>Heineken</li>
+              <li>Guinness Malaysia</li>
+              <li>Kronenbourg</li>
+              <li>Estrella Damm</li>
+              <li>Erdinger</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

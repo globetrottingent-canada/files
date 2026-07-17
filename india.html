@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 35 / 68 · Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">India</h1>
+      <p class="subhead">Spice mastery and regional diversity — less a single cuisine than a subcontinent of food traditions.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            INDUS VALLEY · SUBCONTINENT · SPICE ROUTE · INDUS VALLEY ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of India">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Indian cuisine is not a single cuisine but a continent of food traditions — a subcontinent of 1.4 billion people, 22 official languages, and extraordinary geographical variation from Himalayan highlands to tropical coastline, whose food reflects every dimension of that diversity. Its roots reach back 5,000 years to the Indus Valley Civilization, and the cuisine has been shaped by successive waves of influence: the Vedic traditions that established the spiritual relationship between food and the self; the Mughal empire that brought Persian cooking, rich meat dishes, and biryani to northern India; Arab traders who brought saffron and dried fruits; Portuguese colonizers who introduced chili, tomatoes, and vinegar to Goa; and the British Raj that both absorbed Indian spice culture and imposed its own institutional simplifications.</p>
+        <p>Regional variation is the defining truth of Indian food — the creamy, dairy-rich, wheat-based cooking of the Punjab has almost nothing in common with the sour, fermented, rice-based cooking of Tamil Nadu, the fish-and-mustard traditions of Bengal, the vinegar-marinated pork dishes of Goa, or the pure vegetarian Jain cooking of Gujarat. To speak of Indian food as a single entity is roughly as accurate as speaking of European food as one thing.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Indian cooking is defined by its extraordinary mastery of spice — not merely heat, but the layering of dozens of aromatic compounds to create complexity that unfolds through a meal. The tadka — the technique of blooming whole spices in hot ghee or oil before adding other ingredients — is the foundation of flavor in most Indian cooking. Ghee, the clarified butter revered in Ayurvedic tradition, carries flavors and adds a deep, nutty richness. Dal — lentils in all their forms — is the great democratic food of India, eaten daily from the richest households to the humblest.</p>
+        <p>The north favors bread — roti, naan, paratha — and rich, creamy sauces. The south favors rice, fermented batters, and sharp, tamarind-soured preparations. The east uses mustard oil and fish. The west ranges from the fiery vindaloos of Goa to the delicate, purely vegetarian thalis of Gujarat. Street food culture is extraordinary: chaat, vada pav, pani puri, and samosas are as technically specific and beloved as any restaurant dish. India's sweet tradition — mithai — is its own universe of milk-based, nut-studded, syrup-soaked confections.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Indian meals are served all at once on a thali — a round tray with small bowls of dal, vegetables, chutneys, and rice or bread, allowing every flavor to be tasted together or separately.</li>
+        <li>Eating with the right hand is traditional across much of India — bread is torn and used to scoop, and the act of touching food with the hand is considered to connect the eater with what they consume.</li>
+        <li>Vegetarianism is far more widespread in India than anywhere else on earth — around 30-40% of the population eats no meat, driven by Hindu, Jain, and Buddhist traditions. Entire states have large vegetarian majorities.</li>
+        <li>Chai is not merely a drink but a social ritual — tea stalls exist on every corner, and pausing for a clay cup of milky spiced tea is a reason to stop, talk, and connect.</li>
+        <li>The concept of 'curry' as a single dish does not exist in India — it is a British colonial simplification. Indian cooking distinguishes between hundreds of distinct preparations: sabzi, dal, korma, rogan josh, biryani, sambar, rasam.</li>
+        <li>Diwali, Eid, Holi, and Pongal each bring specific festival foods — mithai sweets, biryani, gujiya, and pongal rice are as tied to their occasions as Christmas pudding is to December.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Turmeric</li>
+        <li><span class="n">06</span> Ghee</li>
+        <li><span class="n">02</span> Cumin</li>
+        <li><span class="n">07</span> Mustard seeds</li>
+        <li><span class="n">03</span> Coriander</li>
+        <li><span class="n">08</span> Curry leaves</li>
+        <li><span class="n">04</span> Cardamom</li>
+        <li><span class="n">09</span> Tamarind</li>
+        <li><span class="n">05</span> Garam masala</li>
+        <li><span class="n">10</span> Ginger & garlic paste</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>India is the world's largest producer and consumer of spices — it grows over 70 different spice varieties and accounts for roughly 75% of global spice production. The spice trade was the primary motivation for European exploration of sea routes to Asia, making Indian spices arguably the catalyst for the Age of Discovery.</li>
+        <li>Chicken tikka masala — one of Britain's most popular dishes — was almost certainly created in Britain by South Asian immigrant cooks, not in India. It does not exist as a traditional dish in any Indian regional cuisine.</li>
+        <li>India has the world's largest vegetarian population by a significant margin — an estimated 350-400 million people who eat no meat. This has driven the development of one of the world's most sophisticated vegetarian culinary traditions, from the thalis of Gujarat to the dosas of Tamil Nadu.</li>
+        <li>Black pepper — the world's most traded spice — originates from the Kerala coast of southwest India, where it has been cultivated for over 3,000 years. Roman traders paid for it in gold; it was so valuable in medieval Europe that it was used as currency and given as gifts to royalty.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The curries, sweets, and drinks that define the everyday Indian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Biryani</span><span class="dish-tag">Spiced layered rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fragrant rice layered and slow-cooked with spiced meat or vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Butter Chicken</span><span class="dish-tag">Creamy tomato chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken simmered in a rich, buttery tomato and cream sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dal Makhani</span><span class="dish-tag">Buttery black lentils</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Black lentils slow-cooked with butter and cream until velvety.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rogan Josh</span><span class="dish-tag">Kashmiri lamb curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deep red, aromatic lamb curry from Kashmir, coloured with Kashmiri chili.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Masala Dosa</span><span class="dish-tag">Filled rice crepe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp fermented rice and lentil crepe filled with spiced potato.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palak Paneer</span><span class="dish-tag">Spinach &amp; cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh cheese cubes simmered in a smooth spiced spinach purée.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chole Bhature</span><span class="dish-tag">Chickpea curry &amp; bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced chickpea curry served with fried, fluffy leavened bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sambar</span><span class="dish-tag">Tamarind lentil stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, tamarind-soured lentil and vegetable stew from South India.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hyderabadi Dum Biryani</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked, sealed-pot biryani layered with marinated meat and fragrant rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Curry</span><span class="dish-tag">Regional fish curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish simmered in a regional curry base, varying widely from Bengal to Goa.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gulab Jamun</span><span class="dish-tag">Fried milk balls, syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried milk dumplings soaked in rose-scented sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kheer</span><span class="dish-tag">Rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fragrant rice pudding simmered with milk, cardamom, and nuts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jalebi</span><span class="dish-tag">Crispy syrup spirals</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried batter spirals soaked in saffron sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rasmalai</span><span class="dish-tag">Cheese dumplings, cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft cheese dumplings soaked in sweetened, cardamom-scented milk.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halwa</span><span class="dish-tag">Dense sweet pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, ghee-rich sweet pudding made from semolina, carrot, or lentils.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ladoo</span><span class="dish-tag">Sweet flour balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Round sweets made from flour, ghee, and sugar, formed into balls.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kulfi</span><span class="dish-tag">Dense frozen dairy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, slow-frozen Indian ice cream, often pistachio or mango flavoured.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gajar ka Halwa</span><span class="dish-tag">Carrot pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grated carrot slow-cooked in milk and ghee until dense and sweet.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samosa</span><span class="dish-tag">Fried spiced pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp fried pastry triangle filled with spiced potato and peas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pakora</span><span class="dish-tag">Fried vegetable fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vegetables dipped in spiced chickpea batter and deep-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pani Puri</span><span class="dish-tag">Crisp shells, tangy water</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp hollow puris filled with spiced tamarind water and potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chaat</span><span class="dish-tag">Tangy street snack mix</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, spiced mix of fried dough, potato, chutneys, and yogurt.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vada Pav</span><span class="dish-tag">Spiced potato bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced fried potato patty served in a bread roll, Mumbai's iconic snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aloo Tikki</span><span class="dish-tag">Spiced potato patty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp-fried spiced potato patty, often topped with chutneys and yogurt.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Idli &amp; Chutney</span><span class="dish-tag">Steamed rice cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft steamed rice and lentil cakes served with coconut chutney.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pav Bhaji</span><span class="dish-tag">Spiced veg mash &amp; bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced mashed vegetable curry served with buttered bread rolls.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Indian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Turmeric</li>
+        <li><span class="n">06</span> Ghee</li>
+        <li><span class="n">02</span> Cumin</li>
+        <li><span class="n">07</span> Tamarind</li>
+        <li><span class="n">03</span> Garam masala</li>
+        <li><span class="n">08</span> Asafoetida</li>
+        <li><span class="n">04</span> Mustard seeds</li>
+        <li><span class="n">09</span> Green cardamom</li>
+        <li><span class="n">05</span> Curry leaves</li>
+        <li><span class="n">10</span> Kashmiri chili</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Arak</p>
+            <ol class="plain">
+              <li>Old Monk Rum</li>
+              <li>Royal Stag Whisky</li>
+              <li>Kingfisher Beer</li>
+              <li>Sula Wines</li>
+              <li>Feni</li>
+              <li>Toddy</li>
+              <li>Mahua</li>
+              <li>Imperial Blue</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Masala Chai</li>
+              <li>Lassi</li>
+              <li>Nimbu Pani</li>
+              <li>Thandai</li>
+              <li>Aam Panna</li>
+              <li>Buttermilk</li>
+              <li>Rose Sharbat</li>
+              <li>Sugarcane juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Kingfisher</li>
+              <li>Tuborg India</li>
+              <li>Haywards 5000</li>
+              <li>Knock Out</li>
+              <li>Bira 91 White</li>
+              <li>Simba Lager</li>
+              <li>White Owl Spike</li>
+              <li>Gateway Brewing</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

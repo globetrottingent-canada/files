@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">EAST ASIA / WASHOKU</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Japan</h1>
+      <p class="subhead">A codified, philosophically developed food culture built on seasonality, precision, and reverence for natural ingredients.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HONSHU · KYOTO · TOKYO · OSAKA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Japan">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Japanese cuisine is one of the most refined, codified, and philosophically developed food cultures in the world — a tradition shaped by geography, Buddhism, aesthetics, and a deep reverence for natural ingredients. Japan's island geography provided an extraordinary abundance of seafood, and the Buddhist prohibition on meat-eating for much of its history drove the development of a plant and fish based cuisine of remarkable sophistication. Rice, introduced from China around 300 BCE, became the cultural and caloric center of the diet and remains so today.</p>
+        <p>Chinese influence was profound and formative — Buddhism, writing, and many cooking techniques arrived from the continent, including the use of soy sauce, tofu, and noodles. Portuguese missionaries in the 16th century introduced tempura, bread, and sugar confectionery. The Meiji Restoration of 1868 opened Japan to Western influence: beef eating — banned for over a millennium — was encouraged by the Emperor himself, leading to the development of distinctly Japanese Western-influenced dishes like tonkatsu, curry rice, and hamburger steak. These yoshoku dishes are now as Japanese as sushi.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Japanese cooking is governed by a philosophy of restraint, precision, and respect for ingredients. The concept of umami — the fifth taste, identified and named by Japanese chemist Kikunae Ikeda in 1908 — was born in Japanese cooking, where dashi broth (made from kombu seaweed and dried bonito) delivers a deep, savory richness that underpins almost every dish. Seasonality is not a preference but a discipline: ingredients eaten at their shun peak are considered superior in flavor and virtue.</p>
+        <p>The cuisine spans extremes: the exquisite minimalism of kaiseki, where each small course celebrates a single seasonal ingredient through precise technique; the boisterous communality of ramen shops and izakayas where salarymen eat and drink after work; the reverent silence of a sushi counter where a master chef's thirty-year training is delivered in a single piece. Japan has more Michelin-starred restaurants than any other country, and simultaneously some of the world's most democratic and delicious street and convenience food.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Meals are eaten with chopsticks and the bowl lifted to the mouth — it is polite to slurp noodles and soup audibly, signaling appreciation to the cook.</li>
+        <li>Itadakimasu is said before eating and gochisosama deshita after — both express gratitude, to the food, the cook, and the living things that gave their life for the meal.</li>
+        <li>Rice is served plain alongside dishes, not mixed in — seasoning rice at the table is unusual. A meal without rice is considered incomplete by many Japanese.</li>
+        <li>Seasonality is fundamental — shun refers to the peak season of an ingredient, and eating foods at their shun is considered both better tasting and more virtuous.</li>
+        <li>Japan has the highest density of Michelin-starred restaurants of any country on earth, including more three-star restaurants than France.</li>
+        <li>Food presentation is an art form — the arrangement, color, and vessel of a dish are considered as important as its flavor. Ugly food is considered to taste worse.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dashi</li>
+        <li><span class="n">06</span> Sake</li>
+        <li><span class="n">02</span> Soy sauce</li>
+        <li><span class="n">07</span> Wasabi</li>
+        <li><span class="n">03</span> Miso</li>
+        <li><span class="n">08</span> Nori</li>
+        <li><span class="n">04</span> Mirin</li>
+        <li><span class="n">09</span> Tofu</li>
+        <li><span class="n">05</span> Rice</li>
+        <li><span class="n">10</span> Yuzu</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Japan introduced tempura — the technique of battering and deep-frying vegetables and seafood — directly from Portuguese missionaries in the 16th century. The word derives from the Portuguese 'têmporas.' Japan then perfected the technique far beyond its origins.</li>
+        <li>Ramen, now considered quintessentially Japanese, was introduced from China in the late 19th century. Each of Japan's regions has developed a radically distinct regional style — Sapporo's miso, Hakata's tonkotsu, Tokyo's shoyu, Kyoto's shio — reflecting local ingredients and tastes.</li>
+        <li>Japan consumes roughly 80% of the world's bluefin tuna supply. The single tuna auction at Toyosu Market in Tokyo sets world records annually — a single bluefin sold for $3.1 million in 2019.</li>
+        <li>Washoku — traditional Japanese cuisine — was inscribed on UNESCO's Intangible Cultural Heritage list in 2013, recognized for its expression of respect for nature, use of diverse fresh ingredients, nutritional balance, and connection to the Japanese New Year.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sushi</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vinegared rice paired with raw fish, shellfish, or vegetables — Japan's most globally recognized dish, requiring years of training to master.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ramen</span><span class="dish-tag">regional broths vary</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wheat noodles in a savory broth — shoyu, miso, tonkotsu, or shio — each region developing its own signature style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tonkatsu</span><span class="dish-tag">breaded pork cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A breaded, deep-fried pork cutlet, one of Japan's beloved yoshoku (Western-influenced) dishes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tempura</span><span class="dish-tag">Portuguese-origin technique</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vegetables and seafood battered and deep-fried to a light, crisp finish, perfected from a 16th-century Portuguese technique.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sukiyaki</span><span class="dish-tag">hot pot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simmered hot pot of thinly sliced beef, vegetables, and tofu in a sweet-savory soy broth, often dipped in raw egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yakitori</span><span class="dish-tag">grilled skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bite-sized chicken pieces grilled on skewers over charcoal, a staple of izakaya drinking culture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shabu-shabu</span><span class="dish-tag">hot pot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of meat and vegetables swished briefly through simmering broth at the table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Unagi no Kabayaki</span><span class="dish-tag">grilled eel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Freshwater eel split, grilled, and basted repeatedly in a sweet soy glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaiseki</span><span class="dish-tag">multi-course tasting</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An elaborate, seasonally driven multi-course meal built around meticulous technique and presentation.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soba / Udon</span><span class="dish-tag">buckwheat &amp; wheat noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Buckwheat or thick wheat noodles served hot in broth or cold with dipping sauce.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mochi</span><span class="dish-tag">pounded rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Glutinous rice pounded into a chewy, elastic cake, eaten plain or filled with sweet red bean paste.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Matcha Ice Cream</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ice cream flavored with powdered green tea, prized for its bittersweet, earthy balance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dorayaki</span><span class="dish-tag">red bean pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two small pancakes sandwiching a filling of sweet red bean paste.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Taiyaki</span><span class="dish-tag">fish-shaped cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fish-shaped cake, typically filled with sweet red bean paste, sold hot from street stalls.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Warabi Mochi</span><span class="dish-tag">bracken starch jelly</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A jelly-like mochi made from bracken starch, dusted with sweet soybean flour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Anmitsu</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dessert of cubed agar jelly, fruit, and sweet red bean paste, drizzled with syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kakigori</span><span class="dish-tag">shaved ice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Finely shaved ice topped with flavored syrups, a beloved summer treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wagashi</span><span class="dish-tag">traditional confections</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An umbrella term for delicate, artfully shaped traditional sweets often served with tea.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Onigiri</span><span class="dish-tag">rice ball</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hand-shaped rice ball, often wrapped in nori and filled with pickled plum, tuna, or salmon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Takoyaki</span><span class="dish-tag">octopus balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ball-shaped batter snacks filled with diced octopus, grilled in a special molded pan.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Okonomiyaki</span><span class="dish-tag">savory pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory cabbage pancake topped with sauce, mayonnaise, and bonito flakes, cooked on a griddle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Edamame</span><span class="dish-tag">salted soybeans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Young soybeans boiled in the pod and lightly salted, a ubiquitous izakaya starter.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Small Dishes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gyoza</span><span class="dish-tag">pan-fried dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pan-fried dumplings filled with seasoned ground pork and cabbage, crisp on one side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karaage</span><span class="dish-tag">Japanese fried chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bite-sized chicken marinated in soy and ginger, then lightly floured and deep-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yakisoba</span><span class="dish-tag">fried noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stir-fried wheat noodles with vegetables and meat in a sweet-savory sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamagoyaki</span><span class="dish-tag">rolled omelette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered, lightly sweetened rolled omelette, sliced and served as a side or in bento boxes.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Japanese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dashi</li>
+        <li><span class="n">06</span> Rice vinegar</li>
+        <li><span class="n">02</span> Soy sauce</li>
+        <li><span class="n">07</span> Yuzu</li>
+        <li><span class="n">03</span> Mirin</li>
+        <li><span class="n">08</span> Ginger</li>
+        <li><span class="n">04</span> Sake</li>
+        <li><span class="n">09</span> Wasabi</li>
+        <li><span class="n">05</span> Sesame oil</li>
+        <li><span class="n">10</span> Shichimi togarashi</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Sake, Whisky &amp; Spirits</p>
+            <ol class="plain">
+              <li>Sake</li>
+              <li>Shochu</li>
+              <li>Whisky — Yamazaki, Nikka</li>
+              <li>Umeshu</li>
+              <li>Awamori</li>
+              <li>Chuhai</li>
+              <li>Yuzu Sour</li>
+              <li>Midori Melon Liqueur</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Matcha</li>
+              <li>Hojicha</li>
+              <li>Sencha</li>
+              <li>Mugicha</li>
+              <li>Calpico</li>
+              <li>Ramune</li>
+              <li>Amazake</li>
+              <li>Yuzu Juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Sapporo</li>
+              <li>Asahi Super Dry</li>
+              <li>Kirin Ichiban</li>
+              <li>Suntory Premium Malt's</li>
+              <li>Yona Yona Ale</li>
+              <li>Hitachino Nest White Ale</li>
+              <li>Coedo Beniaka</li>
+              <li>Kirin Heartland</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morocco — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">NORTH AFRICA / MAGHREB</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Morocco</h1>
+      <p class="subhead">A layered meeting of Amazigh, Arab, and Andalusian traditions — patient, spiced, and built on the tagine and the couscous table.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ATLAS MOUNTAINS · FEZ · MARRAKECH · SAHARA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Morocco">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Moroccan cuisine is one of the most complex, layered, and historically rich food cultures in the world — a meeting point of indigenous Amazigh (Berber) tradition, Arab culinary sophistication, Andalusian refinement, and sub-Saharan African ingredients, forged over fifteen centuries at the western gateway between Europe and Africa. The Amazigh peoples of the Atlas Mountains and Saharan fringe contributed the foundational techniques: tagine slow-cooking in earthenware, couscous from hand-rolled semolina, the use of argan and olive oils, and the preservation methods — salt-curing, drying, fermenting — that allowed food to survive in harsh climates. These indigenous traditions remain the backbone of Moroccan cooking today.</p>
+        <p>Arab conquest in the 7th and 8th centuries brought spices from the East — cumin, coriander, saffron, ginger, and the complex blending philosophy that would eventually produce ras el hanout — along with sugar, almonds, and dried fruits that transformed the sweet-savoury combinations now characteristic of Moroccan tagines. The Arab expulsion from Andalusia in 1492 brought a wave of Moorish refugees who settled in Fez, Tetouan, and Rabat, importing the refined palace cuisine of Granada and Seville — elaborate pastries, sophisticated confectionery, and the artistic presentation traditions that define Fassi cooking. Sephardic Jewish communities expelled from Spain at the same moment added their own culinary layer, particularly in the use of preserved vegetables and distinctive spice combinations.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Moroccan cooking is defined by patience, layering, and the bold interplay of sweet and savoury within a single dish. The tagine — named for the conical earthenware vessel in which it is cooked — is the emblematic preparation: meat or fish slow-cooked with vegetables, preserved lemons, olives, spices, and dried fruits until the flavours meld into something that no individual ingredient could produce alone. The long, slow cooking is not convenience but philosophy — the tagine rewards time in a way that no quick technique can replicate. Ras el hanout, the master spice blend of the Moroccan kitchen, can contain dozens of ingredients including rose petals, dried lavender, and aged spices, and its complexity underpins the cuisine's distinctive aromatic signature.</p>
+        <p>Couscous — hand-rolled semolina steamed three times above the broth it will be served with — is the dish of communal life, eaten every Friday across Morocco and at every celebration. Bastilla, the extraordinary sweet-savoury pigeon or chicken pie encased in layers of warqa pastry and dusted with powdered sugar and cinnamon, represents the height of Moroccan culinary ambition — a dish of genuine technical difficulty that announces a host's seriousness. Preserved lemons and cured olives appear in almost every savoury preparation, their fermented depth cutting through the richness of slow-cooked meat. Mint tea — sweet, fragrant, poured from height — punctuates every social encounter from morning to midnight.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Moroccan meals begin with bread — khobz, the round daily loaf, arrives before anything else and is used throughout to scoop, dip, and eat. Cutlery is secondary to bread at a traditional table.</li>
+        <li>Eating from a shared communal tagine or couscous dish is the norm — everyone eats from the portion of the dish nearest to them, working from the edge inward, never reaching across.</li>
+        <li>Mint tea is not merely a drink but a ritual of hospitality — poured from height to create foam, served in three glasses (said to represent life, love, and death), and refusing a glass is genuinely impolite.</li>
+        <li>Friday couscous is a near-universal tradition — steamed semolina with slow-cooked vegetables and meat, eaten after the midday prayer, is the weekly anchor meal in Moroccan family life.</li>
+        <li>The bastilla — a pigeon or chicken pie of extraordinary complexity — is the centrepiece of formal celebration meals, served before the main course as a statement of hospitality and culinary ambition.</li>
+        <li>Ramadan transforms the food culture completely — the iftar breaking of the fast begins with dates, harira soup, and chebakia pastries, and the night fills with special foods eaten only in this month.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Ras el hanout</li>
+        <li><span class="n">06</span> Cumin</li>
+        <li><span class="n">02</span> Preserved lemons</li>
+        <li><span class="n">07</span> Cinnamon</li>
+        <li><span class="n">03</span> Argan oil</li>
+        <li><span class="n">08</span> Medjool dates</li>
+        <li><span class="n">04</span> Harissa</li>
+        <li><span class="n">09</span> Couscous</li>
+        <li><span class="n">05</span> Saffron</li>
+        <li><span class="n">10</span> Chermoula</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ras el hanout — Morocco's most celebrated spice blend — can contain anywhere from a dozen to over a hundred individual spices, depending on the spice merchant. The name means 'head of the shop' in Arabic, referring to the best spices a merchant has to offer. Each merchant has their own closely guarded recipe, and the blend varies by region, season, and intended dish.</li>
+        <li>Morocco is the world's largest producer of argan oil, pressed from the kernels of the argan tree that grows almost exclusively in the Souss-Massa region of southwestern Morocco. Argan oil is used in Moroccan cooking — particularly in amlou, a dip of argan oil, almond paste, and honey — and has become one of the world's most expensive food and cosmetic oils.</li>
+        <li>The city of Fez was once considered the gastronomic capital of the Arab world, and its palace cuisine — refined over centuries under the Marinid and later dynasties — is still considered the most sophisticated expression of Moroccan cooking. Fassi cuisine is characterized by its extraordinary complexity of spicing, its use of preserved lemons and olives, and its elaborate pastry tradition.</li>
+        <li>Preserved lemons — lemons cured in salt for weeks or months until the skin softens and ferments — are one of the most distinctive flavour agents in Moroccan cooking, used in tagines, salads, and sauces to add a concentrated sour, almost floral citrus depth that fresh lemon cannot replicate. They are made at home across Morocco and considered a kitchen staple.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tagines &amp; Feasts</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lamb Tagine with Prunes</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-cooked with prunes and warm spices until the sauce thickens into a sweet-savoury glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Tagine</span><span class="dish-tag">with preserved lemon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken slow-cooked with preserved lemon and olives, a classic expression of the tagine's sour-savoury balance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Couscous Royale</span><span class="dish-tag">steamed semolina, meats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-rolled steamed couscous served with a generous assortment of slow-cooked meats and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bastilla</span><span class="dish-tag">sweet-savoury pigeon pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pigeon or chicken pie encased in warqa pastry, dusted with sugar and cinnamon — Morocco's most ambitious dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mrouzia</span><span class="dish-tag">lamb with honey &amp; almonds</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-cooked with honey, almonds, and warm spices, traditionally served at celebrations.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mechoui</span><span class="dish-tag">whole roasted lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole lamb slow-roasted until falling-apart tender, a centerpiece dish for large gatherings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kefta Tagine</span><span class="dish-tag">spiced meatballs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced ground meatballs simmered in a tomato sauce, often finished with a cracked egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Chermoula</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish marinated in chermoula — a bright herb and spice paste — then grilled or baked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Harira</span><span class="dish-tag">tomato lentil soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty tomato, lentil, and chickpea soup, the traditional dish for breaking the Ramadan fast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rfissa</span><span class="dish-tag">shredded pastry &amp; chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded flatbread layered with chicken and lentils in a fenugreek-spiced sauce.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chebakia</span><span class="dish-tag">honey sesame pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flower-shaped fried dough coated in honey and sesame seeds, a Ramadan favorite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Msemen</span><span class="dish-tag">layered flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Square, layered griddled flatbread, flaky and often served with honey.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sellou</span><span class="dish-tag">toasted flour sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, energy-rich mix of toasted flour, almonds, sesame, and spices, eaten by the spoonful.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaab el Ghazal</span><span class="dish-tag">"gazelle horns"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crescent-shaped almond paste-filled pastries, delicately dusted with powdered sugar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Briouats aux Amandes</span><span class="dish-tag">almond pastry triangles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried pastry triangles filled with sweetened almond paste.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rghaif</span><span class="dish-tag">folded griddle bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Folded, flaky griddled bread, often filled or served with honey and butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sfenj</span><span class="dish-tag">Moroccan doughnuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ring-shaped fried dough, crisp and airy, sold hot from street stalls in the morning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Amlou</span><span class="dish-tag">argan almond honey dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick dip of argan oil, roasted almonds, and honey, spread on bread for breakfast.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zaalouk</span><span class="dish-tag">eggplant tomato dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smoky, garlicky cooked eggplant and tomato dip, served with bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Taktouka</span><span class="dish-tag">pepper tomato salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooked salad of roasted peppers and tomatoes, seasoned with garlic and cumin.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Msemen</span><span class="dish-tag">layered flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Square, layered griddled flatbread, flaky and often served with honey.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Harcha</span><span class="dish-tag">semolina griddle bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, slightly crumbly semolina bread cooked on a griddle, often eaten with honey and cheese.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Grills &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kefta Brochettes</span><span class="dish-tag">grilled meatball skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered spiced ground meat grilled over charcoal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Makouda</span><span class="dish-tag">fried potato cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced fried potato patties, a popular street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Merguez</span><span class="dish-tag">spiced lamb sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, spicy lamb or beef sausage, grilled and often served in a sandwich.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khobz with Olive Oil</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The daily round loaf, torn and dipped simply in good olive oil.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Moroccan:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Ras el hanout</li>
+        <li><span class="n">06</span> Cinnamon & cumin</li>
+        <li><span class="n">02</span> Preserved lemon</li>
+        <li><span class="n">07</span> Orange blossom water</li>
+        <li><span class="n">03</span> Harissa</li>
+        <li><span class="n">08</span> Argan oil</li>
+        <li><span class="n">04</span> Chermoula</li>
+        <li><span class="n">09</span> Dried fruits & almonds</li>
+        <li><span class="n">05</span> Saffron</li>
+        <li><span class="n">10</span> Fresh coriander</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Moroccan Merlot</li>
+              <li>Moroccan Syrah</li>
+              <li>Gris de Boulaouane</li>
+              <li>Speciale Flag Beer</li>
+              <li>Stork Beer</li>
+              <li>Casablanca Beer</li>
+              <li>Flag Spéciale</li>
+              <li>Moroccan Rosé</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Atay Mint Tea</li>
+              <li>Argan Milk</li>
+              <li>Jus d'Orange Frais</li>
+              <li>Amlou Shake</li>
+              <li>Avocado Juice</li>
+              <li>Tamarind Water</li>
+              <li>Rose Water Drink</li>
+              <li>Harira Soup</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Casablanca</li>
+              <li>Flag Spéciale</li>
+              <li>Stork</li>
+              <li>Heineken Morocco</li>
+              <li>33 Export</li>
+              <li>Bière du Détroit</li>
+              <li>Maroc Lager</li>
+              <li>Atlas Beer</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

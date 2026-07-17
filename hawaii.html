@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawaii — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 45 / 68 · Oceania</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Hawaii</h1>
+      <p class="subhead">Poke, luau, plate lunch, and plantation food culture — a 1,500-year layering of Polynesian, Native Hawaiian, and immigrant plantation traditions into something entirely its own.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ALOHA · IMU · PLANTATION · ALOHA · IMU · PLANTATION ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACvCAIAAADITHTgAAAFkUlEQVR4nO3dQVLbSBQG4LaLmyQFwyprONFwotwo+1mlUgVXGc9CFeHBkmIsqf+29X0LClhgmdLv99yvLe1e759KKaWUL79+lFJ2jy+losPP74O/f3t4nvNnu+dyKvLs+ucydlRs3F3/3dvD85dfP7rzpvLJenv6F5eZryZswf745bk/Y8YKFOcYTKAyyJi78vv86M6Y7mtXEtXDC3xoQYv48Sf7PmmnJfHw87uSeL7+3zWYQK9ojNmXUnaPL90pojW92EQL2v97YdC+/67PYR/Ft4fnviRGDu5a9AXweCE0strMNdof/6A1/SwtKPPtP/ysNT2fFpRF3A3+dvf4cvj5fWzVtGz+NX56CLHxfw6f9bES9iZa07LtkiiBLGs0hGW8Nd3yas3pGkzRgjLPVAg7p6umZZOrNWNrMFZBmenPISxaUy0oaxpemDnVnWcTqzU3fCIaQrCqsyphb2uDRGNAKvhcCMuWBonGgNTx6RB2bn6Pm51oVHNhCMvttqZaUCq7PITlFltTLSj1nbs6OuE29rgZQpAyqxL2rn2QKIEELVAJO8eDxP5UvopB4uk7wLLOtedc9IlBy1TC3nXtcbMTjRYsHMJyPa2pFpRGLNaOHmt/j5shBO1YvhL22hwkGgPSml356++1H+OCS3GudBn8wb9f7R3g67//rP0QXKNV2tEPJgaJFR79AwWQ1qzYjh6bXq2pRgJpUI1K2BkcJKYYQtCOSpWwNzhIrMkYkNbUDmEZaU3r0ILSoHrt6LG+NU09NLQjUAl79fMggTRodzgc0scwYO05YUR8OYo2JSshUIQQ4oQQwoQQwnav90/pY4BNUwkhTAghTAghLLNtbZu+7r+lD4EWqYQQJoQQJoQQJoQQ5lMU9fggFYNUQggTQggTQggTQgi7y64WVL7Wk6URGpSshPWvttbOjdmgl9k7GgxD99BKIu0IVMLBu3PW0eC9SqF2CPvbpKWu/9c/tBzSiHrtaLAAnnp7eO7uGVy0pqRVqoTTN4ivZvDGbEoiWe7U6zZphK1bCVu7QfzEvUr7Q4XKVgzhRAu6e3xJVZ7+obWmNGKVhZnpd4AtNH67x5funsHl90F2X63WUN/ylbD9BHYmWtOiJFLRwpXw9B1gaXjlo79X6ZdfP/pjPi6Jyx6zYDNosUo4tgbTbAJ7/VtEqzVELBPCa2lBx2hNCVqgHW1qCHGx49a0DK3WXNFz4brMqoStjQHnM0ikvstD2OYYcD6DRCq7MISnH4a4ijWY852u1vj4BSv5dAhvrwUdozWljs+F8FZb0DFaUyo4d3X02ocQc9jjxqrOqoRbTmDHIJH1/DmEgxekuOEWdMxYa2q1hpmmQni9O9HWY48bixsNoRZ0jNaUZQ0vzGxkCHExe9xY0MdKuJ0x4HwGiSzifyHc2hhwPoNE5nsP4c3vRFuPPW7MsS9a0CVoTbnY+z3rI5fiHDs7V7ruaLVnlL3GMdflriiAi5rY4xY+Mlq1l8DFTQ8S4YO7r/tv7z/J3kLeX8WO/r2vcsiQ3ev9U/oYYNOSt8sGihBCnBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBC2P8v9ARUpxJCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBCmBBC2O5wOKSPATZNJYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYQwIYSw3ev9U/oYYNNUQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQggTQgj7D7Kd0Gr/f5xiAAAAAElFTkSuQmCC" alt="Flag of Hawaii">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Hawaiian cuisine is one of the most genuinely multicultural food cultures in the world — a tradition built in layers over roughly 1,500 years, beginning with the Polynesian voyagers who settled the Hawaiian islands around 400–600 CE and brought with them the canoe plants: taro, breadfruit, banana, coconut, sweet potato, sugarcane, and the pig. These foundational ingredients sustained a sophisticated pre-contact Hawaiian civilization whose food culture centred on taro and poi, fish from the sea and fishponds, and the imu underground oven for communal feasting. Native Hawaiian food knowledge — the ahupuaa land management system, the cultivation of over 300 varieties of taro, and deep understanding of Pacific Ocean fish — was the foundation on which everything else was built.</p>
+        <p>The plantation era from the 1850s to the early 20th century transformed Hawaiian food culture irreversibly. Sugar and pineapple plantation owners recruited labour from China, Japan, Korea, the Philippines, and Portugal, and the workers brought their food traditions with them. Eating together across ethnic lines in the plantation camps led to the blending of food cultures that produced the modern Hawaiian plate lunch — the daily meal combining Japanese rice, Filipino and Portuguese proteins, and communal Hawaiian eating spirit. American annexation in 1898 and statehood in 1959 brought the American diner, fast food, and Spam. World War II's military presence embedded canned meat so deeply that Hawaii now consumes more Spam per capita than any other US state.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Hawaiian food is defined by aloha — generosity, inclusion, and the pleasure of sharing. The luau feast, centred on kalua pig slow-cooked in the imu, is the highest expression of Hawaiian hospitality: the preparation is communal work, the eating is communal pleasure. Poi — the pounded taro paste that is simultaneously the everyday staple and a sacred food — is eaten with the fingers and shared from a common bowl. Poke, the seasoned raw fish that has conquered the world, is in its traditional Hawaiian form a simple thing: cubed ahi or octopus dressed with sea salt, seaweed, and roasted kukui nut.</p>
+        <p>The plate lunch is the democracy of Hawaiian food — two scoops rice, macaroni salad, protein — available from lunch wagons and diners across every island for a few dollars. It is not high cuisine but it is deeply Hawaiian: a meal that could only exist where Japanese, Filipino, Korean, and Hawaiian food traditions merged in a specific historical moment. Shave ice, malasadas, and spam musubi are similarly products of their specific cultural history. The islands' extraordinary produce — Maui onions, Kona coffee, macadamia nuts, passion fruit, and pineapple — gives Hawaiian food a tropical richness found nowhere on the mainland.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The plate lunch is Hawaii's democratic daily meal — two scoops of white rice, macaroni salad, and a protein (katsu, teriyaki chicken, kalua pork, or loco moco) served from a lunch wagon, combining Japanese, Korean, Filipino, and Hawaiian food traditions.</li>
+        <li>The luau is not a tourist show but a genuine Hawaiian feast tradition — a celebration centred on the imu underground oven in which a whole pig and other foods are slow-cooked on hot lava rocks wrapped in ti and banana leaves for hours.</li>
+        <li>Poke — cubed raw fish seasoned with soy sauce, sesame oil, green onion, and inamona roasted kukui nut — is ancient Hawaiian food that became a global food trend. The original is ahi tuna or octopus dressed simply.</li>
+        <li>Spam is eaten without irony in Hawaii — the islands consume more Spam per capita than any US state, a legacy of World War II military rationing. Spam musubi, Spam on rice wrapped in nori, is the quintessential convenience snack.</li>
+        <li>Shave ice is not a snow cone — it is ice shaved to a feather-light texture and drenched in flavoured syrups, often with azuki beans and ice cream at the bottom, a technique brought by Japanese plantation workers.</li>
+        <li>Hawaiian food is deeply multicultural by necessity — the plantation era brought Chinese, Japanese, Korean, Filipino, Portuguese, and Puerto Rican workers whose food traditions merged with Native Hawaiian cooking.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Ahi tuna</li>
+        <li><span class="n">06</span> Pineapple</li>
+        <li><span class="n">02</span> Taro / poi</li>
+        <li><span class="n">07</span> Kalua pork</li>
+        <li><span class="n">03</span> Spam</li>
+        <li><span class="n">08</span> Nori</li>
+        <li><span class="n">04</span> Coconut</li>
+        <li><span class="n">09</span> Maui onion</li>
+        <li><span class="n">05</span> Macadamia nuts</li>
+        <li><span class="n">10</span> Haupia coconut cream</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Poke has become one of the most successful global food export stories of the 21st century — the poke bowl spread from Hawaiian food trucks to global restaurant chains with extraordinary speed from around 2012. By 2019 there were an estimated 700 poke restaurants in New York City alone. The word poke simply means 'to slice or cut crosswise' in Hawaiian.</li>
+        <li>The Hawaiian plate lunch emerged directly from the plantation era, when workers from Japan, China, Korea, the Philippines, and Portugal brought their own lunches to the fields. The communal sharing of different workers' lunches over time produced the eclectic combination that defines the plate lunch today.</li>
+        <li>Poi — made by pounding cooked taro root into a smooth, slightly fermented paste — has been the dietary foundation of Native Hawaiian culture for over a thousand years. It is classified by consistency: one-finger, two-finger, or three-finger poi depending on thickness. Taro is sacred in Hawaiian culture, considered the elder sibling of the Hawaiian people in creation mythology.</li>
+        <li>The Portuguese malasada — a deep-fried yeasted dough ball rolled in sugar — became a Hawaiian institution through Portuguese workers who arrived on sugar plantations in the 1870s. Leonard's Bakery in Honolulu, opened in 1952, made malasadas famous and still has a line outside the door every day.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Native &amp; Local</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kalua Pig</span><span class="dish-tag">Earth-oven smoked pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole pig slow-cooked underground in the imu on hot lava rocks wrapped in ti and banana leaves, the centrepiece of any luau.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Loco Moco</span><span class="dish-tag">Rice, patty, egg, gravy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White rice topped with a hamburger patty, a fried egg, and brown gravy — Hawaii's iconic diner plate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Plate Lunch</span><span class="dish-tag">Rice, mac salad, protein</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two scoops rice, macaroni salad, and a protein such as katsu or teriyaki chicken, Hawaii's everyday democratic meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Garlic Shrimp</span><span class="dish-tag">Butter-garlic shrimp plate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shell-on shrimp sautéed in garlic and butter, served plate-lunch style from North Shore Oahu food trucks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Huli Huli Chicken</span><span class="dish-tag">Grilled, glazed chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken grilled over an open flame and basted with a sweet soy-based glaze, turned ('huli') repeatedly on a rotisserie.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Plate Lunch Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saimin</span><span class="dish-tag">Local noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A local noodle soup in a light dashi-based broth, topped with green onion, kamaboko, and egg — a plantation-era fusion dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beef Stew Hawaiian style</span><span class="dish-tag">Island-style beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty beef and vegetable stew served over rice, a plate lunch counter staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Katsu</span><span class="dish-tag">Breaded fried chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Breaded, deep-fried chicken cutlet sliced and served with tonkatsu sauce over rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Squid Luau</span><span class="dish-tag">Taro leaf, squid stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Squid stewed with taro leaves and coconut milk, a local variation on the traditional laulau family of dishes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pipikaula</span><span class="dish-tag">Hawaiian dried beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salted, dried, and often smoked beef strips, a Hawaiian take on jerky traditionally fried before serving.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shave Ice</span><span class="dish-tag">Feather-light flavored ice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ice shaved to an almost powdery texture and drenched in flavoured syrups, often with azuki beans at the bottom.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Haupia</span><span class="dish-tag">Coconut milk gelatin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A firm, milky coconut pudding cut into squares, a staple dessert at luaus.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Malasada</span><span class="dish-tag">Sugared fried dough ball</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deep-fried, sugar-rolled Portuguese dough ball, a Hawaiian institution since the 1870s plantation era.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pineapple Upside-Down Cake</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cake baked upside down with caramelized pineapple rings and cherries on top.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poi Mochi</span><span class="dish-tag">Fried taro-poi rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet rice cake made with poi, fried until crisp outside and chewy within.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kulolo</span><span class="dish-tag">Steamed taro pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, caramel-like steamed pudding made from grated taro and coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mochi Ice Cream</span><span class="dish-tag">Rice-dough ice cream ball</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ice cream wrapped in a thin layer of sweet, chewy mochi rice dough.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Butter Mochi</span><span class="dish-tag">Chewy coconut rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy baked rice-flour cake made rich with coconut milk and butter.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spam Musubi</span><span class="dish-tag">Spam, rice, nori</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A block of grilled Spam over rice, wrapped together with a strip of nori — Hawaii's quintessential convenience snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poke Bowl</span><span class="dish-tag">Seasoned raw fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cubed raw ahi or octopus dressed with soy sauce, sesame oil, and roasted kukui nut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Manapua</span><span class="dish-tag">Steamed pork bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A steamed or baked bun filled with sweet char siu pork, adapted from Chinese plantation workers' cha siu bao.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Musubi</span><span class="dish-tag">Rice, nori wrapped snack</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A broader category of rice snacks wrapped in nori, of which Spam musubi is the best-known variety.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crack Seed</span><span class="dish-tag">Preserved sweet-salty fruit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chinese-style preserved fruit, sweet, salty, and sour, sold from candy counters across the islands.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Macaroni Salad</span><span class="dish-tag">Creamy mayo pasta salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, mayonnaise-heavy pasta salad, the standard accompaniment to any plate lunch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lomi Lomi Salmon</span><span class="dish-tag">Salted salmon, tomato salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cold salad of diced salted salmon, tomato, and onion, a luau side dish with Western influence.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Long Rice</span><span class="dish-tag">Glass noodle chicken soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, gingery soup of chicken and glass noodles, a Chinese-influenced luau staple.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Hawaiian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Soy sauce</li>
+        <li><span class="n">06</span> Ginger</li>
+        <li><span class="n">02</span> Sesame oil</li>
+        <li><span class="n">07</span> Pineapple</li>
+        <li><span class="n">03</span> Macadamia</li>
+        <li><span class="n">08</span> Furikake</li>
+        <li><span class="n">04</span> Inamona</li>
+        <li><span class="n">09</span> Haupia</li>
+        <li><span class="n">05</span> Coconut milk</li>
+        <li><span class="n">10</span> Maui onion</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Tiki Cocktails &amp; Spirits</p>
+            <ol class="plain">
+              <li>Mai Tai</li>
+              <li>Blue Hawaii</li>
+              <li>Maui Brewing Bikini Blonde</li>
+              <li>Kona Brewing</li>
+              <li>Hawaiian vodka</li>
+              <li>Okolehao</li>
+              <li>Pineapple wine</li>
+              <li>Lychee cocktail</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Juice &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Shave Ice</li>
+              <li>POG juice</li>
+              <li>Kona coffee</li>
+              <li>Lilikoi juice</li>
+              <li>Guava juice</li>
+              <li>Hawaiian punch</li>
+              <li>Coconut water</li>
+              <li>Aloha Maid</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Kona Big Wave</li>
+              <li>Maui Brewing Coconut Hiwa</li>
+              <li>Kona Longboard</li>
+              <li>Maui Brewing Pineapple Mana</li>
+              <li>Wailua Wheat</li>
+              <li>Pipeline Porter</li>
+              <li>Lanikai Brewing</li>
+              <li>Aloha Beer</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

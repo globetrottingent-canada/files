@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nepal — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  /* ---------- Top nav ---------- */
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(42px, 7vw, 74px);
+    line-height:.98;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  /* medallion */
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  /* At the table / did you know — chevron list */
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  /* Key ingredients — numbered two column */
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  /* ---------- Reference register ---------- */
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-card .card-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .catalog-card .card-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  /* Footer back */
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:48px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  /* Keyboard focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 39 / 68 · South Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Nepal</h1>
+      <p class="subhead">A Himalayan table shaped by altitude — Terai rice plains, mid-hill dal bhat, and high-mountain tsampa, meeting at the crossroads of South Asia and Tibet.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TERAI · HILLS · HIMALAYA · TERAI · HILLS · HIMALAYA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Nepal">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- 01 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Nepali cuisine is a Himalayan tradition shaped by the country's extraordinary altitude range, its position as a land bridge between the Indian subcontinent and the Tibetan plateau, and the remarkable ethnic diversity of a nation containing over 125 distinct ethnic groups, each with its own food traditions. Food here reflects geography more directly than in almost any other cuisine on earth: the Terai lowland belt along the Indian border eats rice, lentils, and vegetables much as neighboring Bihar and Uttar Pradesh do; the mid-hill communities of the Kathmandu Valley and pahad zones eat the canonical dal bhat with gundruk, mustard greens, and achar; the high Himalayan communities above 3,000 metres eat tsampa (roasted barley flour), butter tea, and dried yak meat in the Tibetan tradition.</p>
+        <p>The Newars of the Kathmandu Valley — the valley's original inhabitants and one of Nepal's most culturally sophisticated ethnic groups — developed the most elaborate food culture in the country: dozens of fermented preparations, ceremonial feasts called samay baji, water buffalo dishes, and the rice wine aila, all reflecting centuries of prosperous urban civilization at the India–Tibet crossroads. Tibetan influence brought momos, thukpa noodle soup, and butter tea; Indian influence from the south brought the spice palette and dal tradition that shapes most Nepali cooking. The meeting of these three culinary spheres — South Asian, Tibetan, and indigenous Himalayan — across a landscape of dramatic vertical contrast has produced a cuisine of quiet distinctiveness.</p>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Nepali cooking is built on dal bhat — the twice-daily meal of lentil soup, steamed rice, vegetable curry, and achar pickle that sustains the population from lowland farmers to the high-altitude porters carrying loads at 5,000 metres. "Dal bhat power, 24 hour" is a genuine national saying, and the meal's combination of complete protein, carbohydrate, and fermented pickle reflects a nutritional philosophy developed over centuries of hard physical labour at altitude. The dal changes with lentil type and spicing; the tarkari (vegetable curry) changes by season and altitude; the achar — fermented tomato, radish, or gundruk pickle — supplies the sharp counterpoint that brings the meal to life.</p>
+        <p>Momo — the steamed or fried dumpling of minced buffalo or chicken with ginger, onion, and spices — is Nepal's most beloved single food, carried from Tibet by Newar traders and now so thoroughly Nepalised it's considered the national street food. A plate of juicy momos with tomato achar and a glass of tongba is the definitive Kathmandu eating experience. Timur, the Himalayan relative of Sichuan pepper, is the country's most distinctive spice — citrusy, numbing, faintly floral — turning up in everything from sekuwa grilled meat to momo achar.</p>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Dal bhat is eaten twice a day by most Nepalis, morning and evening, and is never considered repetitive — the format stays constant even as season and household adjust the details.</li>
+        <li>Meals are eaten with the right hand — rice and dal are mixed together in the palm and eaten directly. The left hand is never used for eating. Hosts refill your plate without asking; refusing takes firm, polite persistence.</li>
+        <li>Tea is the social currency of Nepal — sweet milky chai is offered to any visitor at any time of day. In the hills, butter tea made with yak butter and salt warms high-altitude communities.</li>
+        <li>The momo dumpling, Tibetan in origin, has been so fully adopted that Nepalis consider it their own — a restaurant's momo quality is the standard by which Thamel's eateries are judged.</li>
+        <li>Dashain and Tihar transform the food calendar: Dashain brings ritual sacrifice and goat-meat feasting; Tihar brings sel roti and sweets, alongside offerings to crows, dogs, and cows.</li>
+        <li>Vertical geography drives regional variation — Terai lowlands eat in the Indian manner, mid-hills eat dal bhat with local greens, and high Himalayan communities eat tsampa and dried meat in the Tibetan style.</li>
+      </ul>
+    </section>
+
+    <!-- 04 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dal lentils</li>
+        <li><span class="n">06</span> Gundruk</li>
+        <li><span class="n">02</span> Basmati rice</li>
+        <li><span class="n">07</span> Jimbu herb</li>
+        <li><span class="n">03</span> Timur pepper</li>
+        <li><span class="n">08</span> Fenugreek</li>
+        <li><span class="n">04</span> Ghee</li>
+        <li><span class="n">09</span> Turmeric</li>
+        <li><span class="n">05</span> Mustard oil</li>
+        <li><span class="n">10</span> Achar pickle</li>
+      </ul>
+    </section>
+
+    <!-- 05 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Nepal is the only country with a non-rectangular national flag — a double pennon shape, formed from two stacked triangular standards, whose exact geometry is defined mathematically in the constitution.</li>
+        <li>Momo dumplings, now eaten across Nepal, India, and the Himalayan world, originated in Tibet and were brought to the Kathmandu Valley by Newar merchants trading across the plateau.</li>
+        <li>Tongba, the fermented millet drink of eastern Nepal, is drunk through a bamboo straw inserted into a pot of fermented millet, with hot water added repeatedly to keep extracting alcohol.</li>
+        <li>Nepal's altitude spans from 60 metres in the Terai to 8,849 metres at Everest's summit — one of the greatest biodiversity ranges on earth, translating directly into its layered food geography.</li>
+      </ul>
+    </section>
+
+    <!-- Reference register -->
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <!-- 06 -->
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dal Bhat</span><span class="dish-tag">Lentils, rice, curry, pickle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The daily staple meal — steamed rice, lentil soup, vegetable curry, and pickle — eaten twice a day across Nepal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Momo</span><span class="dish-tag">Steamed spiced dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed or fried dumplings filled with spiced minced buffalo, chicken, or vegetables — Nepal's most beloved street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thukpa</span><span class="dish-tag">Tibetan noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty Tibetan-style noodle soup with meat and vegetables in a warming broth, popular in the hills and Kathmandu.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dhido</span><span class="dish-tag">Steamed buckwheat dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick porridge of buckwheat, millet, or maize flour kneaded into a firm dough-like mass, eaten with curry and greens.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kwati</span><span class="dish-tag">Nine-bean mixed soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soup made from nine kinds of sprouted beans, traditionally eaten during the Janai Purnima full moon festival.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sel Roti</span><span class="dish-tag">Sweet fried rice-flour ring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A ring-shaped, lightly sweet bread deep-fried from rice flour batter — a festival staple at Tihar and Dashain.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gundruk Soup</span><span class="dish-tag">Fermented greens soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy soup built on gundruk, dried fermented leafy greens, simmered until warming — a distinctive hill-region staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Newari Samay Baji</span><span class="dish-tag">Ceremonial feast platter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Newar ceremonial platter of beaten rice, buffalo meat, egg, beans, and pickles, served at festivals and gatherings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sekuwa</span><span class="dish-tag">Skewered grilled meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated, skewer-grilled meat — often mutton or chicken — charred over open flame; smoky street and bar food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aloo Tama</span><span class="dish-tag">Potato, bamboo shoot curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy curry of potatoes, fermented bamboo shoots, and black-eyed peas — a beloved hill-region comfort dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sel Roti</span><span class="dish-tag">Sweet fried rice-flour ring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A ring-shaped, lightly sweet bread deep-fried from rice flour batter — a festival staple at Tihar and Dashain.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yomari</span><span class="dish-tag">Steamed rice-dough dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fig-shaped steamed dumpling of rice-flour dough filled with molasses or sweetened sesame — a Newari winter festival treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sikarni</span><span class="dish-tag">Spiced sweetened yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy dessert of hung yogurt sweetened and spiced with cardamom, saffron, and nuts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kheer</span><span class="dish-tag">Rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice slow-cooked in milk until thick and creamy, sweetened and often studded with nuts and dried fruit.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Juju Dhau</span><span class="dish-tag">Bhaktapur's "king" yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, creamy set yogurt from Bhaktapur, served in clay pots and known locally as the "king of yogurt."</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chatamari</span><span class="dish-tag">Rice-flour crepe, "Nepali pizza"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin rice-flour crepe topped with minced meat, egg, or vegetables — often called Nepal's answer to pizza.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Anarsa</span><span class="dish-tag">Sesame-coated rice biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp, cookie-like sweet of rice flour and jaggery, rolled in sesame seeds and fried — traditionally made for Tihar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lakhamari</span><span class="dish-tag">Crunchy glazed Newari sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp, glazed Newari confection of rice flour, sugar, and butter shaped into rings — central to wedding ceremonies.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Momo</span><span class="dish-tag">Steamed spiced dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed or fried dumplings filled with spiced minced buffalo, chicken, or vegetables — Nepal's most beloved street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chhoela</span><span class="dish-tag">Spiced grilled buffalo salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled or roasted buffalo meat, sliced thin and tossed with mustard oil, chili, and spices — a classic Newari bar snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bara</span><span class="dish-tag">Savory lentil pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory pancake made from ground black lentils, sometimes topped with egg or minced meat — a Newari specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chatpate</span><span class="dish-tag">Spicy tangy puffed-rice mix</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, spicy street snack of puffed rice, crushed noodles, potato, and chili, mixed fresh with lemon juice to order.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aloo Chop</span><span class="dish-tag">Fried spiced potato patty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced mashed-potato patty, coated in batter and deep-fried — a popular tea-time snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samosa Nepali</span><span class="dish-tag">Fried pastry, spiced filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp, deep-fried pastry triangle filled with spiced potatoes or meat, popular at tea shops and festivals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pani Puri Nepali</span><span class="dish-tag">Tangy stuffed crisp shells</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp hollow shells filled with spiced potato and tangy tamarind-mint water — a favorite street-side treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sukuti</span><span class="dish-tag">Dried, spiced meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin strips of buffalo, goat, or lamb marinated in spices and sun-dried, then fried or eaten as a smoky, chewy snack.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Nepali:</p>
+        <ul class="num-grid">
+          <li><span class="n">01</span> Timur pepper</li>
+          <li><span class="n">06</span> Turmeric</li>
+          <li><span class="n">02</span> Jimbu</li>
+          <li><span class="n">07</span> Ginger</li>
+          <li><span class="n">03</span> Gundruk</li>
+          <li><span class="n">08</span> Cumin</li>
+          <li><span class="n">04</span> Mustard oil</li>
+          <li><span class="n">09</span> Achar</li>
+          <li><span class="n">05</span> Fenugreek</li>
+          <li><span class="n">10</span> Ghee</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Tongba &amp; Spirits</p>
+            <ol class="plain">
+              <li>Tongba</li><li>Raksi</li><li>Khukuri Rum</li><li>Nepali Arak</li><li>Chang Millet Beer</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Masala Chai</li><li>Lassi</li><li>Butter Tea / Po Cha</li><li>Lemon Honey Tea</li><li>Nimbu Pani</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Gorkha</li><li>Everest</li><li>Tuborg Nepal</li><li>Nepal Ice</li><li>Yeti Strong</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

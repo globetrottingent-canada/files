@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italy — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 39 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Italy</h1>
+      <p class="subhead">Ingredient quality above all — a mosaic of intensely local traditions that shaped the Western culinary template.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            EMILIA-ROMAGNA · SICILY · TUSCANY · EMILIA-ROMAGNA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACWElEQVR4nO3TQRVAUAAAwU8UVzkkUkMiIVSigts+z0yCvew0jm3wzr2fdcJnXMtaJ3zGXAfA35kQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoTYA+luBagzjtmiAAAAAElFTkSuQmCC" alt="Flag of Italy">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Italian cuisine is among the most influential food cultures in human history — the template against which much of the Western world has measured its own cooking, and the source of dishes and techniques that have spread to every continent. Its roots reach back to ancient Rome, which absorbed Greek, Carthaginian, and Eastern Mediterranean culinary traditions into a sophisticated imperial cuisine documented in Apicius's De Re Coquinaria, the oldest surviving cookbook in the Western tradition. The fall of Rome fragmented the peninsula into city-states and kingdoms, and this political fragmentation is the single most important fact about Italian food: there is no unified Italian cuisine, only a mosaic of intensely local ones.</p>
+        <p>The Arab domination of Sicily from the 9th to 11th centuries introduced sugar, citrus, almonds, saffron, and spices that permanently transformed southern Italian and Sicilian cooking. Norman, Spanish, and Bourbon rule layered further complexity onto the south. The Renaissance courts of Florence, Ferrara, and Milan developed refined culinary traditions that influenced all of Europe — Catherine de' Medici's marriage to the future Henri II of France in 1533 is said, with some exaggeration, to have brought Italian culinary refinement to the French court. The Columbian Exchange brought tomatoes, peppers, and maize in the 16th century, ingredients that would revolutionise the southern Italian diet within two hundred years.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Italian cooking is defined by an absolute insistence on ingredient quality and a deep suspicion of unnecessary complexity. The great dishes of the Italian canon — cacio e pepe, spaghetti aglio e olio, bistecca alla Fiorentina, pizza Napoletana — contain three to five ingredients and derive their greatness entirely from the excellence of those ingredients and the precision of the technique. This is not simplicity from lack of ambition but from the confident understanding that a perfect tomato, the right pasta shape, and properly made cheese need nothing added to them. The Italian cook's task is not to transform ingredients but to reveal them.</p>
+        <p>The north-south divide is profound: the north uses butter, cream, risotto, and polenta; the south uses olive oil, tomatoes, pasta, and dried legumes. Emilia-Romagna — Bologna, Parma, Modena — is the heartland of the richest, most elaborate Italian cooking: ragù, mortadella, Parmigiano-Reggiano, Prosciutto di Parma, and balsamic vinegar all originate within a hundred kilometres of each other. Naples gave the world pizza and espresso. Rome contributes cacio e pepe, carbonara, amatriciana, and coda alla vaccinara. Sicily synthesises Arab, Norman, Greek, and Spanish influences into a cuisine of its own. Each region believes its own food is the finest Italy produces.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The meal structure is sacred — antipasto, primo, secondo, contorno, and dolce follow in sequence. Eating pasta as a side dish alongside meat is considered a category error by Italians, not a preference.</li>
+        <li>Sunday lunch is the week's most important meal — a multi-course family gathering that can last three or four hours, anchored by a slow-cooked ragù or roast that has been cooking since morning.</li>
+        <li>Regional identity at the table is fierce — a Roman will defend cacio e pepe as vigorously as a Bolognese defends their ragù, and ordering the wrong pasta shape with a sauce is taken as a genuine offence.</li>
+        <li>Bread is never buttered in Italy — it arrives plain and is used to make the scarpetta, dragging it through the last of a sauce on a plate. Asking for butter is a tourist signal.</li>
+        <li>Coffee ritual is precise — espresso is drunk standing at the bar, quickly, never lingered over with milk after noon. A cappuccino after 11am marks you as foreign. Digestivo follows a long meal, not dessert wine.</li>
+        <li>Protected designation of origin rules are legally enforced — Parmigiano-Reggiano, Prosciutto di Parma, and dozens of other products can only be made in specific regions under specific conditions.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Basil</li>
+        <li><span class="n">02</span> Parmigiano-Reggiano</li>
+        <li><span class="n">07</span> Arborio / Carnaroli rice</li>
+        <li><span class="n">03</span> San Marzano tomatoes</li>
+        <li><span class="n">08</span> Mozzarella di bufala</li>
+        <li><span class="n">04</span> Pasta</li>
+        <li><span class="n">09</span> Garlic</li>
+        <li><span class="n">05</span> Prosciutto di Parma</li>
+        <li><span class="n">10</span> Anchovies</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Italy has more UNESCO-recognised food products than any other country — over 800 products with Protected Designation of Origin or Protected Geographical Indication status, covering cheeses, cured meats, olive oils, wines, and produce.</li>
+        <li>Tomatoes did not arrive in Italy until the late 16th century, brought from the Americas by Spanish colonisers. They were initially regarded with suspicion and grown as ornamental plants — the entire tomato-based tradition of Italian cooking is less than 300 years old.</li>
+        <li>Italy is the world's largest wine producer by volume, producing roughly 49 million hectolitres per year across 20 regions. There are over 350 officially recognised native grape varieties — more than any other country.</li>
+        <li>The espresso machine was patented in Italy in 1884 by Angelo Moriondo of Turin, and the modern espresso as drunk today was refined through the early 20th century. Italy remains the standard against which all espresso is measured.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pasta, sweets, and drinks that define the everyday Italian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ragù alla Bolognese</span><span class="dish-tag">Slow meat sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked meat sauce from Bologna, traditionally served with tagliatelle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cacio e Pepe</span><span class="dish-tag">Cheese &amp; pepper pasta</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pasta tossed with Pecorino Romano and black pepper, Rome's simplest classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Risotto alla Milanese</span><span class="dish-tag">Saffron risotto</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy saffron-tinted risotto, Milan's signature rice dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pizza Napoletana</span><span class="dish-tag">Neapolitan pizza</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, soft-crusted pizza with tomato, mozzarella, and basil, cooked in a wood oven.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Osso Buco</span><span class="dish-tag">Braised veal shank</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Braised veal shank in a rich broth, traditionally served with gremolata.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bistecca alla Fiorentina</span><span class="dish-tag">Tuscan grilled steak</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, bone-in T-bone steak grilled rare over charcoal, a Tuscan icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saltimbocca alla Romana</span><span class="dish-tag">Veal, prosciutto, sage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Veal cutlets layered with prosciutto and sage, quickly pan-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ribollita</span><span class="dish-tag">Tuscan bread &amp; bean soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty Tuscan soup of bread, beans, and vegetables, twice-cooked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spaghetti alle Vongole</span><span class="dish-tag">Clam pasta</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spaghetti tossed with fresh clams, garlic, white wine, and parsley.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Amatriciana</span><span class="dish-tag">Tomato guanciale pasta</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pasta in a spicy tomato sauce with cured guanciale and Pecorino.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tiramisu</span><span class="dish-tag">Coffee mascarpone</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of coffee-soaked ladyfingers and mascarpone cream, dusted with cocoa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Panna Cotta</span><span class="dish-tag">Set cream custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky set cream dessert, often served with berry or caramel sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cannoli</span><span class="dish-tag">Fried pastry, ricotta</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried pastry tubes filled with sweetened ricotta, a Sicilian classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gelato</span><span class="dish-tag">Italian ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dense, intensely flavoured Italian ice cream, churned slower than American ice cream.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sfogliatella</span><span class="dish-tag">Layered shell pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A shell-shaped, crisp layered pastry filled with sweetened ricotta, from Naples.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Torta della Nonna</span><span class="dish-tag">Custard pine nut tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A custard-filled tart topped with pine nuts and powdered sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zabaione</span><span class="dish-tag">Whipped egg &amp; wine cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, whipped custard made from egg yolks, sugar, and sweet wine.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cassata</span><span class="dish-tag">Sicilian ricotta cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sponge cake layered with sweetened ricotta and candied fruit, from Sicily.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Antipasto</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bruschetta</span><span class="dish-tag">Grilled bread, tomato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled bread topped with tomato, garlic, and olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Supplì</span><span class="dish-tag">Fried rice croquette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fried risotto croquette filled with mozzarella, a Roman street classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arancini</span><span class="dish-tag">Fried rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried, breaded rice balls filled with ragù or cheese, a Sicilian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Focaccia</span><span class="dish-tag">Olive oil flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, olive oil-rich flatbread, often studded with rosemary or olives.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Plates</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Antipasto Misto</span><span class="dish-tag">Mixed cured meats &amp; cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mixed platter of cured meats, cheeses, and marinated vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Burrata con Pomodori</span><span class="dish-tag">Creamy cheese &amp; tomato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy burrata served with ripe tomatoes and olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vitello Tonnato</span><span class="dish-tag">Veal, tuna sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of cold veal topped with a creamy tuna and caper sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Insalata Caprese</span><span class="dish-tag">Tomato, mozzarella, basil</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sliced tomato and mozzarella layered with fresh basil and olive oil.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Italian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Rosemary</li>
+        <li><span class="n">02</span> Pecorino Romano</li>
+        <li><span class="n">07</span> Lemon zest</li>
+        <li><span class="n">03</span> Dried chili / peperoncino</li>
+        <li><span class="n">08</span> Guanciale</li>
+        <li><span class="n">04</span> Anchovies</li>
+        <li><span class="n">09</span> Balsamic vinegar</li>
+        <li><span class="n">05</span> Basil</li>
+        <li><span class="n">10</span> Capers</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Barolo</li>
+              <li>Amarone</li>
+              <li>Chianti Classico</li>
+              <li>Brunello di Montalcino</li>
+              <li>Prosecco</li>
+              <li>Grappa</li>
+              <li>Campari</li>
+              <li>Aperol Spritz</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Espresso</li>
+              <li>Cappuccino</li>
+              <li>Macchiato</li>
+              <li>Caffè corretto</li>
+              <li>Limonata artigianale</li>
+              <li>Chinotto</li>
+              <li>Acqua minerale</li>
+              <li>Spremuta d'arancia</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Peroni Nastro Azzurro</li>
+              <li>Moretti</li>
+              <li>Birra del Borgo</li>
+              <li>Baladin</li>
+              <li>Menabrea</li>
+              <li>Ichnusa</li>
+              <li>Theresianer</li>
+              <li>Toccalmatto</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

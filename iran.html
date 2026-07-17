@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iran — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 38 / 68 · Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide · Persia</p>
+      <h1 class="country">Iran</h1>
+      <p class="subhead">Saffron rice, tahdig, and the sweet-sour khoresh — one of the oldest and most refined food cultures in the world.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PERSIA · SILK ROAD · SAFFRON · PERSIA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Iran">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Persian cuisine is one of the oldest, most refined, and most globally influential food cultures in the world — a tradition stretching back over 3,000 years to the Achaemenid Empire whose court kitchens were described by Greek historians with awe and whose culinary philosophy of combining sweet, sour, and aromatic flavours spread westward through Ottoman cooking and eastward through Mughal Indian cuisine. The ancient Persian empire, at its greatest extent, encompassed territories from Greece to India, and the Silk Road trade routes that crossed it carried not only silk and spices but culinary ideas in both directions. Iran sits at the crossroads of the ancient world, and its food reflects millennia of cultural exchange with Arab, Turkic, Indian, and Central Asian neighbours, while remaining unmistakably, sovereignly Persian in character.</p>
+        <p>The Arab conquest of the 7th century CE brought Islam and transformed the social context of food — wine culture receded, though it never entirely disappeared — but the underlying Persian culinary philosophy proved remarkably resistant to assimilation. Persian court cuisine was so sophisticated that Arab caliphs absorbed it rather than replacing it, and many of the most celebrated dishes of the medieval Arab world were essentially Persian in origin and technique. The Safavid dynasty of the 16th to 18th centuries marked the golden age of Persian culinary refinement: elaborate rice pilafs, khoresh stews of extraordinary complexity, and the tradition of garnishing with nuts, dried fruits, and saffron-tinted rice that defines formal Persian cooking today.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Persian cooking is defined by three pillars: the perfect rice, the layered khoresh, and the balance of sweet and sour. The art of Iranian rice cookery — washing, soaking, parboiling, then steaming with a cloth-covered lid to produce perfectly separate, fluffy grains and the prized golden tahdig crust — is one of the most technically demanding and revered preparations in any cuisine. The tahdig, scraped from the bottom of the pot in a single golden disc, is the cook's signature and the guest's prize. Every Iranian cook has a technique for it and a strong opinion on how it should be done.</p>
+        <p>The khoresh — slow-cooked stews that accompany rice — are where Persian flavour philosophy fully expresses itself. Ghormeh sabzi, the herb and kidney bean stew with dried limes, is the national dish: deeply savoury, sour from the limes, with an herbal intensity that takes hours to develop properly. Fesenjan, the walnut and pomegranate stew served with duck or chicken, is one of the most complex and unusual dishes in any world cuisine — sweet, sour, bitter, and rich simultaneously. The sweet-sour flavour axis, achieved through pomegranate molasses, dried limes, barberries, and unripe grape juice, is the defining taste of Persian cooking and its greatest gift to the world's culinary vocabulary.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Rice is the prestige food of Iran — the ability to produce a perfect tahdig, the golden crispy crust that forms at the bottom of the pot, is the true measure of an Iranian cook. Every guest expects to receive a piece.</li>
+        <li>Iranian meals are served all at once — rice, khoresh stew, salad shirazi, herbs, bread, and side dishes arrive simultaneously. Sequential courses are not traditional in the home.</li>
+        <li>The herb plate — a platter of fresh sabzi including mint, tarragon, basil, radish, and spring onion — is placed on every Iranian table and eaten freely throughout a meal, particularly with bread and feta.</li>
+        <li>Tea is drunk constantly — chai-e khosh-rang, a deep amber glass of black tea, sweetened with a sugar cube held between the teeth, accompanies every visit, meal, and conversation from morning to night.</li>
+        <li>Nowruz — Persian New Year — is the most food-significant occasion of the year. Sabzi polo mahi, herbed rice with fish, is eaten at the New Year table, and the haft-sin spread includes symbolic foods including wheat sprouts, dried fruit, and vinegar.</li>
+        <li>Hospitality requires excess — an Iranian host must offer more than a guest could possibly eat. Bringing the exact right amount of food would be considered a failure of generosity; the table must overflow.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Saffron</li>
+        <li><span class="n">06</span> Walnuts</li>
+        <li><span class="n">02</span> Dried limes</li>
+        <li><span class="n">07</span> Barberries</li>
+        <li><span class="n">03</span> Pomegranate molasses</li>
+        <li><span class="n">08</span> Fenugreek</li>
+        <li><span class="n">04</span> Rose water</li>
+        <li><span class="n">09</span> Turmeric</li>
+        <li><span class="n">05</span> Basmati rice</li>
+        <li><span class="n">10</span> Dried fruits</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Iran is the world's largest producer of saffron, responsible for roughly 90% of global supply. The saffron-growing region of Khorasan has cultivated the crocus for over 3,000 years, and Iranian saffron — harvested by hand from hundreds of millions of flowers — is considered the finest in the world.</li>
+        <li>Persian cuisine is one of the oldest continuously practised food cultures in the world, with detailed recipes recorded in texts from the Achaemenid Empire of the 6th century BCE. Alexander the Great reportedly admired Persian palace dining and adopted elements for his own court.</li>
+        <li>The sweet-sour flavour combination — using pomegranate, dried limes, tamarind, and unripe grape juice to balance sweetness — is one of the most distinctive features of Persian cooking. This principle spread westward through Ottoman cooking and eastward through Mughal Indian cuisine.</li>
+        <li>Iran has one of the world's great rice cultures despite not growing rice indigenously in ancient times. The Persian art of cooking rice — washing, soaking, parboiling, then steaming with a cloth under the lid — is a technique refined over centuries into something approaching a culinary art form.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The rice, stews, and drinks that define the everyday Persian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Rice &amp; Stews</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ghormeh Sabzi</span><span class="dish-tag">Herb &amp; bean stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deeply savoury herb and kidney bean stew soured with dried limes, Iran's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fesenjan</span><span class="dish-tag">Walnut &amp; pomegranate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Duck or chicken in a rich walnut and pomegranate stew, sweet, sour, and bitter at once.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tahdig</span><span class="dish-tag">Golden crispy rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The prized golden, crispy rice crust scraped from the bottom of the pot.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chelow Kebab</span><span class="dish-tag">Rice &amp; grilled meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Saffron rice served with skewered grilled meat, Iran's most iconic restaurant dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ash Reshteh</span><span class="dish-tag">Herb noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick noodle soup with herbs, beans, and a swirl of kashk (whey).</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Abgousht</span><span class="dish-tag">Lamb &amp; chickpea stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked lamb and chickpea stew, traditionally mashed and eaten in two courses.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zereshk Polo Morgh</span><span class="dish-tag">Barberry rice &amp; chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Saffron rice studded with tart barberries, served with chicken.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khoresht Bademjan</span><span class="dish-tag">Eggplant stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tomato-based stew of eggplant and meat, tangy with dried lime.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mirza Ghasemi</span><span class="dish-tag">Smoky eggplant &amp; egg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoked eggplant mashed with garlic, tomato, and egg, a Caspian coast specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sabzi Polo Mahi</span><span class="dish-tag">Herbed rice &amp; fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Herbed green rice served with fried fish, the traditional Nowruz New Year dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sholeh Zard</span><span class="dish-tag">Saffron rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A saffron and rosewater rice pudding, often decorated with cinnamon and almonds.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bastani Sonnati</span><span class="dish-tag">Saffron rosewater ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Traditional Persian ice cream flavoured with saffron, rosewater, and pistachio.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Faloodeh</span><span class="dish-tag">Frozen noodle sorbet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin frozen vermicelli noodles in a rosewater and lime syrup, one of the world's oldest desserts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halva</span><span class="dish-tag">Flour &amp; saffron sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense sweet made from flour, rosewater, and saffron, often served at gatherings.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zoolbia</span><span class="dish-tag">Fried saffron syrup sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried batter soaked in saffron and rosewater syrup, popular during Ramadan.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baghlava</span><span class="dish-tag">Persian-style baklava</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rosewater-scented, saffron-tinted version of the layered nut pastry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nan-e Berenji</span><span class="dish-tag">Rice flour cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate rice flour cookies, often stamped with a decorative pattern.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ranginak</span><span class="dish-tag">Date &amp; walnut cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense date and walnut cake topped with cinnamon, traditionally eaten at Ramadan.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Dips &amp; Salads</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mast-o-Khiar</span><span class="dish-tag">Yogurt &amp; cucumber dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooling yogurt dip with cucumber, dried mint, and sometimes rose petals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salad Shirazi</span><span class="dish-tag">Cucumber tomato salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A finely diced cucumber, tomato, and onion salad dressed with lime and mint.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kashk-e Bademjan</span><span class="dish-tag">Eggplant &amp; whey dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smoky mashed eggplant dip topped with kashk (fermented whey) and walnuts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Borani Esfanaj</span><span class="dish-tag">Spinach yogurt dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooling spinach and yogurt dip, often flavoured with garlic and caramelized onion.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Dishes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dolmeh</span><span class="dish-tag">Stuffed vine leaves</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vine leaves or vegetables stuffed with rice, herbs, and sometimes meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kuku Sabzi</span><span class="dish-tag">Herb frittata</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick herb and egg frittata, packed with fresh greens and walnuts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ash-e Doogh</span><span class="dish-tag">Yogurt herb soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy soup made with yogurt, herbs, and rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ajil</span><span class="dish-tag">Spiced nut &amp; seed mix</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mix of roasted nuts, seeds, and dried fruit, a common snack and gathering food.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Persian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Saffron</li>
+        <li><span class="n">06</span> Fenugreek</li>
+        <li><span class="n">02</span> Dried lime</li>
+        <li><span class="n">07</span> Turmeric</li>
+        <li><span class="n">03</span> Pomegranate molasses</li>
+        <li><span class="n">08</span> Kashk</li>
+        <li><span class="n">04</span> Rose water</li>
+        <li><span class="n">09</span> Tamarind</li>
+        <li><span class="n">05</span> Barberries</li>
+        <li><span class="n">10</span> Unripe grape juice</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Social</p>
+            <ol class="plain">
+              <li>Doogh</li>
+              <li>Sharbat</li>
+              <li>Aragh Sagi</li>
+              <li>Homemade wine</li>
+              <li>Chai</li>
+              <li>Rose water sherbet</li>
+              <li>Sekanjabin</li>
+              <li>Gol Gav Zaban</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Chai</li>
+              <li>Doogh</li>
+              <li>Sharbat-e Albaloo</li>
+              <li>Sharbat-e Sekanjbin</li>
+              <li>Ab Havij</li>
+              <li>Gol Gav Zaban tea</li>
+              <li>Sharbat-e Verjuice</li>
+              <li>Pomegranate juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic Malt</p>
+            <ol class="plain">
+              <li>Istak malt</li>
+              <li>Delster malt</li>
+              <li>Palizi malt</li>
+              <li>Niki malt</li>
+              <li>Birell malt</li>
+              <li>Mezan malt</li>
+              <li>Shams malt</li>
+              <li>Barbican</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

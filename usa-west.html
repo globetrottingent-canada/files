@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA: West &amp; Southwest — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 43 / 68 · North America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">USA · Cuisine Guide</p>
+      <h1 class="country">West & Southwest</h1>
+      <p class="subhead">California, the Pacific Northwest, Texas, Tex-Mex, and the Southwest — America's youngest and most experimental food culture, built on a Spanish-Mexican foundation and the Pacific Rim.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PACIFIC · DESERT · BORDERLANDS · PACIFIC · DESERT · BORDERLANDS ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of USA: West &amp; Southwest">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The American West and Southwest encompasses the most diverse and fastest-evolving food culture in the United States — a vast region whose culinary identity is shaped by Spanish colonial and Mexican heritage, the indigenous peoples of the desert and Pacific Coast, the Gold Rush immigrant communities that made California a destination, and the West Coast's position on the Pacific Rim that brought Chinese, Japanese, Korean, and Vietnamese food traditions into the American mainstream. The food of this region is younger, more experimental, and more influenced by non-European traditions than any other part of the country.</p>
+        <p>The Spanish colonial period established the missions and ranchos of California and the Southwest, introducing cattle, wheat, and the livestock culture that underlies both Tex-Mex and the California rancho tradition. Mexican cultural and culinary influence is not a recent immigrant addition to the Southwest but its foundational layer — Texas, California, New Mexico, Arizona, and Nevada were all Mexican territory before the Mexican-American War of 1846–48. Tex-Mex, California-Mexican, and New Mexican cuisines are distinct regional American cuisines that developed from that colonial foundation. The Gold Rush of 1849 brought Chinese immigrants to California whose culinary influence became a permanent part of the Western food landscape.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>California cuisine is the most intellectually influential American food movement of the 20th century — the philosophy articulated by Alice Waters at Chez Panisse in Berkeley from 1971, which argued that exceptional local, seasonal, and organic ingredients simply prepared were the highest form of cooking, became the template for most of the Western world's fine dining revolution. Before California cuisine, American restaurant food aspired to be French. After it, the world's best restaurants aspired to be local.</p>
+        <p>Tex-Mex is one of America's most successful culinary creations — a Border cuisine developed by Tejano communities using ingredients not traditional in Mexico to produce something entirely its own: beef and cheese enchiladas, chili con carne, nachos, fajitas, and the hard-shell taco. The Pacific Coast produces some of America's finest seafood — Dungeness crab, Pacific oysters, Copper River salmon. Los Angeles has developed the most dynamic food truck and immigrant restaurant scene in America, where Korean BBQ tacos, Vietnamese banh mi, and Oaxacan tlayudas sit alongside In-N-Out Burger as equally legitimate expressions of LA's food identity.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>California cuisine philosophy — coined by Alice Waters at Chez Panisse in 1971 — is the idea that exceptional local, seasonal, and organic ingredients prepared simply are the highest form of cooking.</li>
+        <li>The taco truck and the food cart are West Coast institutions — Los Angeles has one of the world's greatest Mexican food scenes outside Mexico, built by generations of Mexican and Central American immigrants.</li>
+        <li>Brunch culture in Seattle, Portland, and San Francisco is a civic religion — long queues for eggs Benedict, avocado toast, and third-wave pour-overs are a weekend ritual across the Pacific Coast.</li>
+        <li>Tex-Mex is not Mexican food — it is a distinct culinary tradition developed along the Texas-Mexico border, using ingredients not traditional in Mexico to create a cuisine now so embedded it feels ancient.</li>
+        <li>The American hamburger reached its highest form in California — In-N-Out's Animal Style, the Shake Shack Burger, and the artisan burger movement spread globally from Los Angeles and San Francisco.</li>
+        <li>Pacific Northwest seafood is extraordinary — Dungeness crab, Pacific oysters, Copper River salmon, and razor clams are eaten with a directness that reflects the outdoor culture of the region.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Avocado</li>
+        <li><span class="n">06</span> Chipotle</li>
+        <li><span class="n">02</span> Jalapeño</li>
+        <li><span class="n">07</span> Sourdough</li>
+        <li><span class="n">03</span> Flour tortilla</li>
+        <li><span class="n">08</span> Almonds</li>
+        <li><span class="n">04</span> Dungeness crab</li>
+        <li><span class="n">09</span> Artichoke</li>
+        <li><span class="n">05</span> Napa Valley wine</li>
+        <li><span class="n">10</span> Pacific salmon</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>California is the most agriculturally productive state in the US by a considerable margin — it produces over a third of the country's vegetables and two thirds of its fruits and nuts. The Central Valley, watered by Sierra Nevada snowmelt, supplies not just America but much of the world.</li>
+        <li>Tex-Mex chili — the bowl of red meat stew Texans consider their national dish — has no direct Mexican antecedent. It was developed in San Antonio in the 19th century by Tejano chili queens who sold it from outdoor stalls, using dried chili paste, beef, and cumin. The International Chili Society still strictly prohibits beans at its annual cook-offs.</li>
+        <li>The Mission burrito — the large, foil-wrapped flour tortilla burrito stuffed with rice, beans, meat, cheese, salsa, and sour cream — was invented in San Francisco's Mission District in 1961 by El Faro restaurant, itself a fusion of the northern Mexican flour tortilla and an American multi-filling format.</li>
+        <li>The wine regions of Napa Valley and Sonoma transformed the global wine industry when California Cabernet Sauvignon and Chardonnay beat the finest French Bordeaux and Burgundy in the 1976 Paris blind tasting known as the Judgement of Paris, proving great wine could be made outside France.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">California &amp; Pacific NW</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">California Burrito</span><span class="dish-tag">Carne asada, fries, guac</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A large flour-tortilla burrito filled with carne asada, French fries, guacamole, and cheese — a San Diego invention.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Tacos</span><span class="dish-tag">Battered fish, cabbage, crema</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered or grilled fish in a small tortilla with shredded cabbage and a citrus crema, rooted in Baja California.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Texas Chili</span><span class="dish-tag">No-bean beef chili</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bowl of beef stewed in dried chili paste and cumin, deliberately made without beans — Texas's official state dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carne Asada</span><span class="dish-tag">Grilled marinated steak</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin-cut beef marinated and grilled over open flame, sliced for tacos, burritos, or served as a plate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dungeness Crab</span><span class="dish-tag">Pacific Northwest sweet crab</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, meaty crab harvested along the Pacific coast, typically steamed and cracked simply at the table.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Texas &amp; Southwest</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">In-N-Out Double Double</span><span class="dish-tag">Drive-through burger</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A double patty, double cheese burger with 'animal style' toppings — the signature order at the California chain In-N-Out.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Enchiladas Tex-Mex</span><span class="dish-tag">Cheese, chili gravy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn tortillas rolled around chicken and smothered in yellow cheese and chili gravy — a Tex-Mex staple distinct from Mexican enchiladas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seattle Clam Chowder</span><span class="dish-tag">Pacific NW cream chowder</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cream-based clam chowder built on Pacific Northwest clams, a Seattle waterfront staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Korean BBQ Tacos</span><span class="dish-tag">Marinated bulgogi street taco</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Korean marinated short rib or bulgogi served taco-style in a small tortilla — a Los Angeles food-truck invention blending both cuisines.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Green Chile Stew</span><span class="dish-tag">Roasted Hatch chile pork stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stew of pork or beef simmered with roasted New Mexican green chiles — a defining Southwestern comfort dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sourdough Bread Pudding</span><span class="dish-tag">SF sourdough dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bread pudding made from San Francisco's famously tangy sourdough, baked in a rich egg custard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Meyer Lemon Tart</span><span class="dish-tag">Sweet-tart California citrus tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A custard tart made from Meyer lemons, a sweeter, floral citrus grown widely in California gardens.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tres Leches California</span><span class="dish-tag">Triple-milk sponge cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sponge cake soaked in three milks, a Mexican dessert firmly adopted into California's everyday baking repertoire.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Churros</span><span class="dish-tag">Fried, cinnamon-sugared dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ridged fried dough dusted in cinnamon sugar, sold at fairs, food trucks, and Mexican bakeries across the Southwest.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Date Shake</span><span class="dish-tag">Blended date milkshake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A milkshake blended with dates, a Coachella Valley, California specialty tied to the region's date palm farms.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boba Tea Mochi</span><span class="dish-tag">Chewy tapioca-pearl treat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet mochi filled with boba tea flavors, reflecting the West Coast's deep Asian-American dessert culture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Snickerdoodle</span><span class="dish-tag">Cinnamon-sugar rolled cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft butter cookie rolled in cinnamon sugar, giving it a signature crackled top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mission Fig Cake</span><span class="dish-tag">Dense California fig cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense cake studded with Mission figs, a variety grown extensively in California since the Spanish mission era.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guacamole &amp; Chips</span><span class="dish-tag">Mashed avocado, chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed avocado seasoned with lime, onion, and chili, scooped with fried tortilla chips.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Taco</span><span class="dish-tag">Battered fish, cabbage, crema</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered or grilled fish in a small tortilla with shredded cabbage and citrus crema, rooted in Baja California.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mission Burrito</span><span class="dish-tag">Foil-wrapped, rice-and-bean stuffed</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A large foil-wrapped burrito stuffed with rice, beans, meat, cheese, salsa, and sour cream — invented in San Francisco's Mission District in 1961.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Avocado Toast</span><span class="dish-tag">Mashed avocado on toast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed avocado spread over toasted artisan bread, often finished with chili flakes or a fried egg — a West Coast brunch icon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dungeness Crab Rolls</span><span class="dish-tag">Chilled crab salad roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet Dungeness crab meat dressed lightly and piled into a soft roll, a Pacific Northwest take on the lobster roll.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sourdough with Butter</span><span class="dish-tag">Tangy San Francisco bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crusty loaf of San Francisco's distinctively tangy sourdough, served simply with butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Elotes</span><span class="dish-tag">Grilled corn, mayo, cotija</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled corn on the cob coated in mayonnaise, chili powder, lime, and crumbled cotija cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Korean Short Rib Tacos</span><span class="dish-tag">Marinated bulgogi taco</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Korean marinated short rib served taco-style in a small tortilla, a Los Angeles food-truck signature.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Western American:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Avocado</li>
+        <li><span class="n">06</span> Cumin</li>
+        <li><span class="n">02</span> Chipotle</li>
+        <li><span class="n">07</span> Sourdough</li>
+        <li><span class="n">03</span> Lime</li>
+        <li><span class="n">08</span> Pacific sea salt</li>
+        <li><span class="n">04</span> Cilantro</li>
+        <li><span class="n">09</span> Napa wine</li>
+        <li><span class="n">05</span> Dried chili</li>
+        <li><span class="n">10</span> Smoked chili</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Napa Cabernet Sauvignon</li>
+              <li>Sonoma Chardonnay</li>
+              <li>Modelo Especial</li>
+              <li>Coors Banquet</li>
+              <li>Sierra Nevada Pale Ale</li>
+              <li>Lagunitas IPA</li>
+              <li>Pappy Van Winkle</li>
+              <li>Margarita</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Blue Bottle pour-over</li>
+              <li>Boba milk tea</li>
+              <li>Horchata</li>
+              <li>In-N-Out strawberry shake</li>
+              <li>Agua fresca</li>
+              <li>Kombucha</li>
+              <li>Cold brew coffee</li>
+              <li>Sparkling water</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Sierra Nevada</li>
+              <li>Lagunitas</li>
+              <li>Stone Brewing</li>
+              <li>Anchor Steam</li>
+              <li>Deschutes</li>
+              <li>Ballast Point</li>
+              <li>Firestone Walker</li>
+              <li>Alaskan Amber</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

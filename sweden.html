@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweden — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SCANDINAVIA / NORDIC</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Sweden</h1>
+      <p class="subhead">A cold, clean cuisine built on preservation and the sea — herring, dill, and lingonberry, punctuated by the daily ritual of fika.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            STOCKHOLM · LAPLAND · BALTIC SEA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC8CAIAAABNDgTVAAACzUlEQVR4nO3Wr2rWYRjH4fenLwtL4y3ahklmGdgEgxg9CfuSJ2DyBDwF005gGHUDwSLCimCStVlelhaG/w7A/nwe2HWdwPcuH7iX1dHxiv88vff97ZN3IxdffX756efDkYtMYl0fMKn18vvx5sfgxZFzzONOfQDcdiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYsvHk4P6hhnt7Vwfbi5GLp5v969udkcuMonlz5f6BLjdvKMQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIsfXZ5UF9w4z2dq4PNxcjF8+3+1c3uyMXmcSyOjqub5jRs/vfPrx4M3Lx+fvXp5ePRi4yCe8oxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxNb1AZP69ffu1+2DwYsj55jHP29yKdUJMApKAAAAAElFTkSuQmCC" alt="Flag of Sweden">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Swedish cuisine is shaped by a long, cold country stretching from fertile southern plains to subarctic tundra. Preservation was the organizing principle of the traditional kitchen — salt-curing, smoking, pickling, fermenting, and drying were not culinary choices but survival necessities through winters that could last six months. Herring, the most abundant fish in Baltic and North Sea waters, became the cornerstone of the diet and remains central to Swedish food identity today.</p>
+        <p>The Viking Age established trade routes that brought spices, dried fruits, and new grains into Scandinavia. Medieval monasteries developed dairy and baking traditions. The 17th and 18th centuries saw French culinary influence enter the aristocratic Swedish kitchen, while the peasant tradition of husmanskost ('house man's food') continued largely unchanged. Mass emigration to America in the late 19th century — nearly a quarter of Sweden's population left — created a large Swedish-American diaspora that preserved and romanticized the old food traditions, helping keep smörgåsbord and meatballs internationally recognized long before globalization.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Swedish food is clean, seasonal, and rooted in the natural landscape. The flavors are Nordic — dill, allspice, cardamom, juniper, and mustard recur constantly. Fish is paramount: herring in dozens of preparations, gravlax cured with dill and sugar, poached salmon, and smoked eel. Meat dishes tend toward the mild and creamy — köttbullar (meatballs) in cream sauce with lingonberry jam is the archetype. Wild ingredients are taken seriously: cloudberries, blueberries, lingonberries, chanterelles, and elk appear on both home and restaurant tables.</p>
+        <p>The New Nordic food movement, pioneered by Copenhagen's Noma but deeply felt in Sweden, has reinvigorated interest in indigenous ingredients, fermentation, and hyper-local sourcing. Swedish restaurants now rank among the world's best, reinterpreting husmanskost traditions through a refined, contemporary lens. Yet fika — the daily coffee-and-pastry ritual — remains the truest expression of Swedish food culture: unhurried, communal, and deeply pleasurable.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Fika is non-negotiable — a mid-morning and mid-afternoon coffee break with something sweet, taken with colleagues or friends. It is a social institution, not merely a snack.</li>
+        <li>The Swedish smörgåsbord (literally 'bread-and-butter table') is the original buffet concept — a spread of cold and hot dishes from which guests help themselves in a specific order: herring first, then other fish, then cold meats, then hot dishes, then dessert.</li>
+        <li>Midsommar (Midsummer) is the most food-significant holiday — pickled herring, new potatoes with dill and sour cream, strawberries with cream, and aquavit are essentially mandatory.</li>
+        <li>Lagom — the Swedish concept of 'just the right amount' — applies to food portions too. Excess is not celebrated; balance and moderation are prized.</li>
+        <li>Husmanskost ('house man's food') is the term for traditional home cooking — simple, seasonal, filling dishes that Swedes remain deeply attached to despite modern food trends.</li>
+        <li>Surströmming (fermented Baltic herring) is so pungently strong that it is banned from many apartment buildings and airlines — opening a can outdoors is strongly advised.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Herring (sill — pickled, smoked, fried)</li>
+        <li><span class="n">06</span> Sour cream (gräddfil)</li>
+        <li><span class="n">02</span> Salmon (gravlax, smoked, poached)</li>
+        <li><span class="n">07</span> Pork (meatballs, ribs, sausage)</li>
+        <li><span class="n">03</span> Dill (the defining Swedish herb)</li>
+        <li><span class="n">08</span> Rye crispbread (knäckebröd)</li>
+        <li><span class="n">04</span> New potatoes (with butter & dill)</li>
+        <li><span class="n">09</span> Wild berries (cloudberry, blueberry)</li>
+        <li><span class="n">05</span> Lingonberries (jam — with everything)</li>
+        <li><span class="n">10</span> Root vegetables (swede, celeriac, carrot)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>IKEA's Swedish meatballs (köttbullar) are one of the most consumed dishes in the world by volume — served in IKEA restaurants across 50+ countries, they have done more for Swedish food's global recognition than any other single dish.</li>
+        <li>Sweden has a concept called allemansrätten ('every man's right') — a law guaranteeing public access to nature, including the right to pick wild berries, mushrooms, and herbs on any land. Foraging is therefore deeply embedded in Swedish culture and cuisine.</li>
+        <li>Surströmming, the infamous fermented herring, produces hydrogen sulfide and other gases as it continues fermenting in the can — cans can bulge and must be opened submerged in water or outdoors to avoid spraying brine.</li>
+        <li>The Nobel Prize banquet, held annually in Stockholm's City Hall, is one of the most scrutinized meals in the world — the menu is a state secret until the night, and Sweden's top chefs compete fiercely to be selected.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Köttbullar med Lingon</span><span class="dish-tag">meatballs &amp; lingonberry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Swedish meatballs in cream sauce with lingonberry jam, the archetype of Swedish home cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gravlax</span><span class="dish-tag">dill &amp; mustard cured salmon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salmon cured with dill, sugar, and mustard, a Nordic classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Janssons Frestelse</span><span class="dish-tag">potato &amp; anchovy gratin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy baked gratin of potato and anchovy, a Christmas table staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ärtsoppa</span><span class="dish-tag">yellow pea soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick yellow pea soup traditionally served on Thursdays, often with mustard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smörgåsbord</span><span class="dish-tag">herring-led feast spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A structured buffet spread beginning with herring, moving through fish, cold meats, and hot dishes.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kräftor</span><span class="dish-tag">crayfish party</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled crayfish eaten at the August crayfish party, a beloved seasonal tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pytt i Panna</span><span class="dish-tag">leftover meat &amp; potato hash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty hash of diced leftover meat and potato, a practical home-cooking staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Raggmunk</span><span class="dish-tag">potato pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp potato pancakes served with pork and lingonberry jam.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Inkokt Lax</span><span class="dish-tag">cold poached salmon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salmon gently poached and served cold, often for special occasions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wallenbergare</span><span class="dish-tag">veal patty, cream &amp; peas</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A delicate veal patty enriched with cream, served with peas and lingonberry.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Prinsesstårta</span><span class="dish-tag">green marzipan dome cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A domed sponge cake layered with cream and jam, covered in green marzipan — the princess cake.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kladdkaka</span><span class="dish-tag">sticky chocolate mud cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, gooey chocolate cake, deliberately underbaked at the center.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Semla</span><span class="dish-tag">cardamom bun, Lent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cardamom-spiced bun filled with almond paste and cream, traditional before Lent.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kanelbullar</span><span class="dish-tag">cinnamon buns</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft, generously spiced cinnamon buns, a Swedish national obsession.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chokladboll</span><span class="dish-tag">oat &amp; cocoa no-bake ball</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple no-bake ball of oats and cocoa, rolled in pearl sugar or coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ostkaka</span><span class="dish-tag">Swedish baked cheesecake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A firm, custard-like baked cheesecake, distinct from the American style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Äppelkaka</span><span class="dish-tag">apple cake, vanilla sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm spiced apple cake served with a light vanilla sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cloudberry Jam with Vanilla Ice Cream</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tart Arctic cloudberry jam spooned over vanilla ice cream, a beloved simple dessert.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Light Meals</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Knäckebröd with Butter &amp; Cheese</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp rye crispbread topped with butter and cheese, a daily staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smörgås</span><span class="dish-tag">open sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open sandwich with any number of toppings, the everyday lunch staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Räkmacka</span><span class="dish-tag">shrimp open sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open sandwich piled with shrimp, egg, and dill.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fika Pastry</span><span class="dish-tag">cinnamon bun or cardamom cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The sweet pastry that anchors the daily fika coffee ritual.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Surströmming on Tunnbröd</span><span class="dish-tag">with onion &amp; potato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pungent fermented herring served on thin flatbread with onion and potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Västerbottenost Pie</span><span class="dish-tag">sharp cheese quiche</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory quiche made with Sweden's beloved sharp Västerbotten cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Reindeer on Crispbread</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of smoked reindeer served on crisp rye bread, a northern specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pickled Herring on Rye</span><span class="dish-tag">with sour cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pickled herring served on rye bread with a dollop of sour cream.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Swedish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dill (fresh — on fish, potato, everything)</li>
+        <li><span class="n">06</span> Anchovy brine (Janssons, umami base)</li>
+        <li><span class="n">02</span> Lingonberry jam (sharp, with meat)</li>
+        <li><span class="n">07</span> Aquavit (caraway spirit, in cooking too)</li>
+        <li><span class="n">03</span> Allspice (kryddpeppar — meatballs)</li>
+        <li><span class="n">08</span> Brown butter (noisette — finishing)</li>
+        <li><span class="n">04</span> Cardamom (baking — buns & cakes)</li>
+        <li><span class="n">09</span> Juniper berries (game & cured meats)</li>
+        <li><span class="n">05</span> Mustard (Swedish, sweet & mild)</li>
+        <li><span class="n">10</span> Cloudberry (Arctic fruit — desserts)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Aquavit</p>
+            <ol class="plain">
+              <li>Aquavit / Akvavit</li>
+              <li>Absolut Vodka</li>
+              <li>Swedish Punsch</li>
+              <li>Rekorderlig Cider</li>
+              <li>Glögg</li>
+              <li>Gammal Dansk</li>
+              <li>Linie Aquavit</li>
+              <li>Elderflower Gin</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kaffe</li>
+              <li>Filmjölk</li>
+              <li>Lingondricka</li>
+              <li>Julmust</li>
+              <li>Påskmust</li>
+              <li>Elderflower Cordial</li>
+              <li>Brämhults Juice</li>
+              <li>Lättöl</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Lagers</p>
+            <ol class="plain">
+              <li>Pripps Blå</li>
+              <li>Nils Oscar God Lager</li>
+              <li>Spendrups</li>
+              <li>Falcon Export</li>
+              <li>Mariestads</li>
+              <li>Omnipollo</li>
+              <li>Dugges</li>
+              <li>Åbro Exportöl</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA: Northeast — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 41 / 68 · North America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">USA · Cuisine Guide</p>
+      <h1 class="country">The Northeast</h1>
+      <p class="subhead">New England, New York, Philadelphia, and the Mid-Atlantic — the oldest European-settled table in America, and the gateway through which immigrant cooking became the American table.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ATLANTIC · HUDSON · NEW ENGLAND · ATLANTIC · HUDSON · NEW ENGLAND ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of USA: Northeast">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The American Northeast is the oldest European-settled part of the United States and the entry point for the great waves of immigration that created American food culture as the world knows it. New England's culinary tradition is the oldest of any American region with European roots — a Colonial English and indigenous Wampanoag synthesis built on seafood, corn, beans, game, and the extraordinary produce of a short but intense growing season. The Pilgrims who arrived in 1620 survived their first winter largely because indigenous peoples taught them to cultivate corn and harvest local seafood. Thanksgiving commemorates this exchange, however imperfectly.</p>
+        <p>New York City is the gastronomic epicentre of American immigration food — the Ellis Island gateway through which millions of Europeans passed between 1892 and 1954, each wave leaving culinary traces that became American institutions. Ashkenazi Jewish immigrants from Eastern Europe created the bagel, the knish, the pastrami sandwich, and the deli counter. Italian immigrants from Naples and Sicily created New York pizza and the hero sandwich. Irish immigrants brought their own traditions, and later waves of Puerto Rican, Dominican, Chinese, and Korean immigrants added layers that make New York's food scene genuinely the most diverse in the world.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>New England cooking is honest, seasonal, and built on the exceptional quality of its seafood and produce. New England clam chowder — cream-based, with potatoes and surf clams — is the definitive American chowder, and the cream-versus-tomato debate with Manhattan chowder reflects real cultural difference between Puritan New England and the immigrant pluralism of New York. The lobster roll — cold lobster meat dressed simply with mayonnaise in a top-split, butter-toasted bun — is the quintessential New England summer food.</p>
+        <p>New York's greatest food contributions are its immigrant inventions: the hand-folded pizza slice, the boiled-and-baked bagel, the pastrami on rye stacked obscenely high, and the dense, creamy New York cheesecake. Buffalo wings — invented at the Anchor Bar in Buffalo in 1964 — are one of America's most successful food inventions. Philadelphia contributes the cheesesteak, the soft pretzel, and the water ice, maintaining a fierce local food identity quite distinct from New York.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>New York is the world's greatest immigrant food city — every cuisine on earth is available within the five boroughs, and the city's most beloved foods (bagel, pizza slice, hot dog, deli sandwich) are all immigrant inventions thoroughly Americanized.</li>
+        <li>The New York pizza slice is its own food category — thin, foldable, sold by the slice from a coal or wood-fired brick oven, eaten standing on the street.</li>
+        <li>New England seafood is seasonal and serious — the lobster shack, the clam bake, the raw bar, and the chowder house are institutions tied to the short summer season.</li>
+        <li>The Jewish deli is a New York institution of enormous cultural weight — pastrami and corned beef on rye, matzo ball soup, latkes, and the particular atmosphere of the deli counter.</li>
+        <li>Brunch in New York and Philadelphia is a serious cultural institution — eggs Benedict, avocado toast, the Bloody Mary, and the bottomless mimosa, a format that has spread globally from its Northeast origins.</li>
+        <li>Philadelphia has its own fiercely local food identity — the cheesesteak is consumed with enormous local pride and strong opinions about whether Whiz, provolone, or American belongs on it.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lobster</li>
+        <li><span class="n">06</span> Blueberries</li>
+        <li><span class="n">02</span> Atlantic clams</li>
+        <li><span class="n">07</span> Cod</li>
+        <li><span class="n">03</span> Rye bread</li>
+        <li><span class="n">08</span> Corned beef / pastrami</li>
+        <li><span class="n">04</span> Cream cheese</li>
+        <li><span class="n">09</span> New England white potato</li>
+        <li><span class="n">05</span> Maple syrup</li>
+        <li><span class="n">10</span> Apple cider</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>New York-style pizza was created by Gennaro Lombardi, an Italian immigrant who opened America's first pizzeria on Spring Street in Manhattan in 1905. The coal-fired oven and the practice of selling by the slice were American adaptations of Neapolitan pizza. New York water — very soft, low in minerals — is genuinely believed by pizza makers to affect the dough.</li>
+        <li>The American bagel originated in the Jewish communities of Eastern Europe, brought to New York by Ashkenazi immigrants in the late 19th century. For decades it was hand-rolled and boiled in malted water, a process controlled by the Bagel Bakers Local 338 union until automated machines arrived in the 1960s.</li>
+        <li>New England clam chowder and Manhattan clam chowder are genuinely different preparations whose rivalry reflects a real historical divide — New England is cream-based, Manhattan is tomato-based. A 1939 Maine state bill proposed making it illegal to add tomatoes to clam chowder, though it never passed.</li>
+        <li>The Philly cheesesteak was invented in 1930 by Pat Olivieri, a hot dog vendor in South Philadelphia who grilled chopped beef on his cart and served it in a hoagie roll. The debate between Pat's King of Steaks and Geno's Steaks, across the street from each other, has run for decades.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">New England</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">New England Clam Chowder</span><span class="dish-tag">Creamy clam soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, cream-based soup of potatoes and surf clams — the definitive American chowder, distinct from tomato-based Manhattan style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">New York Pizza</span><span class="dish-tag">Thin, foldable coal-oven slice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin, foldable slice from a coal or wood-fired oven, eaten standing on the street — a distinct American descendant of Neapolitan pizza.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lobster Roll</span><span class="dish-tag">Cold lobster, buttered bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold lobster meat dressed simply with mayonnaise in a top-split, butter-toasted hot dog bun — the quintessential New England summer food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Philly Cheesesteak</span><span class="dish-tag">Griddled beef, melted cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin-sliced grilled beef and melted cheese (Whiz, provolone, or American) piled into a long roll — a fiercely defended Philadelphia institution.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clam Bake</span><span class="dish-tag">Seaweed-steamed shore feast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Clams, lobster, corn, and potatoes traditionally steamed together over hot stones and seaweed at the shore — a New England summer ritual.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New York &amp; Mid-Atlantic</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastrami on Rye</span><span class="dish-tag">Stacked deli-cured beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoked, peppery cured beef stacked high on rye bread with mustard — a cornerstone of the New York Jewish deli tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buffalo Wings</span><span class="dish-tag">Fried wings, hot sauce, blue cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried chicken wings tossed in cayenne hot sauce, served with celery and blue cheese dressing — invented at Buffalo's Anchor Bar in 1964.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boston Baked Beans</span><span class="dish-tag">Molasses-baked beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White beans slow-cooked with molasses and salt pork, a Colonial-era dish that gave Boston its nickname 'Beantown.'</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maine Lobster</span><span class="dish-tag">Whole steamed lobster, butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole steamed lobster served with drawn butter, traditionally eaten at a picnic table by the water.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oysters on the Half Shell</span><span class="dish-tag">Chilled raw oysters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh raw oysters served chilled on the half shell, a raw bar staple along the Northeast coast.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">New York Cheesecake</span><span class="dish-tag">Dense, creamy cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, rich cheesecake on a graham cracker base, baked until firm and famously creamy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boston Cream Pie</span><span class="dish-tag">Custard sponge, chocolate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two layers of sponge cake filled with custard cream and topped with a chocolate glaze — technically a cake, not a pie.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Whoopie Pie</span><span class="dish-tag">Cream-filled cake sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two soft cake rounds sandwiching a sweet cream filling, a Maine and Pennsylvania Dutch favorite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maple Creemee</span><span class="dish-tag">Vermont maple soft-serve</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vermont's take on soft-serve ice cream, swirled with real maple syrup instead of standard vanilla.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blueberry Pie</span><span class="dish-tag">Wild Maine blueberry pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A double-crust pie filled with small, intensely flavored wild Maine blueberries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Snickerdoodles</span><span class="dish-tag">Cinnamon-sugar rolled cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft butter cookie rolled in cinnamon sugar, giving it a signature crackled top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Indian Pudding</span><span class="dish-tag">Cornmeal molasses pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-baked cornmeal pudding sweetened with molasses, a Colonial New England dessert dating to the earliest settlers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Apple Cider Doughnut</span><span class="dish-tag">Cider-spiced fall doughnut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cake doughnut made with fresh apple cider and warm spices, sold at Northeastern orchards each autumn.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bagel with Lox</span><span class="dish-tag">Boiled bagel, smoked salmon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy boiled-and-baked bagel topped with cream cheese and smoked salmon (lox) — a New York Jewish deli classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">NYC Hot Dog</span><span class="dish-tag">Street-cart dog, onion sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A steamed or grilled hot dog from a street cart, classically topped with spiced onion sauce and mustard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soft Pretzel</span><span class="dish-tag">Chewy salted street pretzel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A large, chewy salted pretzel sold from street carts across New York and Philadelphia.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clam Strips</span><span class="dish-tag">Fried breaded clam strips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Strips of clam meat, breaded and deep-fried until crisp — a New England seafood shack staple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Knish</span><span class="dish-tag">Filled fried or baked dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick pastry filled with mashed potato, meat, or kasha, fried or baked — a Jewish deli and street food staple in New York.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Matzo Ball Soup</span><span class="dish-tag">Chicken broth, dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken broth with a light, fluffy dumpling made from matzo meal — a Jewish deli comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crab Cakes</span><span class="dish-tag">Pan-fried Mid-Atlantic crab</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lump crab meat bound lightly with breadcrumbs and egg, pan-fried until golden — a Mid-Atlantic seafood signature.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stuffed Quahogs</span><span class="dish-tag">Baked stuffed clam shells</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced quahog clam meat mixed with breadcrumbs and seasoning, baked in the shell — a Rhode Island specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Northeastern:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Cream & butter</li>
+        <li><span class="n">06</span> Mustard</li>
+        <li><span class="n">02</span> Old Bay seasoning</li>
+        <li><span class="n">07</span> Smoked fish</li>
+        <li><span class="n">03</span> Maple syrup</li>
+        <li><span class="n">08</span> Rye</li>
+        <li><span class="n">04</span> Apple cider vinegar</li>
+        <li><span class="n">09</span> Sea salt</li>
+        <li><span class="n">05</span> Dill</li>
+        <li><span class="n">10</span> Cream cheese</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Cocktails &amp; Whiskey</p>
+            <ol class="plain">
+              <li>Manhattan cocktail</li>
+              <li>Bourbon Sour</li>
+              <li>Sam Adams Boston Lager</li>
+              <li>Brooklyn Brewery</li>
+              <li>Dogfish Head</li>
+              <li>Allagash White</li>
+              <li>Vermont craft cider</li>
+              <li>Rye whiskey</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sodas &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Egg cream</li>
+              <li>Dr. Brown's Cel-Ray</li>
+              <li>New England apple cider</li>
+              <li>Moxie</li>
+              <li>Vermont maple latte</li>
+              <li>Iced coffee</li>
+              <li>Cream soda</li>
+              <li>Birch beer</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Sam Adams</li>
+              <li>Brooklyn Lager</li>
+              <li>Allagash White</li>
+              <li>Dogfish Head 60 Min</li>
+              <li>Harpoon IPA</li>
+              <li>Long Trail</li>
+              <li>Narragansett</li>
+              <li>Sixpoint</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

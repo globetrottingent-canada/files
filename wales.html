@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wales — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">EUROPE / WELSH</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Wales</h1>
+      <p class="subhead">Honest, ingredient-led Celtic cooking built on mountain lamb, leeks, dairy, and whatever the coast provides.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            MOUNTAINS · VALLEYS · COAST · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Wales">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Welsh cuisine is rooted in pastoral farming culture — a landscape of mountains, valleys, and coastline that shaped a diet built on lamb, dairy, oats, and whatever the sea could provide. Wales was a Celtic nation that maintained a distinct food culture even under centuries of English political influence. The cuisine is honest and ingredient-led: mountain lamb grazed on wild herbs, cockles harvested from the Gower Peninsula, and leeks grown in smallholdings have been on Welsh tables for a thousand years.</p>
+        <p>The industrial revolution brought coal mining and ironworking to south Wales, and with it a working-class food culture of cawl, bread, cheese, and faggots — filling, affordable, and practical. The nonconformist chapel tradition also influenced food customs, promoting temperance and simple communal eating. Wales largely avoided the foreign imperial influences that transformed English cuisine, keeping its food distinctly Celtic and land-connected. In recent decades a confident artisan food movement — farmhouse cheeses, craft brewing, and Penderyn whisky — has put Wales firmly on the culinary map.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Welsh cooking is quiet and unfussy, with a deep emphasis on the quality of local produce over elaborate technique. Lamb is the defining protein — mountain breeds grazing on wild thyme and heather produce meat of outstanding flavor, recognized with PGI protected status. Leeks appear in almost everything savory. Cawl, the national dish, is a simple broth of lamb, leeks, and root vegetables that has been eaten in some form since medieval times.</p>
+        <p>The coastline contributes cockles, mussels, crab, and laverbread — the boiled seaweed paste unique to Wales, eaten with bacon and oatmeal for breakfast. Baking is central: Welsh cakes on a bakestone, bara brith (speckled fruit loaf), and crempog pancakes reflect a strong domestic tradition. Welsh cheese — particularly Caerphilly — is crumbly, mild, and widely loved. The national drink is increasingly recognized as Penderyn single malt whisky, though tea remains the daily ritual.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Sunday roast is as central in Wales as in England, but lamb is far more likely to be the centerpiece than beef.</li>
+        <li>Welsh cakes are cooked on a bakestone (griddle) and eaten warm — buying them freshly made from a market stall is a rite of passage.</li>
+        <li>The leek is a national symbol and genuinely appears in soups, stews, and broths with great frequency — not merely ceremonial.</li>
+        <li>Bara brith (speckled bread) is typically sliced thick and buttered, served with afternoon tea — every family has their own recipe.</li>
+        <li>Mining and industrial communities historically ate simple, hearty food — cawl, bread, and cheese were everyday staples for working men.</li>
+        <li>St. David's Day (March 1) is marked with traditional dishes: cawl, Welsh cakes, and leek soup, often served in schools and pubs.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Welsh lamb (PGI protected)</li>
+        <li><span class="n">06</span> Potatoes & root vegetables</li>
+        <li><span class="n">02</span> Leeks (national symbol)</li>
+        <li><span class="n">07</span> Oats</li>
+        <li><span class="n">03</span> Caerphilly cheese</li>
+        <li><span class="n">08</span> Buttermilk</li>
+        <li><span class="n">04</span> Laverbread (seaweed paste)</li>
+        <li><span class="n">09</span> Salted butter</li>
+        <li><span class="n">05</span> Cockles (Gower Peninsula)</li>
+        <li><span class="n">10</span> Dried fruit & mixed spice</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Wales has the highest density of sheep relative to population of any country in Europe — approximately 4 sheep per person — which explains why lamb is so central to the cuisine.</li>
+        <li>Caerphilly cheese, one of Wales's most famous exports, was originally made as a mild, crumbly cheese to feed coal miners — its salt content helped replace minerals lost through sweating.</li>
+        <li>The word 'cawl' (pronounced 'cowl') — Wales's national dish, a lamb and leek broth — is one of the oldest recorded Welsh words, appearing in texts from the 14th century.</li>
+        <li>Laverbread is made from boiled seaweed — despite its name it is not a bread at all, but a paste of cooked laver seaweed, often fried with oats and served alongside bacon.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cawl</span><span class="dish-tag">lamb &amp; leek broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wales's national dish — a simple, slow-simmered broth of lamb, leeks, and root vegetables eaten in some form since medieval times.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Welsh Lamb Roast</span><span class="dish-tag">with mint sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Sunday centerpiece: mountain-bred lamb, PGI protected, roasted and served with mint sauce in place of the English beef roast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Glamorgan Sausages</span><span class="dish-tag">leek &amp; cheese, veg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A vegetarian 'sausage' of breadcrumbs, Caerphilly cheese, and leek, fried until crisp — a traditional meat-free classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Faggots</span><span class="dish-tag">mushy peas &amp; gravy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baked meatballs of minced offal and herbs wrapped in caul fat, traditionally served with mushy peas and onion gravy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laverbread &amp; Bacon</span><span class="dish-tag">breakfast classic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled seaweed paste fried with oats and served alongside bacon — a distinctly Welsh coastal breakfast.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lobscows</span><span class="dish-tag">Welsh lamb stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty, long-simmered stew of lamb, potatoes, and root vegetables — the Welsh cousin of Liverpool's scouse.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tattie &amp; Leek Soup</span><span class="dish-tag">hearty potato soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, warming soup of potatoes and leeks, often finished with cream or butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cockles</span><span class="dish-tag">with vinegar, bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Gower Peninsula cockles, boiled and dressed with malt vinegar, traditionally eaten with thick brown bread and butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Welsh Rarebit</span><span class="dish-tag">cheese sauce toast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory sauce of Caerphilly or cheddar, mustard, and ale grilled over toast — Wales's take on cheese on toast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salt Marsh Lamb Chops</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chops from lamb grazed on coastal salt marsh grasses, prized for a subtly savory, herbaceous flavor.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Puddings &amp; Cakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Welsh Cakes</span><span class="dish-tag">griddle cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, spiced currant cakes cooked on a bakestone (griddle), dusted with sugar and eaten warm.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bara Brith</span><span class="dish-tag">speckled fruit loaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, tea-soaked dried fruit loaf, sliced thick and buttered, served with afternoon tea.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Treacle Tart</span><span class="dish-tag">sticky syrup tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pastry shell filled with a sticky, breadcrumb-thickened golden syrup filling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Snowdon Pudding</span><span class="dish-tag">lemon &amp; raisin</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A steamed suet pudding studded with raisins and lemon marmalade, traditionally served with a light custard sauce.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Bakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Monmouth Pudding</span><span class="dish-tag">breadcrumb &amp; jam</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered baked pudding of breadcrumbs, jam, and a light meringue-like topping.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crempog</span><span class="dish-tag">Welsh pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick, spiced Welsh pancakes, sometimes layered and stacked with butter between each one.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Apple &amp; Blackberry Crumble</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Foraged blackberries and orchard apples baked under a buttery oat crumble topping.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Teisen Lap</span><span class="dish-tag">moist currant cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist, shallow currant cake traditionally baked in a large flat tin and cut into squares.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Light Meals</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Welsh Cakes</span><span class="dish-tag">warm off bakestone</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, spiced currant cakes cooked on a bakestone, dusted with sugar and eaten warm — a market-stall staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laverbread on Toast</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled seaweed paste spread on hot toast, sometimes with bacon, for a briny coastal snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caerphilly &amp; Pickle</span><span class="dish-tag">cheese sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crumbly Caerphilly cheese and tangy pickle between thick slices of bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cockle &amp; Samphire Salad</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh cockles tossed with foraged samphire, a salty coastal green, and a light vinegar dressing.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oatcakes</span><span class="dish-tag">with butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple, hearty oat griddle cakes, split and spread with butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Glamorgan Sausage Roll</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The vegetarian Glamorgan sausage mix wrapped in pastry for a portable snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bara Brith</span><span class="dish-tag">with salted butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic speckled fruit loaf, sliced and buttered for a quick snack any time of day.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leek &amp; Potato Pasty</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hand-held pastry parcel filled with leeks, potato, and butter — a portable version of Welsh comfort food.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Welsh:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fresh mint (lamb dishes)</li>
+        <li><span class="n">06</span> Wholegrain mustard</li>
+        <li><span class="n">02</span> Leek (soups, stews)</li>
+        <li><span class="n">07</span> Mixed spice (baking)</li>
+        <li><span class="n">03</span> Caerphilly cheese</li>
+        <li><span class="n">08</span> Dried currants & sultanas</li>
+        <li><span class="n">04</span> Laverbread (umami, briny)</li>
+        <li><span class="n">09</span> Salted Welsh butter</li>
+        <li><span class="n">05</span> Malt vinegar</li>
+        <li><span class="n">10</span> Thyme & rosemary</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Alcoholic</p>
+            <ol class="plain">
+              <li>Penderyn Single Malt Whisky</li>
+              <li>Aber Falls Gin (Dyfi)</li>
+              <li>Mead (ancient tradition)</li>
+              <li>Welsh Cider (Gwynt y Ddraig)</li>
+              <li>Sloe Gin</li>
+              <li>Port</li>
+              <li>Brains SA ("Skull Attack") Bitter</li>
+              <li>Welsh Vodka (Dà Mhìle)</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Welsh Brew Tea (Glengettie)</li>
+              <li>Elderflower Cordial</li>
+              <li>Fresh Sheep's Milk</li>
+              <li>Welsh Apple Juice</li>
+              <li>Nettle Tea</li>
+              <li>Barley Water</li>
+              <li>Ginger Beer</li>
+              <li>Dandelion &amp; Burdock</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Ales</p>
+            <ol class="plain">
+              <li>Brains SA (Cardiff Bitter)</li>
+              <li>Felinfoel Double Dragon</li>
+              <li>Purple Moose Snowdonia Ale</li>
+              <li>Tiny Rebel Cwtch (Red Ale)</li>
+              <li>Tomos Watkin OSB</li>
+              <li>Gower Gold</li>
+              <li>Evan Evans Warrior</li>
+              <li>Cardiff Brewery Session IPA</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

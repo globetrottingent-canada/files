@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">ASIA / VIETNAMESE</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Vietnam</h1>
+      <p class="subhead">Herb-forward, five-flavor cooking shaped by Chinese, Cham, Khmer, and French layers along a 1,650-kilometre coast.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HANOI · HUE · SAIGON · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Vietnam">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Vietnamese cuisine is one of the most vibrant, fresh, and herb-forward food cultures in Southeast Asia — a tradition shaped by over a thousand years of Chinese dominance, three centuries of internal division, nearly a century of French colonialism, and the extraordinary biodiversity of a country that stretches 1,650 kilometres from subtropical north to tropical south. The Han dynasty's long occupation of northern Vietnam left deep marks: chopsticks, the wok, soy-based sauces, tofu, and noodles all arrived from China, though Vietnam absorbed and transformed them into something distinctly its own. The Cham kingdom of central Vietnam and Khmer influence in the south added further layers.</p>
+        <p>French colonial rule from 1858 to 1954 introduced baguettes, pâté, coffee, condensed milk, and long bone broth — all absorbed with extraordinary creativity. The bánh mì and phở both show unmistakable French influence at their foundations, yet both are now so thoroughly Vietnamese that their European roots are almost invisible. Vietnam's long north-south geography also means the cuisine splits into three distinct regional traditions: the subtle, soy-and-vinegar cooking of Hanoi and the north; the fiercely spiced, shrimp-paste-rich imperial cuisine of Huế; and the sweeter, coconut-milk-abundant, herb-generous cooking of the south.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Vietnamese cooking is defined by balance, freshness, and the brilliant use of contrasting textures and temperatures in a single dish. The five flavours — sour, bitter, sweet, spicy, and salty — are deliberately calibrated, often all present at once. Fresh herbs are not optional garnish but essential structural components: a bowl of phở is incomplete without its tableside plate of bean sprouts, basil, mint, and lime. The lightness of Vietnamese food sets it apart from richer neighbours — very little dairy, restrained oil, and an emphasis on grilling, steaming, and poaching over deep-frying.</p>
+        <p>Fish sauce — nước mắm — is the foundational seasoning, used with a confidence that transforms every dish it touches. Nước chấm, the dipping sauce of diluted fish sauce with lime, sugar, garlic, and chili, accompanies almost everything and varies by household. Rice appears in every form: steamed as cơm, ground into noodles as bún and bánh phở, pressed into crepes as bánh cuốn, and puffed as bánh tráng. Street food culture is extraordinary — an endless stream of vendors and stalls, each serving a single speciality perfected over decades.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Meals are eaten communally from shared dishes placed at the centre — rice is served individually but everything else is shared, filling the table at once.</li>
+        <li>Fresh herbs are a structural component, not a garnish — a plate of mint, perilla, bean sprouts, and basil arrives alongside most dishes and is eaten freely throughout the meal.</li>
+        <li>Phở is a morning dish — eaten for breakfast or early lunch, not dinner. The best broth is made overnight and served through the morning.</li>
+        <li>Fish sauce is the salt of Vietnam — nước mắm, made from fermented anchovies, seasons virtually everything, alongside its dipping-sauce cousin nước chấm.</li>
+        <li>The bánh mì is a legacy of French colonialism so thoroughly Vietnamized that its baguette is now its own distinct thing — lighter, airier, crispier than its French ancestor.</li>
+        <li>Northern, central, and southern Vietnamese food are genuinely distinct — Hanoi's subtle cooking contrasts sharply with Huế's intensely spiced imperial cuisine and the south's sweeter, herb-abundant style.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fish sauce</li>
+        <li><span class="n">06</span> Star anise</li>
+        <li><span class="n">02</span> Rice noodles</li>
+        <li><span class="n">07</span> Lime</li>
+        <li><span class="n">03</span> Lemongrass</li>
+        <li><span class="n">08</span> Bird's eye chili</li>
+        <li><span class="n">04</span> Rice</li>
+        <li><span class="n">09</span> Shrimp paste</li>
+        <li><span class="n">05</span> Fresh herbs</li>
+        <li><span class="n">10</span> Coconut milk</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Phở — Vietnam's national soup of clear beef or chicken broth, rice noodles, and fresh herbs — is a relatively recent invention. It emerged in northern Vietnam around the early 20th century, most likely in Nam Định province, and shows clear French influence in its use of beef bones for broth. Before French colonialism, cattle were working animals, not food.</li>
+        <li>Vietnam is the world's second-largest coffee producer after Brazil, with a coffee culture entirely distinct from the European model. Robusta beans from the Central Highlands are brewed through a phin drip filter, served over condensed milk as cà phê sữa đá, or blended with egg yolk in Hanoi's famous cà phê trứng.</li>
+        <li>Nước mắm is produced along the Vietnamese coast, particularly on Phú Quốc island, using only anchovies and salt fermented for twelve to eighteen months in wooden barrels. The finest Phú Quốc fish sauce, with nitrogen content above 40°N, is a protected geographical-indication luxury product.</li>
+        <li>The bánh mì sandwich is one of the most successful culinary fusions in history — a French colonial baguette filled with pâté, pickled daikon and carrot, cucumber, coriander, chili, and various proteins. What began as colonial street food is now ranked among the world's greatest sandwiches.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Phở Bò</span><span class="dish-tag">beef noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vietnam's iconic soup: clear, long-simmered beef broth over rice noodles with herbs, bean sprouts, and lime, traditionally eaten in the morning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Mì</span><span class="dish-tag">baguette sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A French colonial baguette, lighter and crispier than its ancestor, filled with pâté, pickled vegetables, herbs, chili, and a choice of meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bún Bò Huế</span><span class="dish-tag">spicy Huế soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An intensely spiced beef and pork noodle soup from the imperial city of Huế, seasoned with lemongrass, chili oil, and shrimp paste.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cơm Tấm</span><span class="dish-tag">broken rice plate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Southern-style broken rice served with grilled pork chop, a fried egg, pickled vegetables, and fish sauce — a beloved everyday lunch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Xèo</span><span class="dish-tag">crispy rice crepe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A turmeric-tinted, coconut-milk rice crepe filled with pork, shrimp, and bean sprouts, folded and eaten wrapped in lettuce and herbs.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bún Chả</span><span class="dish-tag">grilled pork, noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hanoi's classic: char-grilled pork patties and slices served over cold rice vermicelli with herbs and a sweet-sour dipping sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cá Kho Tộ</span><span class="dish-tag">caramelized fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish braised in a clay pot with caramelized sugar and fish sauce, producing a deeply savory, slightly sweet, dark sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gỏi Cuốn</span><span class="dish-tag">fresh spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Translucent rice-paper rolls of shrimp, pork, rice noodles, and herbs, served fresh and unfried with peanut or fish sauce dip.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mì Quảng</span><span class="dish-tag">turmeric noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Da Nang specialty of turmeric-dyed noodles in a light, intensely flavored broth with shrimp, pork, herbs, and toasted rice crackers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bò Lúc Lắc</span><span class="dish-tag">shaking beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cubed beef seared hot and fast in a wok — the name refers to the tossing motion — served over rice or salad with a peppery lime dip.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chè Ba Màu</span><span class="dish-tag">three-color dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered dessert of mung bean, red bean, and pandan jelly over coconut milk and crushed ice — a beloved street-side treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Flan</span><span class="dish-tag">Vietnamese custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A French-influenced egg custard with caramel sauce, often served with condensed milk or strong coffee.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Cam</span><span class="dish-tag">sesame rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried glutinous rice balls coated in sesame seeds with a sweet mung bean filling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Xôi Xoài</span><span class="dish-tag">mango sticky rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweetened glutinous rice served with fresh ripe mango and a drizzle of coconut cream.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Trôi</span><span class="dish-tag">glutinous rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chewy glutinous rice balls filled with palm sugar, boiled and served in a light ginger syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kem Trái Dừa</span><span class="dish-tag">coconut ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Coconut ice cream served inside a hollowed, frozen coconut shell — a favorite hot-weather treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Bò Nướng</span><span class="dish-tag">honeycomb cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baked, airy sponge cake with a distinctive honeycomb texture from fermented rice flour and coconut milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chè Chuối</span><span class="dish-tag">banana coconut soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm dessert soup of banana, sago pearls, and coconut milk, often topped with roasted peanuts.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gỏi Cuốn</span><span class="dish-tag">fresh spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Translucent rice-paper rolls of shrimp, pork, rice noodles, and herbs, served fresh and unfried with peanut or fish sauce dip.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Cuốn</span><span class="dish-tag">steamed rice rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate steamed rice-flour sheets filled with minced pork and mushroom, topped with fried shallots and dipping sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bún Riêu</span><span class="dish-tag">crab noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tomato-based noodle soup with a rustic crab and tofu patty, tamarind-soured broth, and fresh herbs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Tráng Nướng</span><span class="dish-tag">grilled rice paper</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Nicknamed 'Vietnamese pizza' — rice paper grilled over charcoal with egg, dried shrimp, scallion, and chili.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nem Rán</span><span class="dish-tag">fried spring rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried spring rolls packed with pork, crab meat, mushroom, and vermicelli, wrapped in lettuce and herbs to eat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Khọt</span><span class="dish-tag">mini savory pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bite-sized crispy rice-flour pancakes cooked in a special mold, topped with shrimp and served with herbs and dipping sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bánh Tiêu</span><span class="dish-tag">fried donut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hollow, puffed, deep-fried donut coated in sesame seeds — a common breakfast or afternoon street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hột Vịt Lộn</span><span class="dish-tag">balut egg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fertilized duck egg with a developing embryo, boiled and eaten from the shell with herbs, salt, and pepper.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Vietnamese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fish sauce</li>
+        <li><span class="n">06</span> Fresh mint</li>
+        <li><span class="n">02</span> Lemongrass</li>
+        <li><span class="n">07</span> Shrimp paste</li>
+        <li><span class="n">03</span> Star anise</li>
+        <li><span class="n">08</span> Cinnamon</li>
+        <li><span class="n">04</span> Lime juice</li>
+        <li><span class="n">09</span> Coriander</li>
+        <li><span class="n">05</span> Bird's eye chili</li>
+        <li><span class="n">10</span> Nước chấm</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Rice Wine</p>
+            <ol class="plain">
+              <li>Bia Hơi</li>
+              <li>Sài Gòn Beer</li>
+              <li>Hà Nội Beer</li>
+              <li>333 Beer</li>
+              <li>Rượu Cần</li>
+              <li>Rượu Đế</li>
+              <li>Vodka Men</li>
+              <li>Lúa Mới</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Cà Phê Sữa Đá</li>
+              <li>Cà Phê Trứng</li>
+              <li>Trà Đá</li>
+              <li>Nước Mía</li>
+              <li>Sinh Tố Bơ</li>
+              <li>Nước Sâm</li>
+              <li>Soda Chanh Muối</li>
+              <li>Nước Dừa</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Bia Saigon</li>
+              <li>Bia Hà Nội</li>
+              <li>333 Export</li>
+              <li>Tiger Vietnam</li>
+              <li>Bia Hà Nội Premium</li>
+              <li>Pasteur Street IPA</li>
+              <li>Platinum Beer</li>
+              <li>BGI</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Korea — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">EAST ASIA / FERMENTED</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">South Korea</h1>
+      <p class="subhead">A fermentation-forward peninsula cuisine built on kimchi, banchan, and the bold, balanced heat of gochujang and gochugaru.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            SEOUL · JEJU · BUSAN · HAN RIVER · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of South Korea">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Korean cuisine is one of the most distinctive and fermentation-forward food cultures in Asia — a tradition shaped by a peninsula geography of cold winters, four clear seasons, and a population historically dependent on preserving vegetables through long months of frost. The result is a cuisine defined by its banchan culture — the constellation of small fermented, pickled, braised, and seasoned side dishes that accompany every meal — and by kimchi, the fermented spiced cabbage that is simultaneously a condiment, a side dish, an ingredient, and a cultural symbol.</p>
+        <p>Chinese influence came through centuries of cultural exchange — Buddhism, Confucian food rituals, cooking techniques, and ingredients all arrived from the continent. Japanese colonization from 1910–1945 left complex culinary traces: some Japanese dishes were absorbed and Koreanized, while Korean food culture responded with fierce pride in its own traditions. The dramatic economic development of South Korea from the 1960s onwards created a modern food scene of global ambition, particularly visible in Seoul, which now ranks among the world's most exciting restaurant cities. The Korean Wave — the global spread of K-pop and Korean culture — has brought Korean food to an unprecedented global audience in the 21st century.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Korean cooking is built on fermentation, bold seasoning, and the deep satisfaction of balance. Gochugaru and gochujang bring fiery heat; doenjang delivers fermented soybean depth; sesame oil adds nutty richness; garlic is used with lavish generosity. The cuisine is not shy — flavors are direct and assertive. Yet within this boldness there is sophisticated balance: the heat of kimchi against plain rice, the richness of samgyeopsal against the brightness of perilla and ssamjang, the sweet-savory pull of bulgogi marinade.</p>
+        <p>The Korean table is democratic and communal by design — banchan are shared freely, grills are tended together, and the act of wrapping meat, rice, and condiments into a leaf parcel is inherently social. Soups and stews — jjigae — are central to every meal context, from the humble kimchi jjigae to the elaborate royal court soups. Korean fried chicken, tteokbokki, and street food culture have captured global imaginations, while the ancient traditions of temple food, royal cuisine, and regional home cooking remain deeply alive.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Korean meals are served all at once — rice and soup in individual bowls, but all banchan side dishes placed in the center for everyone to share, replenished freely without extra charge.</li>
+        <li>Banchan culture is the defining feature of the Korean table — anywhere from two to a dozen small side dishes accompany every meal, from kimchi and seasoned vegetables to braised tofu and fish.</li>
+        <li>Koreans eat with a spoon and chopsticks together — the spoon is used for rice and soup, chopsticks for everything else. Lifting the rice bowl to your mouth is considered poor manners.</li>
+        <li>Jeong — the concept of affection and attachment — is deeply embedded in food culture. Cooking for someone is an act of love, and sharing food builds bonds that can last a lifetime.</li>
+        <li>Korean BBQ culture means that cooking at the table is social and collaborative — the grill is managed by the group, meat is wrapped in perilla or lettuce leaves with garlic, ssamjang, and kimchi.</li>
+        <li>Kimchi is made by every family according to its own recipe — regional styles, seasonal vegetables, and family ratios of gochugaru and fish sauce create a dish as personal as a fingerprint.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Gochugaru</li>
+        <li><span class="n">06</span> Garlic</li>
+        <li><span class="n">02</span> Gochujang</li>
+        <li><span class="n">07</span> Kimchi</li>
+        <li><span class="n">03</span> Doenjang</li>
+        <li><span class="n">08</span> Perilla leaf</li>
+        <li><span class="n">04</span> Soy sauce</li>
+        <li><span class="n">09</span> Rice</li>
+        <li><span class="n">05</span> Sesame oil</li>
+        <li><span class="n">10</span> Dwaeji galbi</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Korea has the highest kimchi consumption per capita of any country — the average Korean eats around 18kg of kimchi per year, and the country produces approximately 1.5 million tonnes annually. Kimchi-making in late autumn — kimjang — was inscribed on UNESCO's Intangible Cultural Heritage list in 2013.</li>
+        <li>Gochugaru — the Korean red pepper flake used in kimchi and gochujang — was introduced from the Americas via Portuguese traders in the early 17th century. Within 200 years it had become so central to Korean cuisine that a Korea without gochugaru is now literally unimaginable.</li>
+        <li>South Korea has the highest number of convenience store food items of any country in the world — 7-Eleven and GS25 stores in Korea sell fresh triangle kimbap, hot oden fish cake soup, instant ramen cooked on-site, and rotating seasonal items that are taken seriously as food.</li>
+        <li>Makgeolli — Korea's ancient milky rice wine — is one of the oldest alcoholic drinks in East Asia, with records going back over 2,000 years. It was the drink of farmers and working people for centuries, and has seen a major craft revival in the 21st century.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kimchi Jjigae</span><span class="dish-tag">kimchi stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty stew built on fermented kimchi, often with pork or tofu, a humble everyday staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bibimbap</span><span class="dish-tag">mixed rice bowl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice topped with seasoned vegetables, meat, and a fried egg, mixed together with gochujang.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bulgogi</span><span class="dish-tag">marinated grilled beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin beef slices marinated in a sweet-savory soy sauce, grilled quickly over high heat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Galbi</span><span class="dish-tag">marinated beef ribs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated short ribs grilled over charcoal, a Korean BBQ centerpiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samgyeopsal</span><span class="dish-tag">grilled pork belly</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick-cut pork belly grilled at the table and wrapped in lettuce with garlic and ssamjang.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doenjang Jjigae</span><span class="dish-tag">fermented soybean stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory stew built on fermented soybean paste, tofu, and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Japchae</span><span class="dish-tag">stir-fried glass noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet potato starch noodles stir-fried with vegetables and beef in sesame oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sundubu Jjigae</span><span class="dish-tag">silken tofu stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spicy, bubbling stew built on soft silken tofu, often with seafood.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dakgalbi</span><span class="dish-tag">spicy stir-fried chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spicy marinated chicken stir-fried with cabbage and rice cakes on a hot griddle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Haemul Pajeon</span><span class="dish-tag">seafood scallion pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory pancake studded with scallion and seafood, crisp at the edges.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bingsu</span><span class="dish-tag">shaved ice dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Finely shaved ice topped with sweet red beans, fruit, and condensed milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hotteok</span><span class="dish-tag">sweet filled pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A griddled pancake filled with brown sugar, cinnamon, and nuts, a beloved winter street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tteok</span><span class="dish-tag">rice cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chewy rice cakes in countless forms, sweet or savory, central to celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sikhye</span><span class="dish-tag">sweet rice drink</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional sweet fermented rice drink, often served as a dessert beverage.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yakgwa</span><span class="dish-tag">honey fried cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A deep-fried wheat cookie soaked in honey syrup, traditional at celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bungeo-ppang</span><span class="dish-tag">fish-shaped cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fish-shaped pastry filled with sweet red bean paste, a winter street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gyeongdan</span><span class="dish-tag">sweet rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small glutinous rice balls coated in sweetened bean or seed powder.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jeon</span><span class="dish-tag">savory pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A category of savory pan-fried fritters, made with vegetables, seafood, or meat.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tteokbokki</span><span class="dish-tag">spicy rice cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chewy rice cakes simmered in a sweet-spicy gochujang sauce, Korea's most beloved street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kimbap</span><span class="dish-tag">seaweed rice rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice and fillings rolled in seaweed, sliced into bite-sized pieces.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried Chicken</span><span class="dish-tag">Korean-style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Twice-fried chicken glazed in sweet, spicy, or soy-garlic sauce, a global Korean export.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Odeng</span><span class="dish-tag">fish cake skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish cake skewers simmered in a savory broth, sold hot from street carts.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pajeon</span><span class="dish-tag">scallion pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A savory scallion pancake, crisp and simple, often paired with makgeolli.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gimbap</span><span class="dish-tag">seaweed rice rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice and fillings rolled in seaweed, sliced into bite-sized pieces.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mandu</span><span class="dish-tag">filled dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed, boiled, or fried dumplings filled with meat and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Twigim</span><span class="dish-tag">assorted fried snacks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A category of deep-fried snacks including vegetables, seafood, and dumplings.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Korean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Gochujang</li>
+        <li><span class="n">06</span> Soy sauce</li>
+        <li><span class="n">02</span> Doenjang</li>
+        <li><span class="n">07</span> Rice vinegar</li>
+        <li><span class="n">03</span> Sesame oil</li>
+        <li><span class="n">08</span> Perilla</li>
+        <li><span class="n">04</span> Gochugaru</li>
+        <li><span class="n">09</span> Fish sauce</li>
+        <li><span class="n">05</span> Garlic</li>
+        <li><span class="n">10</span> Ssamjang</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Soju &amp; Spirits</p>
+            <ol class="plain">
+              <li>Soju</li>
+              <li>Makgeolli</li>
+              <li>Baekseju</li>
+              <li>Bokbunja-ju</li>
+              <li>Cheongju</li>
+              <li>Dong Dong-ju</li>
+              <li>Soju Cocktails</li>
+              <li>Andong Soju</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Sikhye</li>
+              <li>Sujeonggwa</li>
+              <li>Barley Tea</li>
+              <li>Nokcha Green Tea</li>
+              <li>Misugaru</li>
+              <li>Banana Milk</li>
+              <li>Boricha</li>
+              <li>Omija Tea</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Hite</li>
+              <li>Cass</li>
+              <li>OB Golden Lager</li>
+              <li>Terra</li>
+              <li>Kloud</li>
+              <li>Jeju Wit Ale</li>
+              <li>Galmegi Brewing</li>
+              <li>The Hand &amp; Malt</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

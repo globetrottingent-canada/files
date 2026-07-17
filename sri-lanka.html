@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Lanka — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTH ASIA / SPICE ISLAND</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Sri Lanka</h1>
+      <p class="subhead">An island spice tradition built on coconut, Maldive fish, and centuries of trade — distinct from its Indian and Southeast Asian neighbors.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            KANDY · JAFFNA · GALLE · NUWARA ELIYA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Sri Lanka">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Sri Lankan cuisine is one of the most distinctive and underappreciated food cultures in Asia — an island spice tradition of extraordinary depth, shaped by over two thousand years of trade, three periods of European colonialism, and the creative tension between Sinhala and Tamil culinary traditions that produced a kitchen of remarkable complexity. The island's position in the Indian Ocean made it one of the ancient world's most important spice trading ports — cinnamon, pepper, cardamom, and cloves drew Phoenician, Arab, Chinese, and Indian traders for millennia, and the Portuguese, Dutch, and British colonial periods that followed each left permanent culinary traces. Sri Lankan cooking absorbed these influences without losing its own identity, producing a cuisine that is simultaneously distinct from South Indian cooking, Southeast Asian cooking, and the European traditions that touched it.</p>
+        <p>The ancient Sinhala Buddhist culinary tradition, developed over two thousand years, placed rice and coconut at the centre of a sophisticated vegetarian and fish-based diet. The Tamil Hindu tradition of the north and east — more closely connected to South Indian Tamil Nadu — contributed different spice balances, more tamarind sourcing, and a seafood tradition shaped by the Jaffna lagoon's extraordinary resources. Portuguese colonialism from 1505 left love cake (a dense cashew and semolina confection), breudher (Dutch-influenced bread), and the vinegar-pickle tradition. The Dutch period (1638–1796) produced lamprais — a complete meal of rice, curries, and sambol baked together in a banana leaf parcel — a survival of the Dutch-era rijsttafel tradition adapted to Sri Lankan ingredients. British colonial rule from 1796 embedded Ceylon tea as the island's defining export and introduced a toast-and-butter breakfast culture that persists alongside the hopper tradition.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Sri Lankan cooking is defined by the triumvirate of coconut, spice, and Maldive fish. Fresh coconut milk, pressed daily from grated fresh coconut, forms the base of most curries and gives them a richness and slight sweetness that distinguishes Sri Lankan curries from their Indian neighbours. Maldive fish — sun-dried, cured skipjack tuna — provides the deep, savoury, slightly oceanic umami that underpins pol sambol, the coconut relish eaten at virtually every meal, and appears in many curries and mallums. The spice palette — goraka (dried gamboge fruit) for sourness and colour, curry leaves, rampe (pandan leaf), lemongrass, and black pepper — produces a flavour profile quite unlike Indian cooking despite sharing several ingredients.</p>
+        <p>Hoppers — the bowl-shaped fermented rice and coconut milk crepes baked in a small wok — are the most distinctly Sri Lankan food, eaten for breakfast with egg, coconut sambol, and seeni sambol (caramelised onion). String hoppers (idiyappam) — steamed rice flour noodle nests — and pittu — steamed cylinders of ground rice and coconut — are equally characteristic breakfast and dinner starches. Kottu roti — the chopped, griddled flatbread stir-fried with vegetables, egg, and curry — is the definitive street food, its rhythmic metallic chopping sound carrying through Sri Lankan towns after dark as the evening snack culture comes alive. Fish ambul thiyal — dry-cured tuna in a sour goraka sauce — is the most distinctive Sri Lankan fish preparation, its deep, concentrated flavour unlike any other.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Rice and curry is the foundation of every Sri Lankan meal — not a single curry but a table of several: a fish or meat curry, a dhal, a coconut sambol, a mallum of greens, and papadam, all eaten together with rice in a balance of flavours that is the great art of Sri Lankan cooking.</li>
+        <li>The hopper — a bowl-shaped fermented rice flour and coconut milk crepe cooked in a small wok — is the most distinctive Sri Lankan breakfast food. Eaten with egg (egg hopper), coconut sambol, and seeni sambol, it is a breakfast of considerable pleasure.</li>
+        <li>Coconut is not an ingredient but a way of life — fresh coconut milk is pressed daily for cooking, scraped coconut forms the base of sambols, coconut oil is the traditional cooking fat, and the coconut tree is described in Sri Lankan culture as providing everything a person needs.</li>
+        <li>Sri Lankan food is genuinely hot — not Thai-hot or Indian-hot but a different kind of heat from the combination of fresh green chilies, dried red chilies, and black pepper used together. Asking for mild in a Sri Lankan household will be interpreted charitably.</li>
+        <li>The Tamil and Sinhala food traditions are distinct within the island — Tamil cooking in the north and east tends toward more tamarind sourness, more seafood, and the South Indian influences of proximity; Sinhala cooking in the south and west uses more coconut and a different spice balance.</li>
+        <li>Pol sambol — scraped fresh coconut with red onion, dried chili, lime, and Maldive fish — is eaten at virtually every meal, its combination of sweet coconut, sharp onion, hot chili, and savoury dried fish representing the essential Sri Lankan flavour in a single preparation.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Coconut milk</li>
+        <li><span class="n">06</span> Goraka</li>
+        <li><span class="n">02</span> Cinnamon</li>
+        <li><span class="n">07</span> Mustard seeds</li>
+        <li><span class="n">03</span> Curry leaves</li>
+        <li><span class="n">08</span> Rampe</li>
+        <li><span class="n">04</span> Pandan leaf</li>
+        <li><span class="n">09</span> Lemongrass</li>
+        <li><span class="n">05</span> Maldive fish</li>
+        <li><span class="n">10</span> Black pepper</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Sri Lanka is one of the world's largest exporters of cinnamon — and it produces the only true cinnamon (Cinnamomum verum), as distinct from the cassia that is sold as cinnamon in most of the world. Sri Lankan true cinnamon, grown in the coastal lowlands of the Western Province, has a delicate, complex, almost citrusy fragrance quite different from the harsh, bitter cassia. The distinction matters enormously to anyone who has tasted both.</li>
+        <li>The kottu roti — chopped roti griddle-fried with vegetables, egg, and curry sauce, cooked with a distinctive rhythmic clanging of metal blades on the hot plate — is the definitive Sri Lankan street food sound and smell. The sound of the blades hitting the griddle carries for blocks and signals that kottu is being made. It emerged as a way to use day-old roti and is now possibly the most beloved street food in the country.</li>
+        <li>Ceylon tea — now called Sri Lanka tea since the country's 1972 name change — transformed the global tea industry. Tea was introduced to Ceylon by the British in the 1860s after a coffee blight destroyed the island's coffee plantations, and the high-altitude estates of Nuwara Eliya, Kandy, and Uva produce some of the world's finest teas. Ceylon tea's distinctive bright, brisk character made it the global standard for black tea, and it underpins most of the world's major tea blends.</li>
+        <li>Sri Lankan black pepper — from the island's ancient spice trade heritage — was one of the most valuable commodities in the ancient world. The spice trade routes that brought Arab and later Portuguese, Dutch, and British traders to Ceylon were primarily driven by the island's pepper, cinnamon, and cardamom. The Portuguese arrived in 1505, the Dutch in 1638, and the British in 1796 — each colonial power driven by the same spice wealth, each leaving culinary traces in the Dutch-influenced lamprais and Portuguese-influenced love cake.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hoppers</span><span class="dish-tag">coconut milk crepes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bowl-shaped fermented rice and coconut milk crepes, eaten with egg, coconut sambol, and seeni sambol.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kottu Roti</span><span class="dish-tag">chopped griddled flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chopped roti stir-fried with vegetables, egg, and curry — Sri Lanka's definitive street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Ambul Thiyal</span><span class="dish-tag">sour goraka-cured tuna</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dry-cured tuna in a sour goraka sauce, the most distinctive Sri Lankan fish preparation.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dhal Curry</span><span class="dish-tag">lentil curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A coconut milk-enriched lentil curry, a foundation of the daily rice and curry table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lamprais</span><span class="dish-tag">banana leaf rice parcel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A complete meal of rice, curries, and sambol baked together in a banana leaf, of Dutch-era origin.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rice &amp; Curry</span><span class="dish-tag">the everyday table</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A table of several curries, a dhal, and sambols eaten together with rice — the foundation of every meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pol Roti</span><span class="dish-tag">coconut flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense flatbread made with grated coconut mixed into the dough, cooked on a griddle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jaffna Crab Curry</span><span class="dish-tag">Tamil-style spiced crab</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole crab cooked in a fiery Jaffna-style curry, reflecting the north's Tamil culinary tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">String Hoppers</span><span class="dish-tag">steamed rice noodle nests</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate steamed rice flour noodle nests, a staple breakfast and dinner starch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Black Pork Curry</span><span class="dish-tag">roasted spice curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork curry darkened and deepened with roasted spices, a rich Sri Lankan specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Watalappan</span><span class="dish-tag">coconut jaggery custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced steamed custard of coconut milk and jaggery, a beloved festive dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Love Cake</span><span class="dish-tag">cashew semolina cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, richly spiced cashew and semolina cake, a Portuguese-colonial legacy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kavum</span><span class="dish-tag">jaggery rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried rice flour and jaggery cakes, traditional at New Year celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kokis</span><span class="dish-tag">crispy rosette biscuit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A delicate, crispy fried biscuit shaped with a special rosette mold, a festive treat.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aluwa</span><span class="dish-tag">rice flour sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, diamond-cut sweet made from roasted rice flour and treacle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bibikkan</span><span class="dish-tag">spiced coconut cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark spiced cake made with coconut and treacle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aggala</span><span class="dish-tag">puffed rice sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet made from puffed rice bound with treacle, formed into balls.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pani Walalu</span><span class="dish-tag">syrup-soaked rings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried rice flour rings soaked in sweet treacle syrup.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Breakfast</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pol Sambol</span><span class="dish-tag">coconut chili relish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Scraped fresh coconut with red onion, chili, lime, and Maldive fish, eaten at virtually every meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Isso Vadai</span><span class="dish-tag">prawn lentil fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp lentil fritters topped with a whole prawn, a popular seaside snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mutton Rolls</span><span class="dish-tag">breaded meat rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced minced mutton wrapped in pastry, breaded and deep-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana Chips</span><span class="dish-tag">fried plantain crisps</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, crisp fried plantain slices, a common savory snack.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seeni Sambol</span><span class="dish-tag">caramelized onion relish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, deeply caramelized onions cooked down with chili and spices, a hopper accompaniment.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pittu</span><span class="dish-tag">steamed rice &amp; coconut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed cylinders of ground rice and coconut, a characteristic breakfast starch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kiri Bath</span><span class="dish-tag">coconut milk rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in coconut milk until creamy, traditionally eaten on auspicious occasions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Milk Toffee</span><span class="dish-tag">condensed milk fudge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, sweet fudge made from condensed milk, a popular homemade treat.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Sri Lankan:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Coconut milk</li>
+        <li><span class="n">06</span> Cinnamon</li>
+        <li><span class="n">02</span> Goraka</li>
+        <li><span class="n">07</span> Mustard seeds</li>
+        <li><span class="n">03</span> Curry leaves</li>
+        <li><span class="n">08</span> Rampe</li>
+        <li><span class="n">04</span> Maldive fish</li>
+        <li><span class="n">09</span> Tamarind</li>
+        <li><span class="n">05</span> Pandan</li>
+        <li><span class="n">10</span> Black pepper</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Arrack &amp; Spirits</p>
+            <ol class="plain">
+              <li>Arrack</li>
+              <li>Coconut Toddy / Ra</li>
+              <li>Lion Lager</li>
+              <li>Three Coins</li>
+              <li>Carlsberg Sri Lanka</li>
+              <li>Gal Oya Valley Wine</li>
+              <li>Rockland Arrack</li>
+              <li>Pol Arrack</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Ceylon Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Ceylon Tea</li>
+              <li>King Coconut Water</li>
+              <li>Faluda</li>
+              <li>Woodapple Juice</li>
+              <li>Beli Juice</li>
+              <li>Ginger Beer Local</li>
+              <li>Thambili</li>
+              <li>Mango Juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Lion Lager</li>
+              <li>Lion Stout</li>
+              <li>Three Coins</li>
+              <li>Carlsberg SL</li>
+              <li>Heineken SL</li>
+              <li>Sando Stout</li>
+              <li>Anchor SL</li>
+              <li>Gold Bar</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

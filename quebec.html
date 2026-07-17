@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Québec — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">NORTH AMERICA / FRANCO-CANADIAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Québec</h1>
+      <p class="subhead">A 400-year-old French colonial tradition of the cold — maple syrup, cheese curds, and the hearty cuisine des habitants.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            MONTRÉAL · LAC-SAINT-JEAN · CABANE À SUCRE · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAEUUlEQVR4nO3dUU7qUBSGUbhxJjo656Ojcy7cBxJjkEOOtfKz91nrzQSb2p2vPYCF4+H57UAFp4/Xn/7K8eX9L/aEff1L7wCsToQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCntI78Lc+v8nI9xMVtcIE20Z48UVi5x8bD7KfdSbYczk6+iq/DV/xR8RSE+wZIRTSMMLbJ8uWp9JmVptgwwihFhFCWLcIZ9Yq/dYznSw4wW4RQjkihLCSb9Z/X41sfg93x00xzwS/qnclvPp8YNuThB03xTwTvHA8PL+l92HWnQ/uo51QN/z5Df6E33i0P3+k3pUQmikT4f3XGOVWNQ/OBEdqRJg6mlWm+PhM8IYaEUJjIoQwEUJYzwhHr01Xec2apSbYM8Kl7stuaakJ1ojwR+e/2w/ecVPMM8EbakR4mD6aMw/bcVPMM8GRMhFCV5Xuojif2EbPCjasUnbZFPNM8Kp6V8Krx3fbQd9xU8wzwQuV7qIY+eUrZlVm1uAuipFFJjhS70oIzYgQwkQIYSKEMBFCmAghTIQQJkIIq/RvayPV36tl8Qm6EkKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIoQwEUKYCCHseDqd0vsAS3MlhDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhx8PzW3ofmHL6eP3prxxf3v9iT9iXKyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEsKf0Dvytzw9H8pFHRa0wwbYRXnw22fnHxoPsZ50J9lyOjj4dcMOnBhKx1AR7RgiFNIzw9smy5am0mdUm2DBCqEWEENYtwpm1Sr/1TCcLTrBbhFCOCCGs5Jv131cjm9/D3XFTzDPBr+pdCa8+H9j2JGHHTTHPBC9U+pLQOx/cRzuhNviS0MUnOFLvSgjNlInw/muMcquaB2eCIzUiTB3NKlN8fCZ4Q40IoTERQpgIIaxnhKPXpqu8Zs1SE+wZ4VL3Zbe01ARrRPij89/tB++4KeaZ4A01IjxMH82Zh+24KeaZ4EiZCKGrSndRnE9so2cFG1Ypu2yKeSZ4Vb0r4dXju+2g77gp5pnghUp3UYz88hWzKjNrcBfFyCITHKl3JYRmRAhhIoQwEUKYCCFMhBAmQggTIYRV+re1kerv1bL4BF0JIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQ9h98wEb6tfz3KwAAAABJRU5ErkJggg==" alt="Flag of Québec">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Québec cuisine is the most distinct and historically deep food culture in Canada — a French colonial tradition that has been developing independently for over 400 years, producing a kitchen that departed from metropolitan French cooking in the 17th century and evolved on its own terms into something entirely Québécois. The settlers who arrived from Normandy, Brittany, and the Paris basin from the 1600s onwards brought French peasant cooking traditions and adapted them to the radically different Canadian environment — long winters, Indigenous ingredients, the forest and river rather than the French farmyard. The cuisine des habitants that emerged from this adaptation is the foundation of everything that follows.</p>
+        <p>The Indigenous peoples of the St. Lawrence valley and Great Lakes region — Huron-Wendat, Algonquin, Mohawk, and others — contributed the ingredients that made survival possible: corn, beans, squash, wild game, river fish, fiddlehead ferns, and above all the maple tree and the knowledge of how to tap and process its sap. Maple sugar and syrup, which became the defining flavour of Québec cooking, were indigenous discoveries adopted by French settlers who wove them so thoroughly into their cuisine that they are now synonymous with Québec identity. The Catholic Church's calendar of feast days and fasting periods shaped the cooking deeply — the rich meat pies, baked beans, and salt pork dishes that define traditional Québécois food were partly designed around religious obligation.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Québec cooking is robust, warming, and built around the cold — a cuisine designed to sustain people through winters of minus 30 degrees Celsius, with abundant calories from pork fat, maple syrup, and slow-cooked legumes. The cuisine des habitants tradition produces dishes of great heartiness: soupe aux pois (split yellow pea soup with salt pork), fèves au lard (maple-baked beans), tourtière (spiced meat pie), and ragoût de pattes (pig's feet stew) — all slow-cooked, deeply flavoured, and designed to be made in large quantities and eaten over days. Lard is the traditional fat, used for frying, enriching pastry, and spreading on bread.</p>
+        <p>Poutine — the cheese curd, gravy, and fries combination that has become Canada's most internationally recognised food — is the accidental monument of Québec snack culture, born from the roadside casse-croûte tradition and elevated by the quality of local cheese curds that squeak against the teeth when fresh. Montreal's smoked meat sandwich — beef brisket cured and smoked in the Jewish Ashkenazi deli tradition brought by Eastern European immigrants, piled obscenely high on rye with yellow mustard — rivals New York's pastrami and is considered by its devotees superior. The cabane à sucre tradition of March — the sugar shack feast of maple taffy on snow, baked beans, ham, and crêpes — is the most joyful expression of Québec food culture and the experience that most connects Québécois to their history.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The sugar shack — cabane à sucre — is the most beloved Quebec food institution. Every March when the maple sap runs, families make the pilgrimage to the sugarerie for a feast of maple-glazed ham, baked beans, pork rinds, and taffy poured hot onto snow.</li>
+        <li>Poutine protocol is serious — fresh squeaky cheese curds (not shredded cheese), brown gravy hot enough to soften but not melt the curds, and fries crispy enough to hold up. Any deviation is noted and judged.</li>
+        <li>Quebec French is full of food-specific terms that don't exist in standard French — dépanneur (corner store), guédille (lobster roll), bouffe (food), and the entire vocabulary of cabane à sucre culture is distinctly Québécois.</li>
+        <li>Sunday dinner in rural Quebec means tourtière — the spiced meat pie that varies by region, with Lac-Saint-Jean's deep cipâte version being the most extravagant — eaten with pickled beets and mustard pickles.</li>
+        <li>La Binerie Mont-Royal in Montreal has been serving pea soup, meat pie, and baked beans since 1938 and represents the unbroken tradition of Québécois cuisine des habitants — the peasant cooking that defines the cultural foundation.</li>
+        <li>Quebec has a serious cheese culture — despite dairy quotas and regulatory challenges, Quebec produces over half of Canada's artisan cheeses. Oka, Brie de Portneuf, and the farmhouse cheeses of the Eastern Townships rival European equivalents.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Maple syrup</li>
+        <li><span class="n">06</span> Tourtière spices</li>
+        <li><span class="n">02</span> Cheese curds</li>
+        <li><span class="n">07</span> Fiddle ferns</li>
+        <li><span class="n">03</span> Pork — lard & lardons</li>
+        <li><span class="n">08</span> Blueberries</li>
+        <li><span class="n">04</span> Buckwheat</li>
+        <li><span class="n">09</span> Cipâte pastry</li>
+        <li><span class="n">05</span> Yellow pea</li>
+        <li><span class="n">10</span> Caribou spirit</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Quebec produces roughly 72% of the world's maple syrup — a near-monopoly managed by the Fédération des producteurs acéricoles du Québec, which operates a strategic reserve of maple syrup stored in barrels in a warehouse in Saint-Louis-de-Blandford. This reserve, containing millions of litres of syrup, was the target of the Great Maple Syrup Heist of 2012 when thieves stole approximately 3,000 tonnes of syrup worth $18 million — one of the most unusual commodity thefts in history.</li>
+        <li>Poutine was invented in rural Quebec in the late 1950s, with multiple claims to its origin — the most documented being Fernand Lachance of Warwick, Quebec, who is said to have first combined fries and cheese curds in 1957 at the customer's request, exclaiming 'ça va faire une maudite poutine' (that's going to make a damn mess). It remained a rural Quebec roadside food until the 1980s when it spread to cities and eventually the world.</li>
+        <li>Montreal's bagel is genuinely different from the New York bagel — smaller, denser, sweeter (made with honey rather than malt), and baked in a wood-fired oven after being hand-rolled and boiled in honey water. The two bagel dynasties of the Mile End — Fairmount Bagel (1919) and St-Viateur Bagel (1957) — maintain a rivalry of roughly equal standing and both bake 24 hours a day, seven days a week.</li>
+        <li>Cipâte (also cipaille or sea pie) — the multi-layered meat and pastry pie of the Lac-Saint-Jean region — is one of the most ancient surviving recipes in North America, a direct descendant of the 17th-century French sea pie brought by the original settlers and adapted to the game meats of the Quebec interior. It contains alternating layers of pastry and various meats (moose, rabbit, partridge, bear) and is baked for many hours.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poutine</span><span class="dish-tag">fries, curds &amp; gravy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fries topped with squeaky cheese curds and hot gravy — Canada's most internationally recognized food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tourtière</span><span class="dish-tag">spiced meat pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced meat pie that varies by region, traditional for Sunday dinner and the holidays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soupe aux Pois</span><span class="dish-tag">split pea &amp; salt pork soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick split yellow pea soup with salt pork, a cuisine des habitants staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cipâte</span><span class="dish-tag">layered game meat pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A multi-layered pastry and game meat pie from Lac-Saint-Jean, baked for many hours.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ragoût de Pattes</span><span class="dish-tag">pig's feet stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked stew of pig's feet, deeply flavored and traditionally served at the holidays.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fèves au Lard</span><span class="dish-tag">maple-baked beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beans slow-baked with salt pork and maple syrup, a cabane à sucre staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cretons</span><span class="dish-tag">pork spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rustic spiced pork spread, traditionally eaten on toast for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gibelotte des Îles</span><span class="dish-tag">catfish stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A regional catfish stew from the Îles de Sorel, unique to that river region.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poutine Râpée</span><span class="dish-tag">grated potato dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dumpling of grated and mashed potato wrapped around salt pork, an Acadian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pouding Chômeur</span><span class="dish-tag">"unemployment pudding"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple cake baked in hot maple or brown sugar syrup, born from Depression-era thrift.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sugar Shack Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarte au Sucre</span><span class="dish-tag">maple sugar pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, dense pie filled with maple sugar custard, a cabane à sucre classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pouding Chômeur</span><span class="dish-tag">"unemployment pudding"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple cake baked in hot maple or brown sugar syrup, born from Depression-era thrift.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grands-Pères au Sirop</span><span class="dish-tag">dumplings in syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft dumplings poached in warm maple syrup, a comforting home dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pets de Sœur</span><span class="dish-tag">cinnamon pastry rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rolled cinnamon-sugar pastry scraps, made from leftover pie dough.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarte au Citron Québécoise</span><span class="dish-tag">lemon tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy Québécois take on lemon tart, a lighter counterpoint to the maple sweets.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bûche de Noël</span><span class="dish-tag">Christmas log cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rolled sponge cake made to resemble a log, a Christmas centerpiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sucre à la Crème</span><span class="dish-tag">maple fudge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, creamy maple sugar fudge, a beloved homemade sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tire d'Érable</span><span class="dish-tag">maple taffy on snow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hot maple syrup poured onto fresh snow and rolled onto a stick as it hardens.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Montréal Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Meat Sandwich</span><span class="dish-tag">Montreal deli icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef brisket cured and smoked in the Jewish Ashkenazi tradition, piled high on rye with mustard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Montreal Bagel</span><span class="dish-tag">wood-fired, honey-boiled</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smaller, denser, and sweeter than a New York bagel, hand-rolled and baked in a wood-fired oven.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guédille</span><span class="dish-tag">lobster or chicken roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hot dog-style roll filled with lobster or chicken salad, a summer classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crêpes au Sirop</span><span class="dish-tag">maple syrup crêpes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin crêpes drizzled generously with maple syrup, a cabane à sucre breakfast staple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oreilles de Crisse</span><span class="dish-tag">fried pork rinds</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried pieces of salt pork, a beloved cabane à sucre snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">St-Hubert Rotisserie Chicken</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rotisserie chicken with a distinctive tangy brown sauce, a beloved Quebec chain staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Club Sandwich Québécois</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Québécois take on the classic club sandwich, found in diners across the province.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Frites &amp; Sauce</span><span class="dish-tag">fries with gravy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fries topped simply with brown gravy, poutine's simpler cousin.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Québécois:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Maple syrup</li>
+        <li><span class="n">06</span> Caribou wine</li>
+        <li><span class="n">02</span> Quatre épices</li>
+        <li><span class="n">07</span> Blueberry</li>
+        <li><span class="n">03</span> Lard</li>
+        <li><span class="n">08</span> Smoked meat</li>
+        <li><span class="n">04</span> Yellow pea</li>
+        <li><span class="n">09</span> Cider vinegar</li>
+        <li><span class="n">05</span> Buckwheat</li>
+        <li><span class="n">10</span> Herbes salées</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Caribou &amp; Spirits</p>
+            <ol class="plain">
+              <li>Caribou</li>
+              <li>Sortilège Maple Whisky</li>
+              <li>Cidre de Glace</li>
+              <li>Unibroue La Fin du Monde</li>
+              <li>St-Ambroise</li>
+              <li>Charlevoix Domaine</li>
+              <li>Eau-de-Vie du Québec</li>
+              <li>Boréale</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Sirop d'Érable Chaud</li>
+              <li>Cidre de Pomme</li>
+              <li>Lait au Chocolat</li>
+              <li>Thé des Bois</li>
+              <li>Bleuet Juice</li>
+              <li>Lait de Poule</li>
+              <li>Eau Pétillante St-Justin</li>
+              <li>Chocolat Chaud Cabane</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Unibroue Maudite</li>
+              <li>St-Ambroise Oatmeal Stout</li>
+              <li>La Fin du Monde</li>
+              <li>Boréale Rousse</li>
+              <li>McAuslan</li>
+              <li>Dieu du Ciel!</li>
+              <li>Glutenberg</li>
+              <li>Archibald</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

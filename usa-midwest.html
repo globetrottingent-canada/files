@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA: The Midwest — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 40 / 68 · North America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">USA · Cuisine Guide</p>
+      <h1 class="country">The Midwest</h1>
+      <p class="subhead">Chicago, Kansas City, Cincinnati, Wisconsin, and the Great Lakes — an immigrant-built heartland cuisine of brats, cheese curds, and deep dish, dismissed as plain by the coasts and quietly extraordinary.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            GREAT LAKES · PRAIRIE · HEARTLAND · GREAT LAKES · PRAIRIE · HEARTLAND ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of USA: The Midwest">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The American Midwest is the most underestimated food region in the United States — a vast agricultural heartland that feeds much of the world while its own food culture is dismissed as plain, heavy, or unremarkable by the coasts. This dismissal misses the point. The Midwest's food story is one of extraordinary immigrant diversity — German, Scandinavian, Polish, Czech, Slovak, Hungarian, and Slavic communities who settled the prairies and Great Lakes region in the 19th and early 20th centuries and brought brewing traditions, sausage-making knowledge, cheese-making skills, and baking cultures that shaped the American table profoundly. Chicago, the great Midwestern metropolis, was the meat-packing capital of the world and the city that industrialised the American food supply.</p>
+        <p>German immigrants left the deepest culinary mark — bratwurst, the beer hall tradition, rye bread, pickle culture, and the cheese-making knowledge that made Wisconsin America's dairy state all derive from German and Central European communities in Wisconsin, Minnesota, Iowa, and Ohio. Scandinavian immigrants brought lefse, kringle, and lutefisk to Minnesota and the Dakotas. Polish and Bohemian communities contributed kielbasa, pierogi, and kolache to Chicago, Detroit, and Cleveland. The Great Migration of African Americans from the South to Chicago and Detroit brought soul food traditions northward — fried chicken, greens, sweet potato pie — establishing Chicago's South Side as a northern extension of the Southern tradition.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Midwestern cooking is built on feeding people well, feeding them enough, and not making a fuss about it. Chicago has contributed some of America's most distinctive regional foods: the Chicago-style hot dog (never, under any circumstances, ketchup) and the Italian beef sandwich, dipped in cooking juices and topped with sweet or hot peppers — both fiercely local institutions.</p>
+        <p>Kansas City straddles the Missouri-Kansas border and claims its own distinct BBQ tradition — heavy on pork ribs and burnt ends, defined by a thick, sweet, tomato-and-molasses sauce applied generously rather than served on the side. Wisconsin's dairy culture has produced the cheese curd as the state's most distinctive food. Detroit-style pizza, baked in a rectangular steel pan with crispy caramelised cheese edges, has recently been recognised nationally as one of America's great regional pizza styles. And Cincinnati chili — cinnamon-spiced meat sauce over spaghetti — is the most polarising and fascinating regional dish in American food.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Midwestern table is honest, abundant, and unpretentious — portion sizes are large, prices are fair, and the expectation is that you leave the table full.</li>
+        <li>Friday night fish fry is a Catholic immigrant tradition across Wisconsin, Michigan, and the Great Lakes region — battered lake perch, walleye, or cod with coleslaw and tartar sauce, eaten every Friday from October to April.</li>
+        <li>The church potluck and the county fair are the two great institutions of Midwestern food culture — one a community gathering where every family brings a dish, the other a celebration of agricultural abundance and deep-fried excess.</li>
+        <li>Beer and bratwurst are inseparable in Wisconsin — brats simmered in beer and onions before a Green Bay Packers tailgate is a ritual with near-religious significance.</li>
+        <li>Chicago eating is serious and competitive — the city has fierce opinions about its hot dog (no ketchup, ever), its deep dish (not eaten daily — locals favor thin crust), and its Italian beef (dipped, with giardiniera).</li>
+        <li>Kansas City BBQ is its own tradition — thick, sweet, tomato-and-molasses sauce applied generously to ribs and burnt ends, the charred brisket tips elevated from scraps to the most sought-after item on the menu.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sweet corn</li>
+        <li><span class="n">06</span> Sour cream</li>
+        <li><span class="n">02</span> Lake fish — walleye, perch</li>
+        <li><span class="n">07</span> Wild rice</li>
+        <li><span class="n">03</span> Bratwurst</li>
+        <li><span class="n">08</span> Kielbasa</li>
+        <li><span class="n">04</span> Cheese curds</li>
+        <li><span class="n">09</span> Molasses</li>
+        <li><span class="n">05</span> Rye bread</li>
+        <li><span class="n">10</span> Horseradish</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Cincinnati chili is the most unusual regional chili in America — no beans, seasoned with cinnamon, allspice, chocolate, and Worcestershire, and served over spaghetti (two-way), with cheddar (three-way), beans (four-way), or onions (five-way). Invented by Macedonian immigrant Athanas Kiradjieff in 1922, it's consumed at roughly two million pounds a year.</li>
+        <li>Chicago-style deep dish pizza was invented at Pizzeria Uno in 1943 by Ike Sewell and Ric Riccardo — deep buttery crust, cheese directly on the dough, tomato sauce on top, and a long bake time that Chicagoans consider their own and New Yorkers refuse to call pizza.</li>
+        <li>The Midwest produces roughly 75% of the country's corn and soybean crop — Iowa alone produces more corn than the entire country of Mexico — yet this agricultural abundance has paradoxically given the region a reputation for plain food.</li>
+        <li>Wisconsin produces more cheese than any other US state — roughly 3 billion pounds a year across 600-plus varieties. The cheese curd, eaten fresh and squeaky within hours of production, is a state institution, and fried cheese curds are the essential Wisconsin bar snack.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Chicago &amp; Kansas City</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicago Deep Dish Pizza</span><span class="dish-tag">Deep buttery pan pizza</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, buttery crust holding cheese directly on the dough with tomato sauce layered on top, baked low and slow in a deep steel pan — invented at Pizzeria Uno in 1943.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kansas City BBQ Burnt Ends</span><span class="dish-tag">Charred tips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The caramelized, deeply smoked tip pieces of brisket, once considered scraps and now the most sought-after item on a KC BBQ plate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cincinnati Chili</span><span class="dish-tag">Cinnamon-spiced meat sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet-spiced meat sauce seasoned with cinnamon, allspice, and chocolate, ladled over spaghetti and layered with cheese, beans, or onion to order.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicago Italian Beef</span><span class="dish-tag">Thin-sliced beef, dipped roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thinly sliced seasoned beef piled on a long Italian roll, dipped in its own cooking juices and topped with sweet or hot peppers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wisconsin Friday Fish Fry</span><span class="dish-tag">Battered lake fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered lake perch, walleye, or cod served with coleslaw, rye bread, and tartar sauce — a Catholic immigrant tradition eaten every Friday from fall through spring.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Regional Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Detroit-Style Pizza</span><span class="dish-tag">Crispy-edged pan pizza</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baked in a rectangular steel pan with a thick, airy crust and cheese pushed to the edges, where it caramelizes into a crisp lacy border.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bratwurst &amp; Beer</span><span class="dish-tag">Beer-simmered grilled sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bratwurst simmered in beer and onions before grilling — the centerpiece of Wisconsin tailgates and backyard cookouts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Runza</span><span class="dish-tag">Beef-and-cabbage bread pocket</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A yeasted bread pocket baked around a filling of seasoned beef, onion, and cabbage — a Nebraska staple with German-Russian immigrant roots.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pork Tenderloin Sandwich</span><span class="dish-tag">Breaded pork cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin pork cutlet, breaded and fried until it hangs well past the edges of its bun, served simply with pickles, onion, and mustard.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Great Lakes Walleye</span><span class="dish-tag">Pan-fried freshwater fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mild, flaky freshwater fish native to the Great Lakes, typically breaded and pan-fried or featured in the region's Friday fish fry.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cherry Pie</span><span class="dish-tag">Michigan tart-cherry pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A double-crust pie filled with tart Michigan cherries, the state being the country's leading tart cherry producer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cream Puffs</span><span class="dish-tag">Choux pastry, whipped filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light choux pastry shells filled with sweetened whipped cream, a Wisconsin State Fair icon sold by the tens of thousands each summer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kringle</span><span class="dish-tag">Danish layered pastry ring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, layered oval pastry filled with fruit or nut fillings and iced, brought by Danish immigrants and now a Racine, Wisconsin specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buckeye Candy</span><span class="dish-tag">Peanut butter, chocolate dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A peanut butter fudge ball dipped partway in chocolate, named for its resemblance to the nut of Ohio's buckeye tree.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Immigrant Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Persimmon Pudding</span><span class="dish-tag">Spiced steamed fall pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced steamed pudding made from wild persimmon pulp, an Indiana autumn tradition tied to the fruit's harvest.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Snickerdoodles</span><span class="dish-tag">Cinnamon-sugar rolled cookie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft butter cookie rolled in cinnamon sugar before baking, giving it a signature crackled top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kolache</span><span class="dish-tag">Czech fruit-filled pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft yeasted pastry with a well of fruit or sweet cheese filling, brought by Czech immigrant communities.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lefse</span><span class="dish-tag">Norwegian potato flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, thin potato-based flatbread rolled with butter and sugar, central to Norwegian-American holiday tables in Minnesota.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Chicago Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried Cheese Curds</span><span class="dish-tag">Battered, deep-fried curds</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh squeaky Wisconsin cheese curds battered and deep-fried until crispy outside and molten within.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicago Hot Dog</span><span class="dish-tag">All-the-way, no ketchup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Vienna Beef frankfurter in a poppy seed bun topped with mustard, onion, relish, tomato, pickle, sport peppers, and celery salt — never ketchup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Corn Dog</span><span class="dish-tag">Battered, deep-fried on a stick</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hot dog coated in cornmeal batter and deep-fried on a stick, a staple of Midwestern county fairs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pickle on a Stick</span><span class="dish-tag">Deep-fried dill pickle spear</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole dill pickle spear, battered and deep-fried, sold on a stick as county fair novelty food.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Fair &amp; Bar Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cheese Steak Sandwich</span><span class="dish-tag">Griddled beef, cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin-sliced griddled beef and melted cheese in a long roll, a popular fair-circuit sandwich across the Midwest.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pretzels</span><span class="dish-tag">Soft-baked salted dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft, salted baked dough twists reflecting the region's deep German baking heritage, sold at fairs, bars, and ballparks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bar Nuts</span><span class="dish-tag">Roasted, salted tavern snack</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted, salted mixed nuts served in bowls at Midwestern taverns alongside beer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Door County Fish Boil</span><span class="dish-tag">Communal outdoor fish boil</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whitefish, potatoes, and onions boiled together outdoors over an open fire, finished with a dramatic boil-over of fish oil — a Door County, Wisconsin tradition.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Midwestern:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sweet corn</li>
+        <li><span class="n">06</span> Caraway</li>
+        <li><span class="n">02</span> Cheddar</li>
+        <li><span class="n">07</span> Dill pickle</li>
+        <li><span class="n">03</span> Rye</li>
+        <li><span class="n">08</span> Mustard</li>
+        <li><span class="n">04</span> Horseradish</li>
+        <li><span class="n">09</span> Smoked paprika</li>
+        <li><span class="n">05</span> Molasses</li>
+        <li><span class="n">10</span> Beer</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Beer &amp; Spirits</p>
+            <ol class="plain">
+              <li>Old Style Beer</li>
+              <li>Spotted Cow New Glarus</li>
+              <li>Goose Island IPA</li>
+              <li>Bell's Brewery</li>
+              <li>Boulevard Brewing</li>
+              <li>Old Fashioned cocktail</li>
+              <li>Malort</li>
+              <li>Templeton Rye</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sodas &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Vernors Ginger Ale</li>
+              <li>Faygo</li>
+              <li>Chocolate milk</li>
+              <li>Sweet corn juice</li>
+              <li>Grape Kool-Aid</li>
+              <li>Sun Drop</li>
+              <li>Mello Yello</li>
+              <li>Lemonade at state fair</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Old Style</li>
+              <li>Pabst Blue Ribbon</li>
+              <li>Spotted Cow</li>
+              <li>Goose Island</li>
+              <li>Bell's Two Hearted</li>
+              <li>Founders All Day IPA</li>
+              <li>Summit EPA</li>
+              <li>Surly Furious</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

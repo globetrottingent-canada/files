@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senegal — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">WEST AFRICA / WOLOF</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Senegal</h1>
+      <p class="subhead">West Africa's most refined culinary tradition — Wolof rice cookery merged with French technique, built on teranga hospitality.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            DAKAR · SENEGAL RIVER · CAP-VERT · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Senegal">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Senegalese cuisine is the most refined and internationally celebrated food culture in West Africa — a tradition built on the ancient Wolof agricultural civilization of the Senegambian region, shaped by the transatlantic trading networks that made the Dakar coast one of the most commercially active in Africa, and transformed by French colonial influence into a synthesis of West African culinary intelligence and European technique that has few equals on the continent. The Wolof people, whose language and culture have dominated Senegal for centuries, developed a rice-centred cuisine of considerable sophistication around the Senegal River valley, the Cap-Vert peninsula, and the fertile groundnut basin — a cuisine whose central dish, thiéboudienne, was inscribed by UNESCO as Intangible Cultural Heritage in 2021.</p>
+        <p>The Atlantic trade routes from the 15th century onwards brought new ingredients that were absorbed with remarkable creative speed — the peanut (introduced by Portuguese traders from Brazil) became so central to Senegalese cooking and economy within two centuries that it is now effectively native; cassava and tomatoes followed similar trajectories. Arab and Berber trade routes across the Sahara brought spices, Islamic dietary practice, and the tea culture that produced the attaya ceremony. The French colonial capital of Dakar — seat of the administration of French West Africa, covering eight modern nations — brought investment, boulangeries, café culture, and the French culinary technique that Senegalese cooks absorbed and made their own. The result is a cuisine in which broken rice cooked in fish broth and a French baguette eaten with café Touba are equally, authentically Senegalese.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Senegalese cooking is defined by depth of flavour built through patient layering — the thiéboudienne method of cooking rice in a concentrated fish and tomato broth, absorbing the broth's flavour entirely, is a technique of real sophistication whose results are richer and more complex than the sum of its ingredients. Yété — the dried and fermented mollusc that functions as the Senegalese equivalent of fish sauce or Worcestershire — and nététu — fermented locust bean similar to Nigerian iru — provide the deep savoury foundation of most sauces. Peanut oil is the standard cooking fat, giving Senegalese food its characteristic warm, slightly nutty base that palm-oil-dominant West African cooking does not share.</p>
+        <p>Yassa — chicken or fish marinated overnight in lemon juice and caramelised onions, then roasted and served over rice — is the most distinctive and internationally recognised Senegalese dish after thiéboudienne. Its brightness and acidity set it apart from the richer, oil-forward cooking of Nigeria and Ghana, and its balance of sharp citrus, sweet onion, and fragrant mustard represents a different flavour philosophy. Mafé — lamb or beef in a deeply savoury peanut and tomato sauce — is West Africa's answer to a rich European ragù, slow-cooked until the peanut and tomato merge into something entirely their own. Bissap — the brilliant crimson hibiscus drink — and café Touba — coffee spiced with cloves and selim pepper — are the drinks that most immediately signal Dakar.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Thiéboudienne is eaten at midday across Senegal — the national dish of rice cooked in a rich tomato-fish broth, with whole stuffed fish and root vegetables, is the undisputed centrepiece of Senegalese lunch culture and the dish by which a cook is judged.</li>
+        <li>Eating is communal from a shared bowl — the thiéboudienne or yassa arrives in a single large bowl and everyone eats from the portion in front of them, working inward. The fish is divided by the host and distributed according to seniority and respect.</li>
+        <li>Hospitality in Senegal is governed by teranga — a Wolof concept of welcome and generosity that obliges a host to feed any guest abundantly and without reservation. Teranga is considered a defining national value and is expressed primarily through food.</li>
+        <li>The attaya tea ceremony is a daily social ritual — three rounds of sweet green tea, each progressively sweeter and more diluted, poured from height to create foam, shared in a small circle. It can take an hour and is as much about conversation as tea.</li>
+        <li>Café Touba — coffee brewed with cloves and selim pepper (a West African spice with a distinctive anise-pepper note) — is sold from street stalls across Dakar and is considered the most distinctly Senegalese drink. It is sweet, aromatic, and quite unlike any other coffee tradition.</li>
+        <li>Dakar has one of West Africa's most serious restaurant cultures — a legacy of French colonial investment in the city as the capital of French West Africa, producing a sophisticated dining scene where Senegalese and French traditions genuinely meet.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Broken rice / thiébou</li>
+        <li><span class="n">06</span> Scotch bonnet</li>
+        <li><span class="n">02</span> Peanut oil</li>
+        <li><span class="n">07</span> Dried fish</li>
+        <li><span class="n">03</span> Yété dried mollusc</li>
+        <li><span class="n">08</span> Onion</li>
+        <li><span class="n">04</span> Nététu fermented locust</li>
+        <li><span class="n">09</span> Tomato paste</li>
+        <li><span class="n">05</span> Tamarind</li>
+        <li><span class="n">10</span> Selim pepper</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Thiéboudienne was inscribed on UNESCO's Intangible Cultural Heritage list in 2021 — the first West African dish to receive this recognition, and only the second dish from the African continent after Ethiopian injera-making. UNESCO specifically cited the dish's role in social cohesion, its transmission from mother to daughter, and its expression of Senegalese identity and hospitality as the basis for recognition.</li>
+        <li>The Wolof people and their language have been the dominant cultural force in the region for centuries — Wolof is spoken as a first or second language by roughly 80% of Senegal's population despite being the mother tongue of only about 40%. The Wolof culinary tradition — thiéboudienne, yassa, mafé — is effectively the national cuisine, and Wolof food concepts have spread throughout West Africa and the diaspora, making Dakar a credible claim to being the culinary capital of the region.</li>
+        <li>Senegal is the world's largest producer of peanuts (groundnuts) relative to its agricultural base, and the peanut is so central to the economy and cuisine that it has been called the 'golden crop.' Mafé — the rich peanut and tomato stew — is one of the great dishes of West Africa, and Senegal's peanut oil is the standard cooking fat of the country. The peanut was introduced from the Americas via the Portuguese trade routes in the 16th century and became so thoroughly embedded that it feels ancient.</li>
+        <li>Dakar's position as the westernmost point of continental Africa made it the gateway city of French West Africa — the administrative capital of a territory covering modern-day Senegal, Mali, Guinea, Côte d'Ivoire, Burkina Faso, Benin, Niger, and Mauritania. This colonial role brought investment, infrastructure, and a French culinary tradition to Dakar that is visible today in the city's boulangeries (French bread is eaten daily), café culture, and the synthesis of French technique with Wolof ingredients that defines the upper end of Senegalese cooking.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thiéboudienne</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in a rich tomato-fish broth with whole stuffed fish and root vegetables — Senegal's UNESCO-recognized national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yassa Poulet</span><span class="dish-tag">lemon-onion chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken marinated overnight in lemon juice and caramelized onions, then roasted and served over rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mafé</span><span class="dish-tag">peanut &amp; tomato stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb or beef slow-cooked in a deeply savory peanut and tomato sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thiou</span><span class="dish-tag">vegetable &amp; meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich tomato-based stew of meat and vegetables, a home-cooking staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Domoda</span><span class="dish-tag">peanut stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A West African peanut-based stew closely related to mafé, popular across the Senegambia region.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caldou</span><span class="dish-tag">fish &amp; lime broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, tangy fish stew brightened with lime, a coastal specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thiébou Yapp</span><span class="dish-tag">meat &amp; rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The meat-based counterpart to thiéboudienne, rice cooked in a rich meat broth.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceebu Jen</span><span class="dish-tag">Wolof name for thiéboudienne</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Wolof-language name for the classic fish and rice dish, thiéboudienne.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ndambe</span><span class="dish-tag">black-eyed pea stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty black-eyed pea stew, often eaten for breakfast with bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soupe Kandia</span><span class="dish-tag">okra soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, okra-based soup served over rice, prized for its silky texture.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thiakry</span><span class="dish-tag">millet &amp; yogurt dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed millet couscous mixed with sweetened yogurt and vanilla, served chilled.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ngalakh</span><span class="dish-tag">baobab &amp; peanut pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet pudding of baobab fruit, peanut paste, and millet, traditional at religious holidays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beignets de Banane</span><span class="dish-tag">banana fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet fried banana fritters, a simple beloved treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastelles</span><span class="dish-tag">fried filled pastries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried pastries, sweet or savory depending on the filling.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fondé</span><span class="dish-tag">millet porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth, sweetened millet porridge, often eaten for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Couscous Sénégalais Sucré</span><span class="dish-tag">sweet couscous</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweetened millet couscous, a lighter dessert cousin of thiakry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bouillie</span><span class="dish-tag">millet porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth cereal porridge, typically eaten warm for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mbakhal</span><span class="dish-tag">sweetened rice dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweetened rice preparation often flavored with coconut or fruit.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fataya</span><span class="dish-tag">fried meat/fish pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried pastries filled with spiced meat or fish, a popular street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Accara</span><span class="dish-tag">black-eyed pea fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried black-eyed pea fritters, related to Nigerian akara, eaten as a snack or breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beignets Sénégalais</span><span class="dish-tag">fried doughnuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple fried dough beignets, sold hot from street vendors.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dibi</span><span class="dish-tag">grilled spiced meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled, spiced meat, typically lamb or mutton, seasoned simply and served with mustard and onion.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brochettes</span><span class="dish-tag">grilled meat skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered grilled meat, a popular casual street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chawarma Dakar</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Senegalese take on the shawarma sandwich, reflecting Dakar's cosmopolitan street food scene.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thiakry</span><span class="dish-tag">millet &amp; yogurt dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed millet couscous mixed with sweetened yogurt and vanilla, served chilled.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Café Touba</span><span class="dish-tag">clove-spiced coffee</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Coffee brewed with cloves and selim pepper, sold from street stalls across Dakar.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Senegalese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Yété</li>
+        <li><span class="n">06</span> Dijon mustard</li>
+        <li><span class="n">02</span> Nététu</li>
+        <li><span class="n">07</span> Scotch bonnet</li>
+        <li><span class="n">03</span> Peanut oil</li>
+        <li><span class="n">08</span> Lime</li>
+        <li><span class="n">04</span> Tamarind</li>
+        <li><span class="n">09</span> Cloves</li>
+        <li><span class="n">05</span> Selim pepper</li>
+        <li><span class="n">10</span> Dried fish</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Beer &amp; Spirits</p>
+            <ol class="plain">
+              <li>Flag Beer</li>
+              <li>Gazelle Beer</li>
+              <li>Flag Spéciale</li>
+              <li>Julbrew</li>
+              <li>Palm Wine</li>
+              <li>Bissap Wine</li>
+              <li>Wonjo</li>
+              <li>Ditakh Juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Bissap &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café Touba</li>
+              <li>Bissap</li>
+              <li>Ginger Juice</li>
+              <li>Bouye Baobab</li>
+              <li>Ditakh</li>
+              <li>Dakhar Attaya Tea</li>
+              <li>Wonjo</li>
+              <li>Tamarin Drink</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Flag</li>
+              <li>Gazelle</li>
+              <li>Castel</li>
+              <li>Flag Spéciale</li>
+              <li>33 Export</li>
+              <li>Heineken Senegal</li>
+              <li>Julbrew</li>
+              <li>Bock</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

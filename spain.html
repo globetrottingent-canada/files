@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">IBERIA / MEDITERRANEAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Spain</h1>
+      <p class="subhead">Two millennia of Roman, Moorish, and New World influence — regionally fierce, olive-oil-driven, and built for the long, social table.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ANDALUCÍA · CATALONIA · BASQUE COUNTRY · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Spain">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Spanish cuisine is one of the most diverse and regionally complex in the world, shaped by an extraordinary collision of civilizations over two millennia. The Romans brought olive oil, wine, and wheat; the Moors, who ruled much of the Iberian Peninsula for 700 years, introduced almonds, saffron, citrus, sugar cane, and sophisticated techniques of spicing and preserving — their influence on Spanish cooking is immense and often underappreciated. The Reconquista and the Catholic monarchy then reinforced pork as a cultural and religious signifier, giving rise to the great Spanish charcuterie tradition.</p>
+        <p>The discovery of the Americas in 1492 was a turning point not just for Spain but for world cuisine: tomatoes, peppers, potatoes, chocolate, and vanilla all arrived in Europe via Spain, transforming cooking on a global scale. Within Spain itself, these ingredients — particularly tomatoes and peppers — became so fundamental that it is now impossible to imagine traditional Spanish dishes without them. The 20th century saw Spanish cuisine rise to international prominence, particularly through the avant-garde revolution led by Ferran Adrià at elBulli, which made Spain the center of the culinary world in the 1990s and 2000s.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Spanish cooking is defined by exceptional raw ingredients — the best olive oil, jamón, saffron, seafood, and wine in the world — treated with confidence and restraint. The cuisine varies dramatically by region: the north (Basque Country, Galicia, Asturias) is green and rainy, producing rich stews, seafood, and cider; the central plateau (Castile) is dry and pastoral, known for roast lamb and suckling pig; the Mediterranean coast (Valencia, Catalonia) excels in rice dishes and fresh seafood; the south (Andalucía) is the home of gazpacho, fried fish, sherry, and tapas culture.</p>
+        <p>Olive oil is the medium through which virtually everything is cooked. Garlic and pimentón (smoked paprika) are the defining aromatics. The Spanish table is social, unhurried, and generous — food is central to family life and public celebration alike.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lunch (la comida) is the main meal of the day — typically eaten between 2pm and 4pm, it is a multi-course affair that can last two hours. Dinner is eaten late, rarely before 9pm.</li>
+        <li>Tapas culture is social rather than gastronomic — small plates shared over drinks at the bar, moving from one bar to the next, is a way of life in Andalucía and much of Spain.</li>
+        <li>Sunday lunch is a serious family institution — extended families gather for a long, leisurely meal that can stretch from 2pm well into the evening.</li>
+        <li>Siesta time coincides with digestion: the long lunch break followed by rest is a genuine rhythm of Spanish daily life, not merely a tourist myth.</li>
+        <li>Regional identity in food is fierce — Catalonians, Basques, and Castilians each consider their cuisine distinct and superior. The concept of a single 'Spanish cuisine' is itself contested.</li>
+        <li>The Spanish do not typically eat breakfast beyond a coffee and perhaps a pastry — churros with chocolate are a special treat, not an everyday occurrence.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil (the foundation of everything)</li>
+        <li><span class="n">06</span> Garlic (used lavishly)</li>
+        <li><span class="n">02</span> Jamón Ibérico & Serrano (cured ham)</li>
+        <li><span class="n">07</span> Tomatoes (fresh, crushed, dried)</li>
+        <li><span class="n">03</span> Chorizo & morcilla (paprika sausage, blood sausage)</li>
+        <li><span class="n">08</span> Almonds & pine nuts</li>
+        <li><span class="n">04</span> Saffron (from La Mancha)</li>
+        <li><span class="n">09</span> Seafood (cod, anchovies, squid, prawns)</li>
+        <li><span class="n">05</span> Pimentón (smoked paprika, sweet & hot)</li>
+        <li><span class="n">10</span> Manchego & Idiazábal (cheeses)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Spain is the world's largest producer of olive oil, accounting for roughly 45% of global production — most of it from Andalucía. The Spanish consume it lavishly on everything from bread to salads to frying.</li>
+        <li>Jamón Ibérico de Bellota — cured ham from acorn-fed black Iberian pigs — can cost over $300 per kilogram and is widely considered the finest cured meat in the world. The pigs roam free on dehesa (oak woodland pasture) and eat almost exclusively acorns in their final months.</li>
+        <li>Paella originates from Valencia and was originally a peasant dish cooked over an open fire — the original contained rabbit, chicken, and green beans, not seafood. Valencians consider seafood paella an invention of restaurants catering to tourists.</li>
+        <li>The Basque Country has the highest concentration of Michelin-starred restaurants per capita in the world — the culinary movement known as Nueva Cocina Vasca, pioneered in the 1970s, transformed fine dining globally.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Paella Valenciana</span><span class="dish-tag">rabbit, chicken &amp; beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The original Valencian peasant rice dish, made with rabbit, chicken, and green beans rather than seafood.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jamón Ibérico</span><span class="dish-tag">carved at the table</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cured ham from acorn-fed black Iberian pigs, sliced thin and served as a centerpiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gazpacho</span><span class="dish-tag">cold tomato soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chilled raw tomato and vegetable soup from Andalucía, refreshing in summer heat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tortilla Española</span><span class="dish-tag">potato &amp; egg omelette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick omelette of potato and egg, eaten warm or at room temperature.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cocido Madrileño</span><span class="dish-tag">chickpea &amp; meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty chickpea and meat stew, served in courses, a Madrid winter classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pulpo a la Gallega</span><span class="dish-tag">Galician octopus</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tender octopus slices dressed with olive oil, paprika, and coarse salt.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pisto</span><span class="dish-tag">Spanish ratatouille</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked medley of peppers, tomato, zucchini, and onion in olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bacalao al Pil-Pil</span><span class="dish-tag">salt cod in garlic oil</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salt cod gently emulsified with olive oil and garlic into a silky sauce, a Basque classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cordero Asado</span><span class="dish-tag">Castilian roast lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-roasted lamb, a specialty of the dry central plateau.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fabada Asturiana</span><span class="dish-tag">white bean &amp; sausage stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich stew of white beans, chorizo, and morcilla from rainy Asturias.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Puddings &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crema Catalana</span><span class="dish-tag">burnt sugar custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky custard topped with a brittle layer of caramelized sugar, Catalonia's answer to crème brûlée.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Churros con Chocolate</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried dough sticks dusted in sugar, dipped in thick drinking chocolate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarta de Santiago</span><span class="dish-tag">Galician almond cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense almond cake dusted with powdered sugar, a specialty of Galicia.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Turrón</span><span class="dish-tag">Christmas nougat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense almond or honey nougat, essential at Spanish Christmas tables.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sweets &amp; Biscuits</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy cinnamon-scented rice pudding, a comforting home dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flan</span><span class="dish-tag">caramel custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky caramel custard, ubiquitous on Spanish restaurant dessert menus.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Polvorones</span><span class="dish-tag">crumbly almond shortbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate, crumbly almond shortbread cookies, traditional at Christmas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ensaimada</span><span class="dish-tag">Mallorcan spiral pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, spiral-shaped sweet pastry from Mallorca, dusted with powdered sugar.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Bar Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pan con Tomate</span><span class="dish-tag">tomato &amp; oil bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bread rubbed with ripe tomato and drizzled with olive oil, a simple Catalan staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Patatas Bravas</span><span class="dish-tag">fried potato, spicy sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried potato cubes topped with a smoky, spicy tomato sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Croquetas</span><span class="dish-tag">béchamel croquettes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy béchamel croquettes filled with jamón or salt cod, breaded and fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gambas al Ajillo</span><span class="dish-tag">prawns in garlic oil</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Prawns sizzled quickly in garlic-infused olive oil, a classic tapas bar order.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Tapas</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pimientos de Padrón</span><span class="dish-tag">blistered green peppers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small green peppers blistered in hot oil and finished with coarse salt.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boquerones</span><span class="dish-tag">anchovies in vinegar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh anchovies cured in vinegar or fried whole, a beloved bar snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pintxos</span><span class="dish-tag">Basque bar snacks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small snacks skewered on bread, a Basque bar-hopping tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aceitunas</span><span class="dish-tag">marinated olives</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated olives, a constant fixture on every Spanish bar counter.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Spanish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Pimentón ahumado (smoked paprika)</li>
+        <li><span class="n">06</span> Dried ñora peppers (base of romesco)</li>
+        <li><span class="n">02</span> Saffron (earthy, golden hue)</li>
+        <li><span class="n">07</span> Sofrito (tomato, onion, garlic base)</li>
+        <li><span class="n">03</span> Garlic (raw, fried, confit)</li>
+        <li><span class="n">08</span> Almonds (ground into sauces — romesco, picada)</li>
+        <li><span class="n">04</span> Olive oil (fruity, grassy — Arbequina, Picual)</li>
+        <li><span class="n">09</span> Anchovy (as umami seasoning)</li>
+        <li><span class="n">05</span> Sherry vinegar (Pedro Ximénez)</li>
+        <li><span class="n">10</span> Brandy de Jerez (in stews & desserts)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Rioja</li>
+              <li>Albariño</li>
+              <li>Sherry</li>
+              <li>Cava</li>
+              <li>Sangria</li>
+              <li>Sidra</li>
+              <li>Brandy de Jerez</li>
+              <li>Orujo</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café Solo</li>
+              <li>Café con Leche</li>
+              <li>Horchata</li>
+              <li>Agua de Valencia</li>
+              <li>Granizado de Limón</li>
+              <li>Mosto</li>
+              <li>Tinto de Verano</li>
+              <li>Zumo de Naranja Natural</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Lagers</p>
+            <ol class="plain">
+              <li>Estrella Damm</li>
+              <li>Mahou Cinco Estrellas</li>
+              <li>San Miguel</li>
+              <li>Cruzcampo</li>
+              <li>Estrella Galicia</li>
+              <li>Alhambra Reserva 1925</li>
+              <li>Voll-Damm</li>
+              <li>Moritz</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

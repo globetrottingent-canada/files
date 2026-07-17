@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thailand — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTHEAST ASIA / FIVE FLAVORS</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Thailand</h1>
+      <p class="subhead">A vivid, aromatic tradition balancing sweet, sour, salty, bitter, and spicy simultaneously — never colonized, and confident in absorbing outside influence.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BANGKOK · CHIANG MAI · ISAN · PHUKET · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACf0lEQVR4nO3WsWkCYBhF0fzBJVxBSOEa7mlllYCpEkuHcAAnULB0jFt850zwmgtvHbf7D6DzWQ+A6UQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBBbt9O53gCjrcfzVW+A0dxRiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoTY5vJ3rTfAaOtrd6g3wGjuKMRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxNbP96XeAKOtx/NVb4DR3FGIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNjm/vtfb4DR1nG7rzfAaO4oxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBB7A5OVEsNcYzG3AAAAAElFTkSuQmCC" alt="Flag of Thailand">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Thai cuisine is one of the most immediately recognizable and globally beloved food cultures in the world — a vivid, aromatic tradition built on the balance of five flavors: sweet, sour, salty, bitter, and spicy, always present simultaneously in a well-made dish. Thai cooking draws from ancient indigenous traditions of the Tai-speaking peoples who migrated south from southern China, absorbing influences from India (through Theravada Buddhism and early trade), China (noodles, stir-frying, fermentation), and the Khmer empire whose refined court cuisine shaped central Thai cooking profoundly.</p>
+        <p>The Mon and Khmer civilizations that preceded Thai dominance in the region bequeathed sophisticated cooking traditions, including the use of aromatic pastes and coconut milk. Indian trade routes brought spices — cumin, coriander, cardamom — that formed the base of Thai curry pastes, while Chinese immigration contributed wok cooking, noodle dishes, and soy-based sauces. Portuguese missionaries in the 16th century introduced chilies from the Americas, which transformed Thai cooking so thoroughly that it is now impossible to imagine the cuisine without them. Thailand's status as the only Southeast Asian country never colonized by a European power gave its food culture the confidence to absorb outside influences on its own terms.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Thai cooking is defined by its aromatics — lemongrass, galangal, kaffir lime leaf, Thai basil, and shrimp paste form the flavor foundation of the cuisine in a way that is unlike any other. The curry paste — pounded from fresh aromatics, dried spices, and shrimp paste in a stone mortar — is the heart of Thai curry, and each type (green, red, yellow, massaman, panaeng) has its own specific combination. Fish sauce is the universal seasoning, applied with the confidence that a European cook applies salt. Coconut milk softens and enriches; lime juice and tamarind provide the essential sour counterpoint.</p>
+        <p>The cuisine varies sharply by region: the north is influenced by Burmese and Yunnanese cooking, using more pork and milder curries like khao soi; the northeast (Isan) is closer to Lao cuisine — sticky rice, laab, and papaya salad built on fermented fish paste; the central plains produce the 'royal Thai' tradition of elaborate, refined dishes; the south is intensely spicy and heavily influenced by Malay cooking, with turmeric and coconut prominent. Street food culture is extraordinary — Thailand's hawker stalls and market vendors are among the most skilled and celebrated in the world.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Thai meals are not sequential — all dishes arrive simultaneously and are shared communally. There is no starter and main; everything is placed in the center and eaten together with rice.</li>
+        <li>Rice is the centerpiece, not a side dish — in Thai, 'kin khao' means both 'to eat' and literally 'to eat rice.' Eating without rice is considered an incomplete meal.</li>
+        <li>Condiments on the table are non-negotiable — a set of four: fish sauce, sugar, dried chili, and chili in vinegar. Every diner adjusts their bowl to their own preference.</li>
+        <li>Street food is not a lesser experience in Thailand — some of the most technically accomplished and beloved food in the country is sold from carts and shophouses, not restaurants.</li>
+        <li>Fruit carving is a classical Thai art form — elaborate floral sculptures carved from watermelon, mango, and papaya appear at formal meals and festivals.</li>
+        <li>Thai New Year is celebrated in April with Songkran — water is poured ceremonially, and special foods including khao chae and sweet sticky rice are prepared.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fish sauce</li>
+        <li><span class="n">06</span> Bird's eye chili</li>
+        <li><span class="n">02</span> Lemongrass</li>
+        <li><span class="n">07</span> Coconut milk</li>
+        <li><span class="n">03</span> Galangal</li>
+        <li><span class="n">08</span> Shrimp paste</li>
+        <li><span class="n">04</span> Kaffir lime leaf</li>
+        <li><span class="n">09</span> Jasmine rice</li>
+        <li><span class="n">05</span> Thai basil</li>
+        <li><span class="n">10</span> Palm sugar</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Pad Thai — now Thailand's most internationally recognized dish — was essentially invented as a national dish during the 1930s and 40s by Prime Minister Plaek Phibunsongkhram, who promoted it as a way to reduce rice consumption during wartime scarcity and to foster national identity around a single dish.</li>
+        <li>Bird's eye chilies were introduced to Thailand by Portuguese traders in the 16th century, yet within a century they had become so thoroughly integrated into Thai cooking that most Thais today consider them an ancient indigenous ingredient.</li>
+        <li>Thailand is the world's largest exporter of rice, producing several varieties including the prized jasmine rice of the northeast. Thai rice culture has produced dozens of distinct varieties for different culinary applications.</li>
+        <li>Fish sauce — nam pla — is made by fermenting whole small fish with salt for up to two years, then pressing and filtering the liquid. It is to Thai cooking what salt is to European cooking: the foundational seasoning without which almost nothing tastes right.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pad Thai</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stir-fried rice noodles with egg, tamarind, and shrimp or chicken, promoted as a national dish in the 1930s.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tom Yum Goong</span><span class="dish-tag">hot &amp; sour shrimp soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fragrant, fiery, sour shrimp soup built on lemongrass, galangal, and kaffir lime.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Green Curry</span><span class="dish-tag">coconut curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich coconut milk curry made with fresh green chili paste, one of Thailand's most iconic curries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Massaman Curry</span><span class="dish-tag">mild, Indian-spiced</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mild, richly spiced curry showing clear Indian trade influence, often made with beef.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Som Tam</span><span class="dish-tag">green papaya salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pounded green papaya salad, sour, spicy, and fish sauce-forward, an Isan classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khao Pad</span><span class="dish-tag">Thai fried rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple, well-seasoned fried rice with egg and a protein of choice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pad Kra Pao</span><span class="dish-tag">basil stir-fry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced meat stir-fried with holy basil and chili, typically served over rice with a fried egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tom Kha Gai</span><span class="dish-tag">coconut chicken soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy coconut milk soup with chicken, galangal, and lime, milder than tom yum.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laab</span><span class="dish-tag">spiced minced meat salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, herb-forward minced meat salad from Isan, seasoned with fish sauce and toasted rice powder.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Panaeng Curry</span><span class="dish-tag">thick peanut curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, rich curry with a peanut-forward sauce, milder and creamier than red curry.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mango Sticky Rice</span><span class="dish-tag">coconut mango dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet sticky rice served with fresh mango and coconut cream, Thailand's most beloved dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khanom Krok</span><span class="dish-tag">coconut rice pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small coconut rice pancakes cooked in a special cast-iron mold, crisp outside and creamy within.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tub Tim Grob</span><span class="dish-tag">water chestnut in syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Red-dyed water chestnut pieces in sweet coconut milk, resembling pomegranate seeds.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lod Chong</span><span class="dish-tag">pandan noodle dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Green pandan-flavored rice flour noodles served in sweet coconut milk.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Foi Thong</span><span class="dish-tag">golden egg threads</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate threads of sweetened egg yolk, a traditional Thai-Portuguese confection.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khanom Chan</span><span class="dish-tag">layered coconut jelly</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A colorful, layered steamed coconut jelly dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bua Loy</span><span class="dish-tag">rice balls in coconut milk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small glutinous rice balls served warm in sweet coconut milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kluay Buat Chee</span><span class="dish-tag">banana in coconut milk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sliced banana simmered in sweet coconut milk, a simple comforting dessert.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Satay with Peanut Sauce</span><span class="dish-tag">grilled meat skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated grilled meat skewers served with a rich peanut dipping sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tod Mun Pla</span><span class="dish-tag">Thai fish cakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced fried fish cakes, chewy and fragrant with curry paste and kaffir lime.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khao Niao Moo Ping</span><span class="dish-tag">grilled pork &amp; sticky rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled marinated pork skewers served with sticky rice, a beloved breakfast street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pad See Ew</span><span class="dish-tag">soy-fried noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wide rice noodles stir-fried in dark soy sauce with Chinese broccoli and egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Dishes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kanom Buang</span><span class="dish-tag">Thai crispy crepes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small crispy crepes filled with sweet meringue or savory shrimp topping.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sai Krok Isan</span><span class="dish-tag">fermented pork sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, fermented pork sausage from the northeast, grilled and eaten with fresh herbs.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kai Jeow</span><span class="dish-tag">Thai omelette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A puffy, crispy-edged fried omelette, a beloved comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Khao Man Gai</span><span class="dish-tag">chicken &amp; rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Poached chicken over rice cooked in chicken fat, served with a ginger-chili sauce.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Thai:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fish sauce</li>
+        <li><span class="n">06</span> Shrimp paste</li>
+        <li><span class="n">02</span> Lemongrass</li>
+        <li><span class="n">07</span> Palm sugar</li>
+        <li><span class="n">03</span> Kaffir lime leaf</li>
+        <li><span class="n">08</span> Tamarind</li>
+        <li><span class="n">04</span> Galangal</li>
+        <li><span class="n">09</span> Thai basil</li>
+        <li><span class="n">05</span> Bird's eye chili</li>
+        <li><span class="n">10</span> Lime juice</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Beer</p>
+            <ol class="plain">
+              <li>Singha Beer</li>
+              <li>Chang Beer</li>
+              <li>Leo Beer</li>
+              <li>Ruang Khao</li>
+              <li>Mekhong Whisky</li>
+              <li>SangSom Rum</li>
+              <li>Thai Whisky Soda</li>
+              <li>Lao Khao</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Thai Iced Tea</li>
+              <li>Thai Iced Coffee</li>
+              <li>Coconut Water</li>
+              <li>Nom Yen</li>
+              <li>Sugarcane Juice</li>
+              <li>Butterfly Pea Flower Tea</li>
+              <li>Soda Manao</li>
+              <li>Fruit Shake</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Singha</li>
+              <li>Chang</li>
+              <li>Leo</li>
+              <li>Archa</li>
+              <li>Cheers</li>
+              <li>Thai Beer</li>
+              <li>Phuket Beer</li>
+              <li>Whale</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trinidad &amp; Tobago — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">CARIBBEAN / CREOLE-INDIAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Trinidad &<br>Tobago</h1>
+      <p class="subhead">The most ethnically layered kitchen in the Caribbean — African, Indian, French Creole, and Chinese traditions united by lime culture.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PORT OF SPAIN · TOBAGO · CARONI · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Trinidad &amp; Tobago">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Trinidadian cuisine is the most complex and ethnically layered food culture in the Caribbean — a small twin-island nation whose cooking reflects the full weight of its extraordinary history: indigenous Amerindian foundations, Spanish colonisation, French Creole settlement, British colonial rule, West African enslaved people, Indian indentured workers, Chinese and Syrian-Lebanese merchants, and the syncretic Creole culture that emerged from all of them. No other Caribbean island has synthesised so many distinct culinary traditions into a single coherent national food identity, and the result is a kitchen of remarkable diversity where roti and curry, callaloo and pelau, doubles and shark & bake, mithai and black cake all coexist as equally Trinidadian expressions.</p>
+        <p>The foundational culinary layer is West African — the enslaved people brought to Trinidad's sugar plantations from the 17th century onwards brought with them the cooking knowledge that produced callaloo, pelau, oil-down, and the use of dasheen, ochroes, plantain, and salt fish that defines the Afro-Caribbean kitchen. Indian indentured workers who arrived from 1845 onwards after emancipation brought the full South Asian spice tradition — curry, roti, dal, geera, and the technique of building flavour from fried spice bases — and their culinary legacy now stands equal to the African tradition. The French Creole planters who settled Trinidad in the late 18th century brought sophisticated European cooking technique. The Chinese community established restaurants and contributed the wok stir-fry tradition. The Syrian and Lebanese merchants contributed pastelle-like flatbread traditions. All of it merged into something genuinely Trinidadian.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Trinidadian food is vivid, layered, and built on the confident use of aromatics and heat. The green seasoning — a blended paste of chadon beni (culantro), shadow beni, garlic, chive, and scotch bonnet — is applied to virtually every protein before cooking and gives Trinidadian food its characteristic fresh, herbal, slightly hot foundation. Curry in Trinidad is not Indian curry — it has been adapted over 175 years to local ingredients and local taste, using geera (cumin) more heavily, incorporating local peppers and chadon beni, and producing a drier, more intensely flavoured preparation than its South Asian ancestors. The roti that carries it — dhalpuri stuffed with ground split peas, or paratha buss-up-shut, or sada roti — is similarly a Trinidadian evolution of the Indian flatbread tradition.</p>
+        <p>Callaloo — the thick, green Sunday stew of dasheen bush leaves cooked down with coconut milk, ochroes, and crab — is the national dish and the food that Trinidadians most identify with home. Pelau, the one-pot rice dish of chicken or beef cooked with caramelised sugar, coconut milk, pigeon peas, and provision, is the definitive lime food — made in enormous pots for beach parties and gatherings. Doubles — the bara and channa street food sold from roadside stalls from before dawn — is the most democratic food in the country, eaten by every class, ethnicity, and age group. Angostura Bitters, produced exclusively in Port of Spain since 1824, gives Trinidad an unexpected global reach: its aromatic cocktail ingredient is found behind every serious bar on earth.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Doubles is the national breakfast — two baras (fried flat dough) filled with curried chickpeas (channa), topped with cucumber, tamarind, pepper sauce, and chadon beni. Sold from roadside stalls from 5am, eaten standing, costing almost nothing. It is one of the great street foods of the world.</li>
+        <li>Sunday lunch is the most important meal of the week — a laden table of pelau, macaroni pie, stewed chicken, callaloo, and provision (ground provisions: dasheen, yam, plantain) eaten with extended family after church.</li>
+        <li>The food of Trinidad reflects its extraordinary ethnic complexity — Indo-Trinidadian and Afro-Trinidadian food cultures exist side by side and increasingly intertwined. A Trini might eat roti and curry for lunch and pelau and callaloo for dinner without any sense of crossing cultural lines.</li>
+        <li>Lime culture is central to Trinidadian social life — liming means hanging out, doing nothing in particular, eating and drinking. A lime can happen anywhere: at a roadside doubles stall at midnight, a beach bar on Sunday, or a friend's kitchen on a Wednesday evening.</li>
+        <li>Hot pepper sauce is non-negotiable — Trinidadian pepper sauces, typically made from scotch bonnet or habanero with mustard, vinegar, and chadon beni, range from fruity-hot to incendiary. Every household has its own recipe and considers it superior.</li>
+        <li>Carnival season transforms the food calendar — in the weeks before Ash Wednesday, street food stalls multiply, the parang music plays, and pastelles (cornmeal parcels stuffed with meat, steamed in banana leaves) appear everywhere as the definitive Carnival season food.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Scotch bonnet pepper</li>
+        <li><span class="n">06</span> Geera / cumin</li>
+        <li><span class="n">02</span> Chadon beni</li>
+        <li><span class="n">07</span> Shadow beni</li>
+        <li><span class="n">03</span> Coconut milk</li>
+        <li><span class="n">08</span> Tamarind</li>
+        <li><span class="n">04</span> Dasheen / taro</li>
+        <li><span class="n">09</span> Ochroes / okra</li>
+        <li><span class="n">05</span> Curry powder</li>
+        <li><span class="n">10</span> Rum</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Doubles was invented in 1939 by Emamool Deen, an Indo-Trinidadian street food vendor in Princes Town who began selling the bara and channa combination from a cart for two cents — hence 'doubles' for two baras. What began as a breakfast for working people has become so embedded in Trinidadian identity that it is considered the national street food, eaten by every ethnicity and class, morning, noon, and midnight.</li>
+        <li>Trinidad is the only Caribbean island with a significant and long-established Indian food culture — Indian indentured workers brought to replace enslaved Africans after emancipation arrived from 1845 onwards, bringing with them the full South Asian culinary tradition: roti, curry, dal, rice, talkari, and the spice knowledge that transformed Trinidadian cooking. Today Indo-Trinidadians constitute roughly 35% of the population and their food is as Trinidadian as callaloo.</li>
+        <li>Angostura Bitters — the aromatic cocktail ingredient found behind every bar in the world — is made exclusively in Port of Spain, Trinidad, by the House of Angostura since 1824. The recipe is a closely guarded secret known to only five people at any time. It is used in everything from the Pink Gin to the Manhattan to the Champagne cocktail, and Trinidad produces the world's entire supply.</li>
+        <li>Callaloo — the thick green soup-stew made from dasheen bush leaves, ochroes, coconut milk, and crab — is the national dish of Trinidad and Tobago. Despite sharing a name with a Jamaican dish, the Trinidadian callaloo is completely different in preparation and flavour. It is eaten every Sunday across the country, stirred counterclockwise by tradition, and its quality is a matter of serious family pride.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doubles</span><span class="dish-tag">national breakfast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two fried baras filled with curried chickpeas, topped with cucumber, tamarind, and pepper sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Callaloo</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick green Sunday stew of dasheen bush leaves, coconut milk, ochroes, and crab.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pelau</span><span class="dish-tag">one-pot rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken or beef cooked with caramelised sugar, coconut milk, pigeon peas, and provision — the definitive lime food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roti with Curry</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Trinidadian flatbread wrapped around a drier, geera-forward curry, evolved from the Indian original.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stewed Chicken</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken browned in sugar and seasoning, then stewed into a deep, dark, savory sauce.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crab &amp; Dumpling</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole crab cooked in a spiced coconut broth with soft dumplings, a Tobago specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shark &amp; Bake</span><span class="dish-tag">fried shark sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried shark fillet served in fried bake bread, piled with toppings — a beach food icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Macaroni Pie</span><span class="dish-tag">baked pasta casserole</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, custardy baked macaroni and cheese casserole, a Sunday lunch staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Curry Duck</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Duck slow-cooked in a rich, dark curry, a festive Indo-Trinidadian favorite.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buljol</span><span class="dish-tag">salt fish salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded salt fish tossed with tomato, onion, and pepper, a light breakfast dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweets &amp; Cakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pone</span><span class="dish-tag">cassava spice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, moist baked cassava cake spiced with cinnamon and nutmeg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kurma</span><span class="dish-tag">sweet fried dough strips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crunchy fried dough strips coated in sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mithai</span><span class="dish-tag">sweet fried treats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An assortment of sweet fried Indo-Trinidadian treats, often made for celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coconut Drops</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chewy candy made from grated coconut and sugar, boiled until sticky.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Indo-Trinidadian Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Black Cake</span><span class="dish-tag">rum-soaked fruit cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark, rum-and-wine-soaked fruit cake, essential at Christmas and weddings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Toolum</span><span class="dish-tag">molasses coconut candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark candy of coconut and molasses, a traditional treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Barfi</span><span class="dish-tag">milk fudge sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense milk-based fudge sweet, adapted from the Indian confection tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gulab Jamun Trinidad</span><span class="dish-tag">syrup-soaked milk balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried milk dough balls soaked in sweet syrup, the Trinidadian take on the Indian classic.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doubles</span><span class="dish-tag">national breakfast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two fried baras filled with curried chickpeas, topped with cucumber, tamarind, and pepper sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aloo Pie</span><span class="dish-tag">fried potato pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fried pastry filled with spiced mashed potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pholourie</span><span class="dish-tag">fried split pea balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, spiced fried balls of ground split pea batter, served with tamarind sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saheena</span><span class="dish-tag">dasheen leaf fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dasheen leaf and split pea batter fritters, fried until crisp.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bake &amp; Shark</span><span class="dish-tag">fried shark sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried shark fillet served in fried bake bread, piled with toppings — a beach food icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastelle</span><span class="dish-tag">cornmeal meat parcels</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cornmeal parcels stuffed with spiced meat, steamed in banana leaves — a Carnival season staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Channa &amp; Aloo</span><span class="dish-tag">chickpea &amp; potato curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple curried chickpea and potato dish, often eaten with roti.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Corn Soup</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty, filling soup of corn and dumplings, sold from roadside stalls in the evening.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Trinidadian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Chadon beni</li>
+        <li><span class="n">06</span> Tamarind</li>
+        <li><span class="n">02</span> Scotch bonnet</li>
+        <li><span class="n">07</span> Coconut milk</li>
+        <li><span class="n">03</span> Shadow beni</li>
+        <li><span class="n">08</span> Casareep</li>
+        <li><span class="n">04</span> Curry powder</li>
+        <li><span class="n">09</span> Angostura Bitters</li>
+        <li><span class="n">05</span> Geera</li>
+        <li><span class="n">10</span> Culantro</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Rum &amp; Spirits</p>
+            <ol class="plain">
+              <li>Angostura Rum</li>
+              <li>Carib Beer</li>
+              <li>Stag Beer</li>
+              <li>Punch de Crème</li>
+              <li>Sorrel Rum Drink</li>
+              <li>Shandy Carib</li>
+              <li>Puncheon Rum</li>
+              <li>Royal Extra</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Mauby</li>
+              <li>Sorrel</li>
+              <li>Sea Moss Drink</li>
+              <li>Coconut Water</li>
+              <li>Tamarind Drink</li>
+              <li>Ginger Beer</li>
+              <li>Soursop Juice</li>
+              <li>Peanut Punch</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Carib</li>
+              <li>Stag</li>
+              <li>Shandy Carib</li>
+              <li>Royal Extra Stout</li>
+              <li>Mackeson</li>
+              <li>Guinness Carib</li>
+              <li>Heineken TT</li>
+              <li>Black Label</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

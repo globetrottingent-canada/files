@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turkey — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">ANATOLIA / OTTOMAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Turkey</h1>
+      <p class="subhead">An Ottoman synthesis at the crossroads of Europe, Asia, and the Middle East — kebabs, meze, and a millennium of palace refinement.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ISTANBUL · GAZIANTEP · ANATOLIA · AEGEAN · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Turkey">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Turkish cuisine is one of the great culinary traditions of the world — a synthesis forged at the crossroads of Europe, Asia, and the Middle East over more than a millennium of empire. The Ottoman Empire at its height controlled territory from the Balkans to North Africa, from the Persian Gulf to Hungary, and its palace kitchens in Istanbul became one of the most sophisticated culinary institutions in history. The Topkapi Palace employed hundreds of specialist cooks organized into guilds, each responsible for a single category of food. The diversity of the empire's subject peoples — Greek, Armenian, Arab, Persian, Balkan, Kurdish, and more — flowed into the palace kitchen and from there into the broader Ottoman culinary tradition.</p>
+        <p>The nomadic Central Asian Turkic heritage provided the foundation: grilled meats, yogurt, and flatbreads are the oldest layer of the cuisine. Persian civilization contributed rice pilafs, sophisticated spice use, and confectionery. Arab culinary traditions added meze culture, stuffed vegetables, and the syrup-soaked pastry tradition. Byzantine Greek influence shaped the seafood and vegetable cooking of the Aegean and Marmara coasts. The Silk Road brought spices from the east, and the Columbian Exchange introduced tomatoes, peppers, and aubergines — now utterly inseparable from the cuisine — in the 16th and 17th centuries.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Turkish cooking is bold, deeply layered, and extraordinarily diverse — what is eaten in Istanbul bears little resemblance to the cuisine of the Black Sea coast, or southeastern Anatolia, or the Aegean. The southeastern tradition centered on Gaziantep is considered by many to be the finest regional cuisine in the country: a world of kebabs, spice pastes, pistachio-laden baklava, and slow-cooked meat dishes of remarkable refinement. Gaziantep has applied for UNESCO Creative City of Gastronomy status and is considered by Turkish food culture to occupy the same position that Lyon holds in France.</p>
+        <p>Aubergine is the king of Turkish vegetables — there are said to be over forty classic aubergine dishes, from the silky smoky purée of hunkar begendi to the olive oil-braised imam bayildi. Yogurt appears at every meal, used as a sauce, a marinade, a cooling accompaniment, and a drink. Manti — tiny handmade dumplings topped with garlicky yogurt and spiced butter — are the Turkish answer to ravioli, and like the best dishes of any great cuisine, the quality lies entirely in the care of the hands that make them. The kebab tradition encompasses dozens of distinct preparations, each specific to a region or city.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Turkish meals begin with meze — a spread of cold and warm small dishes that can constitute an entire meal in themselves, accompanied by raki and conversation that lasts for hours.</li>
+        <li>Bread is sacred at the Turkish table — ekmek arrives before everything else and is replenished throughout. Throwing away bread is considered deeply disrespectful; stale bread is always repurposed.</li>
+        <li>Tea is Turkey's true national drink — çay, brewed black in a double teapot and served in tulip-shaped glasses with sugar cubes on the side, is drunk all day from morning to night.</li>
+        <li>The Turkish breakfast is legendary — a vast spread of cheeses, olives, tomatoes, cucumber, eggs, honey, clotted cream, pastries, and multiple jams eaten slowly over hours on weekends.</li>
+        <li>Raki protocol is specific — the anise spirit is always diluted with cold water, turning milky white, and always drunk alongside food, never alone. Drinking raki without meze is considered improper.</li>
+        <li>Hospitality is a matter of national pride — a guest must be offered tea immediately upon arrival and leaving without eating something is genuinely difficult to accomplish in a Turkish household.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Red pepper paste</li>
+        <li><span class="n">02</span> Yogurt</li>
+        <li><span class="n">07</span> Sumac</li>
+        <li><span class="n">03</span> Lamb</li>
+        <li><span class="n">08</span> Dried mint</li>
+        <li><span class="n">04</span> Aubergine / eggplant</li>
+        <li><span class="n">09</span> Pomegranate molasses</li>
+        <li><span class="n">05</span> Bulgur wheat</li>
+        <li><span class="n">10</span> Hazelnuts</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Turkey is the world's largest producer of hazelnuts, supplying roughly 70–75% of global production from the Black Sea coastal region. Turkish hazelnuts underpin the global chocolate and confectionery industry — Nutella, Ferrero Rocher, and virtually every major hazelnut chocolate product depends on Turkish supply.</li>
+        <li>Istanbul is the only city in the world built on two continents — and its food reflects this. The European side leans toward Ottoman palace cuisine, meyhane culture, and Balkan-influenced dishes; the Asian side has its own distinct neighborhood food traditions. The Bosphorus divides them, and a ferry ride between the two costs less than a glass of tea.</li>
+        <li>Yogurt was introduced to Europe from Turkey — the word itself is Turkish, and the technique of fermenting milk with live cultures was brought west along trade and migration routes. Turkish yogurt culture is ancient, with references to fermented milk dating back over 8,000 years in the region.</li>
+        <li>The döner kebab as served in Europe — meat shaved from a vertical rotating spit into flatbread — was largely popularized by Turkish immigrant workers in Germany in the 1970s. Kadir Nurman in Berlin is often credited with creating the German-style döner sandwich in 1972. It is now one of the most consumed fast foods in Europe.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Adana Kebab</span><span class="dish-tag">spicy minced meat skewer</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-minced spiced lamb skewers grilled over charcoal, named for the southeastern city of Adana.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">İskender Kebab</span><span class="dish-tag">döner over pide &amp; yogurt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sliced döner meat over bread, drenched in tomato sauce, yogurt, and browned butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Imam Bayildi</span><span class="dish-tag">olive oil-braised aubergine</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole aubergine braised in olive oil, stuffed with onion and tomato, served cold or warm.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karniyarik</span><span class="dish-tag">split stuffed aubergine</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Aubergine split and filled with spiced minced meat, baked until tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Köfte</span><span class="dish-tag">grilled meatballs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced grilled meatballs, found in dozens of regional variations across the country.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Manti</span><span class="dish-tag">yogurt-topped dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tiny handmade dumplings topped with garlicky yogurt and spiced butter, the Turkish answer to ravioli.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pide</span><span class="dish-tag">boat-shaped flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A boat-shaped baked flatbread topped with cheese, meat, or egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lahmacun</span><span class="dish-tag">thin minced meat flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin, crispy flatbread topped with spiced minced meat, often rolled and eaten by hand.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hunkar Begendi</span><span class="dish-tag">smoky aubergine purée</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky, smoky roasted aubergine purée, traditionally served under stewed meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Testi Kebab</span><span class="dish-tag">clay pot-sealed stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat and vegetables slow-cooked in a sealed clay pot, dramatically cracked open at the table.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baklava</span><span class="dish-tag">phyllo &amp; pistachio pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layered phyllo pastry filled with chopped pistachios and soaked in sweet syrup, especially prized from Gaziantep.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Künefe</span><span class="dish-tag">cheese-filled pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp shredded pastry filled with melting cheese and soaked in syrup, served warm.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sütlaç</span><span class="dish-tag">baked rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy baked rice pudding, often finished with a lightly caramelized top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kazandibi</span><span class="dish-tag">caramelized milk pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A milk pudding with a caramelized, slightly burnt base, a distinctive Ottoman dessert.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lokum</span><span class="dish-tag">Turkish delight</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, powdered-sugar-dusted jelly confection, flavored with rosewater, pistachio, or citrus.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Helva</span><span class="dish-tag">sesame or semolina sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense sweet made from sesame paste or semolina, often served at both celebrations and wakes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aşure</span><span class="dish-tag">Noah's pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grain, fruit, and nut pudding made for a specific religious occasion, symbolizing abundance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dondurma</span><span class="dish-tag">stretchy Turkish ice cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy ice cream made with mastic and salep, famous for its elastic texture.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Meze &amp; Pastry</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Meze Platter</span><span class="dish-tag">cold &amp; warm small dishes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A shared spread of cold and warm small dishes that opens a Turkish meal, paired with raki.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Börek</span><span class="dish-tag">layered pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flaky layered pastry filled with cheese, spinach, or meat, baked or fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Simit</span><span class="dish-tag">sesame bread ring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crisp, sesame-crusted bread ring, sold from street carts across the country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Menemen</span><span class="dish-tag">tomato &amp; pepper scramble</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Eggs scrambled with tomato, green pepper, and spices, a beloved breakfast dish.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Soups &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dolma</span><span class="dish-tag">stuffed vegetables</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vegetables or grape leaves stuffed with rice or spiced meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cacık</span><span class="dish-tag">yogurt &amp; cucumber</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooling dip of yogurt, cucumber, and mint, served as a meze or side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sigara Böreği</span><span class="dish-tag">rolled cheese pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pastry rolled around cheese filling and fried until crisp, named for its cigarette shape.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mercimek Çorbası</span><span class="dish-tag">red lentil soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth, comforting red lentil soup, a staple starter across the country.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Turkish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Red pepper paste</li>
+        <li><span class="n">06</span> Yogurt</li>
+        <li><span class="n">02</span> Sumac</li>
+        <li><span class="n">07</span> Baharat spice blend</li>
+        <li><span class="n">03</span> Dried mint</li>
+        <li><span class="n">08</span> Isot pepper</li>
+        <li><span class="n">04</span> Cumin</li>
+        <li><span class="n">09</span> Olive oil</li>
+        <li><span class="n">05</span> Pomegranate molasses</li>
+        <li><span class="n">10</span> Urfa biber</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Raki &amp; Wine</p>
+            <ol class="plain">
+              <li>Raki</li>
+              <li>Efes Beer</li>
+              <li>Tekirdağ Raki</li>
+              <li>Bomonti Beer</li>
+              <li>Kavaklidere Wine</li>
+              <li>Doluca Wine</li>
+              <li>Salacak Gin</li>
+              <li>Mey Spirits</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Çay</li>
+              <li>Turkish Coffee</li>
+              <li>Ayran</li>
+              <li>Şalgam</li>
+              <li>Boza</li>
+              <li>Sahlep</li>
+              <li>Limonata</li>
+              <li>Pomegranate Juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Efes Pilsener</li>
+              <li>Bomonti</li>
+              <li>Efes Dark</li>
+              <li>Miller Turkey</li>
+              <li>Gara Guzu Craft</li>
+              <li>Feliz</li>
+              <li>Bosphorus Brewing</li>
+              <li>Ankara Beer</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

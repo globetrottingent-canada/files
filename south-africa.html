@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Africa — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">SOUTHERN AFRICA / RAINBOW NATION</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">South Africa</h1>
+      <p class="subhead">A true rainbow-nation table — Khoisan, Bantu, Boer, Cape Malay, Indian, and British traditions united by fire and community.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            CAPE TOWN · JOHANNESBURG · DURBAN · KAROO · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of South Africa">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>South African cuisine is one of the most genuinely diverse food cultures in the world — a true rainbow nation table reflecting the indigenous Khoisan and Bantu food traditions, the Dutch Boer settlers whose cooking became Afrikaner cuisine, the Cape Malay community descended from enslaved people brought from Southeast Asia and India by the Dutch East India Company, the Indian community brought as indentured labour to Natal by the British, and the British colonial tradition itself. No other country in Africa has synthesised so many distinct culinary traditions across such pronounced historical divisions, and the result is a food culture of extraordinary variety that is only now, thirty years after apartheid's end, beginning to be explored and celebrated as a coherent whole.</p>
+        <p>The indigenous Khoisan peoples of the Cape had a sophisticated food culture built on hunting, gathering, and coastal foraging — they contributed the knowledge of indigenous plants, the use of rooibos, and techniques for drying and preserving meat that directly influenced the biltong tradition. The Nguni and Sotho-Tswana Bantu peoples of the interior contributed the staple pap (maize porridge), fermented beverages like umqombothi sorghum beer, and the communal cooking traditions of the rural table. The Afrikaner Boer cooking tradition — potjiekos, biltong, boerewors, braai culture, and the dried rusks of the Great Trek — is the most distinctly South African culinary tradition, forged in the hardship of frontier life. The Cape Malay community produced the most spiced and technically sophisticated cooking in the country: bobotie, sosaties, and the sweet-spiced bredie stews reflect the Southeast Asian and South Asian culinary knowledge brought by enslaved people from Batavia, Ceylon, and the Malabar coast.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>South African food is fire, community, and the extraordinary produce of a climatically diverse country. The braai is the central institution — not a quick weeknight meal but a social ceremony lasting hours, the fire started long before the food goes on, attended by the entire community. Boerewors — the coiled farmer's sausage of beef and pork spiced with coriander, cloves, and nutmeg — goes on first, and its sizzle and fragrance signals the beginning. The braai grill holds lamb chops, chicken pieces, sosaties, and whatever the season provides, each cooked to the braaimaster's specifications.</p>
+        <p>Biltong — the air-dried, spiced beef or game meat that is South Africa's most iconic snack — is eaten daily across all communities and generations. It is not jerky: the flavour, texture, and cultural weight are entirely different, and the coriander-vinegar cure that characterises it produces a savouriness that has no equivalent. Cape Malay cooking represents the haute cuisine of the South African table: bobotie, the minced meat dish baked with a savoury egg custard and fragrant with turmeric, apricot, and bay, is the national dish and one of the most interesting spiced meat preparations in any world cuisine. Malva pudding — the sticky, sweet, apricot jam-soaked sponge that appears at every celebration table — and the milk tart (melktert) with its silky cinnamon custard are the defining sweets of the Afrikaner tradition.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The braai is not a barbecue — it is a social institution. A braai can last all afternoon, the fire is started hours before the food goes on, and the boerewors (farmer's sausage coiled in a spiral) goes on first as the crowd gathers. Managing the fire is a matter of honour.</li>
+        <li>Biltong is eaten as a daily snack across all communities — the air-dried, spiced beef or game meat is found in every petrol station, sports bar, and kitchen drawer in South Africa. It is not jerky: the texture, spicing, and curing method are distinct and superiority is not debated.</li>
+        <li>South African food is deeply communal and generous — ubuntu ('I am because we are') shapes the hospitality culture. A guest is fed without question and the table is expected to have more than enough.</li>
+        <li>The Cape Malay kitchen of the Cape Peninsula produces a spice palette unlike anything else in Africa — cinnamon, turmeric, cardamom, and tamarind in curry-style dishes that reflect the cooking traditions of the enslaved people brought from Malaysia, Indonesia, and India by the Dutch East India Company.</li>
+        <li>Braaibroodjie — the toasted cheese, tomato, and onion sandwich cooked directly on the braai grid — is the side dish that separates the serious braai from the casual one. Getting the cheese melted without burning the bread is a skill.</li>
+        <li>South African wine culture has matured rapidly — Stellenbosch, Franschhoek, and the Swartland produce world-class Chenin Blanc, Pinotage, and Cabernet Sauvignon, and the Cape Winelands are increasingly recognised internationally.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Biltong</li>
+        <li><span class="n">06</span> Mielie / maize</li>
+        <li><span class="n">02</span> Boerewors</li>
+        <li><span class="n">07</span> Potjie pot</li>
+        <li><span class="n">03</span> Braai wood</li>
+        <li><span class="n">08</span> Bobotie spices</li>
+        <li><span class="n">04</span> Rooibos</li>
+        <li><span class="n">09</span> Dried apricot</li>
+        <li><span class="n">05</span> Cape Malay spices</li>
+        <li><span class="n">10</span> Peri-peri</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Biltong has been made in southern Africa for hundreds of years — the indigenous Khoisan people dried meat to preserve it, and the Voortrekker Boers on the Great Trek of the 1830s depended on biltong as their primary preserved protein. The word comes from the Dutch 'bil' (rump) and 'tong' (strip). Modern biltong uses cider vinegar, coriander, salt, and pepper as its basic cure, but every family and butcher has their own variation. South Africa produces an estimated 30,000 tonnes of biltong annually.</li>
+        <li>Boerewors — the coiled fresh sausage of minced beef and pork spiced with coriander, cloves, and nutmeg — is legally protected in South Africa: the South African Bureau of Standards specifies that boerewors must contain at least 90% meat and no more than 30% fat, with beef as the primary component. Any product not meeting these standards cannot legally be called boerewors. It is the only South African food with a legal definition.</li>
+        <li>Rooibos tea — the caffeine-free herbal tea from the Cederberg mountains of the Western Cape — grows nowhere else on earth. The Aspalathus linearis shrub that produces it is endemic to a small area of the Cape Floristic Region, one of the world's most biodiverse ecosystems. Rooibos was used by the Khoisan for centuries before being commercialised in the 20th century, and South Africa holds a geographical indication for the name.</li>
+        <li>Bunny chow — a hollowed-out loaf of white bread filled with curry — was invented in Durban by the Indian community during apartheid. Indian workers who were forbidden from entering white restaurants had curry delivered in bread since no bowls or plates could be taken out for non-white customers. The bunny chow became so embedded in Durban street food culture that it is now eaten by all communities and considered the definitive Durban street food.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Braai &amp; Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Braai &amp; Boerewors</span><span class="dish-tag">coiled farmer's sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The centerpiece social institution — a fire-grilled feast opened by the coiled, spiced boerewors sausage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bobotie</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced meat baked with a savory egg custard, fragrant with turmeric, apricot, and bay — South Africa's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bunny Chow</span><span class="dish-tag">curry in bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hollowed loaf of bread filled with curry, invented in Durban's Indian community during apartheid.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Potjiekos</span><span class="dish-tag">cast-iron pot stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked stew of meat and vegetables, simmered for hours in a three-legged cast-iron pot over coals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Biryani Cape Malay</span><span class="dish-tag">spiced layered rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cape Malay-style spiced layered rice with meat, reflecting Southeast and South Asian heritage.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Cape Malay &amp; More</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Snoek Braai</span><span class="dish-tag">grilled snoek fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Snoek fish grilled over the braai fire, often basted with apricot jam glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Umngqusho</span><span class="dish-tag">corn &amp; bean stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Xhosa dish of samp (crushed corn) and beans, slow-cooked into a hearty stew.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chakalaka &amp; Pap</span><span class="dish-tag">spiced relish &amp; maize porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spicy vegetable relish served alongside pap, the staple maize porridge.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gatsby</span><span class="dish-tag">Cape Town sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A massive filled sandwich loaded with fries and sauce, a Cape Town street food icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sosaties</span><span class="dish-tag">spiced meat skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated meat skewers with a Cape Malay-spiced glaze, often cooked on the braai.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Malva Pudding</span><span class="dish-tag">apricot jam sponge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sticky, sweet sponge cake soaked in apricot jam sauce, served at nearly every celebration.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Koeksisters</span><span class="dish-tag">syrup-soaked braided dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Braided fried dough soaked in cold sugar syrup, sticky and intensely sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Melktert</span><span class="dish-tag">milk tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky cinnamon-dusted custard tart, a defining Afrikaner sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Peppermint Crisp Tart</span><span class="dish-tag">no-bake fridge tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered no-bake tart of caramel, cream, and crushed peppermint chocolate.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boeber</span><span class="dish-tag">spiced vermicelli milk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, spiced vermicelli and milk dessert from the Cape Malay tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jan Ellis Pudding</span><span class="dish-tag">date &amp; nut pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baked date and nut pudding served with a warm caramel sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hertzoggies</span><span class="dish-tag">jam &amp; coconut tarts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small pastry tarts filled with apricot jam and topped with coconut meringue.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roosterkoek</span><span class="dish-tag">braai bread rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft bread rolls grilled directly over the braai coals.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Biltong</span><span class="dish-tag">air-dried spiced meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Air-dried, spiced beef or game meat cured with vinegar and coriander — South Africa's most iconic snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boerewors Roll</span><span class="dish-tag">sausage sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled boerewors sausage served in a bread roll, a braai-side staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vetkoek</span><span class="dish-tag">fried dough bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried dough rolls, served plain or filled with mince or jam.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Braaibroodjie</span><span class="dish-tag">grilled cheese sandwich</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A toasted cheese, tomato, and onion sandwich cooked directly on the braai grid.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Droëwors</span><span class="dish-tag">dried sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A drier, cured version of boerewors, eaten as a chewy snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rusks</span><span class="dish-tag">twice-baked biscuits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hard, twice-baked biscuits meant for dunking in tea or coffee.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pap &amp; Sheba Sauce</span><span class="dish-tag">maize porridge &amp; relish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Maize porridge served with a spicy tomato-based relish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samoosas</span><span class="dish-tag">fried spiced pastries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small triangular fried pastries filled with spiced meat or vegetables, from the Indian community.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly South African:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Coriander seed</li>
+        <li><span class="n">06</span> Cinnamon</li>
+        <li><span class="n">02</span> Peri-peri</li>
+        <li><span class="n">07</span> Dried apricot</li>
+        <li><span class="n">03</span> Braai smoke</li>
+        <li><span class="n">08</span> Chutney</li>
+        <li><span class="n">04</span> Turmeric</li>
+        <li><span class="n">09</span> Cardamom</li>
+        <li><span class="n">05</span> Tamarind</li>
+        <li><span class="n">10</span> Cloves</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Stellenbosch Pinotage</li>
+              <li>Chenin Blanc</li>
+              <li>Amarula</li>
+              <li>Springbok Shooter</li>
+              <li>KWV Brandy</li>
+              <li>Franschhoek Wine</li>
+              <li>Cape Rum</li>
+              <li>Castle Lager</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Rooibos &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Rooibos Tea</li>
+              <li>Amasi</li>
+              <li>Maheu</li>
+              <li>Stoney Ginger Beer</li>
+              <li>Liqui-Fruit</li>
+              <li>Mrs Ball's &amp; Bread</li>
+              <li>Oros Squash</li>
+              <li>Steri Stumpie</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Castle Lager</li>
+              <li>Castle Milk Stout</li>
+              <li>Windhoek</li>
+              <li>Heineken SA</li>
+              <li>Jack Black</li>
+              <li>Devil's Peak</li>
+              <li>Darling Brew</li>
+              <li>CBC Lager</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

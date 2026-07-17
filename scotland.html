@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scotland — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">BRITISH ISLES / HIGHLAND</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Scotland</h1>
+      <p class="subhead">Hearty, unfussy cooking shaped by mountain, glen, and sea — oats, smoked fish, and whisky as ingredient, culture, and identity.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HIGHLANDS · EDINBURGH · GLASGOW · ISLES · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Scotland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Scottish cuisine is shaped by a rugged, cold landscape of mountains, glens, lochs, and coastline. The land dictated the diet: hardy root vegetables, oats (more reliable than wheat in a northern climate), game from the hills, and abundant fish and shellfish from the sea. Poverty and practicality forged a tradition of making much from little — offal, oatmeal, and broth became staples of genuine skill and satisfaction.</p>
+        <p>The Auld Alliance with France brought refined culinary influence: French techniques filtered into Scottish cooking, and a mutual fondness for rich sauces, game cookery, and wine trade persisted for centuries. The British Empire contributed spiced dishes — kedgeree's Anglo-Indian origins are well established in Scottish breakfasts. The Highland Clearances of the 18th and 19th centuries, which displaced crofting communities, deeply affected rural food traditions, many of which survive today in simplified or ceremonial form.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Scottish cooking is hearty, unfussy, and deeply seasonal. It prizes quality of raw ingredient — exceptional salmon, langoustines, venison, and lamb — often treated simply to let the produce speak. Smoking is a signature technique: Arbroath smokies, smoked salmon, and kipper traditions are world-renowned. Oats appear everywhere: in porridge, oatcakes, haggis, and as a coating for fish.</p>
+        <p>There is a duality in Scottish food culture — ancient peasant traditions (haggis, broth, stovies) sit comfortably alongside an outstanding modern restaurant scene, particularly in Edinburgh and Glasgow. Whisky is not merely a drink but an ingredient, a culture, and an identity. Scottish food has a dry, self-aware humor about itself — the deep-fried Mars bar is embraced, not apologized for.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Whisky (Scotch) is deeply embedded in culture — consumed neat, with a drop of water, or in a dram after a meal. Asking for ice is frowned upon.</li>
+        <li>The traditional Scottish breakfast mirrors the Full English but adds black pudding, tattie scones, and sometimes haggis.</li>
+        <li>"High tea" in Scotland is an early evening meal — a cooked main dish followed by bread, cakes, and tea — distinct from the English afternoon tea.</li>
+        <li>Hospitality is central: guests are expected to eat heartily, and refusing second helpings can be taken as an insult in traditional households.</li>
+        <li>The chip shop ("chippie") is a national institution — the deep-fried Mars bar is real, and proudly so.</li>
+        <li>Burns Night (January 25) is a full culinary and cultural ritual: cock-a-leekie soup, haggis with neeps and tatties, cranachan, and a great deal of whisky.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lamb & mutton (Highland breeds)</li>
+        <li><span class="n">06</span> Tatties (floury potatoes)</li>
+        <li><span class="n">02</span> Venison (red deer, widely hunted)</li>
+        <li><span class="n">07</span> Heather honey</li>
+        <li><span class="n">03</span> Salmon & trout (fresh & smoked)</li>
+        <li><span class="n">08</span> Crowdie & Cheddar (cheeses)</li>
+        <li><span class="n">04</span> Oats (porridge, oatcakes, haggis)</li>
+        <li><span class="n">09</span> Shellfish (langoustines, mussels, crab)</li>
+        <li><span class="n">05</span> Neeps (turnip/swede)</li>
+        <li><span class="n">10</span> Black pudding & white pudding</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Haggis — sheep's offal mixed with oatmeal, onion, and spices, traditionally cooked in a stomach — was once peasant food and is now Scotland's national dish, celebrated annually at Burns suppers.</li>
+        <li>Scotland produces over 40 million cases of Scotch whisky per year, exported to 180+ countries. More Scotch is sold in one month than Cognac in a year.</li>
+        <li>The deep-fried Mars bar was invented in a Stonehaven chip shop in the early 1990s and became an unlikely global symbol of Scottish cuisine.</li>
+        <li>Irn-Bru, a bright orange fizzy drink with a fiercely guarded recipe, outsells Coca-Cola in Scotland — one of very few places in the world where a local drink beats Coke.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Haggis, Neeps &amp; Tatties</span><span class="dish-tag">national dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sheep's offal mixed with oatmeal, onion, and spices, served with mashed turnip and potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cullen Skink</span><span class="dish-tag">smoked haddock chowder</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy smoked haddock and potato chowder from the fishing village of Cullen.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scotch Broth</span><span class="dish-tag">barley &amp; lamb soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty broth of lamb, barley, and root vegetables, a homely everyday classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stovies</span><span class="dish-tag">potato &amp; meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, comforting stew of potatoes and leftover meat, slow-cooked until soft.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Salmon on Oatcakes</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cold-smoked salmon served on crisp savory oatcakes, a classic simple starter.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cock-a-Leekie Soup</span><span class="dish-tag">chicken &amp; leek soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional chicken and leek soup, often served to open a Burns Night supper.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arbroath Smokie</span><span class="dish-tag">hot-smoked haddock</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole haddock hot-smoked over a wood fire, a protected regional specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Venison Stew</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Red deer venison slow-braised into a rich, deeply flavored stew.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kedgeree</span><span class="dish-tag">Anglo-Indian breakfast dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Smoked fish, rice, and boiled egg spiced with curry powder, adopted from British India.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Forfar Bridie</span><span class="dish-tag">meat pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded pastry filled with seasoned minced beef, a portable regional classic.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Puddings</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cranachan</span><span class="dish-tag">whisky cream &amp; oats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whipped cream, toasted oats, honey, whisky, and raspberries layered together — a beloved Burns Night dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clootie Dumpling</span><span class="dish-tag">steamed spiced pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced fruit pudding boiled in a cloth, traditional at Scottish celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tablet</span><span class="dish-tag">Scottish fudge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hard, grainy, intensely sweet fudge, a beloved Scottish confection.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dundee Cake</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich fruit cake topped with rings of whole almonds, a Scottish classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Cakes &amp; Biscuits</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shortbread</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crumbly, buttery biscuit, one of Scotland's most famous culinary exports.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scottish Trifle</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of sponge, custard, fruit, and cream, often given a whisky-soaked twist.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Black Bun</span><span class="dish-tag">spiced fruit loaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, dark spiced fruitcake encased in pastry, traditional for Hogmanay.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Empire Biscuit</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two shortbread biscuits sandwiched with jam and topped with icing and a cherry.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Light Meals</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oatcakes with Cheese</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp savory oat biscuits, the classic pairing for a slice of sharp cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scotch Egg</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hard-boiled egg wrapped in sausage meat, breaded and fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tattie Scones</span><span class="dish-tag">potato scones</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flat, griddled potato scones, a staple of the traditional Scottish breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Square Sausage Roll</span><span class="dish-tag">Lorne sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flat, square-cut sausage patty served in a bread roll, a breakfast favorite.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Deep-Fried Mars Bar</span><span class="dish-tag">chip shop icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chocolate bar battered and deep-fried, an unlikely but proudly embraced Scottish icon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bridies</span><span class="dish-tag">on the go</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded meat pastry eaten as a portable lunch or snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mince &amp; Oatmeal Roll</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced minced meat thickened with oatmeal, served in a soft roll.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scotch Pie</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small, double-crust pie filled with seasoned minced mutton, a football-match staple.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Scottish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Whisky (in cooking & sauces)</li>
+        <li><span class="n">06</span> Oatmeal (as coating & thickener)</li>
+        <li><span class="n">02</span> Smoked haddock / kippers</li>
+        <li><span class="n">07</span> Brambles (wild blackberries)</li>
+        <li><span class="n">03</span> Heather honey</li>
+        <li><span class="n">08</span> Brown sauce (on everything)</li>
+        <li><span class="n">04</span> Mustard (wholegrain)</li>
+        <li><span class="n">09</span> Cream & butter (rich, unapologetic)</li>
+        <li><span class="n">05</span> Juniper berries</li>
+        <li><span class="n">10</span> Sea salt & seaweed</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Alcoholic</p>
+            <ol class="plain">
+              <li>Scotch Single Malt Whisky</li>
+              <li>Scotch Blended Whisky</li>
+              <li>Irn-Bru &amp; Whisky</li>
+              <li>Drambuie</li>
+              <li>Scottish Gin</li>
+              <li>Tennent's Lager</li>
+              <li>Scottish Craft Ale</li>
+              <li>Sloe Gin</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Irn-Bru</li>
+              <li>Scottish Breakfast Tea</li>
+              <li>Barr's Cola</li>
+              <li>Elderflower Cordial</li>
+              <li>Cranberry &amp; Heather Tisane</li>
+              <li>Fresh-Pressed Apple Juice</li>
+              <li>Ginger Beer</li>
+              <li>Tablet Milkshake</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Ales</p>
+            <ol class="plain">
+              <li>Tennent's Lager</li>
+              <li>McEwan's 80 Shilling</li>
+              <li>Belhaven Best</li>
+              <li>Innis &amp; Gunn</li>
+              <li>BrewDog Punk IPA</li>
+              <li>Caledonian 80/-</li>
+              <li>Williams Bros. Fraoch</li>
+              <li>Harviestoun Bitter &amp; Twisted</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

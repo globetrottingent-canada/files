@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Table — A Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .topbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .main-site-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:8px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+    flex-shrink:0;
+  }
+  .main-site-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .main-site-link svg{width:12px;height:12px;}
+  .wordmark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .wordmark b{color:var(--accent); font-weight:600;}
+  .count-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:48px auto 0;
+    padding:0 28px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.site{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6vw, 64px);
+    line-height:1.02;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+    max-width:16ch;
+  }
+  .subhead{
+    font-size:17px;
+    color:var(--muted);
+    max-width:56ch;
+    margin:0;
+  }
+
+  /* controls */
+  .controls{
+    margin-top:44px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .search-row{
+    position:relative;
+  }
+  .search-row svg{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    width:18px;
+    height:18px;
+    color:var(--muted);
+    pointer-events:none;
+  }
+  input#search{
+    width:100%;
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    color:var(--ink);
+    background:var(--paper);
+    border:1.5px solid var(--hairline);
+    border-radius:100px;
+    padding:16px 22px 16px 52px;
+    outline:none;
+    transition:border-color .18s ease;
+  }
+  input#search::placeholder{color:#A6ADB5; font-weight:400;}
+  input#search:focus{border-color:var(--accent);}
+
+  .filter-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .filter-row label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  select{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--hairline);
+    border-radius:100px;
+    padding:9px 34px 9px 16px;
+    outline:none;
+    cursor:pointer;
+    appearance:none;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235C6570" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    background-size:13px;
+    transition:border-color .18s ease;
+  }
+  select:focus{border-color:var(--accent);}
+  .clear-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    background:none;
+    border:1px solid transparent;
+    padding:9px 12px;
+    cursor:pointer;
+    border-radius:100px;
+    transition:color .18s ease, border-color .18s ease;
+  }
+  .clear-btn:hover{color:var(--accent); border-color:var(--hairline);}
+
+  .results-line{
+    margin-top:36px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    border-bottom:1px solid var(--hairline);
+    padding-bottom:14px;
+  }
+  .results-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  /* continent columns */
+  .continent-grid{
+    margin-top:28px;
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:0 28px;
+    align-items:start;
+  }
+  .continent-col{
+    min-width:0;
+  }
+  .continent-col.is-hidden{display:none;}
+  .col-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:8px;
+    border-bottom:2px solid var(--brass);
+    padding-bottom:9px;
+    margin-bottom:4px;
+  }
+  .col-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15.5px;
+    line-height:1.15;
+    margin:0;
+    letter-spacing:-.005em;
+  }
+  .col-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--muted);
+    flex-shrink:0;
+  }
+  ol.region-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ol.region-list li{
+    border-bottom:1px solid var(--hairline);
+  }
+  ol.region-list li:last-child{
+    border-bottom:none;
+  }
+  ol.region-list li.is-hidden{
+    display:none;
+  }
+  ol.region-list a{
+    display:block;
+    padding:8px 1px 7px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:color .15s ease;
+  }
+  ol.region-list a:hover{
+    color:var(--accent);
+  }
+  .r-name{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:14px;
+    line-height:1.28;
+  }
+  .r-tag{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:2px;
+    line-height:1.35;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:80px 20px;
+    color:var(--muted);
+    display:none;
+  }
+  .empty-state .big{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+
+  .footer-note{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--hairline);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  @media (max-width: 980px){
+    .continent-grid{grid-template-columns:repeat(3, 1fr); gap:26px 24px;}
+  }
+  .continent-grid.single-col{
+    display:block;
+  }
+  .continent-grid.single-col .continent-col{
+    width:100%;
+  }
+  .continent-grid.single-col ol.region-list{
+    column-count:3;
+    column-gap:32px;
+  }
+  .continent-grid.single-col ol.region-list li{
+    break-inside:avoid;
+  }
+  @media (max-width: 900px){
+    .continent-grid.single-col ol.region-list{column-count:2;}
+  }
+  @media (max-width: 560px){
+    .continent-grid.single-col ol.region-list{column-count:1;}
+  }
+  @media (max-width: 640px){
+    .continent-grid{grid-template-columns:repeat(2, 1fr); gap:22px 18px;}
+    h1.site{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:10px;}
+    input#search{font-size:18px;}
+  }
+  @media (max-width: 430px){
+    .continent-grid{grid-template-columns:1fr;}
+  }
+
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="https://globetrottingent-canada.github.io/files/index.html" class="main-site-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Main Site
+      </a>
+      <span class="wordmark"><b>THE TABLE</b> — A Cuisine Guide</span>
+    </div>
+    <span class="count-tag" id="total-tag">68 REGIONS</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Field Guide to World Cuisines</p>
+    <h1 class="site">Find a cuisine, anywhere on the table.</h1>
+    <p class="subhead">Search by name, or narrow by continent and cuisine family. Every entry links to its own full culinary field guide — roots, table customs, dishes, and drinks.</p>
+
+    <div class="controls">
+      <div class="search-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input id="search" type="text" placeholder="Search regions or countries — try “coastal” or “Vietnam”…" autocomplete="off">
+      </div>
+      <div class="filter-row">
+        <label for="continent-filter">Continent</label>
+        <select id="continent-filter"><option value="">All</option></select>
+        <label for="family-filter">Cuisine Family</label>
+        <select id="family-filter"><option value="">All</option></select>
+        <button class="clear-btn" id="clear-btn">Clear filters</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="results-line">
+      <span class="results-count" id="results-count">68 of 68</span>
+    </div>
+
+    <div class="continent-grid" id="continent-grid"></div>
+
+    <div class="empty-state" id="empty-state">
+      <p class="big">No matches.</p>
+      <p>Try a different search term, or clear your filters.</p>
+    </div>
+
+    <div class="footer-note">The Table · A Cuisine Guide · 68 regions and counting</div>
+  </div>
+
+<script>
+  // ---- Generic content-section structure (built for extensibility) ----
+  // v1 has one section ("regions"). Additional sections (e.g. "ingredients",
+  // "techniques") can be appended later without reworking this page.
+  const CONTENT = {
+    activeSection: "regions",
+    sections: [
+      { id: "regions", label: "Regions & Countries", items: [{"slug": "arctic-canada-greenland", "name": "Arctic Canada & Greenland", "filename": "arctic-canada-greenland.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "Inuit/Arctic", "type": "region"}, {"slug": "canada-west", "name": "BC, Alberta & The Prairies", "filename": "canada-west.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "Western Canadian", "type": "region"}, {"slug": "quebec", "name": "Québec", "filename": "quebec.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "Franco-Canadian", "type": "region"}, {"slug": "atlantic-canada", "name": "Atlantic Canada", "filename": "atlantic-canada.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "Maritime Canadian", "type": "region"}, {"slug": "usa-west", "name": "USA: West & Southwest", "filename": "usa-west.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "American — Western/Southwestern", "type": "region"}, {"slug": "usa-midwest", "name": "USA: The Midwest", "filename": "usa-midwest.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "American — Heartland", "type": "region"}, {"slug": "usa-south", "name": "USA: The South", "filename": "usa-south.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "American — Southern", "type": "region"}, {"slug": "usa-northeast", "name": "USA: Northeast", "filename": "usa-northeast.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "American — Northeast", "type": "region"}, {"slug": "mexico", "name": "Mexico", "filename": "mexico.html", "continent": "North America", "display_continent": "North America", "cuisine_family": "Mesoamerican/Mexican", "type": "country"}, {"slug": "costa-rica", "name": "Costa Rica", "filename": "costa-rica.html", "continent": "Central America", "display_continent": "North America", "cuisine_family": "Tico/Mesoamerican", "type": "country"}, {"slug": "cuba", "name": "Cuba", "filename": "cuba.html", "continent": "Caribbean", "display_continent": "North America", "cuisine_family": "Cuban Creole", "type": "country"}, {"slug": "jamaica", "name": "Jamaica", "filename": "jamaica.html", "continent": "Caribbean", "display_continent": "North America", "cuisine_family": "Jamaican Creole", "type": "country"}, {"slug": "trinidad-tobago", "name": "Trinidad & Tobago", "filename": "trinidad-tobago.html", "continent": "Caribbean", "display_continent": "North America", "cuisine_family": "Creole-Indian Caribbean", "type": "country"}, {"slug": "english-caribbean", "name": "The English Caribbean", "filename": "english-caribbean.html", "continent": "Caribbean", "display_continent": "North America", "cuisine_family": "Anglo-Caribbean Creole", "type": "region"}, {"slug": "french-caribbean", "name": "The French Caribbean", "filename": "french-caribbean.html", "continent": "Caribbean", "display_continent": "North America", "cuisine_family": "French Antillean/Haitian Creole", "type": "region"}, {"slug": "colombia", "name": "Colombia", "filename": "colombia.html", "continent": "South America", "display_continent": "South America", "cuisine_family": "Colombian", "type": "country"}, {"slug": "peru", "name": "Peru", "filename": "peru.html", "continent": "South America", "display_continent": "South America", "cuisine_family": "Andean/Peruvian", "type": "country"}, {"slug": "brazil", "name": "Brazil", "filename": "brazil.html", "continent": "South America", "display_continent": "South America", "cuisine_family": "Luso-Afro-Brazilian", "type": "country"}, {"slug": "argentina", "name": "Argentina", "filename": "argentina.html", "continent": "South America", "display_continent": "South America", "cuisine_family": "Rioplatense", "type": "country"}, {"slug": "senegal", "name": "Senegal", "filename": "senegal.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "West African/Wolof", "type": "country"}, {"slug": "ghana", "name": "Ghana", "filename": "ghana.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "West African/Ghanaian", "type": "country"}, {"slug": "nigeria", "name": "Nigeria", "filename": "nigeria.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "West African/Nigerian", "type": "country"}, {"slug": "morocco", "name": "Morocco", "filename": "morocco.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "Maghrebi/Moroccan", "type": "country"}, {"slug": "egypt", "name": "Egypt", "filename": "egypt.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "Egyptian", "type": "country"}, {"slug": "ethiopia", "name": "Ethiopia", "filename": "ethiopia.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "Ethiopian/Horn of Africa", "type": "country"}, {"slug": "east-africa", "name": "East Africa", "filename": "east-africa.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "East African", "type": "region"}, {"slug": "swahili-coast", "name": "The Swahili Coast", "filename": "swahili-coast.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "Swahili/Indian Ocean", "type": "region"}, {"slug": "south-africa", "name": "South Africa", "filename": "south-africa.html", "continent": "Africa", "display_continent": "Africa", "cuisine_family": "Rainbow Nation/South African", "type": "country"}, {"slug": "iceland", "name": "Iceland", "filename": "iceland.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Icelandic/Nordic", "type": "country"}, {"slug": "ireland", "name": "Republic of Ireland", "filename": "ireland.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Irish", "type": "country"}, {"slug": "scotland", "name": "Scotland", "filename": "scotland.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "British/Highland", "type": "country"}, {"slug": "england", "name": "England", "filename": "england.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "British", "type": "country"}, {"slug": "wales", "name": "Wales", "filename": "wales.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "British/Celtic", "type": "country"}, {"slug": "italy", "name": "Italy", "filename": "italy.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Italian", "type": "country"}, {"slug": "portugal", "name": "Portugal", "filename": "portugal.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Iberian/Portuguese", "type": "country"}, {"slug": "spain", "name": "Spain", "filename": "spain.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Iberian/Spanish", "type": "country"}, {"slug": "france", "name": "France", "filename": "france.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "French", "type": "country"}, {"slug": "belgium", "name": "Belgium", "filename": "belgium.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Low Countries", "type": "country"}, {"slug": "norway", "name": "Norway", "filename": "norway.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Nordic/Norwegian", "type": "country"}, {"slug": "sweden", "name": "Sweden", "filename": "sweden.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Nordic/Swedish", "type": "country"}, {"slug": "finland", "name": "Finland", "filename": "finland.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Nordic/Finnish", "type": "country"}, {"slug": "russia", "name": "Russia", "filename": "russia.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Slavic/Russian", "type": "country"}, {"slug": "poland", "name": "Poland", "filename": "poland.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Slavic/Polish", "type": "country"}, {"slug": "czech-slovak", "name": "Czech & Slovak", "filename": "czech-slovak.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Central European/Slavic", "type": "region"}, {"slug": "germany", "name": "Germany", "filename": "germany.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "German", "type": "country"}, {"slug": "austria", "name": "Austria", "filename": "austria.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Central European/Habsburg", "type": "country"}, {"slug": "hungary", "name": "Hungary", "filename": "hungary.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Hungarian/Central European", "type": "country"}, {"slug": "balkans", "name": "The Balkans", "filename": "balkans.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Balkan/Ottoman-Slavic", "type": "region"}, {"slug": "greece", "name": "Greece", "filename": "greece.html", "continent": "Europe", "display_continent": "Europe", "cuisine_family": "Greek/Mediterranean", "type": "country"}, {"slug": "turkey", "name": "Turkey", "filename": "turkey.html", "continent": "Europe", "display_continent": "Asia", "cuisine_family": "Anatolian/Ottoman", "type": "country"}, {"slug": "lebanon", "name": "Lebanon", "filename": "lebanon.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Levantine/Lebanese", "type": "country"}, {"slug": "iran", "name": "Iran", "filename": "iran.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Persian", "type": "country"}, {"slug": "india", "name": "India", "filename": "india.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Indian", "type": "country"}, {"slug": "sri-lanka", "name": "Sri Lanka", "filename": "sri-lanka.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Sri Lankan/Spice Island", "type": "country"}, {"slug": "nepal", "name": "Nepal", "filename": "nepal.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Himalayan", "type": "country"}, {"slug": "central-asia", "name": "Central Asia", "filename": "central-asia.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Silk Road/Turkic-Persian", "type": "region"}, {"slug": "mongolia", "name": "Mongolia", "filename": "mongolia.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Steppe/Nomadic", "type": "country"}, {"slug": "china", "name": "China", "filename": "china.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Chinese", "type": "country"}, {"slug": "japan", "name": "Japan", "filename": "japan.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Japanese/Washoku", "type": "country"}, {"slug": "south-korea", "name": "South Korea", "filename": "south-korea.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Korean/Fermented", "type": "country"}, {"slug": "thailand", "name": "Thailand", "filename": "thailand.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Thai", "type": "country"}, {"slug": "vietnam", "name": "Vietnam", "filename": "vietnam.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Vietnamese", "type": "country"}, {"slug": "indonesia", "name": "Indonesia", "filename": "indonesia.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Indonesian/Archipelagic", "type": "country"}, {"slug": "philippines", "name": "Philippines", "filename": "philippines.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Filipino/Austronesian-Iberian", "type": "country"}, {"slug": "malaysia-singapore", "name": "Malaysia & Singapore", "filename": "malaysia-singapore.html", "continent": "Asia", "display_continent": "Asia", "cuisine_family": "Malay/Peranakan/Hawker", "type": "region"}, {"slug": "australia-nz", "name": "Australia & New Zealand", "filename": "australia-nz.html", "continent": "Oceania", "display_continent": "Oceania", "cuisine_family": "Australian/NZ", "type": "region"}, {"slug": "pacific-islands", "name": "The Pacific Islands", "filename": "pacific-islands.html", "continent": "Oceania", "display_continent": "Oceania", "cuisine_family": "Pacific Islander", "type": "region"}, {"slug": "hawaii", "name": "Hawaii", "filename": "hawaii.html", "continent": "Oceania", "display_continent": "Oceania", "cuisine_family": "Hawaiian/Polynesian", "type": "region"}] }
+    ]
+  };
+
+  const COL_ORDER = ["North America", "South America", "Africa", "Europe", "Asia", "Oceania"];
+  const COL_LABEL = {
+    "North America": "North America",
+    "South America": "South America",
+    "Africa": "Africa",
+    "Europe": "Europe",
+    "Asia": "Asia",
+    "Oceania": "Australia, NZ & Pacific"
+  };
+
+  function getActiveItems(){
+    const sec = CONTENT.sections.find(s => s.id === CONTENT.activeSection);
+    return sec ? sec.items : [];
+  }
+
+  const continentGrid = document.getElementById('continent-grid');
+  const emptyState = document.getElementById('empty-state');
+  const resultsCount = document.getElementById('results-count');
+  const searchInput = document.getElementById('search');
+  const continentFilter = document.getElementById('continent-filter');
+  const familyFilter = document.getElementById('family-filter');
+  const clearBtn = document.getElementById('clear-btn');
+  const totalTag = document.getElementById('total-tag');
+
+  const allItems = getActiveItems();
+  totalTag.textContent = allItems.length + ' REGIONS';
+
+  function populateSelect(select, values){
+    values.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v;
+      opt.textContent = v;
+      select.appendChild(opt);
+    });
+  }
+  populateSelect(continentFilter, COL_ORDER);
+  populateSelect(familyFilter, [...new Set(allItems.map(i => i.cuisine_family))].sort());
+
+  // Build the static column/row DOM once; filtering just toggles visibility.
+  // (Cheaper than re-rendering 68 rows on every keystroke, and keeps focus
+  // in the search box while typing.)
+  function buildColumns(){
+    continentGrid.innerHTML = '';
+    COL_ORDER.forEach(col => {
+      const items = allItems.filter(i => i.display_continent === col);
+      const colEl = document.createElement('div');
+      colEl.className = 'continent-col';
+      colEl.dataset.continent = col;
+      colEl.innerHTML = `
+        <div class="col-head">
+          <h2>${COL_LABEL[col]}</h2>
+          <span class="col-count">${items.length}</span>
+        </div>
+        <ol class="region-list">
+          ${items.map(item => `
+            <li data-name="${item.name.toLowerCase()}" data-family="${item.cuisine_family}">
+              <a href="${item.filename}">
+                <span class="r-name">${item.name}</span>
+                <span class="r-tag">${item.cuisine_family}</span>
+              </a>
+            </li>
+          `).join('')}
+        </ol>`;
+      continentGrid.appendChild(colEl);
+    });
+  }
+  buildColumns();
+
+  function applyFilters(){
+    const q = searchInput.value.trim().toLowerCase();
+    const cont = continentFilter.value;
+    const fam = familyFilter.value;
+
+    let visibleTotal = 0;
+    document.querySelectorAll('.continent-col').forEach(colEl => {
+      const colName = colEl.dataset.continent;
+      const contMatch = !cont || cont === colName;
+      let colVisibleCount = 0;
+
+      colEl.querySelectorAll('li').forEach(li => {
+        const name = li.dataset.name;
+        const family = li.dataset.family;
+        const matchesQ = !q || name.includes(q) || family.toLowerCase().includes(q) || colName.toLowerCase().includes(q);
+        const matchesFam = !fam || family === fam;
+        const show = contMatch && matchesQ && matchesFam;
+        li.classList.toggle('is-hidden', !show);
+        if(show) colVisibleCount++;
+      });
+
+      colEl.classList.toggle('is-hidden', !contMatch || colVisibleCount === 0);
+      const countTag = colEl.querySelector('.col-count');
+      if(countTag) countTag.textContent = colVisibleCount;
+      visibleTotal += colVisibleCount;
+    });
+
+    resultsCount.textContent = `${visibleTotal} of ${allItems.length}`;
+    emptyState.style.display = visibleTotal === 0 ? 'block' : 'none';
+    continentGrid.style.display = visibleTotal === 0 ? 'none' : (cont ? 'block' : 'grid');
+    continentGrid.classList.toggle('single-col', !!cont && visibleTotal > 0);
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+  continentFilter.addEventListener('change', applyFilters);
+  familyFilter.addEventListener('change', applyFilters);
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    continentFilter.value = '';
+    familyFilter.value = '';
+    applyFilters();
+  });
+
+  applyFilters();
+</script>
+</body>
+</html>

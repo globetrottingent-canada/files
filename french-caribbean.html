@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>French Caribbean — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 30 / 68 · Caribbean</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">The French Caribbean</h1>
+      <p class="subhead">Martinique, Guadeloupe, and Haiti — rhum agricole, Creole cooking, and a fusion of French technique with West African roots.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            RHUM AGRICOLE · TI' PUNCH · CREOLE · RHUM AGRICOLE ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of French Caribbean">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The French Caribbean encompasses one of the most sophisticated Creole food cultures in the world — a tradition forged in the crucible of French colonialism, West African enslaved people's culinary knowledge, Indian indentured labour, and the extraordinary natural abundance of the Lesser Antilles. Martinique, Guadeloupe, and their smaller island neighbours are French overseas departments — constitutionally part of France and the EU — while Haiti is an independent republic whose history is unlike any other in the hemisphere. What unites them culinarily is the Creole tradition: a synthesis of French technique, African ingredients and cooking knowledge, and Caribbean produce that produces a cuisine of genuine sophistication and considerable depth.</p>
+        <p>The French colonial period from the 17th century established plantation economies based on sugar and rum, and the West African enslaved people brought to work them carried with them the culinary knowledge that defines Creole cooking today: the use of salt cod, okra, breadfruit, plantain, and the aromatic herb bundles (bois d'inde, thyme, chive) that season every pot. French culinary technique — the court-bouillon, the braising method, the emphasis on sauce — overlaid this African foundation, producing dishes that are recognisably French in structure and West African in ingredient and spirit. Indian indentured workers arriving from the 1850s added the colombo curry tradition. Haiti's history — the only successful slave revolution in history, independence in 1804, and two centuries of political and economic hardship — produced a food culture of great resilience built on the same West African Creole foundations but with its own distinct character.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>French Antillean cooking is vibrant, aromatic, and built on a foundation of fresh seafood, tropical vegetables, and rhum agricole — the grassy, complex cane-juice spirit that is to Martinique and Guadeloupe what wine is to Burgundy. The ti' punch — white agricole, a squeeze of lime, a drop of cane syrup — is the ritual drink of the islands, made and drunk with the same seriousness that a French person brings to a glass of Burgundy. Accras de morue, the salt cod fritters eaten with every meal and gathering, are the flavour that says French Antilles more than any other: crispy, salty, herbal, eaten with a squeeze of lime and a glass of ti' punch.</p>
+        <p>Colombo — the curry of the Antilles, made with a blend of coriander, cumin, turmeric, and mustard adapted from the Indian indentured workers' tradition — is the most distinctive main dish of the islands, made with pork, chicken, goat, or seafood. Boudin créole, the blood sausage spiced with scotch bonnet and local herbs, is entirely its own thing — richer and more aromatic than any European boudin. Haiti's kitchen is simpler and more direct: griot (marinated and fried pork), diri ak pwa (rice and beans), and legim (the thick vegetable stew) are the daily foundation, and the djon djon mushroom found nowhere else on earth gives Haitian rice its distinctive black colour and deep, earthy flavour.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The ti' punch is not a cocktail — it is a ritual. White rhum agricole, a squeeze of lime, and a drop of cane syrup, stirred once, drunk slowly. In Martinique and Guadeloupe, making your own ti' punch is considered basic adult competence.</li>
+        <li>Meals begin with accras — salt cod fritters, crispy outside and soft within, eaten with a squeeze of lime and a glass of ti' punch while standing in the kitchen. No Antillean gathering begins without them.</li>
+        <li>The Creole table is communal and abundant — dishes placed in the centre, eaten with rice, breadfruit, or plantain. The host's measure of success is that the table never empties.</li>
+        <li>Colombo — the curry of the French Antilles — is not Indian curry despite using similar spices. It was developed by Indian indentured workers and adapted to local ingredients: colombo powder with local meat and manioc. It is now distinctly Antillean.</li>
+        <li>Sunday is the day of the great family lunch — grillades on the beach, bokit sandwiches, and the whole extended family gathered. The midday meal can last from noon until evening.</li>
+        <li>Haiti has a distinct and proud food identity despite great hardship — griot, bannann peze (fried plantain), and rice and beans are the national table, carrying the history of the first successful slave revolution in the world.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rhum agricole</li>
+        <li><span class="n">06</span> Christophine</li>
+        <li><span class="n">02</span> Salt cod / morue</li>
+        <li><span class="n">07</span> Colombo spice</li>
+        <li><span class="n">03</span> Scotch bonnet</li>
+        <li><span class="n">08</span> Coconut milk</li>
+        <li><span class="n">04</span> Plantain</li>
+        <li><span class="n">09</span> Cane syrup</li>
+        <li><span class="n">05</span> Breadfruit</li>
+        <li><span class="n">10</span> Djon djon mushroom</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Rhum agricole — made from fresh sugarcane juice rather than molasses — was developed in Martinique in the 19th century when the island's sugar industry collapsed and distillers switched to using fresh juice instead of the molasses by-product of refined sugar. Martinique's rhum agricole was the first rum to receive an Appellation d'Origine Contrôlée, in 1996 — the only rum in the world with this French wine-equivalent designation.</li>
+        <li>Haiti was the first country in the world established by a successful slave revolt — the Haitian Revolution of 1791–1804 overthrew French colonial rule and created the first Black republic. The food culture that survived this history is a direct continuation of West African culinary traditions, expressed through dishes like griot, legim, and diri ak djon djon.</li>
+        <li>The colombo curry spice blend used across the French Antilles takes its name not from the South American country but from a Tamil word — 'kari' — brought by the Indian indentured workers who arrived in Martinique and Guadeloupe from the 1850s onwards. Their culinary influence — colombo curry, roti, and the use of tamarind — is a layer of French Caribbean food often overlooked.</li>
+        <li>Guadeloupe and Martinique are not Caribbean countries in the political sense — they are French overseas departments, meaning they are constitutionally part of France and the European Union. A croissant and a café au lait in a Pointe-à-Pitre boulangerie is as French as one in Paris, while an accras de morue at the same counter is purely Antillean.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The fritters, curries, and drinks that define the everyday Creole table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Antilles Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Accras de Morue</span><span class="dish-tag">Salt cod fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy salt cod fritters, herbal and salty, eaten before every meal and gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Colombo de Porc</span><span class="dish-tag">Antillean pork curry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork simmered in colombo powder — coriander, cumin, turmeric, and mustard — with manioc.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Griot</span><span class="dish-tag">Marinated fried pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Haitian marinated and fried pork, crisp outside and tender within, a national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boudin Créole</span><span class="dish-tag">Spiced blood sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Blood sausage spiced with scotch bonnet and local herbs, richer than European boudin.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poisson en Court-Bouillon</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish gently poached in a tomato and herb broth, a classic French-technique Creole preparation.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Haiti &amp; More</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Calalou</span><span class="dish-tag">Okra &amp; greens stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick okra and leafy greens stew, often with crab or salted meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dombrés aux Crevettes</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small dumplings simmered with shrimp in a Creole sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Matété de Crabes</span><span class="dish-tag">Crab rice pilaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced rice pilaf cooked with crab, a Guadeloupean specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Riz Djon Djon</span><span class="dish-tag">Black mushroom rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Haitian rice cooked with djon djon mushroom, giving it a distinctive black colour and earthy flavour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lambi</span><span class="dish-tag">Conch, Creole style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Conch simmered in a spiced Creole sauce, a prized island delicacy.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Coconut &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blanc-Manger Coco</span><span class="dish-tag">Coconut milk pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky set coconut milk pudding, a classic Creole dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tourment d'Amour</span><span class="dish-tag">Coconut custard tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small tarts filled with coconut custard, a specialty of Les Saintes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beignets de Banane</span><span class="dish-tag">Banana doughnuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet fried banana doughnuts, a common street dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pain Doux</span><span class="dish-tag">Sweet spiced bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, sweet spiced bread often flavoured with coconut and cinnamon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doucelette</span><span class="dish-tag">Coconut sweet bar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chewy coconut and condensed milk sweet bar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tablette Coco</span><span class="dish-tag">Coconut candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, sugary coconut candy bar, a favourite childhood treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gâteau Patate</span><span class="dish-tag">Sweet potato cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced sweet potato cake flavoured with vanilla and rum.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sorbet Coco</span><span class="dish-tag">Coconut sorbet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, creamy coconut sorbet, a refreshing tropical dessert.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Accras</span><span class="dish-tag">Fritters, salt cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fritters, most often salt cod, the essential Antillean starter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bokit</span><span class="dish-tag">Fried filled bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fried bread pocket stuffed with meat, fish, or cheese, a Guadeloupean street classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Féroce d'Avocat</span><span class="dish-tag">Avocado &amp; salt cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spicy mash of avocado, salt cod, cassava flour, and scotch bonnet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salade de Christophine</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chilled salad of shredded christophine (chayote), lime, and herbs.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ti' Punch</span><span class="dish-tag">Rum, lime &amp; syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The ritual drink of the islands: white rhum agricole, lime, and cane syrup, stirred once.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Planteur Cocktail</span><span class="dish-tag">Rum &amp; fruit punch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fruity rum punch blending rhum agricole with tropical fruit juices and spices.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Blaff de Poisson</span><span class="dish-tag">Spiced poached fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish poached in a spiced, limey court-bouillon, light and aromatic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chatrou</span><span class="dish-tag">Stewed octopus</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Octopus stewed until tender in a Creole tomato and herb sauce.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly French Caribbean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rhum agricole</li>
+        <li><span class="n">06</span> Coconut milk</li>
+        <li><span class="n">02</span> Colombo powder</li>
+        <li><span class="n">07</span> Bois d'Inde</li>
+        <li><span class="n">03</span> Scotch bonnet</li>
+        <li><span class="n">08</span> Chive & thyme</li>
+        <li><span class="n">04</span> Cane syrup</li>
+        <li><span class="n">09</span> Tamarind</li>
+        <li><span class="n">05</span> Lime</li>
+        <li><span class="n">10</span> Christophine</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Rhum &amp; Cocktails</p>
+            <ol class="plain">
+              <li>Ti' Punch</li>
+              <li>Rhum Agricole Martinique</li>
+              <li>Planteur</li>
+              <li>Rhum Barbancourt Haiti</li>
+              <li>Rhum Bologne</li>
+              <li>Punch Vieux</li>
+              <li>Bélé Beer</li>
+              <li>Corsaire</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Jus de Tamarin</li>
+              <li>Eau de Coco</li>
+              <li>Sirop de Canne</li>
+              <li>Sorrel / Groseille</li>
+              <li>Jus de Fruits de la Passion</li>
+              <li>Citronnade Créole</li>
+              <li>Shrub</li>
+              <li>Thé de Citronnelle</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Bélé</li>
+              <li>Lorraine</li>
+              <li>Corsaire</li>
+              <li>Presidente</li>
+              <li>Prestige Haiti</li>
+              <li>Boucanier</li>
+              <li>Piton</li>
+              <li>Carib Martinique</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

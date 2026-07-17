@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuba — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 59 / 68 · Caribbean</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Cuba</h1>
+      <p class="subhead">Ropa vieja, mojo, and café cubano — a creole fusion of Spanish, West African, and Taíno traditions, shaped further by revolution, rationing, and resourcefulness.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HAVANA · SOFRITO · LA LIBRETA · HAVANA · SOFRITO ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Cuba">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Cuban cuisine is a creole fusion of Spanish colonial cooking, West African culinary traditions brought by enslaved people, and indigenous Taíno ingredients — layered over four centuries into something wholly distinctive. The Spanish brought olive oil, garlic, onions, rice, and pork; the Taíno contributed cassava (yuca), corn, sweet potatoes, and tropical fruits; and the African diaspora introduced cooking techniques, spicing philosophies, and dishes that form the soul of Cuban food. All three threads are still traceable in a single plate of ropa vieja.</p>
+        <p>Sugar and tobacco shaped the island's colonial economy and, indirectly, its food culture — the plantation system that produced both crops relied on enslaved African labor, whose culinary knowledge transformed Cuban cooking from the inside. Chinese indentured workers arrived in the mid-19th century and added yet another layer, particularly in Havana's Barrio Chino. The 1959 revolution and subsequent US embargo reshaped food availability dramatically — scarcity and the state rationing system (la libreta) became defining forces in how Cubans cook and eat, producing a creative, resourceful kitchen that makes exceptional food from limited ingredients.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Cuban food is warm, comforting, and built around a handful of core elements: rice, black beans, pork, and plantains appear daily in some form. The flavor foundation is sofrito — a slow-cooked base of garlic, onion, peppers, tomato, and cumin — that underpins most savory dishes. Mojo, a sauce of sour orange juice, garlic, and cumin, is used to marinate meats and dress boiled vegetables. The cooking is not spicy-hot but richly seasoned, with bright acidity from citrus and depth from slow braising.</p>
+        <p>Tropical fruits and root vegetables give Cuban cooking its Caribbean character: plantains appear in multiple forms at the same meal (tostones, maduros), yuca is boiled and dressed with mojo, and batidos (milkshakes) made from mamey, mango, or guava are everyday refreshments. The Cubano sandwich — layered with roast pork, ham, Swiss cheese, pickles, and mustard on pressed Cuban bread — has become one of the most recognized Latin American food exports globally.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The main meal (almuerzo) is eaten at midday — rice and black beans appear at virtually every table, every day. They are not a side dish but the foundation around which everything else is arranged.</li>
+        <li>Food is communal and generous — Cuban hospitality means a guest is fed, regardless of how little the household has. Refusing food is considered impolite.</li>
+        <li>The bodega system (state ration stores) has shaped Cuban cooking profoundly since 1962 — scarcity encouraged creativity, stretching ingredients and relying on what is available.</li>
+        <li>Coffee (café cubano) is a ritual — a tiny, intensely sweet espresso shot drunk multiple times daily. Sharing a cafecito is a social gesture as much as a caffeine delivery.</li>
+        <li>Street food and paladares (private family restaurants) have become central to Cuban food culture, especially since private enterprise was partially liberalized in the 1990s and 2000s.</li>
+        <li>Pork is the celebratory protein — a whole roast pig (lechón asado) cooked over an open fire is the centerpiece of Christmas Eve (Nochebuena), weddings, and any major celebration.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Black beans</li>
+        <li><span class="n">06</span> Cumin</li>
+        <li><span class="n">02</span> Long-grain white rice</li>
+        <li><span class="n">07</span> Sour orange</li>
+        <li><span class="n">03</span> Pork</li>
+        <li><span class="n">08</span> Yuca / cassava</li>
+        <li><span class="n">04</span> Plantains</li>
+        <li><span class="n">09</span> Tomatoes & peppers</li>
+        <li><span class="n">05</span> Garlic & onion</li>
+        <li><span class="n">10</span> Rum</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Cuba's signature cocktail, the Mojito, was reputedly a favorite of Ernest Hemingway, who lived in Cuba for 20 years and drank at La Bodeguita del Medio in Havana, which still displays his handwritten note on the wall.</li>
+        <li>The Cuba Libre (rum and Coca-Cola with lime) was born around 1900, shortly after Coca-Cola arrived in Cuba following the Spanish-American War, when soldiers mixed it with local rum and toasted 'Por Cuba Libre!'</li>
+        <li>Cuban cigars are considered the finest in the world, and tobacco — alongside sugar and rum — formed the three pillars of Cuba's colonial economy. The Vuelta Abajo region produces tobacco leaves considered unmatched in quality.</li>
+        <li>Cuba was the world's largest sugar producer for much of the 19th and early 20th centuries — the sugar industry drove the slave trade, shaped the landscape, and left a lasting sweetness in Cuban cooking and rum production.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ropa Vieja</span><span class="dish-tag">Shredded braised beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded beef slow-braised in a savory tomato sauce until fork-tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz Moros y Cristianos</span><span class="dish-tag">Black beans, rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Black beans and white rice cooked together until the rice takes on a deep, savory color.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lechón Asado</span><span class="dish-tag">Whole roast suckling pig</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole pig slow-roasted over an open fire, the centerpiece of Cuban celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vaca Frita</span><span class="dish-tag">Crispy fried marinated beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated shredded beef pan-fried until crisp at the edges.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Picadillo</span><span class="dish-tag">Spiced beef, olives, raisins</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ground beef simmered with tomato, olives, and raisins, a sweet-savory Cuban staple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ajiaco Cubano</span><span class="dish-tag">Root vegetable, meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty stew of root vegetables and mixed meats, Cuba's answer to the Latin American sancocho.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pollo en Salsa</span><span class="dish-tag">Chicken, tomato sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken pieces braised in a savory tomato-based sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boliche</span><span class="dish-tag">Chorizo-stuffed pot roast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A beef pot roast stuffed with chorizo sausage, sliced to reveal the filling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yuca con Mojo</span><span class="dish-tag">Cassava, garlic-citrus sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled cassava dressed with a garlicky sour orange mojo sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamales Cubanos</span><span class="dish-tag">Corn masa, pork filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn masa filled with seasoned pork, wrapped and steamed in corn husks.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Custards &amp; Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flan de Leche</span><span class="dish-tag">Caramel milk custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky caramel custard, Cuba's most beloved classic dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">Cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy rice pudding sweetened and dusted with cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Natilla</span><span class="dish-tag">Vanilla egg custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, spoonable vanilla custard set with egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buñuelos</span><span class="dish-tag">Anise syrup fried dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried dough shapes soaked in anise-scented syrup, a Christmas tradition.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coquito</span><span class="dish-tag">Coconut custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, dense coconut custard dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dulce de Leche Cortada</span><span class="dish-tag">Curdled milk sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rustic sweet of milk curdled and cooked down with sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Merengues</span><span class="dish-tag">Crisp meringue cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light, crisp baked meringue cookies.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chiviricos</span><span class="dish-tag">Sugar-coated fried strips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried dough strips dusted in sugar, a traditional Cuban celebration snack.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food &amp; Sandwiches</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tostones</span><span class="dish-tag">Twice-fried plantain slices</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Green plantain slices fried twice until crisp and flattened.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maduros</span><span class="dish-tag">Sweet fried ripe plantains</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe plantain slices fried until caramelized and sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cubano sandwich</span><span class="dish-tag">Pork, ham, cheese, pickles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roast pork, ham, Swiss cheese, pickles, and mustard pressed on Cuban bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Croquetas de Jamón</span><span class="dish-tag">Fried ham croquettes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy ham-studded béchamel, breaded and fried until golden.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sides &amp; Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Papas Rellenas</span><span class="dish-tag">Fried stuffed potato balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mashed potato balls stuffed with seasoned meat, breaded and deep-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mariquitas</span><span class="dish-tag">Thin plantain chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin, crisp slices of green plantain fried into chips.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pan con Lechón</span><span class="dish-tag">Roast pork sandwich roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crusty roll piled with roast pork and garlic mojo.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Churros con Chocolate</span><span class="dish-tag">Fried dough, chocolate dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried dough sticks served with a thick chocolate dipping sauce.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Cuban:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Mojo criollo</li>
+        <li><span class="n">06</span> Bay leaf</li>
+        <li><span class="n">02</span> Sofrito</li>
+        <li><span class="n">07</span> Achiote / annatto</li>
+        <li><span class="n">03</span> Cumin</li>
+        <li><span class="n">08</span> Capers & green olives</li>
+        <li><span class="n">04</span> Sour orange</li>
+        <li><span class="n">09</span> Rum</li>
+        <li><span class="n">05</span> Oregano</li>
+        <li><span class="n">10</span> Ají cachucha</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Cocktails &amp; Rum</p>
+            <ol class="plain">
+              <li>Mojito</li>
+              <li>Cuba Libre</li>
+              <li>Daiquiri</li>
+              <li>Ron Collins</li>
+              <li>Havana Club Añejo</li>
+              <li>Piña Colada</li>
+              <li>Canchánchara</li>
+              <li>Ron Mulata</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café cubano</li>
+              <li>Cortadito</li>
+              <li>Guarapo</li>
+              <li>Batido de Mamey</li>
+              <li>Batido de Mango</li>
+              <li>Refresco de Tamarindo</li>
+              <li>Agua de Coco</li>
+              <li>Pru</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Cristal</li>
+              <li>Bucanero Fuerte</li>
+              <li>Mayabe</li>
+              <li>Hatuey</li>
+              <li>Cacique</li>
+              <li>Lagarto</li>
+              <li>Cerveza Presidente</li>
+              <li>Heineken</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

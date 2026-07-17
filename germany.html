@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Germany — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 32 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Germany</h1>
+      <p class="subhead">Pork, rye bread, and beer culture — a hearty northern European table built on preservation and precise technique.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BAVARIA · RHINELAND · BLACK FOREST · BAVARIA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC0CAIAAAChXYa4AAABp0lEQVR4nO3VQQ3AMBADwaT8sZVBsKQwttLNIPBn5bUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+It96gUw3FMPgOlECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJs37eeALN5QoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoTYB7OkA5kfSBoqAAAAAElFTkSuQmCC" alt="Flag of Germany">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>German cuisine is rooted in the practical demands of a cold northern European climate and a largely agricultural society. For centuries the diet was built around what could be preserved through winter: salted and smoked meats, fermented cabbage (Sauerkraut), dried legumes, rye bread, and root vegetables. The result is a cuisine of extraordinary depth in preservation and charcuterie — Germany's sausage tradition alone encompasses hundreds of regional varieties, each with strict rules of production.</p>
+        <p>Germany's political fragmentation into dozens of principalities and kingdoms until 1871 produced equally fragmented regional food cultures that persist strongly today. Bavaria (pork knuckle, pretzels, wheat beer), the Rhineland (Sauerbraten, Reibekuchen), Hamburg (fish, Labskaus), Saxony (Eierschecke cake), Swabia (Spätzle, Maultaschen), and the Black Forest (ham, cherry cake) each maintain distinct culinary identities. French influence entered through the courts of the nobility, while Jewish culinary traditions left lasting marks on certain dishes. The 20th century's division into East and West Germany also created different food cultures, with East German cooking retaining a plainer, more Soviet-influenced character.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>German cooking is hearty, meat-forward, and built on quality produce and precise technique. Pork is the dominant protein — roasted, cured, smoked, minced into sausages, or pressed into cold cuts — and appears in virtually every regional tradition. Potatoes are equally ubiquitous: boiled, fried, turned into dumplings (Knödel or Klöße), or mixed into salads. Bread is a national art: rye sourdoughs, mixed grain loaves, pumpernickel, and pretzel rolls reflect centuries of baking tradition.</p>
+        <p>Beer is not merely a drink but a cultural institution — Germany's brewing traditions, codified by the Reinheitsgebot purity law of 1516, produced a diversity of styles from crisp Pilsners to cloudy wheat beers to dark Dunkels that vary dramatically by region. Sauces tend to be rich and cream-based in the south, while the north leans toward sharper, vinegar-forward preparations. Baking — both bread and cake — is taken with great seriousness: Kaffee und Kuchen (coffee and cake) at 3pm is a genuine daily ritual in many German households.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Germans eat their main meal at midday (Mittagessen) — the evening meal (Abendbrot, literally 'evening bread') is traditionally cold: bread, cold cuts, cheese, and pickles, not a cooked meal.</li>
+        <li>Bread is taken extraordinarily seriously — Germany has over 3,000 registered bread varieties and a bread culture recognized by UNESCO. A good Bäckerei (bakery) is the cornerstone of a German neighborhood.</li>
+        <li>Beer is served in standardized portions and drunk at a measured pace — the ritual of the Biergarten (beer garden), where you bring your own food or buy from a stall and share long wooden tables with strangers, is a genuine social institution.</li>
+        <li>Oktoberfest in Munich is the world's largest folk festival, running for 16–18 days from late September — the food (roast chicken, pork knuckle, pretzels) is as important as the beer.</li>
+        <li>The Sunday roast (Sonntagsbraten) is a family tradition — pork, veal, or game with Knödel (dumplings) and red cabbage is the archetypal Sunday table.</li>
+        <li>Tipping culture differs from elsewhere: rounding up the bill or adding 10% is standard, and saying 'Stimmt so' ('keep the change') is the normal way to tip.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Pork</li>
+        <li><span class="n">06</span> Caraway seeds</li>
+        <li><span class="n">02</span> Rye & wheat</li>
+        <li><span class="n">07</span> Cream & butter</li>
+        <li><span class="n">03</span> Potatoes</li>
+        <li><span class="n">08</span> Wild mushrooms</li>
+        <li><span class="n">04</span> Sauerkraut & red cabbage</li>
+        <li><span class="n">09</span> Beer</li>
+        <li><span class="n">05</span> Mustard</li>
+        <li><span class="n">10</span> Smoked & cured meats</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Germany's Reinheitsgebot (Beer Purity Law), enacted in Bavaria in 1516, stipulated that beer could only be made from water, barley, and hops — it is one of the oldest food safety laws in the world still referenced today, and shaped German brewing culture profoundly.</li>
+        <li>Germany has over 1,500 different types of beer and approximately 1,300 breweries — more than any other country. Bavaria alone accounts for around a third of them.</li>
+        <li>The pretzel (Brezel) originated in southern Germany or Alsace, with records going back to at least the 12th century. The distinctive knot shape was traditionally made by monks and the crossed arms were said to resemble a person in prayer.</li>
+        <li>Currywurst — a sliced pork sausage smothered in ketchup seasoned with curry powder — was invented in Berlin in 1949 by Herta Heuwer, who obtained curry powder and ketchup from British soldiers. It is now Berlin's most iconic street food, with over 70 million portions sold per year in the city alone.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The roasts, cakes, and beers that define the everyday German table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sauerbraten</span><span class="dish-tag">Slow-braised marinated beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef marinated for days then slow-braised, served with a rich, slightly sweet-sour gravy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wiener Schnitzel</span><span class="dish-tag">Breaded veal cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin veal cutlet breaded and fried until golden and crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Schweinshaxe</span><span class="dish-tag">Roasted pork knuckle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole roasted pork knuckle with crackling skin, a Bavarian beer-hall classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bratwurst with Sauerkraut</span><span class="dish-tag">Grilled sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grilled pork sausage served with tangy fermented cabbage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kassler</span><span class="dish-tag">Smoked pork chop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smoked and lightly cured pork chop, usually served with sauerkraut and potatoes.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rinderroulade</span><span class="dish-tag">Beef roll, mustard &amp; bacon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin beef slices rolled around mustard, bacon, and pickle, then braised.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Königsberger Klopse</span><span class="dish-tag">Meatballs, caper sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Veal meatballs simmered in a creamy caper sauce, an East Prussian classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flammkuchen</span><span class="dish-tag">Alsatian thin-crust tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin-crust tart topped with cream, onion, and bacon, from the Alsace-Rhineland border.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Labskaus</span><span class="dish-tag">Sailor's hash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Hamburg hash of corned beef, potato, and beetroot, topped with a fried egg and herring.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Currywurst mit Pommes</span><span class="dish-tag">Curry sausage &amp; fries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sliced sausage smothered in curry ketchup, Berlin's iconic street food, served with fries.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Tarts</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Schwarzwälder Kirschtorte</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of chocolate sponge, cherries, and cream, Germany's famous Black Forest cake.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bienenstich</span><span class="dish-tag">Bee sting cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A yeast cake filled with vanilla cream and topped with caramelized almonds.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Apfelstrudel</span><span class="dish-tag">Apple strudel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pastry rolled around spiced apples, raisins, and cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rote Grütze</span><span class="dish-tag">Red berry compote</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooked red berry compote served chilled with cream or vanilla sauce.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dampfnudel</span><span class="dish-tag">Steamed sweet dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, steamed yeast dumpling served with vanilla sauce or fruit compote.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Berliner</span><span class="dish-tag">Jam doughnut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft fried doughnut filled with jam, dusted with sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lebkuchen</span><span class="dish-tag">Nuremberg gingerbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced gingerbread biscuits, especially associated with Nuremberg and Christmas markets.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Streuselkuchen</span><span class="dish-tag">Crumble cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A yeasted cake topped with a thick buttery crumble layer.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Bar Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brezel</span><span class="dish-tag">Soft pretzel, coarse salt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, knotted pretzel with a dark crust and coarse salt, ubiquitous in beer gardens.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Weißwurst mit süßem Senf</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pale Bavarian veal sausage served with sweet mustard, traditionally a late-morning snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kartoffelsalat</span><span class="dish-tag">Potato salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>German potato salad, served warm with vinegar and bacon in the south, or cold with mayonnaise in the north.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Abendbrot</span><span class="dish-tag">Cold cuts &amp; bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cold evening spread of bread, cold cuts, cheese, and pickles.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sides &amp; Light Bites</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Reibekuchen</span><span class="dish-tag">Potato fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried potato fritters, typically served with apple sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Obatzda</span><span class="dish-tag">Bavarian cheese spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiced, mashed Camembert and butter spread, a Bavarian beer garden staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laugenstange</span><span class="dish-tag">Pretzel roll &amp; butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pretzel-dough roll, soft inside with a dark crust, split and buttered.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rollmops</span><span class="dish-tag">Pickled herring</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rolled pickled herring fillets, a classic northern German snack.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly German:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Caraway seeds</li>
+        <li><span class="n">06</span> Horseradish</li>
+        <li><span class="n">02</span> Sweet Bavarian mustard</li>
+        <li><span class="n">07</span> Sauerkraut brine</li>
+        <li><span class="n">03</span> Sharp Düsseldorf mustard</li>
+        <li><span class="n">08</span> Smoked bacon</li>
+        <li><span class="n">04</span> Juniper berries</li>
+        <li><span class="n">09</span> Kirsch</li>
+        <li><span class="n">05</span> Marjoram</li>
+        <li><span class="n">10</span> Dill</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Beer &amp; Spirits</p>
+            <ol class="plain">
+              <li>Weißbier / Weizen</li>
+              <li>Pilsner</li>
+              <li>Märzen / Oktoberfest beer</li>
+              <li>Kölsch</li>
+              <li>Riesling</li>
+              <li>Schnapps / Obstler</li>
+              <li>Jägermeister</li>
+              <li>Sekt</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kaffee und Kuchen</li>
+              <li>Apfelschorle</li>
+              <li>Malzbier</li>
+              <li>Sprudelwasser</li>
+              <li>Schwarztee</li>
+              <li>Rhabarberschorle</li>
+              <li>Kinderpunsch</li>
+              <li>Fritz-Kola</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Notable Beers</p>
+            <ol class="plain">
+              <li>Weihenstephaner</li>
+              <li>Paulaner Weißbier</li>
+              <li>Erdinger Weißbier</li>
+              <li>Augustiner Lagerbier Hell</li>
+              <li>Bitburger Pils</li>
+              <li>Warsteiner Premium</li>
+              <li>Beck's</li>
+              <li>Schneider Weisse</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

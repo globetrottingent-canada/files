@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colombia — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 58 / 68 · South America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Colombia</h1>
+      <p class="subhead">Bandeja paisa, ajiaco, and sancocho — a geographically vast cuisine spanning Andean highlands, Caribbean and Pacific coasts, Amazon, and Llanos plains.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ANDES · CARIBE · PACÍFICO · ANDES · CARIBE · PACÍFICO ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACVklEQVR4nO3VMRGAMAAEwQQHNEhAAz7xxQx+KJBxRXYVfHPz83uPAXS2egCsToQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHE5rjuegMszRNCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCbD77WW+ApXlCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiP2y1AVBM1/uwwAAAABJRU5ErkJggg==" alt="Flag of Colombia">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Colombian cuisine is a layered synthesis of indigenous, Spanish, African, and Middle Eastern traditions, shaped by one of the most geographically diverse countries on earth — a nation that encompasses Pacific and Caribbean coastlines, Andean highlands, Amazon rainforest, and the vast Llanos plains, each with its own distinct ecology, crops, and cooking traditions. The indigenous peoples of the region — Muisca, Zenú, Tairona, Quimbaya, and dozens of others — cultivated corn, yuca, potato, beans, and an extraordinary variety of tropical fruits for millennia before Spanish contact. The arepa, the corn cake that is Colombia's daily bread, is their most enduring culinary gift.</p>
+        <p>The Spanish conquest from the early 16th century introduced cattle, pigs, wheat, dairy, and the sofrito tradition of building flavour from onion, tomato, and garlic — the hogao sauce that appears in Colombian cooking today is a direct descendant. Enslaved West Africans brought to the Caribbean and Pacific coasts contributed coconut milk cookery, rice traditions, and the flavour principles that define coastal Colombian food. Lebanese and Syrian immigrants in the early 20th century settled particularly in Barranquilla and the Atlantic coast, leaving traces in kibbeh-influenced Colombian dishes. The result is a cuisine of genuine regional diversity united by a few common threads: the arepa, the sancocho, the bandeja, and coffee.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Colombian cooking is abundant, warming, and deeply regional — what is eaten on the Pacific coast bears little resemblance to the Andean paisa tradition of Medellín and Antioquia, which in turn differs from the coastal Caribbean cooking of Cartagena, the llanero beef culture of the Llanos, or the indigenous-rooted cooking of the Amazon. The paisa tradition of Antioquia is perhaps the most internationally recognised: the bandeja paisa, a platter of extraordinary generosity containing rice, beans, ground beef, chicharrón, fried egg, arepa, avocado, and plantain, is the emblem of paisa abundance and the default image of Colombian food abroad.</p>
+        <p>Ajiaco bogotano — the potato and chicken soup of Bogotá, made with three distinct varieties of Colombian potato and the guascas herb found nowhere else — is one of the most distinctive soups in Latin America. Sancocho, the slow-cooked broth of meat, corn, yuca, and plantain, is the great democratic dish eaten at every level of society. The Pacific coast tradition of fresh seafood in coconut milk represents a completely different Colombia — lighter, fragrant, and thoroughly West African in its flavour logic. Colombia's extraordinary fruit diversity — over 200 native varieties — gives the beverage and dessert traditions a richness found nowhere else on the continent.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The bandeja paisa is less a dish than a test of appetite — a tray bearing rice, beans, ground meat, chicharrón, fried egg, arepa, avocado, and plantain, eaten at lunchtime in Antioquia.</li>
+        <li>Arepas are the daily bread of Colombia — thick corn cakes griddled or grilled, eaten at every meal, stuffed with cheese, egg, or meat, or eaten plain alongside everything else.</li>
+        <li>Lunch is the main meal — Colombians eat a substantial midday comida corriente of soup, rice, protein, salad, and juice. Dinner is lighter.</li>
+        <li>Fresh fruit juice is the national drink of everyday life — jugos naturales of lulo, maracuyá, guanábana, and tomate de árbol are drunk daily.</li>
+        <li>Sancocho is the great restorative soup — a slow-cooked broth of whatever protein is available with corn, yuca, plantain, and potato, eaten as both everyday meal and hangover cure.</li>
+        <li>Colombian hospitality is warm and generous — a guest arriving at mealtime must be offered food. The phrase 'ya comió?' (have you eaten?) is both a greeting and an invitation.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Arepa / corn</li>
+        <li><span class="n">06</span> Guandul beans</li>
+        <li><span class="n">02</span> Yuca / cassava</li>
+        <li><span class="n">07</span> Lulo</li>
+        <li><span class="n">03</span> Plantain</li>
+        <li><span class="n">08</span> Aji amarillo</li>
+        <li><span class="n">04</span> Hogao sauce</li>
+        <li><span class="n">09</span> Bocadillo guayaba</li>
+        <li><span class="n">05</span> Chicharrón</li>
+        <li><span class="n">10</span> Coastal coconut</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Colombia is the world's third-largest coffee producer and arguably its most celebrated for quality — the Coffee Cultural Landscape of Antioquia, Caldas, Quindío, and Risaralda was granted UNESCO World Heritage status in 2011. Juan Valdez and his mule became one of the most recognisable advertising icons of the 20th century.</li>
+        <li>Colombia is one of the world's most biodiverse countries, possessing more species of birds, orchids, and freshwater fish than any other country on earth. This extends to food — Colombia has over 200 native fruit varieties, many unknown outside the country.</li>
+        <li>The arepa predates the Spanish conquest by thousands of years — indigenous peoples across what is now Colombia and Venezuela were making corn cakes long before European contact. The word derives from a Cumanagoto indigenous word for corn.</li>
+        <li>Aguardiente — Colombia's anise-flavoured sugarcane spirit — is produced in distinct regional styles with fiercely loyal followings. Antioqueño, Nariño's version, and the coffee region's aguardientes each have their own devoted drinkers.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandeja Paisa</span><span class="dish-tag">Rice, beans, meat platter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tray of rice, beans, ground beef, chicharrón, fried egg, arepa, avocado, and plantain, Antioquia's signature dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ajiaco Bogotano</span><span class="dish-tag">Potato, chicken, guascas soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A potato and chicken soup made with three potato varieties and the guascas herb, unique to Bogotá.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sancocho</span><span class="dish-tag">Meat, corn, yuca broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked broth of meat, corn, yuca, and plantain, Colombia's democratic comfort dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Coco</span><span class="dish-tag">Coconut rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in coconut milk until lightly caramelized, a Caribbean coast staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cazuela de Mariscos</span><span class="dish-tag">Seafood, coconut stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich seafood stew simmered in coconut milk, a Pacific coast specialty.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lechona</span><span class="dish-tag">Whole roasted stuffed pig</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole pig stuffed with rice, peas, and spices, then slow-roasted, a Tolima festival centerpiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamales Colombianos</span><span class="dish-tag">Corn dough, banana leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn masa filled with meat and vegetables, wrapped in banana leaves and steamed.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fritanga</span><span class="dish-tag">Mixed grilled meat platter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An assortment of grilled and fried meats served together, a festive shared plate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Posta Negra Cartagenera</span><span class="dish-tag">Sweet dark braised</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef slow-braised in a dark, sweet sauce of panela and spices, a Cartagena specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mote de Queso</span><span class="dish-tag">Yam, cheese soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy soup of yam and melted cheese, a Caribbean coast comfort dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweets &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Postre de Natas</span><span class="dish-tag">Sweet milk skin custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich custard made from the skimmed skin of scalded milk, sweetened and spiced.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arequipe</span><span class="dish-tag">Colombian dulce de leche</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, caramelized milk spread, Colombia's version of dulce de leche.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buñuelos</span><span class="dish-tag">Fried cheese dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried balls of cheese-enriched dough, a Christmas season staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Natilla</span><span class="dish-tag">Cinnamon corn pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, sliceable cinnamon-spiced corn pudding, traditional at Christmas.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brevas con Arequipe</span><span class="dish-tag">Figs, caramel filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Poached figs filled or topped with arequipe caramel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cocadas</span><span class="dish-tag">Coconut sugar candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy coconut candy popular on the Caribbean coast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Torta de Choclo</span><span class="dish-tag">Sweet corn cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist cake made from fresh sweet corn.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Manjar Blanco</span><span class="dish-tag">Milk, sugar custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, sweet milk custard similar to arequipe but often firmer.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arepa de Choclo con Queso</span><span class="dish-tag">Sweet corn, cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet corn arepa griddled and filled with melted cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Empanadas Colombianas</span><span class="dish-tag">Fried corn meat pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried corn-dough pastries filled with meat and potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pandebono</span><span class="dish-tag">Cheese, cassava bread roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chewy bread roll made from cassava starch and cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Changua</span><span class="dish-tag">Milk, egg breakfast soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm milk broth with a poached egg and scallion, a Bogotá breakfast tradition.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Obleas con Arequipe</span><span class="dish-tag">Wafers, caramel filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin wafer discs sandwiched together with arequipe caramel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maracuyá juice</span><span class="dish-tag">Passion fruit juice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh passion fruit blended into a tart, fragrant juice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Almojábanas</span><span class="dish-tag">Cheese bread rolls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, soft cheese bread rolls, often eaten with hot chocolate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aborrajados</span><span class="dish-tag">Fried sweet plantain, cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe plantain slices battered around cheese and deep-fried.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Colombian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Hogao</li>
+        <li><span class="n">06</span> Plantain</li>
+        <li><span class="n">02</span> Guascas herb</li>
+        <li><span class="n">07</span> Coconut milk</li>
+        <li><span class="n">03</span> Ají picante</li>
+        <li><span class="n">08</span> Cumin</li>
+        <li><span class="n">04</span> Panela</li>
+        <li><span class="n">09</span> Fresh cilantro</li>
+        <li><span class="n">05</span> Tomate de árbol</li>
+        <li><span class="n">10</span> Lulo juice</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Aguardiente &amp; Spirits</p>
+            <ol class="plain">
+              <li>Aguardiente Antioqueño</li>
+              <li>Ron Medellín</li>
+              <li>Club Colombia Beer</li>
+              <li>Poker Beer</li>
+              <li>Costeña Beer</li>
+              <li>Roncol</li>
+              <li>Chirrinchi</li>
+              <li>Viche</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Tinto coffee</li>
+              <li>Jugo de Lulo</li>
+              <li>Jugo de Maracuyá</li>
+              <li>Agua de Panela</li>
+              <li>Avena fría</li>
+              <li>Salpicón</li>
+              <li>Jugo de Guanábana</li>
+              <li>Canelazo</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Club Colombia Dorada</li>
+              <li>Águila</li>
+              <li>Poker</li>
+              <li>Costeña</li>
+              <li>Pilsen Colombia</li>
+              <li>Redd's</li>
+              <li>Bogotá Beer Company</li>
+              <li>3 Cordilleras</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costa Rica — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 57 / 68 · Central America</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Costa Rica</h1>
+      <p class="subhead">Gallo pinto, Salsa Lizano, and comida sencilla — a mild, nourishing Mesoamerican and Spanish colonial tradition built around rice, beans, and world-class coffee.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TICO · SODA · PURA VIDA · TICO · SODA · PURA VIDA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Costa Rica">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Costa Rican cuisine is a Mesoamerican and Spanish colonial tradition, shaped by the country's position as a narrow land bridge between North and South America and the biodiversity of its tropical landscape. The indigenous peoples — Chorotega, Bribri, Boruca, and others — cultivated corn, beans, squash, yuca, and tropical fruits for thousands of years before Spanish colonization in the 16th century. These indigenous staples remain the foundation of the diet today: the daily combination of rice and beans is a direct continuation of the pre-Columbian agricultural tradition, adapted through centuries of mestizo culture.</p>
+        <p>The Spanish colonial period brought cattle, pigs, wheat, and dairy — and the slow-cooked stew tradition that produced olla de carne and sopa negra. Unlike other Central American countries, Costa Rica did not develop a large plantation economy based on enslaved labor, which meant African culinary influence is less pronounced than in neighboring countries, though present in the Caribbean coastal region around Limón. Coffee cultivation, introduced in the early 19th century, transformed the country economically and socially. Later waves of Jamaican, Chinese, and Italian immigration left culinary traces, particularly in the Caribbean province.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Costa Rican food is mild, nourishing, and built around simplicity — Ticos themselves describe their cuisine as comida sencilla, simple food. The flavor is not spicy-hot but warmly aromatic, built on the sofrito base of onion, garlic, sweet pepper, and culantro coyote (a more pungent cousin of cilantro). Salsa Lizano — a thin, slightly sweet, mildly spiced bottled sauce — is the most distinctive flavoring in the national kitchen, appearing on eggs, rice, beans, and meat with the frequency of ketchup elsewhere.</p>
+        <p>Gallo pinto — rice and beans fried together with Salsa Lizano — is the national breakfast, eaten daily across all social classes. The casado lunch plate anchors midday eating, while tamales made in banana leaves appear at Christmas with near-religious devotion. The Caribbean coast offers a distinctly different tradition: rice and beans cooked in coconut milk, jerk-spiced chicken, and tropical fruit desserts reflect the Jamaican heritage of the region. Costa Rica's exceptional coffee and tropical fruits give the beverage tradition a richness that compensates for the modesty of the savory cooking.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Gallo pinto is eaten for breakfast every day — rice and beans fried together with Salsa Lizano, served with eggs, natilla, and fried plantains. It is the most consumed meal in the country.</li>
+        <li>Casado is the classic lunch plate — rice, beans, salad, fried plantain, and a protein. Every soda serves one; it is the democratic lunchtime institution of Costa Rica.</li>
+        <li>Sodas are the heart of Costa Rican food culture — small family-run restaurants serving home cooking at low prices. They are not tourist restaurants; they are where Ticos eat.</li>
+        <li>Mealtime is family time — large lunches shared with extended family on Sundays are the social anchor of Costa Rican life.</li>
+        <li>Coffee is taken seriously — Costa Rica produces world-class arabica from high-altitude farms in the Central Valley, Tarrazú, and Monteverde. A cup of chorreado filtered coffee is the morning ritual.</li>
+        <li>Salsa Lizano is to Costa Rica what Worcestershire sauce is to England — a thin, slightly sweet, mildly spiced condiment that goes on virtually everything savory.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rice</li>
+        <li><span class="n">06</span> Chayote</li>
+        <li><span class="n">02</span> Black beans</li>
+        <li><span class="n">07</span> Culantro coyote</li>
+        <li><span class="n">03</span> Salsa Lizano</li>
+        <li><span class="n">08</span> Natilla</li>
+        <li><span class="n">04</span> Plantains</li>
+        <li><span class="n">09</span> Palmito</li>
+        <li><span class="n">05</span> Yuca / cassava</li>
+        <li><span class="n">10</span> Pejibaye</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Costa Rica produces some of the world's finest arabica coffee, grown at high altitudes in volcanic soil. The country banned robusta coffee by law in 1988 to maintain quality standards — the only country in the world with such legislation.</li>
+        <li>Gallo pinto is the subject of a friendly dispute with Nicaragua, which also claims the dish as its own national food. The Costa Rican version is distinctively seasoned with Salsa Lizano and often includes a splash of Worcestershire sauce.</li>
+        <li>Costa Rica was the first country in Central America to commercially cultivate coffee, beginning in the early 19th century. Coffee funded the construction of the National Theatre in San José when coffee barons paid a tax on each bag exported.</li>
+        <li>Palmito — heart of palm — is a Costa Rican delicacy harvested from peach palm trees. Costa Rica is one of the world's largest producers and exporters of canned heart of palm, and fresh palmito appears in salads, empanadas, and pasteles.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gallo Pinto</span><span class="dish-tag">Rice, beans, Salsa Lizano</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice and beans fried together with Salsa Lizano, the national daily breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Casado</span><span class="dish-tag">Rice, beans, protein plate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lunch plate of rice, beans, salad, fried plantain, and a protein, Costa Rica's everyday meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Olla de Carne</span><span class="dish-tag">Beef, root vegetable stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty beef stew with corn, yuca, plantain, and root vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Pollo</span><span class="dish-tag">Chicken, seasoned rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken cooked together with seasoned rice and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sopa Negra</span><span class="dish-tag">Black bean, egg soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A black bean broth soup traditionally served with a poached or hard-boiled egg.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chifrijo</span><span class="dish-tag">Rice, beans, pork, chips</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layered rice, beans, and crispy fried pork over tortilla chips with salsa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamales</span><span class="dish-tag">Corn dough in banana leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn masa filled with meat and vegetables, wrapped in banana leaf and steamed, a Christmas tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceviche Tico</span><span class="dish-tag">Citrus-cured fish, cilantro</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh fish cured in lime juice with cilantro, onion, and sweet pepper.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Patacones con Frijoles</span><span class="dish-tag">Fried plantain, beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Twice-fried green plantain discs served alongside beans.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Picadillo de Arracache</span><span class="dish-tag">Root vegetable, beef hash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A minced hash of arracacha root and ground beef, a nostalgic traditional dish.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arroz con Leche</span><span class="dish-tag">Cinnamon rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Creamy rice pudding sweetened and dusted with cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tres Leches</span><span class="dish-tag">Triple-milk soaked cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sponge cake soaked in three kinds of milk until meltingly moist.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flan de Coco</span><span class="dish-tag">Coconut caramel custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A silky caramel custard flavored with coconut.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cajeta de Coco</span><span class="dish-tag">Coconut milk fudge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy fudge made from coconut milk and sugar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chiverre</span><span class="dish-tag">Candied squash preserve</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A stringy squash candied in sugar syrup and spices, a traditional preserve.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mazamorra</span><span class="dish-tag">Sweet corn pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sweet, thick pudding made from corn.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Queque Seco</span><span class="dish-tag">Dense pound cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, lightly sweet pound cake, a coffee-time staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rosquillas</span><span class="dish-tag">Corn cheese cookie rings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small ring-shaped cookies of corn flour and cheese, slightly savory-sweet.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Empanadas</span><span class="dish-tag">Filled corn pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn dough turnovers filled with cheese, meat, or beans, fried or baked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Patacones</span><span class="dish-tag">Twice-fried plantain discs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Green plantain slices fried twice until crisp, served as a snack or side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Arreglados</span><span class="dish-tag">Stuffed small sandwiches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small bread rolls stuffed with meat, cheese, and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gallos</span><span class="dish-tag">Tortilla with filling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft corn tortillas folded around a savory filling like picadillo.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tortillas de Maíz</span><span class="dish-tag">Handmade corn tortillas</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple handmade corn tortillas, the base of many Costa Rican snacks.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chorreadas</span><span class="dish-tag">Sweet corn pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thick, sweet pancakes made from fresh corn, often served with natilla.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Elotes Locos</span><span class="dish-tag">Loaded corn on the cob</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn on the cob loaded with mayonnaise, cheese, and sauces.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palmito con limón</span><span class="dish-tag">Heart of palm, lime</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh heart of palm dressed simply with lime juice.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Costa Rican:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Salsa Lizano</li>
+        <li><span class="n">06</span> Garlic</li>
+        <li><span class="n">02</span> Culantro coyote</li>
+        <li><span class="n">07</span> Natilla</li>
+        <li><span class="n">03</span> Achiote / annatto</li>
+        <li><span class="n">08</span> Worcestershire sauce</li>
+        <li><span class="n">04</span> Sweet peppers</li>
+        <li><span class="n">09</span> Chayote</li>
+        <li><span class="n">05</span> Lime</li>
+        <li><span class="n">10</span> Sofrito criollo</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Guaro &amp; Spirits</p>
+            <ol class="plain">
+              <li>Guaro Cacique</li>
+              <li>Ron Centenario</li>
+              <li>Guaro Sour</li>
+              <li>Victoria Beer</li>
+              <li>Craft beer Treinta y Cuatro</li>
+              <li>Chilguete</li>
+              <li>Pipa con guaro</li>
+              <li>Imperial cerveza</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café chorreado</li>
+              <li>Horchata</li>
+              <li>Chan drink</li>
+              <li>Agua de pipa</li>
+              <li>Refresco de tamarindo</li>
+              <li>Guanábana juice</li>
+              <li>Pinolillo</li>
+              <li>Resbaladera</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Imperial</li>
+              <li>Pilsen</li>
+              <li>Bavaria</li>
+              <li>Rock Ice</li>
+              <li>Treinta y Cuatro Brewing</li>
+              <li>Independiente</li>
+              <li>Calle Ciega</li>
+              <li>Craft cerveza artesanal</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

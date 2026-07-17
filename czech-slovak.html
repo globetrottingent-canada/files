@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Czech &amp; Slovak — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 60 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Czech & Slovak</h1>
+      <p class="subhead">Svíčková, knedlíky, halušky, and the finest pilsner on earth — a shared Central European tradition split by the Velvet Divorce but not by the kitchen.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BOHEMIA · CARPATHIANS · PIVNICE · BOHEMIA · CARPATHIANS ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAFLklEQVR4nO3VLY6eVRzG4dPJWESDYS3ILgANCoWmTS2sAQwLIIEVkJCwgAoSFkAwFTU1hEmAUFGBOGWYeef9eD7O97ku9TxH/c2d36OPv/juq6cfffD+ewGo4eqnn3/78LNvvv3xl9qXwKSuQgg3f/3z7OsfPvny+9e//1n7HpjO1e2XJEIVV3d/JBHKu3r4JIlQ0pERBkmEgo6PMJJEKODcCIMkQn4XRhhJIuSzaIRBEiGbpSOMJBGSWzfCIImQ2uoRRpIIqWwcYZBESGT7CCNJhJ32jjBIIuyTYISRJMI2yUYYJBE2STnCSBJhlfQjDJIIa2QZYSSJsETGEQZJhAXyjjCSRDijxAiDJMJphUYYSSI8VHSEQRLhgdIjjCQRbtUZYZBE+E+1EUaSCJVHGCSR6dUfYSSJTKuVEQZJZFYNjTCSRGbT3AiDJDKZFkcYSSKTaHeEQRKZQ9MjjCSRsXUwwiCJDK2PEUaSyJB6GmGQREbU2QgjSWQkXY4wSCID6XWEkSQygL5HGCSR/nU/wkgS6dcgIwySSLfGGWEkiXRntBEGSaQ3A44wkkR6MewIgyTSiZFHGEkijRt/hEESadsUI4wkkTZNNMIgiTRprhFGkkhTZhxhkERaMukII0mkBVOPMEgiDZh9hJEkUpERviOJ1GKE90gi5RnhIUmkMCM8ThIpxghPkkTKMMILJJHcjPAySSQrI1xKEsnECFeQRHIwwtUkkbSMcAtJJCEj3E4SScIId5FE9jPCBCSRPYwwDUlkMyNMSRLZwAgTk0TWMsIsJJHljDAXSWQhI8xLErnICLOTRM4zwkIkkVOMsBxJ5CgjLE0SOWCEFUgidxlhNZJIZIQ1SSLBCFsgiZMzwiZI4syMsCGSOCcjbIskTsgIWySJUzHCRkniPIywaZI4AyNsnSQOzwj7IIkDM8JuSOKojLAzkjgeI+yPJA7GCHslicO4rn0A2z26+ePvz5/++unL2oewixH26snNy+evXjx++6b2IexlhP15/PbN81cvntwI4CCMsDMCOB4j7IYAjsoI+yCAAzPC1gng8IywaQI4AyNslADOwwhbJIBTMcK2COCEjLAhAjgnI2yCAM7MCOsTwMkZYU0CSDDCigSQyAgrEEDuMsLSBJADRliOAHKUERYigJxihNkJIOcZYV4CyEVGmIsAspARZiGALGeEiQkgaxlhSgLIBkaYhgCymREmIIDsYYS7CCD7GeF2AkgSRriFAJKQEa4mgKRlhCsIIDkY4VICSCZGeJkAkpURXiCA5GaEJwkgZRjhcQJIMUZ4SAApzAjvEUDKM8J3BJBajDAEAaSq2UcogFQ39QgFkBZMOkIBpB0zjlAAacpcIxRAGjTRCAWQNk0xQgGkZeOPUABp3MgjFEC6MOwIBZBeDDhCAaQvo41QAOnOOCMUQDo1yAgFkH51P0IBpHd9j1AAGUCvIxRAhtHlCAWQkXQ2QgFkPD2NUAAZUh8jFEAG1sEIBZCxNT1CAWQG7Y5QAJlEiyMUQKbS3AgFkNk0NEIBZE6tjFAAmVb9EQogk6s8QgGEaiMUQIjqjFAA4VbpEQogHCg6QgGEhwqNUADhlBIjFEA4I+8IBRAuyjhCAYQlsoxQAGG59CMUQFgl5QgFEDZINkIBhG0SjFAAYY+9IxRA2Gn7CAUQktg4QgGEVFaPUAAhrXUjFEBIbukIBRAyWTRCAYR8LoxQACG3cyMUQCjg+AgFEIo5MkIBhJLujVAAobz/RyiAUMV1EECo6loAoa5/AbN/PYUXRllgAAAAAElFTkSuQmCC" alt="Flag of Czech &amp; Slovak">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Czech and Slovak cuisine share a common Central European culinary tradition shaped by Slavic agricultural foundations, the long cultural reach of the Habsburg Austro-Hungarian Empire, and the practicalities of feeding people through cold continental winters on the produce of fertile Bohemian and Carpathian farmland. The two cuisines are near-identical in their daily expression — roast pork with knedlíky dumplings and sauerkraut, beef goulash, rich cream sauces, smoked meats, and the universal presence of caraway and marjoram — and their differences are regional expressions within a shared tradition. The Velvet Divorce of 1993 separated the countries but not their kitchens.</p>
+        <p>The Habsburg imperial connection shaped the refined end of both cuisines — Viennese pastry technique, the coffee house tradition, and the influence of the imperial capital produced the sophisticated patisserie culture of Prague and Bratislava. German and Austrian influence runs deep in the use of pork, dumplings, sauerkraut, and the beer culture most strongly developed in Bohemia. The Czech lands of Bohemia and Moravia were among the most industrialised and prosperous parts of the Habsburg Empire, and their food culture reflects this relative wealth. Slovakia's food leans slightly toward the pastoral and mountain traditions of the Carpathians — sheep cheese, potato dumplings, and smoked meats.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Czech and Slovak cooking is built on the combination of roasted or braised meat with knedlíky — soft, bread-based steamed dumplings that are the defining starch of the region, sliced into rounds and used to absorb rich sauces and gravies. The classic Czech triumvirate is vepřo-knedlo-zelo: roast pork, bread dumplings, and braised sauerkraut. Svíčková na smetaně — beef sirloin slow-braised with root vegetables, served with cream sauce, bread dumplings, cranberry compote, and whipped cream — is the national dish of celebration: rich, sweet-sour, warming, and deeply satisfying.</p>
+        <p>Slovak cuisine's most distinctive contribution is halušky — small irregular potato dumplings similar to gnocchi, traditionally served with bryndza (a sharp, creamy sheep's milk cheese) and topped with smoked bacon. Bryndza, produced from milk of sheep grazed on Carpathian mountain pastures, has a pungent, complex character quite different from any other Central European cheese. Czech beer culture stands in a class of its own: the original Pilsner was born in Plzeň in 1842, Czech beer consumption per capita is the highest in the world, and the pivnice pub is the true social institution of Czech daily life.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Czech lunch is the main meal — a soup followed by a main course of roast meat with knedlíky dumplings and either sauerkraut or svíčková cream sauce. Dinner is typically lighter.</li>
+        <li>Beer is the national drink in a way that goes beyond preference — the pivnice is the social institution of Czech life, and drinking the local tap beer in the local pub is considered the correct way to experience any town.</li>
+        <li>Knedlíky dumplings are the defining starch of the Czech table — soft, bread-based, sliced into rounds, used to soak up rich sauces. They are not a side dish but the essential partner to every sauce.</li>
+        <li>Slovakia's bryndza — the sharp, creamy sheep's milk cheese — is a distinctly Slovak contribution that appears in halušky, on bread, and in preparations that distinguish Slovak from Czech cooking.</li>
+        <li>The kolkolek pub stamp culture means your server marks your beer mat with every round — an honour system of accountability that creates a satisfying visual record of a productive evening.</li>
+        <li>Svíčková na smetaně is the Czech national dish of celebration, eaten at Sunday lunches and family gatherings with enormous affection.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Knedlíky</li>
+        <li><span class="n">06</span> Bryndza</li>
+        <li><span class="n">02</span> Pork</li>
+        <li><span class="n">07</span> Caraway</li>
+        <li><span class="n">03</span> Sauerkraut</li>
+        <li><span class="n">08</span> Marjoram</li>
+        <li><span class="n">04</span> Svíčková cream sauce</li>
+        <li><span class="n">09</span> Mustard</li>
+        <li><span class="n">05</span> Saaz hops</li>
+        <li><span class="n">10</span> Poppy seeds</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Czech Republic has the highest beer consumption per capita in the world — approximately 188 litres per person per year, a figure that has held its position at the top of global rankings for decades.</li>
+        <li>Pilsner Urquell — brewed in Plzeň since 1842 — was the world's first pale lager, created by Bavarian brewer Josef Groll using soft Bohemian water, Saaz hops, and bottom-fermentation technique. Before Pilsner, almost all European beers were dark.</li>
+        <li>Svíčková na smetaně is so beloved that homesickness studies have repeatedly found it to be the Czech food most missed when living outside the country, above even beer.</li>
+        <li>Trdelník — the spiral chimney cake sold on every tourist street in Prague as 'traditional Czech pastry' — is actually originally a Slovak and Transylvanian Hungarian tradition adopted into Czech street food relatively recently.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Svíčková na Smetaně</span><span class="dish-tag">Beef, cream root sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef sirloin slow-braised with root vegetables, served with cream sauce, dumplings, and cranberry.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vepřo-knedlo-zelo</span><span class="dish-tag">Roast pork, dumpling, kraut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roast pork, bread dumplings, and braised sauerkraut, the classic Czech triumvirate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guláš</span><span class="dish-tag">Paprika beef stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, paprika-forward beef stew, the Czech and Slovak take on Hungarian goulash.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smažený Sýr</span><span class="dish-tag">Fried breaded cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick slice of cheese breaded and deep-fried until molten inside, a beloved pub dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halušky</span><span class="dish-tag">Potato dumplings, bryndza</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small potato dumplings tossed with sharp bryndza cheese and smoked bacon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Řízek</span><span class="dish-tag">Breaded fried cutlet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A breaded, fried pork or chicken cutlet, the Czech schnitzel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Svíčková</span><span class="dish-tag">Beef, cream root sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The shortened everyday name for svíčková na smetaně, beef in creamy root vegetable sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kulajda</span><span class="dish-tag">Creamy mushroom dill soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy, creamy soup of mushrooms, dill, and potato, often with a poached egg.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Česnečka</span><span class="dish-tag">Garlic bread soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, warming garlic broth soup, often topped with croutons and cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pečená Kachna</span><span class="dish-tag">Roast duck, dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roast duck served with bread or potato dumplings and braised cabbage.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Cakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Koláče</span><span class="dish-tag">Fruit or cheese pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Round pastries filled with fruit jam, poppy seed, or sweet cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Trdelník</span><span class="dish-tag">Spiral chimney cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A spiral pastry cooked on a rotating spit and rolled in cinnamon sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Větrník</span><span class="dish-tag">Cream puff ring cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A ring-shaped choux pastry filled with caramel cream and topped with fondant.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ovocné Knedlíky</span><span class="dish-tag">Fruit-filled dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft dumplings wrapped around whole fruit, boiled and topped with butter and sugar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buchty</span><span class="dish-tag">Sweet yeasted filled buns</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft yeasted buns filled with jam, poppy seed, or sweet cheese, then baked.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Štrůdl</span><span class="dish-tag">Apple strudel pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pastry rolled around spiced apple filling, the Czech version of strudel.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Perník</span><span class="dish-tag">Spiced honey gingerbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced honey gingerbread, often decorated and given as gifts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Medovník</span><span class="dish-tag">Layered honey cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A multi-layered honey cake with sour cream filling between thin baked layers.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pub Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chlebíčky</span><span class="dish-tag">Open-faced topped sandwiches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small open-faced sandwiches elaborately topped with meats, egg, and vegetables.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Utopenec</span><span class="dish-tag">Pickled sausage in vinegar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A whole sausage pickled in vinegar brine with onion, a classic pub snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smažený Sýr</span><span class="dish-tag">Fried breaded cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick slice of cheese breaded and deep-fried until molten inside, a beloved pub dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nakládaný Hermelín</span><span class="dish-tag">Pickled soft cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, brie-like cheese marinated in oil and spices, a pub favourite.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pivní Sýr</span><span class="dish-tag">Spiced beer cheese spread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft, spiced cheese spread traditionally paired with beer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Škvarky</span><span class="dish-tag">Crispy pork cracklings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy rendered pork fat cracklings, salted and eaten as a beer snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Obložené Chlebíčky</span><span class="dish-tag">Elaborately topped canapés</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small open-faced canapés elaborately arranged with cold cuts and garnish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Párek v Rohlíku</span><span class="dish-tag">Sausage in bread roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A sausage tucked into a hollowed bread roll, the Czech hot dog.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Czech or Slovak:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Caraway</li>
+        <li><span class="n">06</span> Mustard</li>
+        <li><span class="n">02</span> Marjoram</li>
+        <li><span class="n">07</span> Horseradish</li>
+        <li><span class="n">03</span> Sour cream</li>
+        <li><span class="n">08</span> Dill</li>
+        <li><span class="n">04</span> Svíčková sauce</li>
+        <li><span class="n">09</span> Poppy seeds</li>
+        <li><span class="n">05</span> Pork fat</li>
+        <li><span class="n">10</span> Lard</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Wine</p>
+            <ol class="plain">
+              <li>Pilsner Urquell</li>
+              <li>Budvar</li>
+              <li>Kozel</li>
+              <li>Slivovitz</li>
+              <li>Becherovka</li>
+              <li>Moravian wine</li>
+              <li>Bernard</li>
+              <li>Velkopopovický Kozel</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kofola</li>
+              <li>Vinea</li>
+              <li>Tuzemský džus</li>
+              <li>Mineral water Mattoni</li>
+              <li>Bylinkový čaj</li>
+              <li>Ovocný čaj</li>
+              <li>Šťáva</li>
+              <li>Hořký čaj</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Pilsner Urquell</li>
+              <li>Budvar</li>
+              <li>Kozel</li>
+              <li>Staropramen</li>
+              <li>Bernard</li>
+              <li>Gambrinus</li>
+              <li>Svijany</li>
+              <li>Únětický Pivovar</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

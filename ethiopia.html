@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethiopia — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 27 / 68 · Africa</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Ethiopia</h1>
+      <p class="subhead">Injera and wat, berbere and the coffee ceremony — one of the world's oldest, most self-contained food cultures.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            HORN OF AFRICA · HIGHLANDS · AKSUM · HORN OF AFRICA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Ethiopia">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Ethiopian cuisine is one of the most ancient, self-contained, and distinctive food cultures on earth — a tradition that developed in near-total isolation from outside influence for thousands of years, producing a cuisine unlike anything found elsewhere. Ethiopia sits in the Horn of Africa at the intersection of ancient trade routes linking the Red Sea, the Nile valley, and the Indian Ocean, and its highland geography — a vast plateau rising above 2,000 metres — created the conditions for the cultivation of unique crops found nowhere else: teff, enset, korarima, and gesho. The Aksumite Empire, one of the great civilisations of antiquity, was trading with Rome, Persia, India, and Arabia by the 1st century CE, and some spice trade influence filtered into the cuisine. But the core of Ethiopian food remained stubbornly, magnificently its own.</p>
+        <p>The Ethiopian Orthodox Christian tradition, which dates to the 4th century CE, is the single most important cultural force shaping the cuisine. Approximately 180 fasting days per year during which meat, fish, and dairy are prohibited have driven the development of one of the world’s most sophisticated vegan cooking traditions — the array of lentil, chickpea, split pea, and vegetable stews that make up the fasting table are dishes of genuine complexity and nutritional completeness. The Islamic communities of Harar and the eastern lowlands contributed their own distinct culinary layer, with spice use and cooking techniques that differ from the Christian highland tradition. Somali, Yemeni, and Indian Ocean trade influence appears in the coastal and eastern cooking.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Ethiopian cooking is built around the injera-wat combination — the large, spongy sourdough flatbread made from teff flour, fermented for several days until deeply sour, and the rich, spiced stews called wat that are placed upon it. Injera is simultaneously the plate, the utensil, and a substantial part of the meal itself, its tangy sourness providing essential contrast to the fiery richness of berbere-spiced wats. Berbere — the master spice blend of dried chilies, fenugreek, coriander, cinnamon, and the uniquely Ethiopian korarima cardamom — underpins most meat stews and is one of the most complex spice preparations in any cuisine.</p>
+        <p>Niter kibbeh — spiced clarified butter infused with onion, garlic, ginger, and a dozen aromatics — is the cooking fat of the Ethiopian highland kitchen, providing a deep, warm richness to stews and fried dishes that plain butter or oil cannot replicate. The doro wat — a chicken stew in berbere and niter kibbeh with whole hard-boiled eggs — is the national dish and the centrepiece of every celebration meal, served at weddings, Timkat, and Ethiopian Christmas. Kitfo — minced raw beef seasoned with mitmita and niter kibbeh — is Ethiopia’s steak tartare and a mark of serious hospitality. The coffee ceremony, performed daily across the country, is as much a social institution as a means of consuming caffeine.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Injera is both plate and utensil — the large spongy sourdough flatbread is spread on a communal platter and the stews and salads placed directly on top. Diners tear pieces and scoop, eating without cutlery.</li>
+        <li>Eating from a shared platter is deeply embedded in Ethiopian hospitality — gursha, the act of placing a rolled piece of food directly into another person’s mouth, is a gesture of affection, celebration, and deep respect.</li>
+        <li>Orthodox Christian fasting days shape the weekly food calendar — approximately 180 fasting days per year prohibit meat, fish, and dairy, making Ethiopia’s vegan cuisine one of the most sophisticated in the world.</li>
+        <li>Coffee ceremonies are a central social institution — raw beans are roasted over charcoal, ground by hand, brewed in a jebena clay pot, and served in three rounds: the first most potent, each subsequent round weaker.</li>
+        <li>Tej — honey wine — is Ethiopia’s ancient mead, brewed with wild hops called gesho that give it a distinctive bitterness. It is served in a berele, a round-bottomed flask, and is drunk at celebrations and tej houses.</li>
+        <li>The quantity of food placed before a guest signals the depth of welcome — an Ethiopian host will pile the injera high with multiple wats and salads, and insisting a guest eat more is the language of love.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Injera / teff</li>
+        <li><span class="n">06</span> Fenugreek</li>
+        <li><span class="n">02</span> Berbere</li>
+        <li><span class="n">07</span> Tej honey wine</li>
+        <li><span class="n">03</span> Niter kibbeh</li>
+        <li><span class="n">08</span> Ayib cheese</li>
+        <li><span class="n">04</span> Mitmita</li>
+        <li><span class="n">09</span> Chickpeas / lentils</li>
+        <li><span class="n">05</span> Korarima</li>
+        <li><span class="n">10</span> Gesho</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ethiopia is the birthplace of coffee — the wild coffee plant, Coffea arabica, originates in the forests of the Kaffa region in southwestern Ethiopia, where it has grown for over a thousand years. Legend holds that a goat herder named Kaldi noticed his goats became unusually energetic after eating the red berries, leading to the discovery of coffee. Ethiopia remains one of the world’s top coffee producers, with single-origin beans from Yirgacheffe, Sidama, and Harrar among the most prized specialty coffees globally.</li>
+        <li>Injera is made from teff, an ancient grain native to the Ethiopian highlands and one of the oldest cultivated grains on earth. Teff is approximately the size of a poppy seed, grows at high altitudes where no other grain survives, and is extraordinarily nutrient-dense. It has been cultivated in Ethiopia for at least 3,000 years and remains the country’s most important staple crop.</li>
+        <li>Berbere contains up to twenty ingredients including dried chilies, fenugreek, coriander, black pepper, cinnamon, cardamom, and the distinctively Ethiopian spice korarima. Each household and region has its own berbere recipe, and its preparation is considered a mark of a cook’s skill and family tradition.</li>
+        <li>Ethiopia was never colonized by a European power — it is one of only two African countries (with Liberia) to have maintained full independence throughout the colonial era. This means Ethiopian cuisine developed entirely on its own terms, still recognizable from medieval accounts of Ethiopian court cuisine.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The stews, breads, and drinks that define the everyday Ethiopian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Wats &amp; Meats</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doro Wat</span><span class="dish-tag">Berbere chicken stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken simmered in berbere and niter kibbeh with whole hard-boiled eggs; Ethiopia's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tibs</span><span class="dish-tag">Sautéed beef/lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cubed meat pan-seared or sautéed with onion, garlic, and rosemary, served sizzling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kitfo</span><span class="dish-tag">Minced raw beef</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced raw beef seasoned with mitmita and niter kibbeh, Ethiopia's answer to steak tartare.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shiro Wat</span><span class="dish-tag">Spiced chickpea stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth, spiced stew of ground chickpea or broad bean flour, a staple of fasting days.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Misir Wat</span><span class="dish-tag">Spiced red lentils</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Red lentils simmered in berbere until thick and deeply spiced.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Vegan Fasting Dishes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gomen</span><span class="dish-tag">Collard greens</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Collard greens stewed with garlic, ginger, and onion, a staple fasting-day side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Atkilt Wat</span><span class="dish-tag">Cabbage &amp; carrot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mild turmeric-spiced stew of cabbage, carrot, and potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Yebeg Wat</span><span class="dish-tag">Berbere lamb stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-cooked in a rich berbere and niter kibbeh sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dulet</span><span class="dish-tag">Minced organ meats</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Minced tripe, liver, and beef sautéed with chili and spiced butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Firfir</span><span class="dish-tag">Torn injera in sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Torn injera tossed in berbere sauce or leftover wat, a common breakfast.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Breads &amp; Porridge</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Himbasha</span><span class="dish-tag">Sweet celebration bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lightly sweetened, cardamom-scented round bread baked for holidays and celebrations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baklava Amhara</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Phyllo pastry layered with nuts and honey, adopted from Greek and Italian bakeries into the Ethiopian sweet table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Genfo</span><span class="dish-tag">Barley porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick barley porridge served with a well of spiced butter and berbere, often for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kinche</span><span class="dish-tag">Cracked wheat porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple cracked-wheat porridge served with butter, a homely everyday breakfast.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Injera Firfir</span><span class="dish-tag">Torn injera, spiced</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Injera torn and warmed through berbere sauce, eaten as a quick meal or leftover breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mulmul</span><span class="dish-tag">Fried sweet dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried sweet dough pieces, a simple treat often served with coffee.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dabo Kolo</span><span class="dish-tag">Fried spiced crackers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small crunchy fried wheat crackers seasoned with berbere or sugar, eaten as a snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beso</span><span class="dish-tag">Roasted barley flour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted barley flour mixed into a paste or drink, a traditional energy-dense snack.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sambusa</span><span class="dish-tag">Fried lentil pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried triangular pastries filled with spiced lentils or meat, a popular street snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dabo Kolo</span><span class="dish-tag">Fried spiced crackers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small crunchy fried wheat crackers seasoned with berbere or sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kolo</span><span class="dish-tag">Roasted barley &amp; nuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted barley, chickpeas, and peanuts, a simple everyday snack sold on the street.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Firfir</span><span class="dish-tag">Torn injera in sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Torn injera tossed in berbere sauce, eaten as a snack or light meal.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fatira</span><span class="dish-tag">Layered fried flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered, pan-fried flatbread, sometimes filled with egg or honey, of Yemeni-influenced origin.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chechebsa</span><span class="dish-tag">Spiced torn flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded flatbread pan-fried with berbere and spiced butter, a hearty breakfast snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Enkulal Firfir</span><span class="dish-tag">Scrambled egg dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Scrambled eggs cooked with onion, tomato, and chili, a common breakfast dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kategna</span><span class="dish-tag">Toasted spiced injera</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Injera toasted and brushed with berbere and niter kibbeh, similar to a spiced flatbread.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Ethiopian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Berbere</li>
+        <li><span class="n">06</span> Turmeric</li>
+        <li><span class="n">02</span> Niter kibbeh</li>
+        <li><span class="n">07</span> Gesho</li>
+        <li><span class="n">03</span> Mitmita</li>
+        <li><span class="n">08</span> Black cumin</li>
+        <li><span class="n">04</span> Korarima</li>
+        <li><span class="n">09</span> Rue herb</li>
+        <li><span class="n">05</span> Fenugreek</li>
+        <li><span class="n">10</span> Dried chilies</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Tej, Tella &amp; Spirits</p>
+            <ol class="plain">
+              <li>Tej</li>
+              <li>Tella</li>
+              <li>Katikala</li>
+              <li>Areqe</li>
+              <li>St. George Beer</li>
+              <li>Bedele Beer</li>
+              <li>Harar Beer</li>
+              <li>Meta Beer</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Buna coffee ceremony</li>
+              <li>Macchiato</li>
+              <li>Shai tea</li>
+              <li>Ambo water</li>
+              <li>Tamarind juice</li>
+              <li>Avocado juice</li>
+              <li>Yogurt drink / ayib</li>
+              <li>Shameta</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>St. George</li>
+              <li>Bedele</li>
+              <li>Harar</li>
+              <li>Meta Abo</li>
+              <li>Dashen</li>
+              <li>Walia</li>
+              <li>Castle Ethiopia</li>
+              <li>Raya</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

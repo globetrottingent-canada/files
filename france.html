@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>France — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 29 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">France</h1>
+      <p class="subhead">Butter, wine, and codified technique — the classical tradition that formalized the vocabulary of Western cooking.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TERROIR · HAUTE CUISINE · ATLANTIC · TERROIR ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAACWElEQVR4nO3TsQ1AAAAAQSQ2UOlsYnMDiQVUVtB9xN0E3/w4L/vAO/d51Amfca1bnfAZUx0Af2dCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiJoSYCSFmQoiZEGImhJgJIWZCiJkQYiaEmAkhZkKImRBiD/86BbWZ7ItDAAAAAElFTkSuQmCC" alt="Flag of France">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>French cuisine is the most systematically codified and globally influential in the Western world. Its foundations were laid in the royal courts of the Ancien Régime, where elaborate banquets and the patronage of skilled chefs elevated cooking to an art form. The French Revolution paradoxically accelerated the spread of fine dining — displaced royal cooks opened Paris's first great restaurants, making sophisticated food accessible to the bourgeoisie for the first time.</p>
+        <p>The 19th century saw Auguste Escoffier formalize classical French technique into a canon that trained chefs worldwide still study: the five mother sauces, brigade kitchen system, and precise vocabulary of French cooking became the international standard. Regional traditions run deep alongside this grand tradition — Normandy's cream and apple brandy, Provence's olive oil and herbs, Burgundy's wine-braised meats, Alsace's Germanic-inflected charcuterie and beer, and Brittany's buckwheat crêpes and seafood each reflect distinct landscapes and histories.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>French cooking prizes technique, quality of ingredient, and the transformation of humble materials into something refined. Butter, cream, wine, and patience are the pillars. Sauces are central — the ability to make a perfect beurre blanc, a velouté, or a proper reduction is considered fundamental skill. The French are also masters of charcuterie, cheese, and pastry, each of which constitutes a deep craft tradition in its own right.</p>
+        <p>There is a strong duality between haute cuisine (the grand classical tradition) and cuisine du terroir (peasant and regional food) — both are taken equally seriously. The French were among the first to codify the idea that local, seasonal produce prepared simply is as worthy of respect as elaborate restaurant food. The bistro, the brasserie, and the café each occupy distinct social and culinary roles in French life.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The French take meals seriously as a social ritual — lunch was historically two hours, dinner unhurried, and eating at a desk or on the go is still considered poor form.</li>
+        <li>A formal French meal follows a strict sequence: amuse-bouche, entrée (starter), plat principal, cheese course, dessert — the cheese always before dessert, never after.</li>
+        <li>Bread (a fresh baguette) appears at every meal and is used to mop up sauces — but butter is not typically served alongside it at dinner.</li>
+        <li>Wine is the default accompaniment to lunch and dinner; water is always on the table but ordering only water at a restaurant is perfectly acceptable.</li>
+        <li>The French school lunch is a multi-course sit-down affair — children are taught from an early age that eating well and slowly is part of civilized life.</li>
+        <li>Sunday lunch is a long, multi-generation family event — the most important meal of the week, often lasting two to three hours.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Butter (unsalted)</li>
+        <li><span class="n">06</span> Flour</li>
+        <li><span class="n">02</span> Shallots & garlic</li>
+        <li><span class="n">07</span> Wine</li>
+        <li><span class="n">03</span> Fresh herbs</li>
+        <li><span class="n">08</span> Lardons</li>
+        <li><span class="n">04</span> Dijon mustard</li>
+        <li><span class="n">09</span> Gruyère & Comté</li>
+        <li><span class="n">05</span> Cream</li>
+        <li><span class="n">10</span> Duck & duck fat</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>France has over 1,000 distinct varieties of cheese — Charles de Gaulle famously asked how one could govern a country with 246 varieties. The real number is far higher.</li>
+        <li>The baguette became popular in Paris partly due to a 1920 law banning bakers from working before 4am — the long thin loaf could be made and ready for sale far faster than a traditional round loaf.</li>
+        <li>French cuisine was inscribed on UNESCO's Intangible Cultural Heritage list in 2010 — the first national cuisine to receive the honor.</li>
+        <li>Champagne can only legally be called Champagne if it comes from the Champagne region of France — all other sparkling wines, however similar, must use a different name.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The sauces, pastries, and drinks that define the everyday French table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boeuf Bourguignon</span><span class="dish-tag">Beef in red wine</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef slow-braised in red Burgundy wine with mushrooms, onions, and lardons.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coq au Vin</span><span class="dish-tag">Chicken in wine</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken braised slowly in wine with mushrooms, onions, and bacon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Confit de Canard</span><span class="dish-tag">Preserved duck leg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Duck leg slow-cooked and preserved in its own fat until meltingly tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bouillabaisse</span><span class="dish-tag">Marseille fish stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A saffron-scented Provençal fish stew with a rich, garlicky rouille.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Steak Frites</span><span class="dish-tag">Steak &amp; fries</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple pan-seared steak served with crisp French fries, a bistro staple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cassoulet</span><span class="dish-tag">Bean &amp; meat casserole</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-baked casserole of white beans, sausage, and duck or pork from the southwest.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sole Meunière</span><span class="dish-tag">Butter-fried sole</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sole fillet dredged in flour and pan-fried in brown butter with lemon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quiche Lorraine</span><span class="dish-tag">Bacon &amp; egg tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open pastry tart filled with egg custard, cream, and smoked bacon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Croque Monsieur / Madame</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grilled ham and cheese sandwich topped with béchamel, sometimes with a fried egg on top.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pot-au-Feu</span><span class="dish-tag">Boiled beef &amp; veg</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef and root vegetables slowly simmered together, a homely French classic.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Puddings &amp; Tarts</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crème Brûlée</span><span class="dish-tag">Custard, caramel top</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich vanilla custard topped with a brittle layer of caramelized sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tarte Tatin</span><span class="dish-tag">Upside-down apple tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Caramelized apples baked beneath pastry, then flipped to serve apple-side up.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mousse au Chocolat</span><span class="dish-tag">Chocolate mousse</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, airy whipped chocolate mousse, a staple of the French home dessert table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Profiteroles</span><span class="dish-tag">Cream puffs, chocolate</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Choux pastry puffs filled with cream and topped with warm chocolate sauce.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Pastries &amp; Cakes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mille-feuille</span><span class="dish-tag">Layered puff pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of puff pastry and pastry cream, topped with a marbled fondant glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Île Flottante</span><span class="dish-tag">Floating island meringue</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Poached meringue floating on vanilla custard, sometimes with caramel drizzle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clafoutis</span><span class="dish-tag">Cherry batter pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh cherries baked into a thick, custardy batter, a Limousin specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madeleines</span><span class="dish-tag">Shell-shaped sponge cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small shell-shaped butter sponge cakes, famously evoked by Proust.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Light Meals</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baguette with Butter &amp; Jambon</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A classic French sandwich of ham and butter on a fresh baguette.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crêpes</span><span class="dish-tag">Sweet or savory</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pancakes filled sweet with sugar and jam, or savory as galettes with ham and cheese.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Croissant</span><span class="dish-tag">Buttery laminated pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, buttery laminated pastry, the cornerstone of the French breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gougères</span><span class="dish-tag">Cheese choux puffs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small savory choux pastry puffs baked with Gruyère, often served with wine.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pissaladière</span><span class="dish-tag">Onion &amp; anchovy tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Provençal flatbread topped with slow-cooked onions, anchovies, and olives.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rillettes on Toast</span><span class="dish-tag">Shredded pork pâté</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-cooked shredded pork preserved in fat, spread on toasted bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salade Niçoise</span><span class="dish-tag">Tuna, egg, olive salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A composed salad of tuna, hard-boiled egg, olives, and vegetables from Nice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">French Onion Soup</span><span class="dish-tag">Cheese-topped onion soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Caramelized onion soup topped with toasted bread and melted Gruyère.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly French:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dijon mustard</li>
+        <li><span class="n">06</span> Truffle</li>
+        <li><span class="n">02</span> Herbes de Provence</li>
+        <li><span class="n">07</span> Lardons</li>
+        <li><span class="n">03</span> Tarragon</li>
+        <li><span class="n">08</span> Gruyère</li>
+        <li><span class="n">04</span> Shallot & white wine reduction</li>
+        <li><span class="n">09</span> Verjuice or white wine vinegar</li>
+        <li><span class="n">05</span> Crème fraîche</li>
+        <li><span class="n">10</span> Bay leaf & bouquet garni</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Bordeaux</li>
+              <li>Burgundy</li>
+              <li>Champagne</li>
+              <li>Cognac</li>
+              <li>Calvados</li>
+              <li>Pastis</li>
+              <li>Armagnac</li>
+              <li>Kir / Kir Royale</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Café</li>
+              <li>Café au lait</li>
+              <li>Citron pressé</li>
+              <li>Perrier / Badoit</li>
+              <li>Sirop de menthe</li>
+              <li>Orangina</li>
+              <li>Tisane</li>
+              <li>Hot chocolate</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Kronenbourg 1664</li>
+              <li>Leffe Blonde</li>
+              <li>Pelforth Brune</li>
+              <li>Fischer Tradition</li>
+              <li>Desperados</li>
+              <li>Météor</li>
+              <li>Jenlain Ambrée</li>
+              <li>Chouffe</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

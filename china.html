@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 56 / 68 · Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">China</h1>
+      <p class="subhead">Peking duck, mala Sichuan fire, and Cantonese dim sum — a 5,000-year tradition so vast that 'Chinese cuisine' is really a family of distinct regional cuisines.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            WOK HEI · FIVE TASTES · SILK ROAD · WOK HEI · FIVE TASTES ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of China">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Chinese cuisine is among the oldest, most complex, and most geographically diverse food cultures on earth — a 5,000-year tradition that has shaped the eating habits of half the world's population and exported its techniques, ingredients, and dishes to every corner of the globe. The sheer scale of China — its climatic, topographical, and cultural variation from the frozen northeast to the tropical south, from the Sichuan basin to the Cantonese coast — means that 'Chinese cuisine' is not a single tradition but a vast family of distinct regional cuisines, each with its own philosophy, techniques, and signature flavors.</p>
+        <p>The eight great regional traditions — Cantonese, Sichuan, Hunan, Shandong, Jiangsu, Zhejiang, Fujian, and Anhui — are each fully developed culinary systems. Cantonese cooking prizes freshness and subtlety, using minimal seasoning to showcase pristine ingredients; Sichuan cooking is bold and numbing, built around chili and the unique Sichuan peppercorn; Hunan is fiercely spicy and sour; Shandong's seafood traditions shaped much of what became the imperial court cuisine of Beijing. Trade routes brought new ingredients including chili peppers, tomatoes, and peanuts that transformed the cuisine profoundly after the 16th century.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Chinese cooking is governed by a philosophy of balance — between flavors, textures, temperatures, and the five tastes of sweet, sour, salty, bitter, and umami. The wok, a uniquely Chinese invention, enabled the high-heat technique of wok hei — the 'breath of the wok,' a smoky, slightly charred flavor produced by tossing ingredients in an intensely hot iron pan — that is the defining technique of Chinese stir-frying and cannot be fully replicated at home. Fermented ingredients — doubanjiang, black bean paste, soy sauce, vinegars — provide layers of complexity that distinguish Chinese cooking from simpler traditions.</p>
+        <p>The cuisine encompasses extraordinary variety: the delicate steamed dim sum of Canton; the numbing fire of Sichuan mala hotpot; the lacquered magnificence of Peking duck; the soup dumpling engineering of xiaolongbao; the slow-braised comfort of red-cooked pork. Noodles, rice, and bread all serve as staples depending on region — wheat dominates the north, rice the south. Tea culture is ancient, complex, and inseparable from the social fabric of Chinese life.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Meals are shared communally — dishes are placed in the center and eaten from together, not plated individually. Ordering one dish per person and eating it alone is considered antisocial.</li>
+        <li>The host serves guests first, and filling someone's bowl or glass without being asked is an act of care and hospitality. Letting a guest's glass go empty is considered neglectful.</li>
+        <li>Tea is served throughout the meal — a tap of two fingers on the table is the polite way to thank someone for pouring, a gesture said to originate from Qing dynasty court etiquette.</li>
+        <li>Chinese New Year is the most food-significant event of the year — whole fish for prosperity, dumplings for wealth, long noodles for longevity, and glutinous rice cakes for advancement.</li>
+        <li>Regional variation is so extreme that Cantonese, Sichuan, Shanghainese, and Peking cuisines are effectively different cooking traditions, sharing little beyond chopsticks and rice.</li>
+        <li>Dim sum is a Cantonese tradition of small dishes eaten with tea during morning or midday — yum cha literally means 'drink tea,' and the food is secondary to the social occasion.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Soy sauce</li>
+        <li><span class="n">06</span> Doubanjiang</li>
+        <li><span class="n">02</span> Ginger</li>
+        <li><span class="n">07</span> Sichuan peppercorn</li>
+        <li><span class="n">03</span> Garlic</li>
+        <li><span class="n">08</span> Rice wine</li>
+        <li><span class="n">04</span> Rice</li>
+        <li><span class="n">09</span> Five spice</li>
+        <li><span class="n">05</span> Sesame oil</li>
+        <li><span class="n">10</span> Oyster sauce</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>China has been making noodles for at least 4,000 years — the oldest noodles ever found were excavated at Lajia in northwest China in 2005, made from millet and dating to around 2000 BCE, predating Italian pasta by millennia.</li>
+        <li>Tofu was invented in China around 200 BCE, reputedly by Prince Liu An of the Han dynasty, and spread through East and Southeast Asia via Buddhist monks. It is now one of the world's most consumed protein sources.</li>
+        <li>Sichuan peppercorn creates a unique numbing, tingling sensation on the tongue called málà — it is not heat like chili but a different neurological sensation caused by the compound hydroxy-alpha-sanshool. Nothing else in the world produces quite this effect.</li>
+        <li>China is the world's largest tea producer and has the oldest continuous tea culture, stretching back over 3,000 years. The word 'tea' in most European languages derives from the Hokkien Chinese 'te,' carried along Dutch trade routes; 'chai' derives from the Mandarin 'chá.'</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Peking Duck</span><span class="dish-tag">Lacquered roast duck</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Duck roasted until the skin lacquers deep mahogany, sliced and wrapped in thin pancakes with scallion and sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mapo Tofu</span><span class="dish-tag">Numbing spicy tofu</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Silken tofu in a fiery, numbing sauce of doubanjiang and Sichuan peppercorn, studded with minced beef.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kung Pao Chicken</span><span class="dish-tag">Peanut chili stir-fry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Diced chicken stir-fried with peanuts, dried chilies, and a tangy sweet-savory sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Xiaolongbao</span><span class="dish-tag">Soup-filled steamed dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate steamed dumplings engineered to hold a pocket of hot savory broth inside.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sweet &amp; Sour Pork</span><span class="dish-tag">Battered pork, tangy sauce</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Battered fried pork in a bright, tangy-sweet sauce, a Cantonese classic known worldwide.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Char Siu</span><span class="dish-tag">Honey-glazed roast pork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork marinated and roasted until sticky and caramelized with a honey-red glaze.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hotpot</span><span class="dish-tag">Simmering communal broth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simmering pot of broth at the table into which diners cook meat, seafood, and vegetables communally.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dan Dan Noodles</span><span class="dish-tag">Spicy sesame chili noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Noodles tossed in a spicy sauce of chili oil, sesame paste, and preserved vegetable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">General Tso's Chicken</span><span class="dish-tag">Sweet spicy fried chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried chicken tossed in a sweet, tangy, mildly spicy glaze, an American-Chinese classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lion's Head Meatballs</span><span class="dish-tag">Braised giant meatballs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oversized, tender pork meatballs braised slowly in broth with cabbage.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Festival Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tangyuan</span><span class="dish-tag">Glutinous rice ball soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chewy glutinous rice balls filled with sesame or red bean, served in warm syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mooncake</span><span class="dish-tag">Dense filled festival pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense pastry filled with lotus seed paste or red bean, eaten during the Mid-Autumn Festival.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mango Pudding</span><span class="dish-tag">Chilled mango custard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chilled, silky mango-flavored custard, a Cantonese dessert staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Egg Tart</span><span class="dish-tag">Flaky custard tart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky pastry shell filled with silky egg custard, a Cantonese and Macanese favourite.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nian Gao</span><span class="dish-tag">Chewy rice cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chewy, sticky rice cake eaten sweet or savory, symbolic of advancement at New Year.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sesame Balls</span><span class="dish-tag">Fried sesame-coated dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried glutinous rice balls coated in sesame seeds with a sweet paste filling.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Red Bean Soup</span><span class="dish-tag">Sweet warm bean dessert</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, sweet soup of slow-cooked red beans, often served at the end of a meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pineapple Cake</span><span class="dish-tag">Buttery pineapple pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A buttery shortbread pastry filled with tangy pineapple jam, a Taiwanese specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Dumplings &amp; Pastries</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dumplings / Jiaozi</span><span class="dish-tag">Pan-fried or boiled dumpling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pork or vegetable filled dumplings, boiled, steamed, or pan-fried until crisp on the bottom.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spring Rolls</span><span class="dish-tag">Crispy fried vegetable roll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin pastry rolled around vegetables or meat and deep-fried until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Scallion Pancakes</span><span class="dish-tag">Flaky layered flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, layered pan-fried flatbread laced with scallion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Char Siu Bao</span><span class="dish-tag">Steamed pork bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft steamed bun filled with sweet honey-glazed barbecue pork.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zongzi</span><span class="dish-tag">Sticky rice in bamboo leaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Glutinous rice and filling wrapped in bamboo leaves and steamed, eaten at the Dragon Boat Festival.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shao Kao Skewers</span><span class="dish-tag">Grilled spiced meat skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered meat or vegetables grilled over charcoal and dusted with cumin and chili.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dan Bing</span><span class="dish-tag">Savory egg crepe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thin savory crepe wrapped around egg, a popular Chinese breakfast food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wontons</span><span class="dish-tag">Silky filled dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate dumplings filled with pork or shrimp, served in broth or fried.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Chinese:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Doubanjiang</li>
+        <li><span class="n">06</span> Five spice</li>
+        <li><span class="n">02</span> Sichuan peppercorn</li>
+        <li><span class="n">07</span> Black vinegar</li>
+        <li><span class="n">03</span> Oyster sauce</li>
+        <li><span class="n">08</span> Chili oil</li>
+        <li><span class="n">04</span> Dark soy sauce</li>
+        <li><span class="n">09</span> Sesame paste</li>
+        <li><span class="n">05</span> Shaoxing wine</li>
+        <li><span class="n">10</span> Dried tangerine peel</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Baijiu &amp; Spirits</p>
+            <ol class="plain">
+              <li>Baijiu</li>
+              <li>Maotai</li>
+              <li>Shaoxing rice wine</li>
+              <li>Plum wine</li>
+              <li>Snow Beer</li>
+              <li>Tsingtao</li>
+              <li>Huangjiu</li>
+              <li>Mijiu</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Longjing green tea</li>
+              <li>Pu-erh tea</li>
+              <li>Jasmine tea</li>
+              <li>Oolong tea</li>
+              <li>Chrysanthemum tea</li>
+              <li>Soy milk</li>
+              <li>Sugarcane juice</li>
+              <li>Herbal cooling drinks</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Tsingtao</li>
+              <li>Snow</li>
+              <li>Yanjing</li>
+              <li>Harbin</li>
+              <li>Pearl River</li>
+              <li>Zhujiang</li>
+              <li>Kingway</li>
+              <li>Wusu</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finland — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 28 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Finland</h1>
+      <p class="subhead">Rye, lake fish, and foraged berries — a Nordic table shaped by forest, sauna, and centuries between Sweden and Russia.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            FOREST · LAKELAND · ARCTIC CIRCLE · FOREST ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC3CAIAAAAnyfQWAAACtElEQVR4nO3WoUodAACFYa8IgmPrwzwQHAYHFvPKbZpWBOMeYA+wFzCYBG2DRU3DYJSxwVBMMtiSQcFi2NzAdO1ivr9wv+8JTvnhDEaj0dRE+rB9tPX5e73ioU8f1zaGS/UKxmq6HgCTToQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJsZvfg9M//u3pG4OTnVT3hEYfffl/f3NYrGJ8Xc7ODlc29H+eX9RKYUCuL8+4oxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBvs7J/8/XdXzwh8+frr+OyiXvHQu7evlxde1isYn+fPZmfer7+pZzSub26fYITD1Vcbw6V6BWPljkJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQuweTP0uFwsi8DYAAAAASUVORK5CYII=" alt="Flag of Finland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Finnish cuisine is one of the most distinctive in northern Europe — a tradition shaped by the country's extraordinary natural landscape of forests, lakes, and coastline, its position at the cultural crossroads between Scandinavia and Russia, and centuries of Swedish and Russian political dominance that left culinary traces without fully displacing the indigenous Finnish food culture. Finland was part of the Swedish kingdom for 600 years and a Russian Grand Duchy for over a century, and both relationships left lasting marks: Swedish-influenced dishes in coastal and southwestern Finland, Russian baking and pastry traditions in the east and in Karelian cuisine, and a distinctly Finnish forest and lake tradition running through everything.</p>
+        <p>The indigenous Finnish culinary tradition is rooted in the forest and the lake — wild mushrooms, berries, freshwater fish, game, and rye grown in the short but intense Nordic summer. The foraging tradition remains one of the most actively practised in Europe: virtually every Finnish family spends time in the forest in late summer gathering chanterelles, ceps, lingonberries, blueberries, and cloudberries that are then preserved for the long winter. Finnish cooking absorbed significant influences from Russian and Karelian neighbours — the piirakka pastry tradition, the use of buckwheat, and the sour dairy fermentation practices all show eastern influence. Swedish culinary tradition shaped the coastal and archipelago cooking, with its emphasis on Baltic herring, cream, and Jansson's temptation.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Finnish cooking is unpretentious, honest, and deeply seasonal — a cuisine that celebrates the short summer with intense freshness and makes the long winter bearable through preserved, smoked, and fermented foods of considerable quality. Rye bread — ruisleipä — is the cornerstone of the Finnish table, a dense, slightly sour sourdough loaf made from the rye that thrives in the Finnish climate where wheat struggles. It is eaten at every meal and is the food Finns most miss when abroad. The quality of Finnish butter and dairy products is exceptional, and they are used without restraint.</p>
+        <p>Lohikeitto — the salmon and potato cream soup with dill — is the most beloved everyday Finnish dish: simple, warming, and dependent entirely on the quality of the salmon and the freshness of the dill. Karjalanpaisti — the Karelian hot pot of beef, pork, and lamb slow-cooked in the oven for hours — embodies the Finnish cooking philosophy of long, patient heat transforming good ingredients. The Midsummer celebration by the lake — sauna, grilled sausage, new potatoes, herring, and beer or lonkero — is perhaps the most complete expression of Finnish food culture. Salmiakki, the salty liquorice that challenges every non-Finn, is the taste that most defines Finland to outsiders.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The Finnish meal structure is practical and unhurried — lunch is the main cooked meal of the day, often a simple soup or casserole. Dinner is lighter, and the elaborate weekend lunch is the week's social centrepiece.</li>
+        <li>Rye bread — ruisleipä — is eaten at every meal and with deep cultural significance. Finland's dark, dense, slightly sour sourdough rye is one of the finest breads in the world and the food Finns miss most when abroad.</li>
+        <li>The sauna and food are inseparable in Finnish culture — the traditional midsummer sauna is followed by grilled sausages, new potatoes, salted herring, and cold beer by the lake. This is not a recipe; it is a ritual.</li>
+        <li>Coffee is Finland's national obsession — Finland has the highest per-capita coffee consumption in the world. Coffee is drunk at every social occasion, and offering coffee to a guest is the first act of Finnish hospitality.</li>
+        <li>Wild foods are taken seriously — mushroom and berry picking in the forests is a national autumn ritual. Chanterelles, ceps, lingonberries, and cloudberries are gathered by virtually every Finnish family and preserved for winter.</li>
+        <li>Finnish silence at the table is not rudeness but respect — Finns eat with focus and appreciation, and lengthy conversation during a meal is less expected than in more extrovert food cultures.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rye / ruisleipä</li>
+        <li><span class="n">06</span> Baltic herring</li>
+        <li><span class="n">02</span> Salmiakki</li>
+        <li><span class="n">07</span> Dill</li>
+        <li><span class="n">03</span> Lingonberries</li>
+        <li><span class="n">08</span> Sour cream</li>
+        <li><span class="n">04</span> Cloudberries</li>
+        <li><span class="n">09</span> Sausage / makkara</li>
+        <li><span class="n">05</span> Chanterelles</li>
+        <li><span class="n">10</span> New potatoes</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Finland has the highest per-capita coffee consumption in the world, drinking approximately 12 kilograms per person per year — nearly double the consumption of Italy or France. Finnish coffee is typically light-roasted and filter-brewed, drunk in large quantities throughout the day rather than in small ceremonial shots.</li>
+        <li>Salmiakki — salty liquorice flavoured with ammonium chloride — is Finland's most distinctive and internationally baffling confectionery. The intense, mouth-puckering combination of salt, bitter liquorice, and sharp chemical tang is deeply beloved by Finns and almost universally rejected by non-Scandinavians on first encounter.</li>
+        <li>Finland has 188,000 lakes and the world's largest archipelago by number of islands — over 40,000 islands in the southwestern Turku archipelago alone. This extraordinary water geography means freshwater fish — pike, perch, zander, and vendace — are as central to Finnish cooking as saltwater fish.</li>
+        <li>Karelian pasties — karjalanpiirakka — are small oval rye pastry cases filled with rice porridge, originating from the Karelia region now mostly within Russia. After the Winter War of 1939–40, over 400,000 Karelian Finns were evacuated to Finland proper, bringing their food traditions with them; the pasties are now protected by EU geographical indication.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The stews, pastries, and drinks that define the everyday Finnish table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karjalanpaisti</span><span class="dish-tag">Karelian hot pot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Beef, pork, and lamb slow-cooked together in the oven for hours until meltingly tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lohikeitto</span><span class="dish-tag">Salmon cream soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warming salmon and potato soup finished with cream and dill.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hernekeitto</span><span class="dish-tag">Pea &amp; ham soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty split pea and ham soup, traditionally eaten on Thursdays.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kalakukko</span><span class="dish-tag">Fish baked in rye</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish and pork baked inside a dense rye bread crust, a Savonian specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Poronkäristys</span><span class="dish-tag">Sautéed reindeer</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thinly sliced sautéed reindeer served over mashed potato with lingonberry, a Lapland classic.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grilled Makkara</span><span class="dish-tag">Grilled sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple grilled sausage, the centrepiece of every Finnish summer cookout.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Silakkapihvit</span><span class="dish-tag">Herring patties</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baltic herring fillets sandwiched and pan-fried into crisp patties.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jansson's Temptation</span><span class="dish-tag">Potato &amp; anchovy bake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy potato and anchovy casserole of Swedish origin, popular at Christmas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Muikku</span><span class="dish-tag">Fried vendace</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tiny lake fish, lightly floured and fried whole, eaten crisp with rye bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maksalaatikko</span><span class="dish-tag">Liver &amp; rice casserole</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A baked casserole of liver, rice, and raisins, traditionally served with lingonberry jam.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karjalanpiirakka</span><span class="dish-tag">Rye rice pasties</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oval rye pastry cases filled with rice porridge, eaten with egg butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mustikkapiirakka</span><span class="dish-tag">Blueberry pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, lattice-topped blueberry pie made with foraged summer berries.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Korvapuusti</span><span class="dish-tag">Cinnamon bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Finland's cardamom-and-cinnamon spiced bun, a fixture of every coffee break.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Runeberg Torte</span><span class="dish-tag">Almond rum cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A small almond and rum-soaked cake topped with raspberry jam, eaten around Runeberg Day.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laskiaispulla</span><span class="dish-tag">Cream-filled bun</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cardamom bun split and filled with almond paste and whipped cream, eaten before Lent.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mämmi</span><span class="dish-tag">Rye Easter pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dark, malty rye pudding traditionally eaten cold with cream and sugar at Easter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pannukakku</span><span class="dish-tag">Oven pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A thick, custardy baked pancake, often served with berries or jam.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sima</span><span class="dish-tag">Fermented lemon mead</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lightly fermented, honey-sweetened lemon drink brewed for May Day.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karjalanpiirakka with Egg Butter</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic rye rice pasty topped with a spread of chopped hard-boiled egg and butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salmiakki</span><span class="dish-tag">Salty liquorice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Finland's beloved and internationally baffling ammonium-chloride liquorice candy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sausage by the Fire</span><span class="dish-tag">Campfire sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Makkara grilled on a stick over an open fire, a summer cottage ritual.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ruisleipä with Butter</span><span class="dish-tag">Rye bread &amp; butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slice of dense sour rye bread with a generous layer of butter, eaten at any meal.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Muikku Chips</span><span class="dish-tag">Fried vendace snack</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried lake fish eaten crisp as a snack, especially at markets and festivals.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pea Soup</span><span class="dish-tag">Hernekeitto, light</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lighter snack-sized portion of the classic split pea and ham soup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Karelian Hot Pot</span><span class="dish-tag">Leftover hot pot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Leftover karjalanpaisti reheated and eaten as a quick, hearty snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ruispalat</span><span class="dish-tag">Rye bread squares</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small squares of dense rye bread, often topped with butter or cheese.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Finnish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Dill</li>
+        <li><span class="n">06</span> Allspice</li>
+        <li><span class="n">02</span> Lingonberry</li>
+        <li><span class="n">07</span> Rye</li>
+        <li><span class="n">03</span> Sour cream</li>
+        <li><span class="n">08</span> Cloudberry</li>
+        <li><span class="n">04</span> Smoked fish</li>
+        <li><span class="n">09</span> Butter</li>
+        <li><span class="n">05</span> Caraway</li>
+        <li><span class="n">10</span> Salmiakki</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Koskenkorva &amp; Spirits</p>
+            <ol class="plain">
+              <li>Koskenkorva Viina</li>
+              <li>Lonkero</li>
+              <li>Finlandia Vodka</li>
+              <li>Salmari</li>
+              <li>Lapin Kulta</li>
+              <li>Karjala</li>
+              <li>Olvi</li>
+              <li>Kyrö Rye Whisky</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Coffee &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Kahvi</li>
+              <li>Sima</li>
+              <li>Kotikalja</li>
+              <li>Pulla with coffee</li>
+              <li>Mustikka juice</li>
+              <li>Lingonberry juice</li>
+              <li>Kaakao</li>
+              <li>Soured milk / piimä</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Craft</p>
+            <ol class="plain">
+              <li>Karjala</li>
+              <li>Lapin Kulta</li>
+              <li>Olvi</li>
+              <li>Koff</li>
+              <li>Hartwall Original</li>
+              <li>Teerenpeli</li>
+              <li>Pyynikki Craft</li>
+              <li>Nokian Panimo</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

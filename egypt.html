@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egypt — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 62 / 68 · Africa</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Egypt</h1>
+      <p class="subhead">Koshary, ful medames, and molokhia — 7,000 years of continuous Nile Valley agriculture, refined through Greek, Roman, Arab, Ottoman, and British layers.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            NILE · KOSHARY · AISH BALADI · NILE · KOSHARY ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Egypt">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Egyptian cuisine is among the oldest continuously practised food cultures in the world — a tradition stretching back over 7,000 years of Nile Valley agriculture, shaped by one of history's greatest civilisations and refined through successive waves of Greek, Roman, Arab, Ottoman, and British influence. The ancient Egyptians were among the first peoples to bake leavened bread, brew beer, and cultivate a systematic agricultural food supply sufficient to support a population of millions. The foods they grew — wheat, barley, lentils, fava beans, onions, garlic, leeks, and figs — remain at the heart of the Egyptian diet today.</p>
+        <p>The Arab conquest of 641 CE brought Islam, the Arabic language, and a new culinary vocabulary that transformed Egyptian food — spice use deepened, new dishes arrived from the broader Arab world, and the Egyptian kitchen absorbed Levantine, Persian, and North African influences through its position at the crossroads of trade routes connecting Africa, Asia, and the Mediterranean. The Ottoman period from 1517 to 1798 added further layers, particularly in confectionery and rice traditions. Napoleon's expedition of 1798 and the subsequent British occupation introduced European cooking techniques to the upper classes, and cosmopolitan Alexandria developed a Mediterranean-influenced food culture all its own.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Egyptian cooking is rooted in pragmatism and abundance — a cuisine built to feed a very large, predominantly poor population from the extraordinarily fertile Nile Delta. Legumes are the great protein source: ful medames (fava beans) is eaten for breakfast by virtually every Egyptian regardless of class, and lentils, chickpeas, and split peas appear in soups, stews, and the national dish of koshary. Bread — aish baladi, the government-subsidised thick whole-wheat flatbread — is eaten with every meal and used to scoop, wrap, and carry everything.</p>
+        <p>Molokhia — the viscous, intensely flavoured green soup made from the leaves of the jute plant — is perhaps the most distinctively Egyptian dish, its slippery texture and deep green colour either beloved or startling depending on the diner. Cooked with garlic and coriander fried in clarified butter, poured over rice, it is a dish of ancient lineage and total national ownership. Koshary — the combination of rice, lentils, pasta, chickpeas, crispy fried onions, and spiced tomato sauce — is the street food that defines contemporary Egypt: cheap, filling, satisfying, and proudly incoherent in its origins.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ful medames — slow-cooked fava beans — is the national breakfast, eaten from Alexandria to Aswan every morning. A ten-pound pot of ful feeds a family for pennies and has done so for 5,000 years.</li>
+        <li>Egyptian bread — aish baladi, the thick, slightly sour whole-wheat flatbread — is subsidised by the government as a staple right. Egyptians eat more bread per capita than almost any other nation on earth.</li>
+        <li>Meals are communal and generous — dishes are placed in the centre and shared. An Egyptian host will insist guests eat far more than they planned.</li>
+        <li>Tea is the social glue — heavily sweetened black tea is drunk throughout the day at every social occasion, in every tea house, and after every meal.</li>
+        <li>Street food culture is profound — the koshary cart, the ful and ta'ameya stand, and the hawawshi baker are the alimentary backbone of Egyptian urban life.</li>
+        <li>Ramadan is the greatest food occasion of the year — the iftar breaking of the fast with dates, soup, and a full spread, followed by the late-night suhoor meal, transforms the food calendar for a full month.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fava beans / ful</li>
+        <li><span class="n">06</span> Molokhia</li>
+        <li><span class="n">02</span> Tahini</li>
+        <li><span class="n">07</span> Aish baladi</li>
+        <li><span class="n">03</span> Cumin</li>
+        <li><span class="n">08</span> Rice</li>
+        <li><span class="n">04</span> Coriander</li>
+        <li><span class="n">09</span> Lentils</li>
+        <li><span class="n">05</span> Dukkah</li>
+        <li><span class="n">10</span> Clarified butter / samna</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Koshary — Egypt's national dish of rice, lentils, pasta, chickpeas, crispy onions, and spiced tomato sauce — developed in the 19th century as Egypt absorbed Italian pasta, Indian lentil cooking, and its own rice and legume traditions under Cairo's cosmopolitan population.</li>
+        <li>Egypt has been continuously farmed for over 7,000 years, making the Nile Delta one of the oldest agricultural landscapes on earth. Ancient Egyptians cultivated wheat, barley, flax, onions, garlic, and figs in quantities sufficient to support one of the ancient world's largest urban populations.</li>
+        <li>Dukkah — the Egyptian spice and nut blend of sesame, coriander, cumin, and hazelnuts or almonds — has become fashionable internationally, but in Egypt it's eaten simply: bread dipped in olive oil, then pressed into dukkah. The word means 'to pound' in Arabic.</li>
+        <li>Ta'ameya — Egyptian falafel — is made from fava beans rather than chickpeas, distinguishing it from Levantine falafel. Egyptians consider the chickpea version an inferior imitation.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Koshary</span><span class="dish-tag">Rice, lentil, pasta bowl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A layered bowl of rice, lentils, pasta, and chickpeas topped with crispy onions and spiced tomato sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ful Medames</span><span class="dish-tag">Slow-cooked fava beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-cooked fava beans dressed with oil, lemon, and cumin, Egypt's daily national breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Molokhia</span><span class="dish-tag">Jute leaf green soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A viscous, garlicky green soup made from jute leaves, poured over rice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hawawshi</span><span class="dish-tag">Spiced meat stuffed bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flatbread stuffed with spiced minced meat and baked or grilled until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mahshi</span><span class="dish-tag">Stuffed vegetables, rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vegetables such as zucchini, peppers, or cabbage stuffed with spiced rice.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Om Ali</span><span class="dish-tag">Warm bread pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, rich bread pudding baked with milk, nuts, and raisins, Egypt's beloved dessert-main crossover.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kofta</span><span class="dish-tag">Grilled spiced minced meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered and grilled spiced minced meat, seasoned simply with onion and parsley.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Feteer Meshaltet</span><span class="dish-tag">Flaky layered pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, buttery layered pastry, eaten sweet or savory, often called Egyptian pancake.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sayadeya</span><span class="dish-tag">Spiced fish, rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fish cooked with rice in a fragrant, spiced fish stock, a coastal specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roz bil Laban</span><span class="dish-tag">Egyptian rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice slow-cooked in milk until creamy, a simple comforting dessert-main.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Om Ali</span><span class="dish-tag">Warm bread pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, rich bread pudding baked with milk, nuts, and raisins, Egypt's beloved dessert-main crossover.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Basbousa</span><span class="dish-tag">Semolina syrup cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense semolina cake soaked in sweet syrup, often topped with almonds.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Konafa</span><span class="dish-tag">Shredded pastry, syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded phyllo-like pastry layered with cream or nuts and soaked in syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Luqaimat</span><span class="dish-tag">Fried dough, syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small deep-fried dough balls drenched in sweet syrup.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zalabia</span><span class="dish-tag">Fried dough in syrup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crispy fried dough coils or balls soaked in fragrant sugar syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halawa</span><span class="dish-tag">Sesame paste sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, crumbly sweet made from ground sesame paste and sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Qatayef</span><span class="dish-tag">Stuffed folded pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded pancake stuffed with nuts or cheese, a Ramadan specialty.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Umm Ali bil Kaymak</span><span class="dish-tag">Bread pudding, clotted cream</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A richer version of Om Ali topped with clotted cream.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ta'ameya</span><span class="dish-tag">Fava bean falafel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Egyptian falafel made from fava beans rather than chickpeas, giving it a greener color and earthier flavor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aish baladi with dukkah</span><span class="dish-tag">Flatbread, spice dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Whole-wheat flatbread dipped in olive oil and pressed into a nutty spice blend.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hawawshi</span><span class="dish-tag">Spiced meat stuffed bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flatbread stuffed with spiced minced meat and baked or grilled until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fiteer</span><span class="dish-tag">Flaky layered pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, buttery layered pastry, eaten sweet or savory, often called Egyptian pancake.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sambousek</span><span class="dish-tag">Fried filled pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small crescent-shaped pastries filled with spiced meat or cheese and fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ful medames</span><span class="dish-tag">Slow-cooked fava beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-cooked fava beans dressed with oil, lemon, and cumin, eaten any time of day.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kofta bil sayf</span><span class="dish-tag">Skewered grilled meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced minced meat grilled on a skewer over charcoal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Batata harra</span><span class="dish-tag">Spicy fried potatoes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried potato cubes tossed with garlic, chili, and coriander.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Egyptian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Cumin</li>
+        <li><span class="n">06</span> Samna</li>
+        <li><span class="n">02</span> Coriander</li>
+        <li><span class="n">07</span> Dried coriander</li>
+        <li><span class="n">03</span> Dukkah</li>
+        <li><span class="n">08</span> Garlic</li>
+        <li><span class="n">04</span> Molokhia</li>
+        <li><span class="n">09</span> Tomato & onion</li>
+        <li><span class="n">05</span> Tahini</li>
+        <li><span class="n">10</span> Lemon juice</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Wine &amp; Spirits</p>
+            <ol class="plain">
+              <li>Stella Beer</li>
+              <li>Sakara Beer</li>
+              <li>Luxor Beer</li>
+              <li>Omar Khayyam wine</li>
+              <li>Cru des Ptolémées</li>
+              <li>Arak Halabi</li>
+              <li>Abu Sir wine</li>
+              <li>Aswali wine</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Karkadeh</li>
+              <li>Sahlab</li>
+              <li>Sous</li>
+              <li>Tamarind water</li>
+              <li>Ayran / Laban</li>
+              <li>Nescafe</li>
+              <li>Koshary chai</li>
+              <li>Yansoon</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Stella</li>
+              <li>Sakara</li>
+              <li>Luxor</li>
+              <li>Meister</li>
+              <li>Heineken Egypt</li>
+              <li>Birell malt</li>
+              <li>Marzen</li>
+              <li>Fayrouz malt</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

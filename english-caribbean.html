@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The English Caribbean — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 63 / 68 · Caribbean</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">The English Caribbean</h1>
+      <p class="subhead">Barbados, Grenada, St. Lucia, Antigua, Dominica, Guyana, and the Dutch Antilles — rum, rice and peas, and a West African foundation adapted over four centuries.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            RUM PUNCH · SUNDAY LUNCH · SPICE ISLE · RUM PUNCH ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAFGUlEQVR4nO3d0XHbRhSGUSqTotyDW3M77kFdOQ/OiIqEgKtL7P6+wDmvERXMnf1mZYCzeLn9eL0BOX+lLwCuToQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhImzv1/dv6UvgKSLsTYEnIMIzkGJrImxMe+cgwpMQZF8i7Ep1p/F3+gIYMpLc5595+fk653I4kp2wh0JOCuxChIs8/9fjy8/Xwa7Gf3Kfv3jXEOEKB67mh3UdtQEqcBkRrnPUst7J7PA/QaW4gAin67iOO15zXyJc6pDFvfNLZsQjyNlEOFfHFdzxmlvznPBI65/mvX22XI4nkHF2wiMteJr31sOH5xDlGj2BjLMTHuz3Ah0pobyU/++D4//r8gflN8PL7YexTrG/pv/M1dzxmk/An6OzrHyad5SO13wCIoQwEc6y+GneITpe8wmIEMLcHV3h+ad563W85qbcHZ3i/dO88f+U1fGaz8FOOMvhT/MW6HjNJ2AnhDA3ZiBMhBAmQggTIYSJcIgbgzXmNkKEj1lJNeY2SISjLKkac3tIhA9YQzXmNk6EX2Bh1ZjbPhHusXpqzO1LfG3trrZ0fKfZ3J5kJ7xz7liNuT3JTrjBuWM15lZjJ9yw7M1HJ2NuNSLc5tyxGnMrECGEiXCbc8dqzK1AhBDmjJnHnDtWY26DPKLY4NyxGnOrsRNuc+5YjbkV2AkhzI0ZCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIvwPX/Nfw5zfE+GdlbGGOX8gwo8skTXM+Y0I/2VNrGHOn4lwg4Wyhjn/JsLbzWpYxZw3XfF4C28RWsOcB11xJ/QWoTXMedAVd8I33iK0hjnvu+JO+MZbhNYw532XjvDmLUKrmPOOq0cIcVeP0FuE1jDnHVePEOK8i+LOW4TWMOcPPKK43bxFaDJz3nf1ndBbhNYw5x2X3gnhT+DGDISJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBEOufjX/MvMbYQIH7OSasxtkAhHWVI15vaQCB+whmrMbZwIv8DCqjG3fSLcY/XUmNuXON7izluEasztSXbCO28RqjG3J9kJN3iLUI251dgJN3iLUI251Yhwm7cI1ZhbgQghTITbvEWoxtwKRAhhV38XxQhvEaoxt0EeUWzwFqEac6uxE27zFqEacyuwE0KYGzMQJkIIEyGEiRDCRLhIxxuDHa+5IxGu0HE1d7zmpkS4Tsdl3fGa2xHhdB3Xccdr7kuES3Vc3B2vuRcRztVxBXe85tZ8be1IHc8d63jNJ2MnPFLHc8c6XvPJ2AmnWHnu2K/v3w75Vc5KS7ETTrHs3LED//3mrLQUEc6y8tyxo1J0VlqECBtzG/McRDjL4nPHDvmdzkqLEGFXqjgNZ8ys8Py5YyMf/Pwzz/xDzllpy3hEMcWMc8e+GkP59zsrbTE74SyHnzs2/sFyKs5Ki7AT9rMfg82qHTdm+vE072RECGEi7MfTvJMRIYS5O9qbp3knYCds5v0ju/e3YdTYl52wH0/zTsZzQgjz5yiEiRDCRAhhIoQwEUKYCCFMhBAmQggTIYSJEMJECGEihDARQpgIIUyEECZCCBMhhIkQwkQIYSKEMBFCmAghTIQQJkIIEyGEiRDCRAhhIoQwEUKYCCFMhBD2D1VJFbhx3rXEAAAAAElFTkSuQmCC" alt="Flag of The English Caribbean">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The English-speaking Caribbean encompasses the former British colonies stretching from Barbados and the Windward Islands through the Leeward Islands to Guyana on the South American mainland, and extends to include the Dutch Antilles of Curaçao and Aruba whose food culture shares more with the English-speaking tradition than with the French. These islands share a common history of British plantation colonialism built on sugar, the transatlantic slave trade, and the West African culinary knowledge that enslaved people brought with them — and it is that African foundation, adapted to Caribbean ingredients over four centuries, that defines the flavour of the English-speaking Caribbean kitchen.</p>
+        <p>The British colonial period from the 17th century brought salt fish — preserved cod from the North Atlantic — which became the protein of the enslaved population when fresh fish was unavailable, and is now an honoured ingredient in the national dishes of virtually every English-speaking island. Breadfruit, brought to the Caribbean from the Pacific by Captain Bligh specifically to feed enslaved people cheaply, became so thoroughly embedded in Caribbean cooking that it is now considered a native ingredient. The Creole synthesis of British, African, Indian, and indigenous Amerindian culinary traditions produced the rum punch, rice and peas, pepperpot, and the distinctive spice palette of allspice, thyme, scotch bonnet, and coconut milk.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>English Caribbean cooking is warm, direct, and built on simple excellence of ingredients. The Sunday rice and peas — kidney beans or gungo peas cooked with coconut milk and thyme, producing a fragrant, slightly creamy rice — is the dish that most connects the islands. Curried goat, brought by Indian indentured workers and now as Caribbean as anything else, is the party food of choice across the islands. Cou-cou and flying fish — Barbados's national dish of cornmeal and okra polenta with steamed flying fish — is a direct descendant of West African fufu and fish traditions, Caribbeanized into something entirely its own.</p>
+        <p>Rum is the region's greatest contribution to world drinks culture — Barbados claims the oldest rum distillation records (1620s), and Mount Gay, founded in 1703, is the oldest rum brand still in production. The rum punch — one of sour, two of sweet, three of strong, four of weak — is the universal welcome drink, mixed fresh at every gathering. Each island has its own rum: Barbados's elegant pot-still rums, Guyana's rich Demerara, and the lighter column-still rums of the smaller islands each have distinct characters. Grenada, the spice island, produces nutmeg, mace, cinnamon, cloves, and cocoa that give its cooking an aromatic distinctiveness.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The rum punch is the universal welcome drink — every island has its own ratio, but the formula is consistent: one of sour (lime), two of sweet (syrup), three of strong (rum), four of weak (water or juice).</li>
+        <li>Sunday lunch is the most important meal of the week — rice and peas, fried chicken or stewed meat, macaroni pie, and coleslaw, eaten with the extended family after church.</li>
+        <li>Fish is the daily protein of coastal communities — flying fish in Barbados, red snapper across the islands, salt fish everywhere.</li>
+        <li>Hot sauce is a table fixture — each island has its own pepper sauce tradition, from mild Bajan to incendiary Scotch bonnet-based sauces. Food without pepper sauce is considered unfinished.</li>
+        <li>The Dutch Antilles add their own footnote — Curaçao's keshi yena (Edam cheese stuffed with spiced meat and baked), Indonesian-influenced rijsttafel, and the uniquely coloured Blue Curaçao liqueur.</li>
+        <li>Carnival seasons across the islands bring out specific festival foods — conkies, black cake, and pepperpot are associated with particular seasons and celebrations.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Flying fish</li>
+        <li><span class="n">06</span> Breadfruit</li>
+        <li><span class="n">02</span> Salt fish</li>
+        <li><span class="n">07</span> Cassareep</li>
+        <li><span class="n">03</span> Scotch bonnet</li>
+        <li><span class="n">08</span> Gungo peas</li>
+        <li><span class="n">04</span> Coconut milk</li>
+        <li><span class="n">09</span> Christophine</li>
+        <li><span class="n">05</span> Plantain</li>
+        <li><span class="n">10</span> Rum</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Flying fish — the small, wing-finned fish that genuinely glides above the Atlantic waves — is so central to Barbadian identity that it appears on the country's coat of arms. Cou-cou and flying fish is the national dish.</li>
+        <li>Pepper pot — the Amerindian-origin stew preserved with cassareep — is perhaps the oldest continuously made dish in the Caribbean. Traditional pots are said to have been kept simmering for decades, with new ingredients added as old ones are consumed.</li>
+        <li>Rum originated in the Caribbean — the first distillation of sugarcane into rum is recorded in Barbados in the 1620s or 1630s, making it the oldest rum-producing country in the world. Mount Gay, founded 1703, is the oldest rum brand still in production.</li>
+        <li>Conch — the large sea snail whose shell is a symbol of the Caribbean — is the protein of the Bahamas and Turks and Caicos most of all, but appears across the English-speaking Caribbean in fritters, salads, and chowders.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cou-Cou &amp; Flying Fish</span><span class="dish-tag">Cornmeal polenta, fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cornmeal and okra polenta paired with steamed flying fish in tomato pepper sauce, Barbados's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pepper Pot</span><span class="dish-tag">Cassareep-preserved stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-simmered meat stew preserved with cassareep, one of the oldest continuously made Caribbean dishes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rice &amp; Peas</span><span class="dish-tag">Coconut rice, kidney beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice and kidney or gungo peas cooked in coconut milk with thyme, the backbone of Sunday lunch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Curried Goat</span><span class="dish-tag">Spiced curried goat meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Goat meat slow-cooked in a fragrant curry, the celebratory party dish of the islands.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ackee &amp; Salt Fish</span><span class="dish-tag">Fruit, salted cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sautéed ackee fruit with flaked salt cod, onion, and pepper.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stewed Oxtail</span><span class="dish-tag">Slow-braised oxtail</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oxtail slow-braised until tender in a rich, dark gravy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Conch Fritters</span><span class="dish-tag">Fried conch fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chopped conch meat mixed into a savory batter and deep-fried.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oil Down</span><span class="dish-tag">Breadfruit, coconut stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Breadfruit and salted meat stewed down in coconut milk until deeply savory, Grenada's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Broth</span><span class="dish-tag">Light fish, ground provision soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light broth of fish and root vegetables, a coastal comfort food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roti &amp; Curry</span><span class="dish-tag">Curry-filled flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft flatbread wrapped around a curried filling, a Trinidadian-influenced staple.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cakes &amp; Puddings</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Black Cake</span><span class="dish-tag">Rum-soaked fruit cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense fruit cake soaked in rum and wine, the centerpiece of Caribbean Christmas and weddings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Conkies</span><span class="dish-tag">Steamed cornmeal parcels</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweetened cornmeal and coconut steamed in banana leaf, a Barbadian Crop Over treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sweet Potato Pudding</span><span class="dish-tag">Spiced potato pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, spiced pudding made from grated sweet potato and coconut milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coconut Bread</span><span class="dish-tag">Sweet coconut milk bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, lightly sweet bread enriched with coconut milk and shredded coconut.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tamarind Balls</span><span class="dish-tag">Sweet-tart tamarind candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tamarind pulp rolled with sugar into a sweet-tart chewy candy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Toolum</span><span class="dish-tag">Molasses coconut candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy candy of coconut cooked with molasses and ginger.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sugar Cake</span><span class="dish-tag">Coconut sugar candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, dense candy of grated coconut cooked with sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Duckunoo</span><span class="dish-tag">Steamed cornmeal pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweetened cornmeal pudding steamed in a banana leaf, similar to conkies.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bakes &amp; Salt Fish</span><span class="dish-tag">Fried bread, salted cod</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried or baked dough served alongside sautéed salt fish, a beloved breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Accra</span><span class="dish-tag">Salt fish fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep-fried fritters of salt fish and seasoned batter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Doubles</span><span class="dish-tag">Curried chickpea flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Two fried flatbreads sandwiching curried chickpeas, a Trinidadian-influenced street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Breadfruit Chips</span><span class="dish-tag">Fried breadfruit crisps</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of breadfruit fried until crisp.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Corn Soup</span><span class="dish-tag">Hearty corn, dumpling soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty soup of corn and dumplings, a popular street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roti</span><span class="dish-tag">Curry-filled flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft flatbread wrapped around a curried filling, a Trinidadian-influenced staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried Plantain</span><span class="dish-tag">Sweet fried plantain</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe plantain slices fried until caramelized and sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fish Cakes</span><span class="dish-tag">Fried salt fish fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried fritters of salt fish and seasoned batter.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly English Caribbean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Scotch bonnet</li>
+        <li><span class="n">06</span> Lime</li>
+        <li><span class="n">02</span> Coconut milk</li>
+        <li><span class="n">07</span> Rum</li>
+        <li><span class="n">03</span> Allspice</li>
+        <li><span class="n">08</span> Salt fish</li>
+        <li><span class="n">04</span> Thyme</li>
+        <li><span class="n">09</span> Cane sugar</li>
+        <li><span class="n">05</span> Cassareep</li>
+        <li><span class="n">10</span> Bay leaf</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Rum &amp; Cocktails</p>
+            <ol class="plain">
+              <li>Mount Gay Rum</li>
+              <li>Cockspur Rum</li>
+              <li>Appleton Estate</li>
+              <li>Angostura 1824</li>
+              <li>Rum Punch</li>
+              <li>El Dorado Guyana</li>
+              <li>Banks Beer</li>
+              <li>Carib</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Mauby</li>
+              <li>Sorrel</li>
+              <li>Ginger Beer</li>
+              <li>Sea Moss</li>
+              <li>Coconut Water</li>
+              <li>Peanut Punch</li>
+              <li>Tamarind Drink</li>
+              <li>Ju-C soda</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Banks Barbados</li>
+              <li>Carib</li>
+              <li>Wadadli Antigua</li>
+              <li>Piton St. Lucia</li>
+              <li>Hairoun St. Vincent</li>
+              <li>Kubuli Dominica</li>
+              <li>Stag</li>
+              <li>Mackeson Stout</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

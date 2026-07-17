@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghana — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 31 / 68 · Africa</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Ghana</h1>
+      <p class="subhead">Fufu and shito, palm oil and groundnut soup — a West African cuisine of communal, slow-cooked abundance.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            GOLD COAST · GROUNDNUT · ATLANTIC COAST · GOLD COAST ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Ghana">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Ghanaian cuisine is deeply rooted in the agricultural and cultural traditions of the Akan, Ga, Ewe, Dagomba, and other peoples of the West African forest and savannah zones. The food reflects the land: palm oil and palm nuts from the forest belt, yam and cassava from the fertile middle belt, sorghum and millet from the drier north, and an extraordinary abundance of fish from the Atlantic coast and Volta River. Starchy staples — fufu, banku, kenkey, omo tuo — are the foundations, each with its own preparation method, regional identity, and cultural significance.</p>
+        <p>Arab traders across the Sahara brought spices and dried goods from the north for centuries before European contact. Portuguese traders arrived on the Gold Coast in 1471, followed by Dutch, British, Danish, and Swedish — each leaving culinary traces, most notably in the introduction of American crops: tomatoes, cassava, groundnuts, peppers, and maize, all of which are now so thoroughly embedded in Ghanaian cooking that they feel ancient. The transatlantic slave trade, in which the Gold Coast was a major departure point, created profound culinary connections between West Africa and the Americas — soul food, Brazilian vatapá, and many Caribbean dishes trace their DNA directly to cooking traditions from what is now Ghana.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Ghanaian cooking is hearty, deeply savory, and built around the combination of a starchy base with a boldly flavored soup or stew. The soups — groundnut, palm nut, light soup — are not thin broths but rich, complex, slow-cooked preparations that take hours and require skilled hands. Fufu, the most iconic Ghanaian starch, is made by pounding boiled cassava and plantain together until smooth and elastic, then rolled into balls and swallowed — not chewed — with soup. Each ethnic group has its own preferred starch and preparation.</p>
+        <p>Heat comes from scotch bonnet peppers used without restraint. Palm oil gives many dishes their characteristic orange-red color and deep, slightly funky richness that is the flavor signature of West African cooking. Dried and smoked fish add umami depth to almost every stew and soup. Shito — the black pepper sauce of fermented dried shrimp, herrings, and chili — is Ghana's essential condiment, found on every table. The food is communal, abundant, and eaten with pride.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Meals are eaten communally from shared bowls — the eldest person at the table eats first. Food is traditionally eaten with the right hand, rolling rice and stew together into a ball before eating.</li>
+        <li>Fufu is not merely food but a ritual — pounded in a wooden mortar together, the rhythmic alternation of pounding and turning requires trust and coordination between two people.</li>
+        <li>Hospitality is sacred — a guest must be offered food regardless of the time of day or what is available. Refusing offered food is considered disrespectful in many communities.</li>
+        <li>Sunday is chop day — the most elaborate meal of the week, typically featuring a large pot of groundnut soup or palm nut soup with fufu, prepared over several hours.</li>
+        <li>Kenkey and fish is the iconic everyday Ga meal of Accra — fermented corn dumplings with fried or grilled fish and pepper sauce, eaten at roadside chop bars throughout the city.</li>
+        <li>Palm wine is tapped fresh from the tree and consumed the same day — it ferments within hours and becomes more alcoholic and sour as the day progresses.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Palm oil</li>
+        <li><span class="n">06</span> Dried fish & shrimp</li>
+        <li><span class="n">02</span> Groundnuts</li>
+        <li><span class="n">07</span> Scotch bonnet pepper</li>
+        <li><span class="n">03</span> Plantain</li>
+        <li><span class="n">08</span> Kontomire / cocoyam leaves</li>
+        <li><span class="n">04</span> Cassava</li>
+        <li><span class="n">09</span> Tomatoes & onion</li>
+        <li><span class="n">05</span> Yam</li>
+        <li><span class="n">10</span> Corn / maize</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ghana is the world's second-largest producer of cocoa, after Côte d'Ivoire, and supplies roughly 20% of global cocoa. Ghanaian cocoa is considered among the finest quality in the world — yet historically most of the chocolate made from it was consumed in Europe, not Ghana itself.</li>
+        <li>Groundnut soup — a rich peanut-based stew — reflects the West African origin of peanut cultivation and cooking traditions that travelled to the Americas via the transatlantic slave trade. Many Southern American dishes using peanuts trace their lineage directly to West African cooking.</li>
+        <li>Shito — Ghana's fiercely pungent black pepper sauce made from dried shrimp, herrings, and chili — is arguably the most distinctive condiment in West African cooking. A Ghanaian meal without shito is considered incomplete by many.</li>
+        <li>Ghana's kelewele — spiced fried plantain — is one of the most beloved street foods on the continent. The use of spices like ginger, cayenne, and cloves to season fried ripe plantain is a Ghanaian technique that distinguishes it from the plain fried plantain common elsewhere in West Africa.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The soups, starches, and drinks that define the everyday Ghanaian table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fufu with Groundnut Soup</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pounded cassava and plantain served with a rich, slow-cooked peanut-based soup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jollof Rice</span><span class="dish-tag">Tomato spiced rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice cooked in a rich tomato and pepper sauce, West Africa's most celebrated rice dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banku with Tilapia</span><span class="dish-tag">Fermented corn dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fermented corn and cassava dough served with grilled or fried tilapia and pepper sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kenkey with Fried Fish</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fermented corn dumplings served with fried fish and pepper sauce, an iconic Ga meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Palm Nut Soup with Fufu</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, deep-red soup made from palm fruit, served with pounded fufu.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Waakye</span><span class="dish-tag">Rice &amp; beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rice and beans cooked together with dried millet leaves, giving it a reddish-brown colour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Omo Tuo</span><span class="dish-tag">Rice balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft pounded rice balls, typically eaten with soup in place of fufu.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Red Red</span><span class="dish-tag">Black-eyed pea stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Black-eyed peas stewed in palm oil and tomato, often served with fried plantain.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Light Soup with Fufu</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lighter, tomato-based broth soup served with pounded fufu.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kontomire Stew</span><span class="dish-tag">Cocoyam leaf stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cocoyam leaves stewed with palm oil, fish, and egg, similar to a West African spinach stew.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweet Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kelewele</span><span class="dish-tag">Spiced fried plantain</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe plantain fried with ginger, cayenne, and cloves, one of Ghana's most beloved street foods.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bofrot</span><span class="dish-tag">Fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft, sweet fried dough balls, similar to a doughnut, popular for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chin Chin</span><span class="dish-tag">Fried dough crackers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small crunchy fried dough crackers, lightly sweetened.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kube Cake</span><span class="dish-tag">Coconut candy cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy coconut and sugar candy, sold in small blocks.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oblayo</span><span class="dish-tag">Coconut sweet balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small sweet balls made from coconut and sugar, a simple homemade treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tatale</span><span class="dish-tag">Plantain pancakes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sweet, spiced pancakes made from mashed overripe plantain.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried Yam with Shito</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp fried yam served with Ghana's fiery black pepper sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tom Brown Porridge</span><span class="dish-tag">Roasted maize porridge</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A smooth porridge made from roasted, milled maize, often eaten for breakfast.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Food</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kelewele</span><span class="dish-tag">Spiced fried plantain</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe plantain fried with ginger, cayenne, and cloves, sold across the country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Koose</span><span class="dish-tag">Black-eyed pea fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fritters made from ground black-eyed peas, a popular breakfast street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bofrot</span><span class="dish-tag">Fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft, sweet fried dough balls, popular alongside tea or coffee.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roasted Corn &amp; Coconut</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roasted corn on the cob paired with fresh coconut, a classic roadside snack.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Snacks &amp; Sides</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shito on Bread</span><span class="dish-tag">Pepper sauce &amp; bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ghana's fiery black pepper sauce spread simply on bread, a quick snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Plantain Chips</span><span class="dish-tag">Fried plantain slices</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thin slices of plantain fried until crisp, a common packaged snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaklo</span><span class="dish-tag">Spiced plantain fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grated plantain fritters spiced with ginger and pepper, similar to kelewele in fritter form.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Groundnut Cake</span><span class="dish-tag">Peanut brittle bar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense peanut and sugar bar, similar to peanut brittle.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Ghanaian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Shito</li>
+        <li><span class="n">06</span> Dawadawa</li>
+        <li><span class="n">02</span> Palm oil</li>
+        <li><span class="n">07</span> Ginger</li>
+        <li><span class="n">03</span> Scotch bonnet pepper</li>
+        <li><span class="n">08</span> Garden eggs</li>
+        <li><span class="n">04</span> Dried shrimp</li>
+        <li><span class="n">09</span> Fermented corn</li>
+        <li><span class="n">05</span> Groundnut paste</li>
+        <li><span class="n">10</span> Smoked herrings</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Palm Wine</p>
+            <ol class="plain">
+              <li>Palm wine</li>
+              <li>Akpeteshie</li>
+              <li>Pito</li>
+              <li>Asaana</li>
+              <li>Club Beer</li>
+              <li>Star Beer</li>
+              <li>Alomo Bitters</li>
+              <li>Orijin</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Sobolo</li>
+              <li>Asaana</li>
+              <li>Bissap</li>
+              <li>Fanta Citrus</li>
+              <li>Malta Guinness</li>
+              <li>Tom Brown drink</li>
+              <li>Fresh coconut water</li>
+              <li>Hausa koko</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers &amp; Stouts</p>
+            <ol class="plain">
+              <li>Star</li>
+              <li>Club</li>
+              <li>Gulder</li>
+              <li>Stone</li>
+              <li>Castle Milk Stout</li>
+              <li>Guinness Foreign Extra</li>
+              <li>ABC Stout</li>
+              <li>Orijin</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

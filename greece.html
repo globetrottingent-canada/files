@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greece — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 33 / 68 · Europe</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Greece</h1>
+      <p class="subhead">Olive oil, feta, and mezedes — one of the oldest continuously practiced food cultures in the West.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            AEGEAN · IONIAN · MEDITERRANEAN · AEGEAN ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAADZUlEQVR4nO3cMW7bdRyHYbsyVQSEpgIk1AFVChLqEJWxQ1WxhTNkSA6QBW7A1pWB3IHNKx1ZnYmNwd2w2g51GSKMito/d4itvrh+ngP89LHkV/pO//H+6XRUe3xydH58uM4L09ni7OJyU3vgXbpRD4BdJ0KIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIITapB7xXfvn+weef3KxXsGVEuEnf3D24c3uvXsGWcY5CTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECLHxz7/O6w2jh19/ev/uwTovzJ9fPfn9xYbmXN+zV6s3b4d6BVtmPAz+NBtz74cni+WqXsGWcY5CTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECLHJdLaoN4yOvrz11Rcfr/PCYrmazZeb2nNtj+599s+/b+sVbJnJ2cVlvWH0+ORozQhn8+X/4Yf88dN3d27v1SvYMs5RiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCE2qQe8V57/tRqGoV7BlhHhJn3742/1BLaPcxRiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYuM/X/5dbxgdfPjBR3trffdt9frN8ur1pvbAuzT2nUxoOUchJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihNjk7OKy3gA7bTKdLeoNsNOcoxATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCbHJ+fFhvgJ02Hoah3gA7zTkKMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcQml0+X9QbYaeP902m9AXaacxRiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYv8BTkJTkqCaMUkAAAAASUVORK5CYII=" alt="Flag of Greece">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Greek cuisine is among the oldest continuously practiced food cultures in the Western world — a tradition stretching back over 3,000 years, deeply rooted in the Mediterranean triad of olive oil, wheat, and wine. Ancient Greek texts contain some of the earliest recorded recipes in history, and the philosophical relationship between food, health, and virtue was already being debated by Hippocrates and Plato in the 5th century BCE. The Greek approach to eating — moderate, seasonal, plant-forward, and social — is what modern nutrition science now recognizes as the Mediterranean diet, one of the most studied and validated dietary patterns in the world.</p>
+        <p>Byzantine civilization preserved and elaborated Greek culinary traditions for over a thousand years, adding Persian spice influences, refined confectionery, and the tradition of elaborate banqueting. The four centuries of Ottoman rule left lasting culinary traces — moussaka, baklava, tzatziki, and many mezedes dishes reflect the shared Ottoman-Greek food culture of the eastern Mediterranean. Greek communities across the diaspora in Egypt, Turkey, and the Americas maintained their food traditions, and the mid-20th century return and consolidation of Greek identity brought many regional traditions into the national cuisine.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Greek cooking is defined by the quality of its raw ingredients — the finest olive oil in the world, sheep's milk feta of protected designation, wild herbs from mountain slopes, and seafood from the Aegean and Ionian seas. The cuisine uses these ingredients with confidence and restraint: a drizzle of good olive oil, a squeeze of lemon, dried oregano, and salt can elevate the simplest ingredients to something magnificent. The Mediterranean diet principle of letting quality produce speak is nowhere more naturally expressed than in Greek cooking.</p>
+        <p>Mezedes — the culture of small shared dishes — is the social heart of Greek eating: tzatziki, taramasalata, grilled octopus, saganaki, and dolmades arriving in succession with bread and wine before anything substantial. The island tradition of fresh grilled fish, the Athenian taverna's moussaka and pastitsio, and the mountain tradition of kleftiko slow-roasted lamb are all expressions of the same philosophy: patience, quality ingredients, and the pleasure of eating together. Spices are used with subtlety — cinnamon and allspice in meat dishes, honey in pastries, and the anise-forward bitterness of ouzo setting the tone for any serious meal.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Greek meals are slow and social — dining is not an act of refueling but a ritual of conversation, hospitality, and pleasure. A table set without wine and mezedes is considered inhospitable.</li>
+        <li>Mezedes culture defines Greek eating — small shared plates of olives, dips, cheese, and fried dishes arrive before the main course and can expand into a full meal in themselves.</li>
+        <li>The Greek table never empties — hosts refill plates without asking, insisting guests eat more. Refusing food is gently but persistently ignored. Leaving a table hungry is a host's failure.</li>
+        <li>Name day celebrations are often more important than birthdays — the person whose saint's name day it is hosts, providing food and drink for all guests who come unannounced.</li>
+        <li>Easter is the most important food occasion in the Greek year — the midnight Resurrection service is followed by a meal of magiritsa soup, and Easter Sunday brings whole lamb roasted on a spit.</li>
+        <li>Coffee culture is serious — Greek coffee is brewed in a small pot, served in a demitasse with the grounds in the bottom, and drunk slowly. Reading the grounds afterward is a tradition.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Lamb</li>
+        <li><span class="n">02</span> Feta cheese</li>
+        <li><span class="n">07</span> Kalamata olives</li>
+        <li><span class="n">03</span> Lemon</li>
+        <li><span class="n">08</span> Tomatoes</li>
+        <li><span class="n">04</span> Oregano</li>
+        <li><span class="n">09</span> Phyllo pastry</li>
+        <li><span class="n">05</span> Garlic</li>
+        <li><span class="n">10</span> Honey</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Greece is the world's third-largest producer of olive oil and the largest per-capita consumer — Greeks consume roughly 20 liters of olive oil per person per year, nearly three times the average of the next highest European consumers. Greek olive cultivation goes back at least 5,000 years.</li>
+        <li>Feta cheese has Protected Designation of Origin status under European Union law — only cheese made in specific regions of Greece from sheep's milk (or a mixture of up to 30% goat's milk) may legally be called feta. Denmark and other countries fought this designation for years before the EU ruled definitively in Greece's favor in 2002.</li>
+        <li>The word 'symposium' — now meaning an academic conference — originally referred to a Greek drinking party at which wine was diluted with water and philosophical discussion took place. The Greeks considered drinking undiluted wine barbaric; the proper ratio was typically three parts water to two parts wine.</li>
+        <li>Honey from Mount Hymettus near Athens has been considered the finest in the world since antiquity — Athenian honey was exported across the Mediterranean and praised by ancient writers. Greek thyme honey remains among the world's most prized, with bees collecting nectar from wild thyme, herbs, and wildflowers across the rocky hillsides.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The mezedes, pastries, and drinks that define the everyday Greek table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Moussaka</span><span class="dish-tag">Layered eggplant bake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of eggplant, spiced minced meat, and béchamel, baked until golden.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Souvlaki</span><span class="dish-tag">Grilled skewered meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered, grilled meat, often served wrapped in pita with tzatziki.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spanakopita</span><span class="dish-tag">Spinach &amp; feta pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flaky phyllo pastry filled with spinach and feta.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastitsio</span><span class="dish-tag">Baked pasta &amp; meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baked pasta layered with spiced minced meat and béchamel, Greece's answer to lasagna.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Grilled Octopus</span><span class="dish-tag">Char-grilled, olive oil</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tender octopus grilled over charcoal and dressed simply with olive oil and lemon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kleftiko</span><span class="dish-tag">Slow-roasted lamb</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lamb slow-roasted for hours, traditionally in a sealed clay oven, until falling apart.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Stifado</span><span class="dish-tag">Braised beef &amp; onion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rich, slow-braised beef stew with sweet baby onions, cinnamon, and red wine.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gemista</span><span class="dish-tag">Stuffed vegetables</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tomatoes or peppers stuffed with rice and herbs, baked until tender.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fasolada</span><span class="dish-tag">White bean soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty white bean soup often considered Greece's national dish of the poor table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gigantes Plaki</span><span class="dish-tag">Baked giant beans</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Giant butter beans baked in a rich tomato sauce with herbs.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Pastries &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baklava</span><span class="dish-tag">Honeyed nut pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Layers of phyllo filled with chopped nuts and soaked in honey syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Loukoumades</span><span class="dish-tag">Honey doughnuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried dough puffs drenched in honey syrup and cinnamon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Galaktoboureko</span><span class="dish-tag">Custard phyllo pie</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy semolina custard baked between layers of phyllo, soaked in syrup.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Revani</span><span class="dish-tag">Semolina syrup cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A moist semolina cake soaked in citrus syrup.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kourabiedes</span><span class="dish-tag">Almond shortbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Buttery almond shortbread cookies dusted with powdered sugar, a Christmas classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Melomakarona</span><span class="dish-tag">Honey spice cookies</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Spiced honey cookies soaked in syrup and topped with walnuts, made at Christmas.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rizogalo</span><span class="dish-tag">Rice pudding</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A creamy cinnamon-dusted rice pudding, a comforting everyday dessert.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kataifi</span><span class="dish-tag">Shredded pastry, nuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shredded phyllo-like pastry wrapped around nuts and soaked in syrup.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Mezedes Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tzatziki</span><span class="dish-tag">Yogurt &amp; cucumber dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cooling dip of strained yogurt, cucumber, garlic, and olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Taramasalata</span><span class="dish-tag">Fish roe dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pale pink dip made from cured fish roe blended with bread or potato.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spanakopita Triangles</span><span class="dish-tag"></span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bite-sized triangles of flaky phyllo filled with spinach and feta.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tiropita</span><span class="dish-tag">Cheese pie triangles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flaky phyllo pastry filled with a rich mix of Greek cheeses.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mezedes</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dolmades</span><span class="dish-tag">Stuffed vine leaves</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vine leaves stuffed with rice and herbs, served warm or cold.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saganaki</span><span class="dish-tag">Fried cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slab of cheese fried until crisp outside and molten within.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Horiatiki Salad</span><span class="dish-tag">Greek village salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tomato, cucumber, onion, olives, and a thick slab of feta, dressed in olive oil.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Skordalia</span><span class="dish-tag">Garlic potato dip</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pungent garlic and potato dip, often served with fried fish or vegetables.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Greek:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Olive oil</li>
+        <li><span class="n">06</span> Allspice</li>
+        <li><span class="n">02</span> Lemon juice</li>
+        <li><span class="n">07</span> Garlic</li>
+        <li><span class="n">03</span> Dried oregano</li>
+        <li><span class="n">08</span> Dill</li>
+        <li><span class="n">04</span> Fresh mint</li>
+        <li><span class="n">09</span> Honey & thyme</li>
+        <li><span class="n">05</span> Cinnamon</li>
+        <li><span class="n">10</span> Feta brine</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Ouzo &amp; Wine</p>
+            <ol class="plain">
+              <li>Ouzo</li>
+              <li>Tsipouro</li>
+              <li>Retsina</li>
+              <li>Assyrtiko wine</li>
+              <li>Agiorgitiko red wine</li>
+              <li>Metaxa brandy</li>
+              <li>Mastiha liqueur</li>
+              <li>Vinsanto</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Greek coffee</li>
+              <li>Frappé</li>
+              <li>Mountain tea</li>
+              <li>Chamomile tea</li>
+              <li>Fresh orange juice</li>
+              <li>Soumada</li>
+              <li>Vissinada</li>
+              <li>Lemonada</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Mythos</li>
+              <li>Alpha Beer</li>
+              <li>Fix Hellas</li>
+              <li>Alfa</li>
+              <li>Vergina</li>
+              <li>Septem</li>
+              <li>Athens Brewing</li>
+              <li>Zeos</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

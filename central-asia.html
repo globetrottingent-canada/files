@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central Asia — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 55 / 68 · Asia</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">Central Asia</h1>
+      <p class="subhead">Kazakhstan, Uzbekistan, Kyrgyzstan, Tajikistan, and Turkmenistan — plov, manti, and kumiss, where Silk Road bazaar cooking meets nomadic steppe tradition.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            SILK ROAD · STEPPE · BAZAAR · SILK ROAD · STEPPE · BAZAAR ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,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" alt="Flag of Central Asia">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Central Asian cuisine is one of the oldest and most historically significant food traditions in the world — the product of a vast landlocked region that served for over two millennia as the crossroads of the Eurasian landmass, carrying spices, ingredients, and techniques between China, India, Persia, the Arab world, and Europe along the Silk Road. The five post-Soviet republics of Kazakhstan, Uzbekistan, Kyrgyzstan, Tajikistan, and Turkmenistan share a culinary foundation built from two complementary traditions: the nomadic pastoral culture of the steppe, centred on meat and fermented dairy; and the sedentary urban civilization of the Silk Road oasis cities — Samarkand, Bukhara, Merv, and Khiva — whose bazaars were among the great food markets of the medieval world.</p>
+        <p>The nomadic tradition, dominant in Kazakhstan and Kyrgyzstan, is one of the oldest food cultures on earth — a diet of lamb, horse meat, and fermented dairy developed over millennia to sustain a mobile population on the steppe. Kumiss, fermented mare's milk, has been drunk on this steppe for at least 5,500 years. The sedentary Silk Road tradition of Uzbekistan and Tajikistan absorbed Persian culinary sophistication — elaborate rice pilafs, fragrant spice combinations, and the bazaar food culture that produced plov, samsa, lagman, and manti. Arab conquest in the 7th and 8th centuries brought Islam and halal dietary practice, and the Soviet period imposed industrial food culture while preserving traditional dishes.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Central Asian cooking is hearty, generous, and built around lamb, rice, and bread — a cuisine of the caravan and the caravanserai, designed to restore travellers after long journeys. Plov — the slow-cooked rice pilaf with lamb, yellow carrots, chickpeas, and rendered fat — is the centrepiece of the regional table. Uzbekistan claims the most refined version: cooked in a massive kazan cauldron with devzira rice and rendered lamb fat, achieving a depth no shortcut can replicate. Each region has its own plov style, and the differences are taken seriously.</p>
+        <p>The nomadic dairy tradition provides the other great flavour category: kumiss, ayran, kefir, and kurt are consumed daily and carry the sour, rich quality of fermented milk that defines the steppe table. Manti — large steamed dumplings filled with spiced lamb — sit alongside Chinese baozi and Turkish mantı in shared ancestry. Lagman, the pulled noodle soup with lamb and vegetables, sits at the intersection of Chinese noodle culture and Central Asian spice tradition. Non, the round flatbread baked daily in clay tandoors, is eaten at every meal with near-sacred reverence.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Plov is the dish of ceremony — in Uzbekistan, a proper plov is cooked by men in a massive kazan over open fire for weddings and celebrations. The cook tends the fire for hours; the rice is steamed under a domed lid last.</li>
+        <li>Tea is the language of hospitality — green tea is offered immediately to any guest and refused only at offence. The chai-khana is the social centre of every Central Asian town.</li>
+        <li>Bread is sacred — non, the round flatbread baked in a clay tandoor, is broken by hand and shared before any meal. Dropping bread requires an apology; wasting it is deeply wrong.</li>
+        <li>Eating is communal and floor-level in traditional settings — a dastarkhan is spread on the floor or low table, and everyone sits around it on cushions, reaching to shared dishes.</li>
+        <li>Fermented dairy is consumed daily and in quantity — kumiss, kefir, ayran, and kurt are expressions of the nomadic pastoral identity that defines the region.</li>
+        <li>Regional differences are real — Uzbek plov is the most refined, Kazakh beshbarmak uses horse meat and wide noodles, Kyrgyz cooking is most nomadic, and Tajik cuisine shows the strongest Persian influence.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lamb</li>
+        <li><span class="n">06</span> Kumiss</li>
+        <li><span class="n">02</span> Rice (devzira for plov)</li>
+        <li><span class="n">07</span> Kurt</li>
+        <li><span class="n">03</span> Yellow carrots</li>
+        <li><span class="n">08</span> Cumin / zira</li>
+        <li><span class="n">04</span> Cottonseed oil</li>
+        <li><span class="n">09</span> Chickpeas</li>
+        <li><span class="n">05</span> Non flatbread</li>
+        <li><span class="n">10</span> Dried fruits & nuts</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Plov is one of the oldest dishes in the world, with versions recorded in Persian and Arab texts from the 10th century. Uzbekistan alone has over 200 regional varieties, and UNESCO inscribed Uzbek plov-making on its Intangible Cultural Heritage list in 2016.</li>
+        <li>The Silk Road transformed the food cultures of the entire Eurasian landmass — spices, sugar, noodles, and cooking techniques travelled in both directions along routes passing through Samarkand, Merv, and Bukhara, whose bazaars were among the great food markets of the medieval world.</li>
+        <li>Kumiss — fermented mare's milk — has been consumed on the Central Asian steppe for at least 5,500 years, one of the oldest alcoholic beverages on earth. Archaeological evidence from the Botai culture of Kazakhstan shows horse domestication and milk processing from 3500 BCE.</li>
+        <li>Samsa — the baked meat pastry found across Central Asia — is the ancestor of the Indian samosa, which arrived via Persian and Central Asian trade routes. The word derives from the Persian 'sanbosag.'</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Plov / Osh</span><span class="dish-tag">Lamb, carrot rice pilaf</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow-cooked rice pilaf with lamb, yellow carrots, and rendered fat, the centrepiece of Central Asian cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beshbarmak</span><span class="dish-tag">Boiled meat, flat noodles</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled meat, often horse, served over wide flat noodles, Kazakhstan's national dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lagman</span><span class="dish-tag">Pulled noodle soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty pulled noodle soup with lamb and vegetables, showing Chinese noodle influence.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Manti</span><span class="dish-tag">Steamed lamb dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Large steamed dumplings filled with spiced minced lamb and onion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shashlik</span><span class="dish-tag">Charcoal-grilled meat skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Skewered meat grilled over charcoal, the universal Central Asian street food.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Mains</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samsa</span><span class="dish-tag">Tandoor-baked meat pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, tandoor-baked pastry filled with spiced meat, the ancestor of the Indian samosa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dimlama</span><span class="dish-tag">Layered meat, vegetable stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slow-cooked stew of layered meat and vegetables, cooked in their own juices.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shorpo</span><span class="dish-tag">Rich meat, vegetable soup</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hearty meat and vegetable soup, a staple of the everyday table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kuurdak</span><span class="dish-tag">Fried meat, offal</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat and offal fried together with onion, an everyday nomadic dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Naryn</span><span class="dish-tag">Cold horsemeat noodle dish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cold dish of finely cut horsemeat and hand-cut noodles, a Kyrgyz and Kazakh specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Sweets &amp; Pastry</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chak-chak</span><span class="dish-tag">Honey-soaked fried dough</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small pieces of fried dough bound together with hot honey syrup into a mound, a celebratory sweet.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Non bread with jam</span><span class="dish-tag">Flatbread, fruit jam</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tandoor-baked flatbread served with fruit preserves for breakfast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Halva</span><span class="dish-tag">Dense nut, sesame sweet</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, crumbly sweet made from ground sesame or sunflower seeds and sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Parvarda</span><span class="dish-tag">Caramelized sugar candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A hard, caramelized sugar candy with a slightly tangy finish, an Uzbek specialty.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nisholda</span><span class="dish-tag">Whipped sugar, egg white</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, whipped confection of sugar syrup and egg white flavoured with licorice root.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samsa with pumpkin</span><span class="dish-tag">Sweet pumpkin pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tandoor-baked pastry filled with sweetened pumpkin instead of meat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dried fruit platter</span><span class="dish-tag">Assorted dried fruit, nuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An assortment of dried apricots, raisins, and nuts, served at the end of any meal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fried dough / baursak</span><span class="dish-tag">Puffy fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small puffy balls of fried dough, eaten plain or with honey.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street &amp; Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samsa</span><span class="dish-tag">Tandoor-baked meat pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flaky, tandoor-baked pastry filled with spiced meat, the ancestor of the Indian samosa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Non with butter</span><span class="dish-tag">Flatbread, butter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm tandoor flatbread spread simply with butter.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kurt</span><span class="dish-tag">Hard dried sour cheese</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small hard balls of dried, salted sour cheese, a portable nomadic snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chuchvara</span><span class="dish-tag">Small meat dumplings</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small boiled dumplings filled with minced meat, served in broth or with vinegar.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kovurma</span><span class="dish-tag">Fried spiced meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Meat fried with onions and spices, eaten as a quick savory dish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baursak</span><span class="dish-tag">Puffy fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small puffy balls of fried dough, eaten plain or with honey.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Lepyoshka</span><span class="dish-tag">Round tandoor flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A round, patterned flatbread baked in a clay tandoor, the everyday regional bread.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kazy sausage</span><span class="dish-tag">Horse meat sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional sausage made from horse meat and fat, a nomadic delicacy.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly Central Asian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Cumin / zira</li>
+        <li><span class="n">06</span> Garlic</li>
+        <li><span class="n">02</span> Coriander seed</li>
+        <li><span class="n">07</span> Chickpeas</li>
+        <li><span class="n">03</span> Barberry / zereshk</li>
+        <li><span class="n">08</span> Yellow carrot</li>
+        <li><span class="n">04</span> Cottonseed oil</li>
+        <li><span class="n">09</span> Dried apricot</li>
+        <li><span class="n">05</span> Lamb fat</li>
+        <li><span class="n">10</span> Fermented dairy</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Vodka &amp; Kumiss</p>
+            <ol class="plain">
+              <li>Vodka</li>
+              <li>Koumiss / kumiss</li>
+              <li>Tenge beer Kazakhstan</li>
+              <li>Sarbast beer Uzbekistan</li>
+              <li>Baltika regional</li>
+              <li>Arpa beer Kyrgyzstan</li>
+              <li>Grape wine Tajikistan</li>
+              <li>Mulberry vodka</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Tea &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Ko'k choy green tea</li>
+              <li>Ayran</li>
+              <li>Sharbat</li>
+              <li>Kumiss</li>
+              <li>Kefir</li>
+              <li>Kompot</li>
+              <li>Kara choy black tea</li>
+              <li>Mors berry drink</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Tenge</li>
+              <li>Sarbast</li>
+              <li>Arpa</li>
+              <li>Efes Central Asia</li>
+              <li>Baltika</li>
+              <li>Pivo Dushanbe</li>
+              <li>Alatau</li>
+              <li>Zhigulevskoe local</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

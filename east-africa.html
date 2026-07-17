@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>East Africa — Cuisine Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#" class="back-link" aria-label="Back to all regions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      All Regions
+    </a>
+    <span class="field-tag">Entry 61 / 68 · Africa</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Cuisine Guide</p>
+      <h1 class="country">East Africa</h1>
+      <p class="subhead">Kenya, Tanzania, Uganda, and Rwanda — ugali and nyama choma at the center of a grounded, ingredient-honest food culture shaped by Bantu, Nilotic, and South Asian traditions.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            UGALI · NYAMA CHOMA · CHAI · UGALI · NYAMA CHOMA ·
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAAWzUlEQVR4nO3deXxU1aEH8N/NTEJIAhlCwlIIi00KEtZGwbC3wquIsqStYCj2WUA/ipElCCgURAUSIIjyqBUVZREKChap4HvwkC1FsKEsEsP2WCIlC4TJQpbJzNz3R0yczMy9c2/mzr1Kf9+Pf2TOPefcM37mx5m5y7kAEREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREREVGdAQMGPPDAA0aPQj+JiYl9+/Y1ehRELlq2bFlWVjZ8+HCjB6KHoUOHWq3WqKgoowdC1FBubm5lZeXo0aONHkhgjR07tqqqKicnx+iBEHlYt26dKIo2m+3RRx81eiyBMmrUKJvNJoriO++8Y/RYiDxMnDhRFEVRFCsrK3/5y18aPRztDR8+vKqqqvY9TpgwwejhEHmIjo622+21n9GysrK77DhN//79y8vLa9+d3W7nD0L6gcrKyhLr3Lx5My4uzugRaaNz586FhYX1b+3QoUNGj4hIwksvvSS6yMnJsVgsRg/KX1FRUbm5ua7va86cOUYPikhCfHy82NDevXtNJpPR42o8s9m8f/9+13fkdDrvmhme7k7Hjx93y+HSpUuNHlTjLV++3O3tHD161OhBEcmaNm2a26fW6XQmJydruxcTMBR4Oy5uO7AdeDsubgig+YT76KOPOp1Ot7fz3HPPab0fIk21bt26urra7YNbXFzcvn17rXYRD7wF7AWurlq1F9gLXFu9eq8g/AmI12ofQGxs7O3bt93eSHV1dUxMjHY7IQqMrVu3ih727dsnCIL/nY8E9gB7gWN9+xZ/8UVtCIu/+OLY/ffvBT4Hxvm/D0AQhD179ni+i82bN2vRPTUQZPQA7kJvvfWWZ+GDDz74zDPP+NOtADwLTAfMAIC2Eye6bq19aQImA88CfsZ96tSpDz30kGf5n//8Z/86JtKFIAhnzpzxnEbKy8vj4xv5hVEAZgJ76/7bFxRUnZ/vOhNW5+fvCwqqrzDDjxzGx8ffuXPHc/ynT59ubJckhzOh9kRRTE9P9ywPDw//4IMPgoIa8//8GWCEy8vIpKSQ1q1dK4S0bt3c5Rqdh4HnG7EbICgoaP369WFhYZ6bvL4p8h9DGBB/+ctfLly44Fnev3//SZMm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" alt="Flag of East Africa">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">Culinary Roots &amp; Influences</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>East African cuisine — the food of Kenya, Tanzania, Uganda, and Rwanda — is one of the most grounded and ingredient-honest food cultures on the continent, built on the agricultural and pastoral traditions of Bantu, Nilotic, and Cushitic peoples who have farmed, herded, and fished the East African highlands, savannahs, and lake shores for thousands of years. The foundation is straightforward: maize ugali, beans, sorghum, millet, plantain, root vegetables, goat, beef, and freshwater fish from the Great Lakes. The cooking favours clarity of flavour, quality of ingredient, and the satisfaction of feeding people well over the elaboration of spice and technique.</p>
+        <p>The most significant outside influence on East African inland cooking came from South Asian traders and workers who arrived in large numbers during the British colonial period to build the Uganda Railway and establish trading communities. The chapati, the samosa, the pilau, and the spiced chai that are now daily staples across the region all arrived through this South Asian connection and were adapted with such speed that they now feel entirely East African. The British colonial period also introduced tea cultivation and wheat flour. Arab and Swahili coastal trade routes carried spices, rice, and the Indian Ocean culinary tradition inland over centuries, giving the coastal regions a flavour profile quite different from the interior.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Character of the Cuisine</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>East African cooking is defined by ugali and nyama choma — the two pillars around which social eating is organised. Ugali, the stiff maize porridge made by stirring maize flour into boiling water until thick and bread-like, is eaten at virtually every meal, rolled by hand into small scooping balls to eat with stew, greens, or fish. Sukuma wiki — braised collard greens with onion and tomato — is the most common accompaniment, its name literally meaning 'stretch the week,' a reference to its role as an affordable daily vegetable.</p>
+        <p>Nyama choma — charcoal-grilled goat or beef, seasoned simply with salt and served with kachumbari (a fresh tomato and onion salad) and ugali — is the great social food, eaten at outdoor restaurants where the meat is ordered by the kilogram, weighed raw, and returned to the table charred and fragrant. It is the food of celebration, of reunions, of weekend afternoons with friends. Rwanda's matoke — steamed green banana — and Uganda's rolex (a chapati rolled around a fried egg and vegetables) represent the regional variations on a deeply shared culinary identity.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">At the Table</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ugali is not a side dish but the meal itself — the stiff maize porridge is torn by hand, rolled into a ball, pressed into a small cup shape with the thumb, and used to scoop stew, sukuma wiki, or nyama directly to the mouth.</li>
+        <li>Nyama choma — charcoal-grilled meat, usually goat or beef — is the great social food of East Africa. A nyama choma outing means gathering friends at a roadside restaurant, ordering by the kilogram, and eating together over several hours with cold Tusker beer.</li>
+        <li>Chai is the morning ritual across the region — milky, sweet, and spiced with ginger and sometimes cardamom, brewed strong and served in a cup that is refilled without being asked.</li>
+        <li>Chapati arrived with South Asian traders and workers but is now entirely East African — eaten with stew, rolled with eggs for a street breakfast, or torn to scoop sauces.</li>
+        <li>Food is eaten communally from shared dishes in rural settings — one large pot of stew, one bowl of ugali, shared by everyone at the table. Urban eating is more individual but the communal spirit remains.</li>
+        <li>The roadside kiosk and mama mboga (vegetable seller) define the daily food economy — most East Africans buy their vegetables daily from street vendors and cook from fresh.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Key Ingredients</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Maize / ugali</li>
+        <li><span class="n">06</span> Chapati</li>
+        <li><span class="n">02</span> Goat & beef</li>
+        <li><span class="n">07</span> Mandazi</li>
+        <li><span class="n">03</span> Sukuma wiki</li>
+        <li><span class="n">08</span> Ginger chai</li>
+        <li><span class="n">04</span> Plantain / matoke</li>
+        <li><span class="n">09</span> Nyama choma</li>
+        <li><span class="n">05</span> Beans</li>
+        <li><span class="n">10</span> Githeri</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Ugali — the stiff maize porridge eaten daily across East Africa — is made from a grain introduced to Africa only in the 16th century by Portuguese traders. Before maize arrived, the same stiff porridge was made from sorghum or millet, which remain important in drier regions.</li>
+        <li>Kenya is the world's largest exporter of cut flowers and one of the world's largest exporters of tea, yet neither is native to the country. Tea was introduced by British colonists in the late 19th century, and Kenyan tea is the base of most British supermarket tea blends.</li>
+        <li>The Maasai people of Kenya and Tanzania have historically maintained a diet centred almost entirely on cattle products — milk, blood, and meat — with minimal plant food, one of the most extreme examples of single-species dietary dependency in any human culture.</li>
+        <li>Mandazi — the East African doughnut, slightly sweet and spiced with cardamom and coconut milk — reflects centuries of Indian Ocean trade that brought cardamom and coconut to the East African coast long before the colonial era.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Food &amp; Drink Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The dishes, sweets, and drinks that define the everyday table.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Mains &amp; Iconic Dishes</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Kenya &amp; Tanzania</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nyama Choma</span><span class="dish-tag">Charcoal-grilled meat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Charcoal-grilled goat or beef seasoned simply with salt, the great social food of East Africa.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ugali &amp; Sukuma Wiki</span><span class="dish-tag">Maize porridge, greens</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stiff maize porridge eaten by hand alongside braised collard greens.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Matoke</span><span class="dish-tag">Steamed green banana</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steamed and mashed green banana, a Great Lakes region staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Githeri</span><span class="dish-tag">Maize, bean stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, hearty stew of boiled maize and beans.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pilau Rice</span><span class="dish-tag">Spiced South Asian rice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fragrant spiced rice cooked with meat, a South Asian-influenced East African staple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Uganda &amp; Rwanda</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Irio</span><span class="dish-tag">Mashed peas, corn, potato</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A mash of peas, corn, and potato, a Kikuyu comfort dish from Kenya.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mishkaki</span><span class="dish-tag">Marinated grilled skewers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Marinated meat skewers grilled over charcoal, a Tanzanian street food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chicken Stew</span><span class="dish-tag">Tomato-braised chicken</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Chicken braised in a simple tomato and onion sauce.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tilapia</span><span class="dish-tag">Grilled or fried lake fish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Freshwater fish from the Great Lakes, grilled or fried whole.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ugali &amp; Nyama</span><span class="dish-tag">Maize porridge, meat stew</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Stiff maize porridge served alongside a savory meat stew.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">Puddings &amp; Sweets</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Breads &amp; Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mandazi</span><span class="dish-tag">Cardamom coconut doughnut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slightly sweet, cardamom-spiced doughnut, the East African breakfast staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mahamri</span><span class="dish-tag">Coconut-spiced coastal doughnut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A coastal Swahili doughnut richer in coconut milk than the inland mandazi.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vitumbua</span><span class="dish-tag">Rice coconut pancake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small, fluffy pancakes made from rice flour and coconut milk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chapati &amp; Chai</span><span class="dish-tag">Flatbread, spiced tea</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft flatbread paired with milky, spiced tea, an everyday combination.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Sweets</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kashata</span><span class="dish-tag">Coconut peanut candy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense, chewy candy of coconut or peanut cooked with sugar.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kaimati</span><span class="dish-tag">Sweet fried dough balls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Small fried dough balls soaked in sweet syrup, a coastal treat.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Groundnut cake</span><span class="dish-tag">Peanut sweet cake</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dense cake made rich with ground peanuts.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana fritters</span><span class="dish-tag">Fried sweet banana</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ripe banana slices battered and fried until golden.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Snacks &amp; Street Food</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Street Classics</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mandazi</span><span class="dish-tag">Cardamom coconut doughnut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A slightly sweet, cardamom-spiced doughnut, the East African breakfast staple.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chapati Roll &amp; Egg</span><span class="dish-tag">Egg-rolled flatbread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A chapati rolled around a fried egg and vegetables, Uganda's famous rolex.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samosa</span><span class="dish-tag">Fried spiced pastry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A triangular pastry filled with spiced meat or vegetables, deep-fried until crisp.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roasted Maize</span><span class="dish-tag">Charcoal-grilled corn</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Corn on the cob roasted over charcoal, sold by roadside vendors.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">More Snacks</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mutura</span><span class="dish-tag">East African blood sausage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional blood sausage grilled and sliced, a Kenyan delicacy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smokies &amp; Kachumbari</span><span class="dish-tag">Sausage, tomato salad</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled sausages served with a fresh tomato and onion salad.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bhajia</span><span class="dish-tag">Spiced potato fritters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Sliced potatoes battered in spiced chickpea flour and fried, a South Asian-influenced snack.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mkate wa Ufuta</span><span class="dish-tag">Sesame seed bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A soft bread studded with sesame seeds, a coastal Swahili specialty.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">The Flavor Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Ingredients, seasonings &amp; finishes that make a dish taste distinctly East African:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Ginger</li>
+        <li><span class="n">06</span> Sukuma wiki</li>
+        <li><span class="n">02</span> Cardamom</li>
+        <li><span class="n">07</span> Goat fat</li>
+        <li><span class="n">03</span> Coconut milk</li>
+        <li><span class="n">08</span> Coriander</li>
+        <li><span class="n">04</span> Kachumbari</li>
+        <li><span class="n">09</span> Tomato & onion</li>
+        <li><span class="n">05</span> Ugali</li>
+        <li><span class="n">10</span> Pilipili hoho</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Notable Drinks</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Spirits &amp; Local Brews</p>
+            <ol class="plain">
+              <li>Tusker Beer</li>
+              <li>White Cap</li>
+              <li>Pilsner Kenya</li>
+              <li>Senator Keg</li>
+              <li>Konyagi</li>
+              <li>Waragi Uganda</li>
+              <li>Banana beer</li>
+              <li>Chang'aa</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Chai &amp; Non-Alcoholic</p>
+            <ol class="plain">
+              <li>Chai ya Tangawizi</li>
+              <li>Mala</li>
+              <li>Uji porridge</li>
+              <li>Tamarind juice</li>
+              <li>Passion fruit juice</li>
+              <li>Stoney Tangawizi</li>
+              <li>Vimto</li>
+              <li>Avocado juice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Beers</p>
+            <ol class="plain">
+              <li>Tusker</li>
+              <li>White Cap</li>
+              <li>Pilsner</li>
+              <li>Senator</li>
+              <li>Serengeti Tanzania</li>
+              <li>Kibo Gold</li>
+              <li>Nile Special Uganda</li>
+              <li>Bell Uganda</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="#" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Regions
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

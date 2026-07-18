@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Feast Calendar — Themed Party Nights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     THE FEAST CALENDAR — design tokens
+     Light cream/white ground, restrained accents. Type colors
+     encode celebration type. Signature: ruled month sections.
+     ============================================================ */
+  :root{
+    --ink:#23201c;          /* warm near-black text */
+    --ink-soft:#6b6357;     /* muted body */
+    --paper:#faf8f3;        /* very light cream ground */
+    --card:#ffffff;         /* card / control surface */
+    --line:#e7e1d6;         /* hairlines */
+    --line-soft:#f0ebe1;
+    --accent:#9a6f12;       /* subdued gold — tiny accents only */
+    --wine:#7a2e35;         /* National Day */
+    --festival:#2f6b5f;     /* Cultural Festival */
+    --sport:#3a3a44;        /* Sports & Other */
+    --radius:3px;
+    --maxw:940px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ---- nav (top + bottom) ---- */
+  .bar{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;flex-wrap:wrap;
+    max-width:var(--maxw);margin:0 auto;padding:1.1rem 1.4rem;
+  }
+  .bar.top{border-bottom:1px solid var(--line);}
+  .bar.bottom{border-top:1px solid var(--line);margin-top:2rem;}
+  .brand{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink);
+  }
+  .brand b{color:var(--wine);}
+  .nav{display:flex;gap:1.4rem;flex-wrap:wrap;}
+  .nav a{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
+    padding-bottom:2px;border-bottom:1px solid transparent;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  .nav a:hover{color:var(--ink);border-color:var(--accent);}
+
+  /* ---- hero ---- */
+  .hero{max-width:var(--maxw);margin:0 auto;padding:3.2rem 1.4rem 1.6rem;}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 1rem;
+  }
+  .hero h1{
+    font-family:"Fraunces",serif;font-weight:900;font-optical-sizing:auto;
+    font-size:clamp(2.5rem,6.5vw,4.4rem);line-height:1;letter-spacing:-.02em;
+    margin:0 0 1rem;max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--wine);}
+  .hero p{font-size:1.05rem;color:var(--ink-soft);max-width:54ch;margin:0;}
+
+  /* ---- controls ---- */
+  .controls{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb, var(--paper) 90%, transparent);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin-top:2.2rem;
+  }
+  .controls-inner{
+    max-width:var(--maxw);margin:0 auto;padding:.85rem 1.4rem;
+    display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;
+  }
+  .field{position:relative;display:flex;align-items:center;}
+  .search{flex:1 1 220px;min-width:180px;}
+  .search input{
+    width:100%;font-family:"Inter",sans-serif;font-size:.9rem;
+    padding:.55rem .8rem .55rem 2rem;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    color:var(--ink);
+  }
+  .search input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .search .mag{position:absolute;left:.7rem;color:var(--ink-soft);font-size:.95rem;pointer-events:none;line-height:1;}
+  select{
+    font-family:"Space Mono",monospace;font-size:.74rem;letter-spacing:.06em;
+    text-transform:uppercase;padding:.55rem 2rem .55rem .8rem;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    color:var(--ink);cursor:pointer;appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);
+    background-position:calc(100% - 15px) 55%, calc(100% - 10px) 55%;
+    background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+  }
+  select:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .clear{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.1em;
+    text-transform:uppercase;background:none;border:none;cursor:pointer;
+    color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;padding:.4rem .3rem;
+  }
+  .clear:hover{color:var(--wine);}
+  .count{margin-left:auto;font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;}
+  .count b{color:var(--ink);}
+
+  /* ---- legend ---- */
+  .legend{
+    max-width:var(--maxw);margin:0 auto;padding:.9rem 1.4rem 0;
+    display:flex;flex-wrap:wrap;gap:1.1rem;align-items:center;
+    font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.06em;
+    color:var(--ink-soft);text-transform:uppercase;
+  }
+  .legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:.5ch;vertical-align:middle;}
+  .legend .moves-key{border:1px dashed var(--line);border-radius:2px;padding:.05rem .4rem;}
+
+  /* ---- calendar ---- */
+  .calendar{max-width:var(--maxw);margin:0 auto;padding:1.6rem 1.4rem 1rem;}
+  .month{margin-top:2.4rem;}
+  .month:first-child{margin-top:1rem;}
+  .month-head{display:flex;align-items:baseline;gap:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--line);margin-bottom:.4rem;}
+  .month-head h2{font-family:"Fraunces",serif;font-weight:600;font-style:italic;font-size:1.7rem;letter-spacing:-.01em;margin:0;}
+  .month-head .mnum{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--accent);letter-spacing:.15em;}
+  .month-head .mcount{margin-left:auto;font-family:"Space Mono",monospace;font-size:.68rem;color:var(--ink-soft);}
+
+  /* entry */
+  .entry{
+    display:grid;grid-template-columns:70px 1fr 98px auto;gap:.3rem 1rem;
+    align-items:center;padding:.8rem .6rem;
+    border-bottom:1px solid var(--line-soft);position:relative;
+  }
+  .entry .date{
+    font-family:"Space Mono",monospace;font-weight:700;font-size:1.15rem;
+    color:var(--ink);line-height:1;white-space:nowrap;align-self:start;
+  }
+  .entry.moves .date{color:var(--accent);border-bottom:1.5px dotted var(--accent);cursor:help;padding-bottom:2px;}
+  .entry .date .sub{display:block;font-size:.58rem;font-weight:400;letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase;margin-top:.35rem;}
+  .entry .main .name{font-family:"Fraunces",serif;font-weight:500;font-size:1.18rem;letter-spacing:-.01em;line-height:1.15;}
+  .entry .main .meta{font-family:"Space Mono",monospace;font-size:.7rem;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin-top:.28rem;}
+  .entry .main .cue{font-size:.9rem;color:var(--ink-soft);margin-top:.35rem;max-width:56ch;}
+
+  /* two action links, stacked (food over décor) */
+  .actions{display:flex;flex-direction:column;gap:.4rem;}
+  .act{
+    font-family:"Space Mono",monospace;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:.6ch;
+    padding:.4rem .6rem;border:1px solid var(--line);border-radius:16px;
+    text-decoration:none;color:var(--ink);background:var(--card);
+    transition:border-color .16s ease,color .16s ease;
+  }
+  .act .ar{color:var(--accent);display:inline-block;transition:transform .16s ease;}
+  .act:hover .ar{transform:translate(2px,-2px);}
+  .act-food:hover{border-color:var(--wine);color:var(--wine);}
+  .act-deco:hover{border-color:var(--festival);color:var(--festival);}
+  .act:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  /* type tag */
+  .tag{
+    font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:.5ch;
+    padding:.25rem .55rem;border-radius:20px;border:1px solid var(--line);color:var(--ink-soft);align-self:center;
+  }
+  .tag .dot{width:7px;height:7px;border-radius:50%;}
+  .t-national .dot{background:var(--wine);}
+  .t-festival .dot{background:var(--festival);}
+  .t-sport   .dot{background:var(--sport);}
+
+  .noresults{text-align:center;padding:4rem 1rem;color:var(--ink-soft);display:none;}
+  .noresults h3{font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:1.5rem;margin:0 0 .4rem;color:var(--ink);}
+
+  .footnote{max-width:var(--maxw);margin:0 auto;padding:0 1.4rem;font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;}
+
+  @media (max-width:620px){
+    .entry{
+      grid-template-columns:56px 1fr;
+      grid-template-areas:"date main" ".  actions" ".  tag";
+      align-items:start;
+    }
+    .entry .date{grid-area:date;}
+    .entry .main{grid-area:main;}
+    .actions{grid-area:actions;flex-direction:row;flex-wrap:wrap;margin-top:.55rem;}
+    .act{min-width:96px;}
+    .tag{grid-area:tag;justify-self:start;margin-top:.5rem;align-self:start;}
+    .count{width:100%;margin-left:0;order:5;}
+    .hero{padding-top:2rem;}
+    .bar{gap:.7rem;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <div class="bar top">
+    <span class="brand"><b>THE TABLE</b> · Feast Calendar</span>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="food-country.html">All Cuisines</a>
+      <a href="decoration-party.html">All Décor</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <p class="eyebrow">A year of themed party nights</p>
+    <h1>Celebrate the <em>world</em>, one night at a time.</h1>
+    <p>Every celebration worth setting a table for, in order from January to December. Filter by type or continent, then open a night's food or décor prep.</p>
+  </header>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <div class="field search">
+        <span class="mag">&#8981;</span>
+        <input id="q" type="search" placeholder="Search a country or celebration…" aria-label="Search">
+      </div>
+      <div class="field">
+        <select id="type" aria-label="Filter by type">
+          <option value="">All types</option>
+          <option value="National Day">National days</option>
+          <option value="Cultural Festival">Cultural festivals</option>
+          <option value="Sports & Other">Sports &amp; other</option>
+        </select>
+      </div>
+      <div class="field">
+        <select id="cont" aria-label="Filter by continent">
+          <option value="">All continents</option>
+          <option>Africa</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>North America</option>
+          <option>South America</option>
+          <option>Oceania</option>
+          <option>Global</option>
+        </select>
+      </div>
+      <button class="clear" id="clear">Clear filters</button>
+      <span class="count"><b id="shown">0</b> of <span id="total">0</span> nights</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--wine)"></span>National day</span>
+    <span><span class="dot" style="background:var(--festival)"></span>Cultural festival</span>
+    <span><span class="dot" style="background:var(--sport)"></span>Sports &amp; other</span>
+    <span class="moves-key">◌ dotted date = moves each year (2026 shown)</span>
+  </div>
+
+  <main class="calendar" id="calendar"></main>
+
+  <div class="noresults" id="noresults">
+    <h3>No nights match.</h3>
+    <p>Try a different search, or clear your filters.</p>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bar bottom">
+    <span class="brand"><b>THE TABLE</b> · Feast Calendar</span>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="food-country.html">All Cuisines</a>
+      <a href="decoration-party.html">All Décor</a>
+    </nav>
+  </div>
+
+<script>
+/* ============================================================
+   DATA
+   Each night: month (m), sort day (d), display date (date),
+   name, country (shown), continent (filter), type, cue, slug.
+   Links resolve in this same /files/ folder:
+     Food  ->  {slug}.html
+     Décor ->  deco-{slug}.html   (404 until built — that's fine)
+   slug:null  = no region page (not a single-cuisine event).
+   moves:true = date shifts yearly; `rule` shows on hover.
+
+   Note: Mardi Gras (Cajun) -> usa-south. Super Bowl and US
+   Thanksgiving are still slug:null — add a general US slug if
+   you have a page for them.
+   ============================================================ */
+const NIGHTS = [
+  // JANUARY
+  {m:1,d:1,date:"1",name:"New Year's Day",country:"Global",continent:"Global",type:"Sports & Other",cue:"Bubbly and a global grazing spread — or pick any cuisine to ring it in.",slug:null},
+  {m:1,d:25,date:"25",name:"Burns Night",country:"Scotland",continent:"Europe",type:"Cultural Festival",cue:"Haggis, neeps & tatties, cranachan, Scotch whisky.",slug:"scotland"},
+  {m:1,d:26,date:"26",name:"Australia Day",country:"Australia",continent:"Oceania",type:"National Day",cue:"Sausage sizzle, prawns, lamingtons, pavlova.",slug:"australia"},
+  {m:1,d:26,date:"26",name:"Republic Day",country:"India",continent:"Asia",type:"National Day",cue:"Curries, samosas, biryani, chai.",slug:"india"},
+
+  // FEBRUARY
+  {m:2,d:8,date:"8",name:"Super Bowl",country:"USA",continent:"North America",type:"Sports & Other",cue:"Wings, nachos, chili, sliders, loaded dips.",slug:null,moves:true,rule:"2nd Sunday of February (Feb 8 in 2026)"},
+  {m:2,d:11,date:"11",name:"National Foundation Day",country:"Japan",continent:"Asia",type:"National Day",cue:"Sushi, ramen, tempura, sake.",slug:"japan"},
+  {m:2,d:14,date:"14",name:"Valentine's Day",country:"Global",continent:"Global",type:"Sports & Other",cue:"A romantic French or Italian dinner; chocolate & fondue.",slug:null},
+  {m:2,d:17,date:"17",name:"Lunar New Year",country:"China",continent:"Asia",type:"Cultural Festival",cue:"Dumplings, longevity noodles, whole fish, spring rolls.",slug:"china",moves:true,rule:"New moon between Jan 21–Feb 20 (Feb 17 in 2026)"},
+  {m:2,d:17,date:"17",name:"Mardi Gras",country:"USA · New Orleans",continent:"North America",type:"Cultural Festival",cue:"Gumbo, jambalaya, king cake, beignets.",slug:"usa-south",moves:true,rule:"Day before Ash Wednesday (Feb 17 in 2026)"},
+  {m:2,d:17,date:"17",name:"Carnival",country:"Brazil",continent:"South America",type:"Cultural Festival",cue:"Feijoada, brigadeiros, coxinha, caipirinhas.",slug:"brazil",moves:true,rule:"Pre-Lent; ends Feb 17 in 2026"},
+  {m:2,d:17,date:"17",name:"Carnevale",country:"Italy · Venice",continent:"Europe",type:"Cultural Festival",cue:"Frittelle, chiacchiere, cicchetti, prosecco.",slug:"italy",moves:true,rule:"Pre-Lent; ends Feb 17 in 2026"},
+
+  // MARCH
+  {m:3,d:1,date:"1",name:"St. David's Day",country:"Wales",continent:"Europe",type:"National Day",cue:"Cawl, Welsh rarebit, bara brith.",slug:"wales"},
+  {m:3,d:4,date:"4",name:"Holi",country:"India",continent:"Asia",type:"Cultural Festival",cue:"Thandai, gujiya, pakoras, street snacks.",slug:"india",moves:true,rule:"Full moon of Phalguna (Mar 4 in 2026)"},
+  {m:3,d:15,date:"~15",name:"Oscars Night",country:"Global",continent:"Global",type:"Sports & Other",cue:"Glam finger foods & cocktails themed to the nominated films.",slug:null,moves:true,rule:"Late winter — date varies"},
+  {m:3,d:17,date:"17",name:"St. Patrick's Day",country:"Ireland",continent:"Europe",type:"National Day",cue:"Irish stew, soda bread, colcannon, Guinness.",slug:"ireland"},
+  {m:3,d:25,date:"25",name:"Independence Day",country:"Greece",continent:"Europe",type:"National Day",cue:"Souvlaki, moussaka, spanakopita.",slug:"greece"},
+  {m:3,d:28,date:"late",name:"Hanami · Cherry Blossom",country:"Japan",continent:"Asia",type:"Cultural Festival",cue:"Bento, sushi, sakura mochi, sake.",slug:"japan",moves:true,rule:"Follows the bloom, late Mar–Apr"},
+
+  // APRIL
+  {m:4,d:13,date:"13–15",name:"Songkran",country:"Thailand",continent:"Asia",type:"Cultural Festival",cue:"Pad thai, mango sticky rice, som tam.",slug:"thailand"},
+  {m:4,d:23,date:"23",name:"St. George's Day",country:"England",continent:"Europe",type:"National Day",cue:"Sunday roast, fish & chips, Victoria sponge.",slug:"england"},
+  {m:4,d:27,date:"27",name:"King's Day · Koningsdag",country:"Netherlands",continent:"Europe",type:"National Day",cue:"Bitterballen, stroopwafels, herring.",slug:"netherlands"},
+  {m:4,d:27,date:"27",name:"Freedom Day",country:"South Africa",continent:"Africa",type:"National Day",cue:"Braai, boerewors, bobotie.",slug:"south-africa"},
+
+  // MAY
+  {m:5,d:1,date:"1",name:"Lei Day · Tiki",country:"Hawaii",continent:"Oceania",type:"National Day",cue:"Luau — kalua pork, poke, pineapple; tiki drinks.",slug:"hawaii"},
+  {m:5,d:3,date:"3",name:"Constitution Day",country:"Poland",continent:"Europe",type:"National Day",cue:"Pierogi, kielbasa, bigos.",slug:"poland"},
+  {m:5,d:5,date:"5",name:"Cinco de Mayo",country:"Mexico",continent:"North America",type:"Cultural Festival",cue:"Tacos, guacamole, elote, margaritas.",slug:"mexico"},
+  {m:5,d:16,date:"~16",name:"Eurovision",country:"Europe",continent:"Europe",type:"Sports & Other",cue:"A pan-European spread, or lean into the host country.",slug:null,moves:true,rule:"Grand final, mid-May"},
+  {m:5,d:17,date:"17",name:"Constitution Day · Syttende Mai",country:"Norway",continent:"Europe",type:"National Day",cue:"Hot dogs, salmon, cream cakes.",slug:"norway"},
+
+  // JUNE
+  {m:6,d:2,date:"2",name:"Festa della Repubblica",country:"Italy",continent:"Europe",type:"National Day",cue:"Pasta, pizza, antipasti, tiramisu.",slug:"italy"},
+  {m:6,d:6,date:"6",name:"National Day",country:"Sweden",continent:"Europe",type:"National Day",cue:"Meatballs, herring, lingonberry.",slug:"sweden"},
+  {m:6,d:10,date:"10",name:"Portugal Day",country:"Portugal",continent:"Europe",type:"National Day",cue:"Bacalhau, piri-piri, pastéis de nata.",slug:"portugal"},
+  {m:6,d:20,date:"19–25",name:"Midsummer · Midsommar",country:"Sweden",continent:"Europe",type:"Cultural Festival",cue:"Pickled herring, new potatoes, strawberry cake, aquavit.",slug:"sweden",moves:true,rule:"Friday between Jun 19–25"},
+  {m:6,d:24,date:"24",name:"Fête nationale du Québec",country:"Québec",continent:"North America",type:"National Day",cue:"Poutine, tourtière, sugar pie.",slug:"quebec"},
+
+  // JULY
+  {m:7,d:1,date:"1",name:"Canada Day",country:"Canada",continent:"North America",type:"National Day",cue:"Poutine, butter tarts, maple everything.",slug:"canada"},
+  {m:7,d:6,date:"6–14",name:"San Fermín · Running of the Bulls",country:"Spain",continent:"Europe",type:"Cultural Festival",cue:"Pintxos, chorizo, jamón, red wine.",slug:"spain"},
+  {m:7,d:9,date:"9",name:"Independence Day",country:"Argentina",continent:"South America",type:"National Day",cue:"Asado, empanadas, chimichurri.",slug:"argentina"},
+  {m:7,d:14,date:"14",name:"Bastille Day",country:"France",continent:"Europe",type:"National Day",cue:"Steak frites, baguette, cheese board, wine.",slug:"france"},
+  {m:7,d:28,date:"28",name:"Fiestas Patrias",country:"Peru",continent:"South America",type:"National Day",cue:"Ceviche, lomo saltado, pisco sour.",slug:"peru"},
+
+  // AUGUST
+  {m:8,d:1,date:"1",name:"Swiss National Day",country:"Switzerland",continent:"Europe",type:"National Day",cue:"Fondue, raclette, rösti.",slug:"switzerland"},
+  {m:8,d:6,date:"6",name:"Independence Day",country:"Jamaica",continent:"North America",type:"National Day",cue:"Jerk chicken, rice & peas, plantain.",slug:"jamaica"},
+  {m:8,d:15,date:"15",name:"Independence Day",country:"India",continent:"Asia",type:"National Day",cue:"Curries, samosas, biryani, chai.",slug:"india"},
+  {m:8,d:15,date:"15",name:"Liberation Day · Gwangbokjeol",country:"South Korea",continent:"Asia",type:"National Day",cue:"Korean BBQ, bibimbap, kimchi.",slug:"south-korea"},
+  {m:8,d:26,date:"Last Wed",name:"La Tomatina",country:"Spain",continent:"Europe",type:"Cultural Festival",cue:"Tapas, gazpacho, sangria, paella.",slug:"spain",moves:true,rule:"Last Wednesday of August"},
+
+  // SEPTEMBER
+  {m:9,d:2,date:"2",name:"National Day",country:"Vietnam",continent:"Asia",type:"National Day",cue:"Pho, banh mi, spring rolls.",slug:"vietnam"},
+  {m:9,d:7,date:"7",name:"Independence Day",country:"Brazil",continent:"South America",type:"National Day",cue:"Feijoada, pão de queijo, coxinha.",slug:"brazil"},
+  {m:9,d:11,date:"11",name:"Enkutatash · New Year",country:"Ethiopia",continent:"Africa",type:"National Day",cue:"Injera, doro wat, spiced lentils.",slug:"ethiopia"},
+  {m:9,d:16,date:"16",name:"Independence Day",country:"Mexico",continent:"North America",type:"National Day",cue:"Tacos, pozole, chiles en nogada.",slug:"mexico"},
+  {m:9,d:19,date:"19",name:"Oktoberfest begins",country:"Germany",continent:"Europe",type:"Cultural Festival",cue:"Beer, pretzels, sausages, schnitzel, roast chicken.",slug:"germany",moves:true,rule:"Mid-Sep to first Sunday of Oct (Sep 19–Oct 4 in 2026)"},
+  {m:9,d:25,date:"late",name:"Chuseok",country:"South Korea",continent:"Asia",type:"Cultural Festival",cue:"Songpyeon, japchae, jeon.",slug:"south-korea",moves:true,rule:"15th day of the 8th lunar month"},
+  {m:9,d:26,date:"late",name:"Mid-Autumn Festival",country:"China",continent:"Asia",type:"Cultural Festival",cue:"Mooncakes, tea, pomelo.",slug:"china",moves:true,rule:"15th day of the 8th lunar month"},
+
+  // OCTOBER
+  {m:10,d:1,date:"1",name:"National Day",country:"China",continent:"Asia",type:"National Day",cue:"Dumplings, hotpot, Peking duck.",slug:"china"},
+  {m:10,d:3,date:"3",name:"German Unity Day",country:"Germany",continent:"Europe",type:"National Day",cue:"Schnitzel, sausages, pretzels, beer.",slug:"germany"},
+  {m:10,d:12,date:"12",name:"Fiesta Nacional",country:"Spain",continent:"Europe",type:"National Day",cue:"Paella, tapas, sangria.",slug:"spain"},
+  {m:10,d:12,date:"12",name:"Thanksgiving",country:"Canada",continent:"North America",type:"Sports & Other",cue:"Turkey, harvest sides, pumpkin pie.",slug:"canada",moves:true,rule:"2nd Monday of October (Oct 12 in 2026)"},
+  {m:10,d:31,date:"31",name:"Samhain",country:"Ireland",continent:"Europe",type:"Cultural Festival",cue:"Barmbrack, colcannon, apple treats.",slug:"ireland"},
+  {m:10,d:31,date:"31",name:"Halloween",country:"Global",continent:"Global",type:"Sports & Other",cue:"Spooky-themed snacks, punch, costumes.",slug:null},
+
+  // NOVEMBER
+  {m:11,d:1,date:"1–2",name:"Día de los Muertos",country:"Mexico",continent:"North America",type:"Cultural Festival",cue:"Pan de muerto, mole, tamales.",slug:"mexico"},
+  {m:11,d:8,date:"8",name:"Diwali",country:"India",continent:"Asia",type:"Cultural Festival",cue:"Samosas, sweets (barfi, gulab jamun), curries.",slug:"india",moves:true,rule:"Oct–Nov (Nov 8 in 2026)"},
+  {m:11,d:19,date:"~19",name:"Beaujolais Nouveau Day",country:"France",continent:"Europe",type:"Cultural Festival",cue:"Charcuterie, cheese, the year's new wine.",slug:"france",moves:true,rule:"3rd Thursday of November"},
+  {m:11,d:26,date:"~26",name:"Thanksgiving",country:"USA",continent:"North America",type:"Sports & Other",cue:"Turkey, stuffing, cranberry, pumpkin & pecan pie.",slug:null,moves:true,rule:"4th Thursday of November (Nov 26 in 2026)"},
+  {m:11,d:30,date:"30",name:"St. Andrew's Day",country:"Scotland",continent:"Europe",type:"National Day",cue:"Haggis, neeps & tatties, shortbread, whisky.",slug:"scotland"},
+
+  // DECEMBER
+  {m:12,d:13,date:"13",name:"St. Lucia Day",country:"Sweden",continent:"Europe",type:"Cultural Festival",cue:"Saffron buns (lussekatter), glögg, gingerbread.",slug:"sweden"},
+  {m:12,d:31,date:"31",name:"Hogmanay",country:"Scotland",continent:"Europe",type:"Cultural Festival",cue:"Steak pie, black bun, shortbread, whisky.",slug:"scotland"},
+  {m:12,d:31,date:"31",name:"New Year's Eve",country:"Global",continent:"Global",type:"Sports & Other",cue:"Champagne, canapés, a midnight toast.",slug:null}
+];
+
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const TYPE_CLASS = {"National Day":"t-national","Cultural Festival":"t-festival","Sports & Other":"t-sport"};
+const TYPE_SHORT = {"National Day":"National","Cultural Festival":"Festival","Sports & Other":"Sports"};
+
+const calEl=document.getElementById('calendar'),qEl=document.getElementById('q'),typeEl=document.getElementById('type'),
+      contEl=document.getElementById('cont'),clearEl=document.getElementById('clear'),
+      shownEl=document.getElementById('shown'),totalEl=document.getElementById('total'),noResEl=document.getElementById('noresults');
+
+totalEl.textContent=NIGHTS.length;
+const SORTED=[...NIGHTS].sort((a,b)=>a.m-b.m||a.d-b.d);
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function buildRow(n){
+  const el=document.createElement('div');
+  el.className='entry'+(n.moves?' moves':'');
+  const dateSub=n.moves?'<span class="sub">moves</span>':'';
+  const links=n.slug?`
+      <a class="act act-food" href="${n.slug}.html" title="Food prep — cuisine guide">Food <span class="ar">&#8599;</span></a>
+      <a class="act act-deco" href="deco-${n.slug}.html" title="Décor prep guide">Décor <span class="ar">&#8599;</span></a>`:'';
+  el.innerHTML=`
+    <div class="date"${n.moves?` title="${esc(n.rule||'Date moves each year')}"`:''}>${esc(n.date)}${dateSub}</div>
+    <div class="main">
+      <span class="name">${esc(n.name)}</span>
+      <div class="meta">${esc(n.country)} &middot; ${esc(n.continent)}</div>
+      <div class="cue">${esc(n.cue)}</div>
+    </div>
+    <div class="actions">${links}</div>
+    <span class="tag ${TYPE_CLASS[n.type]}"><span class="dot"></span>${TYPE_SHORT[n.type]}</span>`;
+  return el;
+}
+
+function matches(n){
+  const q=qEl.value.trim().toLowerCase();
+  if(q&&!(n.name.toLowerCase().includes(q)||n.country.toLowerCase().includes(q)))return false;
+  if(typeEl.value&&n.type!==typeEl.value)return false;
+  if(contEl.value&&n.continent!==contEl.value)return false;
+  return true;
+}
+
+function render(){
+  calEl.innerHTML='';let shown=0;
+  for(let m=1;m<=12;m++){
+    const rows=SORTED.filter(n=>n.m===m&&matches(n));
+    if(!rows.length)continue;
+    shown+=rows.length;
+    const sec=document.createElement('section');sec.className='month';
+    const head=document.createElement('div');head.className='month-head';
+    head.innerHTML=`<span class="mnum">${String(m).padStart(2,'0')}</span><h2>${MONTHS[m-1]}</h2><span class="mcount">${rows.length} night${rows.length>1?'s':''}</span>`;
+    sec.appendChild(head);
+    rows.forEach(n=>sec.appendChild(buildRow(n)));
+    calEl.appendChild(sec);
+  }
+  shownEl.textContent=shown;
+  noResEl.style.display=shown?'none':'block';
+}
+
+[qEl,typeEl,contEl].forEach(el=>el.addEventListener('input',render));
+clearEl.addEventListener('click',()=>{qEl.value='';typeEl.value='';contEl.value='';render();qEl.focus();});
+render();
+</script>
+</body>
+</html>

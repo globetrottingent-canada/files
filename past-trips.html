@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Log — Globetrotting Ent.</title>
+<title>The Log — Globetrottingent</title>
 <meta name="author" content="Ryan JBS">
 <meta name="description" content="A traveler's log: every trip since 1989, where and when.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,11 +52,12 @@
     letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
   .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--brass);
     box-shadow:0 0 0 4px rgba(224,168,78,.18)}
-  nav.links{display:flex;gap:4px;font-family:"Space Mono",monospace;font-size:13px}
-  nav.links a{padding:8px 12px;border-radius:6px;color:var(--paper-dim);
-    letter-spacing:.04em;transition:color .2s,background .2s}
-  nav.links a:hover{color:var(--paper);background:var(--ink-3)}
-  nav.links a.active{color:var(--ink);background:var(--brass)}
+  .home{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.04em;
+    display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:8px;
+    border:1px solid var(--line);color:var(--paper-dim);
+    transition:color .2s,background .2s,border-color .2s}
+  .home:hover{color:var(--ink);background:var(--brass);border-color:var(--brass)}
+  .home svg{width:14px;height:14px}
 
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
@@ -193,7 +194,6 @@
     .stat:nth-child(2){border-right:0}
     .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
     .horizon-list{grid-template-columns:1fr}
-    nav.links{display:none}
   }
   @media (max-width:560px){
     .wrap{padding:0 20px}.nav-inner{padding:12px 20px}
@@ -208,14 +208,11 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="globetrotting.html"><span class="dot"></span>Globetrotting Ent.</a>
-    <nav class="links">
-      <a class="active" href="globe_trips.html">Trips</a>
-      <a href="globe_foodbev.html">Food &amp; Drink</a>
-      <a href="globe_media.html">Media</a>
-      <a href="globe_links.html">Links</a>
-      <a href="globe_about.html">About</a>
-    </nav>
+    <a class="brand" href="index.html"><span class="dot"></span>Globetrottingent</a>
+    <a class="home" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+      Home
+    </a>
   </div>
 </header>
 
@@ -234,7 +231,7 @@
     </svg>
   </div>
   <div class="wrap hero-inner">
-    <p class="eyebrow">Globetrotting Ent. · The travel log</p>
+    <p class="eyebrow">Globetrottingent · The travel log</p>
     <h1 class="title">A life in a <em>suitcase.</em></h1>
     <p class="lede" id="lede">Every trip since 1989 — where it went, and when.</p>
 
@@ -298,7 +295,7 @@
 
 <footer>
   <div class="foot-inner">
-    <span>Globetrotting Ent.</span>
+    <span>Globetrottingent</span>
     <span id="copyright">© 2010–2026</span>
   </div>
 </footer>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concert Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141010;          /* darkened auditorium */
+    --bg-2:#1c1512;        /* raised surface */
+    --bg-3:#241b16;        /* hover surface */
+    --line:#3a2c22;        /* warm hairline */
+    --line-soft:#2c211a;
+    --ink:#f3ead9;         /* warm off-white */
+    --ink-dim:#b8a891;     /* taupe */
+    --ink-faint:#8a7c6a;   /* fainter caption */
+    --brass:#e6ad57;       /* stage-bulb brass (spotlight) */
+    --brass-deep:#c98a35;
+    --ember:#cf6a3c;       /* burnt ember, used sparingly */
+    --paper:#ece3cf;       /* aged setlist paper */
+    --paper-ink:#241d16;   /* ink on the setlist sheet */
+    --paper-line:#c9bfa5;
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Barlow",system-ui,sans-serif;font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(120% 90% at 12% -8%, rgba(230,173,87,.16), rgba(230,173,87,0) 42%),
+      radial-gradient(90% 70% at 92% -14%, rgba(207,106,60,.10), rgba(207,106,60,0) 46%);
+    background-attachment:fixed;
+  }
+  a{color:inherit}
+  ::selection{background:var(--brass);color:#20160c}
+
+  /* ---------- Header / hero ---------- */
+  .hero{position:relative;max-width:var(--maxw);margin:0 auto;padding:34px 24px 22px;}
+  .topbar{display:flex;justify-content:flex-end;}
+  .home-link{
+    display:inline-flex;align-items:center;gap:.5em;text-decoration:none;
+    font-weight:600;letter-spacing:.02em;color:var(--ink-dim);
+    border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+    background:rgba(28,21,18,.5);transition:.18s ease;
+  }
+  .home-link:hover{color:var(--bg);background:var(--brass);border-color:var(--brass);}
+  .home-link .arrow{transition:transform .18s ease}
+  .home-link:hover .arrow{transform:translateX(-3px)}
+
+  .marquee{display:flex;align-items:flex-end;gap:26px;margin-top:8px;}
+  .guitar{flex:0 0 auto;width:132px;height:132px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5));}
+  .title-wrap{padding-bottom:6px}
+  .eyebrow{
+    font-family:"Barlow";font-weight:600;letter-spacing:.42em;text-transform:uppercase;
+    font-size:11px;color:var(--brass);margin:0 0 2px 3px;
+  }
+  h1{
+    font-family:"Bebas Neue",sans-serif;font-weight:400;
+    font-size:clamp(52px,10vw,104px);line-height:.86;letter-spacing:.01em;
+    margin:0;color:var(--ink);
+    text-shadow:0 2px 0 rgba(0,0,0,.25);
+  }
+  .sub{margin:12px 0 0 4px;color:var(--ink-dim);max-width:52ch;font-size:15px;}
+  .sub b{color:var(--ink);font-weight:600}
+
+  /* ---------- Toolbar ---------- */
+  .toolbar{
+    position:sticky;top:0;z-index:20;
+    background:linear-gradient(180deg, rgba(20,16,16,.97), rgba(20,16,16,.86));
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  }
+  .toolbar-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 24px;
+    display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+  }
+  .search{position:relative;flex:1 1 260px;min-width:0}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--ink-faint)}
+  .search input{
+    width:100%;padding:11px 38px 11px 40px;border-radius:10px;
+    background:var(--bg-2);border:1px solid var(--line);color:var(--ink);
+    font-family:inherit;font-size:15px;outline:none;transition:.16s;
+  }
+  .search input::placeholder{color:var(--ink-faint)}
+  .search input:focus{border-color:var(--brass);box-shadow:0 0 0 3px rgba(230,173,87,.16)}
+  .search .clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    border:0;background:transparent;color:var(--ink-faint);cursor:pointer;
+    font-size:19px;line-height:1;padding:4px 7px;border-radius:6px;display:none;
+  }
+  .search .clear:hover{color:var(--ink);background:var(--bg-3)}
+
+  .selects{display:flex;gap:10px;flex-wrap:wrap}
+  .field{position:relative}
+  .field label{
+    position:absolute;top:-8px;left:11px;padding:0 5px;background:var(--bg);
+    font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+    pointer-events:none;
+  }
+  select{
+    appearance:none;-webkit-appearance:none;
+    font-family:inherit;font-size:14px;font-weight:500;color:var(--ink);
+    background:var(--bg-2);border:1px solid var(--line);border-radius:10px;
+    padding:11px 34px 11px 14px;cursor:pointer;outline:none;transition:.16s;
+    min-width:118px;
+  }
+  select:hover{border-color:var(--brass-deep)}
+  select:focus{border-color:var(--brass);box-shadow:0 0 0 3px rgba(230,173,87,.16)}
+  .field::after{
+    content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;
+    border-right:2px solid var(--ink-faint);border-bottom:2px solid var(--ink-faint);
+    transform:translateY(-70%) rotate(45deg);pointer-events:none;
+  }
+  .meta-row{
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  }
+  .count{
+    padding:14px 2px 2px;color:var(--ink-faint);font-size:12.5px;
+    letter-spacing:.12em;text-transform:uppercase;
+  }
+  .count b{color:var(--brass);font-weight:700}
+
+  /* ---------- List ---------- */
+  main{max-width:var(--maxw);margin:0 auto;padding:8px 24px 90px}
+  .year-group{margin-top:22px}
+  .year-rule{
+    display:flex;align-items:center;gap:16px;margin:26px 0 14px;
+  }
+  .year-rule .yr{
+    font-family:"Bebas Neue",sans-serif;font-size:30px;line-height:1;
+    color:var(--brass);letter-spacing:.03em;
+  }
+  .year-rule .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+
+  .show{
+    background:var(--bg-2);border:1px solid var(--line-soft);border-radius:var(--radius);
+    margin:12px 0;overflow:hidden;transition:border-color .18s, transform .18s;
+  }
+  .show:hover{border-color:var(--line)}
+  .show-head{padding:18px 20px 16px}
+  .band-line{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .band{
+    font-family:"Bebas Neue",sans-serif;font-size:clamp(28px,4.4vw,40px);
+    line-height:.94;letter-spacing:.012em;color:var(--ink);margin:0;
+  }
+  .date{
+    flex:0 0 auto;font-weight:600;font-size:13px;letter-spacing:.06em;
+    color:var(--brass);white-space:nowrap;text-transform:uppercase;
+  }
+  .facts{
+    margin-top:8px;color:var(--ink-dim);font-size:14.5px;
+    display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline;
+  }
+  .facts .dot{color:var(--line);}
+  .facts .tour{color:var(--ink);font-weight:500}
+  .facts .venue{font-weight:500}
+  .open{
+    margin-top:9px;font-size:13.5px;color:var(--ink-dim);
+    display:flex;flex-wrap:wrap;gap:6px 18px;
+  }
+  .open span{display:inline-flex;gap:6px;align-items:baseline}
+  .open .k{
+    font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:600;
+  }
+  .open .v{color:var(--ink)}
+  .open .v.none{color:var(--ink-faint);font-style:italic}
+
+  /* setlist toggle */
+  .toggle{
+    width:100%;text-align:left;cursor:pointer;
+    background:transparent;border:0;border-top:1px solid var(--line-soft);
+    padding:13px 20px;display:flex;align-items:center;gap:12px;
+    font-family:"Barlow";color:var(--ink-dim);transition:.16s;
+  }
+  .toggle:hover{background:var(--bg-3);color:var(--ink)}
+  .toggle .plus{
+    flex:0 0 auto;width:22px;height:22px;position:relative;
+    border:1.5px solid var(--brass-deep);border-radius:6px;transition:.22s ease;
+  }
+  .toggle .plus::before,.toggle .plus::after{
+    content:"";position:absolute;background:var(--brass);border-radius:2px;
+    left:50%;top:50%;transition:.22s ease;
+  }
+  .toggle .plus::before{width:10px;height:2px;transform:translate(-50%,-50%)}
+  .toggle .plus::after{width:2px;height:10px;transform:translate(-50%,-50%)}
+  .show.open .toggle .plus{background:var(--brass);border-color:var(--brass)}
+  .show.open .toggle .plus::before,.show.open .toggle .plus::after{background:#20160c}
+  .show.open .toggle .plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+  .toggle .lbl{font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px}
+  .toggle .n{margin-left:auto;color:var(--ink-faint);font-size:12px;letter-spacing:.08em;font-weight:500}
+
+  /* setlist sheet (the printed-setlist artifact) */
+  .sheet-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  .show.open .sheet-wrap{grid-template-rows:1fr}
+  .sheet-clip{overflow:hidden;min-height:0}
+  .sheet{
+    margin:4px 14px 16px;background:var(--paper);color:var(--paper-ink);
+    border-radius:6px;padding:22px 20px 24px;position:relative;
+    box-shadow:0 8px 22px rgba(0,0,0,.4), inset 0 0 0 1px rgba(0,0,0,.05);
+    background-image:repeating-linear-gradient(180deg,transparent,transparent 31px,rgba(120,105,75,.10) 31px,rgba(120,105,75,.10) 32px);
+  }
+  /* tape */
+  .sheet::before{
+    content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-1.4deg);
+    width:96px;height:20px;background:rgba(230,220,190,.5);
+    box-shadow:inset 0 0 0 1px rgba(120,105,75,.25);
+  }
+  .sheet .sheet-title{
+    text-align:center;font-family:"Barlow";font-weight:700;font-size:11px;
+    letter-spacing:.34em;text-transform:uppercase;color:#8a7245;
+    margin:0 0 14px;
+  }
+  ol.songs{list-style:none;margin:0;padding:0;counter-reset:song}
+  ol.songs li.song{
+    counter-increment:song;
+    font-family:"Barlow Condensed";font-weight:600;text-transform:uppercase;
+    font-size:20px;line-height:1.55;letter-spacing:.01em;
+    padding-left:38px;position:relative;color:var(--paper-ink);
+  }
+  ol.songs li.song::before{
+    content:counter(song);position:absolute;left:0;top:.18em;
+    font-family:"Barlow";font-weight:700;font-size:11px;color:#a98f5c;
+    width:26px;text-align:right;letter-spacing:0;
+  }
+  ol.songs li.song .note{
+    display:block;font-family:"Barlow";font-weight:400;text-transform:none;
+    font-size:12.5px;letter-spacing:0;color:#6f5f42;line-height:1.35;margin-top:-2px;
+  }
+  li.encore{
+    list-style:none;text-align:center;margin:14px 0 8px;
+    font-family:"Barlow";font-weight:700;font-size:11px;letter-spacing:.32em;
+    text-transform:uppercase;color:#8a7245;
+    display:flex;align-items:center;gap:12px;
+  }
+  li.encore::before,li.encore::after{content:"";flex:1;height:1px;background:var(--paper-line)}
+  li.encore.re{counter-reset:song}
+  li.interlude{
+    list-style:none;font-family:"Barlow";font-style:italic;font-size:13px;
+    color:#6f5f42;text-align:center;margin:9px 0;padding:0 8px;line-height:1.4;
+  }
+  .sheet .unknown{
+    text-align:center;font-family:"Barlow Condensed";font-weight:600;
+    text-transform:uppercase;letter-spacing:.14em;font-size:19px;color:#9c8559;
+    padding:14px 0 6px;
+  }
+  .sheet .unknown small{display:block;font-family:"Barlow";font-weight:400;text-transform:none;letter-spacing:0;font-size:12.5px;color:#8a7658;margin-top:4px}
+  .sheet .snotes{margin:16px 0 0;padding-top:12px;border-top:1px dashed var(--paper-line)}
+  .sheet .snotes p{margin:4px 0;font-family:"Barlow";font-size:12.5px;font-style:italic;color:#6f5f42;line-height:1.4}
+  .sheet .snotes p::before{content:"* ";color:#a98f5c;font-style:normal}
+
+  /* empty state */
+  .empty{
+    text-align:center;padding:70px 20px;color:var(--ink-faint);
+  }
+  .empty .big{font-family:"Bebas Neue";font-size:40px;color:var(--ink-dim);letter-spacing:.02em}
+  .empty p{margin:6px 0 18px}
+  .empty button{
+    font-family:inherit;font-weight:600;letter-spacing:.04em;cursor:pointer;
+    background:var(--brass);color:#20160c;border:0;border-radius:999px;padding:10px 20px;
+  }
+
+  footer{max-width:var(--maxw);margin:0 auto;padding:0 24px 50px;color:var(--ink-faint);font-size:12.5px;text-align:center;letter-spacing:.04em}
+
+  @media (max-width:620px){
+    .guitar{width:96px;height:96px}
+    .marquee{gap:16px}
+    .selects{width:100%}
+    .field{flex:1 1 auto}
+    select{width:100%}
+    .band-line{gap:6px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+
+  /* load-in strum animation */
+  @keyframes strum{
+    0%{opacity:0}60%{opacity:.28}100%{opacity:.9}
+  }
+  .gstring{animation:strum 1.1s ease both}
+  .gstring:nth-child(1){animation-delay:.05s}
+  .gstring:nth-child(2){animation-delay:.12s}
+  .gstring:nth-child(3){animation-delay:.19s}
+  .gstring:nth-child(4){animation-delay:.26s}
+  .gstring:nth-child(5){animation-delay:.33s}
+  .gstring:nth-child(6){animation-delay:.40s}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="topbar">
+    <a class="home-link" href="index.html"><span class="arrow">←</span> Home</a>
+  </div>
+  <div class="marquee">
+    <svg class="guitar" viewBox="0 0 120 120" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e6ad57"/><stop offset=".55" stop-color="#c07d34"/><stop offset="1" stop-color="#8a4f22"/>
+        </linearGradient>
+        <radialGradient id="hole" cx="50%" cy="42%" r="60%">
+          <stop offset="0" stop-color="#160d06"/><stop offset="1" stop-color="#2c1809"/>
+        </radialGradient>
+      </defs>
+      <!-- neck + headstock, angled up-right -->
+      <g transform="rotate(-32 60 60)">
+        <rect x="55" y="6" width="10" height="60" rx="3" fill="#6b3f1d"/>
+        <rect x="53" y="2" width="14" height="12" rx="3" fill="#4d2c14"/>
+        <circle cx="52" cy="5" r="1.7" fill="#e6ad57"/><circle cx="52" cy="10" r="1.7" fill="#e6ad57"/>
+        <circle cx="68" cy="5" r="1.7" fill="#e6ad57"/><circle cx="68" cy="10" r="1.7" fill="#e6ad57"/>
+        <!-- frets -->
+        <g stroke="#d9b87e" stroke-width="1">
+          <line x1="55" y1="20" x2="65" y2="20"/><line x1="55" y1="30" x2="65" y2="30"/>
+          <line x1="55" y1="40" x2="65" y2="40"/><line x1="55" y1="50" x2="65" y2="50"/>
+        </g>
+        <!-- body: dreadnought -->
+        <path d="M60 60
+                 C40 60 33 74 34 86
+                 C35 100 46 112 60 112
+                 C74 112 85 100 86 86
+                 C87 74 80 60 60 60 Z" fill="url(#wood)" stroke="#3f2410" stroke-width="1.5"/>
+        <path d="M60 63 C44 63 39 74 40 84 C41 96 49 106 60 106 C71 106 79 96 80 84 C81 74 76 63 60 63 Z"
+              fill="none" stroke="rgba(255,240,210,.25)" stroke-width="1"/>
+        <circle cx="60" cy="80" r="12" fill="url(#hole)" stroke="#3f2410" stroke-width="1.5"/>
+        <circle cx="60" cy="80" r="14.5" fill="none" stroke="rgba(255,240,210,.35)" stroke-width="1"/>
+        <!-- bridge -->
+        <rect x="50" y="96" width="20" height="5" rx="1.5" fill="#3f2410"/>
+        <!-- strings -->
+        <g stroke="#f3ead9" stroke-width=".7" opacity=".9">
+          <line class="gstring" x1="57" y1="8" x2="57" y2="97"/>
+          <line class="gstring" x1="58.5" y1="8" x2="58.5" y2="97"/>
+          <line class="gstring" x1="59.5" y1="8" x2="59.5" y2="97"/>
+          <line class="gstring" x1="60.5" y1="8" x2="60.5" y2="97"/>
+          <line class="gstring" x1="61.5" y1="8" x2="61.5" y2="97"/>
+          <line class="gstring" x1="63" y1="8" x2="63" y2="97"/>
+        </g>
+      </g>
+    </svg>
+    <div class="title-wrap">
+      <p class="eyebrow">A life in live music</p>
+      <h1>Concert&nbsp;Log</h1>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <input id="q" type="search" placeholder="Search band, venue, city, tour, or a song&hellip;" autocomplete="off" aria-label="Search concerts">
+      <button class="clear" id="clear" aria-label="Clear search">&times;</button>
+    </div>
+    <div class="selects">
+      <div class="field"><label>Year</label><select id="fYear"></select></div>
+      <div class="field"><label>Band</label><select id="fBand"></select></div>
+      <div class="field"><label>Venue</label><select id="fVenue"></select></div>
+    </div>
+  </div>
+</div>
+<div class="meta-row"><div class="count" id="count"></div></div>
+
+<main id="list"></main>
+<footer id="foot"></footer>
+
+<script>
+const DATA = [{"band":"Oasis","date":"August 25, 2025","sort":"2025-08-25","year":"2025","tour":"Live '25 Tour","venue":"Rogers Stadium","city":"Toronto","openingAct":"Cage the Elephant","openingFor":null,"setlist":[{"type":"song","text":"Intro (from tape)"},{"type":"song","text":"Rockin' in the Free World (Neil Young)"},{"type":"song","text":"Fuckin' in the Bushes (preceded by \"Close Encounters of the Third Kind\" dialogue)"},{"type":"song","text":"Hello"},{"type":"song","text":"Acquiesce"},{"type":"song","text":"Morning Glory"},{"type":"song","text":"Some Might Say"},{"type":"song","text":"Bring It On Down (dedicated to \"them proper drug-takers, the glue-sniffers\")"},{"type":"song","text":"Cigarettes & Alcohol (Liam led the crowd in a Poznań first)"},{"type":"song","text":"Fade Away"},{"type":"song","text":"Supersonic"},{"type":"song","text":"Roll With It"},{"type":"song","text":"Talk Tonight"},{"type":"song","text":"Half the World Away (dedicated to the Irish)"},{"type":"song","text":"Little by Little"},{"type":"song","text":"D'You Know What I Mean?"},{"type":"song","text":"Stand by Me"},{"type":"song","text":"Cast No Shadow"},{"type":"song","text":"Slide Away"},{"type":"song","text":"Whatever (with a snippet of The Beatles' \"Octopus's Garden\")"},{"type":"song","text":"Live Forever (dedicated to \"all the people who cannot be here\")"},{"type":"song","text":"Rock 'n' Roll Star"},{"type":"section","label":"Encore"},{"type":"song","text":"The Masterplan"},{"type":"song","text":"Don't Look Back in Anger"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Champagne Supernova (with a snippet of \"Columbia\" at the end, followed by fireworks)"}],"setlistUnknown":false,"notes":[]},{"band":"Cage the Elephant","date":"August 25, 2025","sort":"2025-08-25","year":"2025","tour":"Live '25 Tour","venue":"Rogers Stadium","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"Broken Boy"},{"type":"song","text":"Spiderhead"},{"type":"song","text":"Cold Cold Cold"},{"type":"song","text":"Ready to Let Go"},{"type":"song","text":"Social Cues"},{"type":"song","text":"Trouble"},{"type":"song","text":"Ain't No Rest for the Wicked"},{"type":"song","text":"Telescope"},{"type":"song","text":"Shake Me Down"},{"type":"song","text":"Cigarette Daydreams (preceded by a tease of Lynyrd Skynyrd's \"Sweet Home Alabama\")"},{"type":"song","text":"Come a Little Closer"}],"setlistUnknown":false,"notes":[]},{"band":"Elton John","date":"September 8, 2022","sort":"2022-09-08","year":"2022","tour":"Elton John: Farewell Yellow Brick Road -- The Final Tour","venue":"Rogers Centre","city":"Toronto","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"Good Morning to the Night (intro, played from tape)"},{"type":"song","text":"Bennie and the Jets"},{"type":"song","text":"Philadelphia Freedom"},{"type":"song","text":"I Guess That's Why They Call It the Blues"},{"type":"song","text":"Border Song (dedicated to Aretha Franklin)"},{"type":"song","text":"Tiny Dancer"},{"type":"song","text":"Have Mercy on the Criminal"},{"type":"song","text":"Rocket Man (I Think It's Going to Be a Long, Long Time)"},{"type":"song","text":"Take Me to the Pilot"},{"type":"song","text":"Someone Saved My Life Tonight"},{"type":"song","text":"Levon"},{"type":"song","text":"Candle in the Wind"},{"type":"song","text":"Funeral for a Friend / Love Lies Bleeding"},{"type":"song","text":"Burn Down the Mission"},{"type":"song","text":"Sad Songs (Say So Much)"},{"type":"song","text":"Sorry Seems to Be the Hardest Word"},{"type":"song","text":"Don't Let the Sun Go Down on Me (dedicated to Queen Elizabeth II)"},{"type":"song","text":"The Bitch Is Back"},{"type":"song","text":"I'm Still Standing"},{"type":"song","text":"Crocodile Rock"},{"type":"song","text":"Saturday Night's Alright for Fighting"},{"type":"section","label":"Encore"},{"type":"song","text":"Cold Heart (PNAU Remix)"},{"type":"song","text":"Your Song"},{"type":"song","text":"Goodbye Yellow Brick Road"},{"type":"song","text":"Hold Me Closer (his duet with Britney Spears, played over the PA as an outro/tape)"}],"setlistUnknown":false,"notes":["The \"Don't Let the Sun Go Down on Me\" dedication at #17 is the moment where he honored the Queen, who had died earlier that day."]},{"band":"U2","date":"June 23, 2017","sort":"2017-06-23","year":"2017","tour":"The Joshua Tree Tour","venue":"Rogers Centre","city":"Toronto","openingAct":"The Lumineers","openingFor":null,"setlist":[{"type":"song","text":"Sunday Bloody Sunday"},{"type":"song","text":"New Year's Day"},{"type":"song","text":"Bad (with Leonard Cohen's \"Suzanne\" and \"Hallelujah\" snippets)"},{"type":"song","text":"Pride (In the Name of Love)"},{"type":"song","text":"Where the Streets Have No Name"},{"type":"song","text":"I Still Haven't Found What I'm Looking For"},{"type":"song","text":"With or Without You"},{"type":"song","text":"Bullet the Blue Sky"},{"type":"song","text":"Running to Stand Still"},{"type":"song","text":"Red Hill Mining Town"},{"type":"song","text":"In God's Country"},{"type":"song","text":"Trip Through Your Wires"},{"type":"song","text":"One Tree Hill"},{"type":"song","text":"Exit"},{"type":"song","text":"Mothers of the Disappeared"},{"type":"section","label":"Encore"},{"type":"song","text":"Miss Sarajevo"},{"type":"song","text":"Beautiful Day (with an \"O Canada\" snippet)"},{"type":"song","text":"Elevation"},{"type":"song","text":"Vertigo"},{"type":"song","text":"Ultraviolet (Light My Way)"},{"type":"song","text":"One"},{"type":"song","text":"I Will Follow"}],"setlistUnknown":false,"notes":[]},{"band":"The Lumineers","date":"June 23, 2017","sort":"2017-06-23","year":"2017","tour":"The Joshua Tree Tour","venue":"Rogers Centre","city":"Toronto","openingAct":null,"openingFor":"U2","setlist":[{"type":"song","text":"Submarines"},{"type":"song","text":"Flowers in Your Hair"},{"type":"song","text":"Ho Hey"},{"type":"song","text":"Cleopatra"},{"type":"song","text":"Dead Sea"},{"type":"song","text":"Charlie Boy"},{"type":"song","text":"Slow It Down"},{"type":"song","text":"Sleep on the Floor"},{"type":"song","text":"Angela"},{"type":"song","text":"Ophelia"},{"type":"song","text":"Big Parade"},{"type":"song","text":"Stubborn Love"}],"setlistUnknown":false,"notes":[]},{"band":"The Tragically Hip","date":"August 16, 2016","sort":"2016-08-16","year":"2016","tour":"The Man Machine Poem Tour","venue":"FirstOntario Centre","city":"Hamilton","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"At the Hundredth Meridian"},{"type":"song","text":"Courage (for Hugh MacLennan)"},{"type":"song","text":"Eldorado"},{"type":"song","text":"Fifty-Mission Cap"},{"type":"song","text":"In a World Possessed by the Human Mind"},{"type":"song","text":"What Blue"},{"type":"song","text":"In Sarnia"},{"type":"song","text":"Machine"},{"type":"interlude","text":"Interlude (thunderstorm visuals, sound and lighting effects, with a track played from tape)"},{"type":"song","text":"The Lonely End of the Rink"},{"type":"song","text":"Yer Not the Ocean"},{"type":"song","text":"Family Band"},{"type":"song","text":"In View"},{"type":"song","text":"So Hard Done By"},{"type":"song","text":"Grace, Too"},{"type":"song","text":"Scared"},{"type":"song","text":"Daredevil"},{"type":"song","text":"Escape Is at Hand for the Travellin' Man"},{"type":"song","text":"Something On"},{"type":"song","text":"Fireworks"},{"type":"song","text":"Poets"},{"type":"section","label":"Encore 1"},{"type":"song","text":"Gift Shop"},{"type":"song","text":"Don't Wake Daddy"},{"type":"song","text":"Ahead by a Century"},{"type":"section","label":"Encore 2"},{"type":"song","text":"Fiddler's Green"},{"type":"song","text":"Twist My Arm"}],"setlistUnknown":false,"notes":[]},{"band":"Oasis","date":"September 7, 2008","sort":"2008-09-07","year":"2008","tour":"Dig Out Your Soul Tour","venue":"Virgin Festival Toronto Island Park","city":"Toronto","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"Fuckin' in the Bushes (from tape)"},{"type":"song","text":"Rock 'n' Roll Star"},{"type":"song","text":"Lyla"},{"type":"song","text":"The Shock of the Lightning"},{"type":"song","text":"Cigarettes & Alcohol"},{"type":"song","text":"The Meaning of Soul"},{"type":"song","text":"To Be Where There's Life"},{"type":"song","text":"The Masterplan"},{"type":"song","text":"Songbird"},{"type":"song","text":"Slide Away"},{"type":"song","text":"Morning Glory --- the song was stopped mid-performance when a fan pushed Noel over into the monitors; followed by a 7+ minute delay for medical attention"},{"type":"song","text":"The Importance of Being Idle"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Supersonic"},{"type":"song","text":"Don't Look Back in Anger (acoustic)"},{"type":"song","text":"Falling Down"},{"type":"song","text":"I Am the Walrus (The Beatles cover)"}],"setlistUnknown":false,"notes":["Show where Noel was attacked onstage and had ribs broken"]},{"band":"Oasis","date":"March 20, 2006","sort":"2006-03-20","year":"2006","tour":"Don't Believe the Truth Tour","venue":"Air Canada Centre","city":"Toronto","openingAct":"Arctic Monkeys","openingFor":null,"setlist":[{"type":"song","text":"Fuckin' in the Bushes (from tape)"},{"type":"song","text":"Turn Up the Sun"},{"type":"song","text":"Lyla"},{"type":"song","text":"Bring It On Down"},{"type":"song","text":"Morning Glory"},{"type":"song","text":"Cigarettes & Alcohol"},{"type":"song","text":"The Importance of Being Idle"},{"type":"song","text":"The Masterplan"},{"type":"song","text":"Songbird"},{"type":"song","text":"Acquiesce"},{"type":"song","text":"A Bell Will Ring"},{"type":"song","text":"Live Forever"},{"type":"song","text":"Mucky Fingers"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Champagne Supernova"},{"type":"song","text":"Rock 'n' Roll Star"},{"type":"section","label":"Encore"},{"type":"song","text":"Supersonic"},{"type":"song","text":"The Meaning of Soul"},{"type":"song","text":"Don't Look Back in Anger"},{"type":"song","text":"My Generation (The Who cover)"}],"setlistUnknown":false,"notes":[]},{"band":"Arctic Monkeys","date":"March 20, 2006","sort":"2006-03-20","year":"2006","tour":"Whatever People Say I Am, That's What I'm Not tour","venue":"Air Canada Centre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"The View From the Afternoon"},{"type":"song","text":"I Bet You Look Good on the Dancefloor"},{"type":"song","text":"You Probably Couldn't See for the Lights but You Were Staring Straight at Me"},{"type":"song","text":"From the Ritz to the Rubble"},{"type":"song","text":"When the Sun Goes Down"},{"type":"song","text":"Still Take You Home"},{"type":"song","text":"Dancing Shoes"},{"type":"song","text":"Leave Before the Lights Come On"},{"type":"song","text":"Fake Tales of San Francisco"},{"type":"song","text":"A Certain Romance"}],"setlistUnknown":false,"notes":[]},{"band":"Oasis","date":"June 17, 2005","sort":"2005-06-17","year":"2005","tour":"Don't Believe the Truth Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"Jet, Nic Armstrong & The Thieves","openingFor":null,"setlist":[{"type":"song","text":"Fuckin' in the Bushes (from tape)"},{"type":"song","text":"Turn Up the Sun"},{"type":"song","text":"Lyla"},{"type":"song","text":"Love Like a Bomb (tour debut --- first time played anywhere on the tour, and first time in North America)"},{"type":"song","text":"Bring It On Down"},{"type":"song","text":"Morning Glory"},{"type":"song","text":"Cigarettes & Alcohol"},{"type":"song","text":"The Importance of Being Idle"},{"type":"song","text":"Little by Little"},{"type":"song","text":"The Meaning of Soul"},{"type":"song","text":"A Bell Will Ring"},{"type":"song","text":"Mucky Fingers"},{"type":"song","text":"Live Forever"},{"type":"song","text":"Champagne Supernova"},{"type":"song","text":"Rock 'n' Roll Star"},{"type":"section","label":"Encore"},{"type":"song","text":"Songbird"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Don't Look Back in Anger"},{"type":"song","text":"My Generation (The Who cover)"}],"setlistUnknown":false,"notes":[]},{"band":"Jet","date":"June 17, 2005","sort":"2005-06-17","year":"2005","tour":"Don't Believe the Truth Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Nic Armstrong & The Thieves","date":"June 17, 2005","sort":"2005-06-17","year":"2005","tour":"Don't Believe the Truth Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Avril Lavigne","date":"September 2, 2002","sort":"2002-09-02","year":"2002","tour":"Try to Shut Me Up Tour","venue":"Sunnyside Park","city":"Toronto","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"Sk8er Boi"},{"type":"song","text":"Nobody's Fool"},{"type":"song","text":"Losing Grip"},{"type":"song","text":"Naked"},{"type":"song","text":"Mobile"},{"type":"song","text":"Complicated"},{"type":"song","text":"My World"},{"type":"song","text":"Unwanted"}],"setlistUnknown":false,"notes":["Setlist not confirmed"]},{"band":"Oasis","date":"August 17, 2002","sort":"2002-08-17","year":"2002","tour":"Heathen Chemistry Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"Sloan, Mercury Rev, The Soundtrack of Our Lives, Sam Roberts","openingFor":null,"setlist":[{"type":"song","text":"Fuckin' In The Bushes"},{"type":"song","text":"Hello"},{"type":"song","text":"The Hindu Times"},{"type":"song","text":"Hung In A Bad Place"},{"type":"song","text":"Go Let It Out"},{"type":"song","text":"Columbia"},{"type":"song","text":"Morning Glory"},{"type":"song","text":"Stop Crying Your Heart Out"},{"type":"song","text":"Little By Little"},{"type":"song","text":"Cigarettes & Alcohol"},{"type":"song","text":"Live Forever"},{"type":"song","text":"Better Man"},{"type":"song","text":"Force Of Nature"},{"type":"song","text":"Born On A Different Cloud"},{"type":"song","text":"Acquiesce"},{"type":"song","text":"Wonderwall (Noel acoustic)"},{"type":"song","text":"Don't Look Back In Anger (Noel electric)"},{"type":"song","text":"Some Might Say"},{"type":"song","text":"My Generation"}],"setlistUnknown":false,"notes":[]},{"band":"Sloan","date":"August 17, 2002","sort":"2002-08-17","year":"2002","tour":"Heathen Chemistry Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"If It Feels Good Do It"},{"type":"song","text":"The Other Man"},{"type":"song","text":"Iggy & Angus"},{"type":"song","text":"I Hate My Generation"},{"type":"song","text":"Marcus Said"},{"type":"song","text":"In the Movies"},{"type":"song","text":"People of the Sky"},{"type":"song","text":"The Good in Everyone"},{"type":"song","text":"The Lines You Amend"},{"type":"song","text":"G Turns to D"},{"type":"song","text":"Money City Maniacs"}],"setlistUnknown":false,"notes":[]},{"band":"Mercury Rev","date":"August 17, 2002","sort":"2002-08-17","year":"2002","tour":"Heathen Chemistry Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"Hercules"}],"setlistUnknown":false,"notes":["incomplete setlist"]},{"band":"The Soundtrack of Our Lives","date":"August 17, 2002","sort":"2002-08-17","year":"2002","tour":"Heathen Chemistry Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Sam Roberts","date":"August 17, 2002","sort":"2002-08-17","year":"2002","tour":"Heathen Chemistry Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"Brother Down"},{"type":"song","text":"Where Have All the Good People Gone?"}],"setlistUnknown":false,"notes":["incomplete setlist"]},{"band":"Great Big Sea","date":"2000–2002","sort":"2001-06-15","year":"2000–2002","tour":"unknown tour","venue":"venue unknown","city":"Guelph","openingAct":"unknown","openingFor":null,"setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Oasis","date":"May 22, 2001","sort":"2001-05-22","year":"2001","tour":"The Tour of Brotherly Love","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"Spacehog, The Black Crowes","openingFor":null,"setlist":[{"type":"song","text":"Louie Louie (P.A)"},{"type":"song","text":"Go Let It Out"},{"type":"song","text":"Columbia"},{"type":"song","text":"Morning Glory"},{"type":"song","text":"Fade Away"},{"type":"song","text":"Acquiesce"},{"type":"song","text":"Gas Panic!"},{"type":"song","text":"Cigarettes And Alcohol"},{"type":"song","text":"Step Out"},{"type":"song","text":"Slide Away"},{"type":"song","text":"Champagne Supernova *"},{"type":"song","text":"Don't Look Back In Anger"},{"type":"song","text":"I Am The Walrus"}],"setlistUnknown":false,"notes":[]},{"band":"The Black Crowes","date":"May 22, 2001","sort":"2001-05-22","year":"2001","tour":"The Tour of Brotherly Love","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"Spacehog","openingFor":"Oasis","setlist":[{"type":"song","text":"Midnight From the Inside Out"},{"type":"song","text":"Sting Me"},{"type":"song","text":"Greasy Grass River"},{"type":"song","text":"Twice as Hard"},{"type":"song","text":"Lickin'"},{"type":"song","text":"Bad Luck Blue Eyes Goodbye"},{"type":"song","text":"Soul Singing"},{"type":"song","text":"Ozone Mama (live debut)"},{"type":"song","text":"High Head Blues"},{"type":"song","text":"Oh Well (Fleetwood Mac cover) --- with Gordie Johnson"},{"type":"song","text":"Young Man, Old Man --- with Gordie Johnson"},{"type":"song","text":"Kinky Reggae (Bob Marley / The Wailers cover) --- with Gordie Johnson"},{"type":"song","text":"Rebel Rebel (David Bowie cover) --- with Gordie Johnson"}],"setlistUnknown":false,"notes":[]},{"band":"Spacehog","date":"May 22, 2001","sort":"2001-05-22","year":"2001","tour":"The Tour of Brotherly Love","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"The Black Crowes, Oasis","setlist":[{"type":"song","text":"This Is America"},{"type":"song","text":"I Want to Live"},{"type":"song","text":"At Least I Got Laid"},{"type":"song","text":"In the Meantime"},{"type":"song","text":"Mungo City"}],"setlistUnknown":false,"notes":["unconfirmed list"]},{"band":"REM","date":"May 17, 2001","sort":"2001-05-17","year":"2001","tour":"Reveal promo tour","venue":"Yonge-Dundas Square","city":"Toronto","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"Imitation of Life"},{"type":"song","text":"The Great Beyond"},{"type":"song","text":"Have You Ever Seen the Rain? (snippet sung a cappella by Stipe)"},{"type":"song","text":"What's the Frequency, Kenneth?"},{"type":"song","text":"All the Way to Reno (You're Gonna Be a Star)"},{"type":"song","text":"I've Been High"},{"type":"song","text":"The Lifting"},{"type":"song","text":"I'll Take the Rain"},{"type":"song","text":"At My Most Beautiful"},{"type":"song","text":"The One I Love"},{"type":"song","text":"She Just Wants to Be"},{"type":"song","text":"Walk Unafraid"},{"type":"song","text":"Losing My Religion"},{"type":"song","text":"Man on the Moon"},{"type":"section","label":"Encore"},{"type":"song","text":"So. Central Rain (I'm Sorry)"},{"type":"song","text":"It's the End of the World as We Know It (And I Feel Fine)"}],"setlistUnknown":false,"notes":[]},{"band":"Dido","date":"April 18, 2001","sort":"2001-04-18","year":"2001","tour":"No Angel Tour","venue":"Hummingbird Centre","city":"Toronto","openingAct":null,"openingFor":null,"setlist":[{"type":"song","text":"Worthless"},{"type":"song","text":"My Lover's Gone"},{"type":"song","text":"All You Want"},{"type":"song","text":"Here With Me"},{"type":"song","text":"Isobel"},{"type":"song","text":"My Life"},{"type":"song","text":"Honestly O"},{"type":"song","text":"KI'm No Angel"},{"type":"song","text":"Slide"},{"type":"song","text":"See the Sun"},{"type":"song","text":"Take My Hand"},{"type":"song","text":"Thank You"},{"type":"song","text":"Hunter"},{"type":"song","text":"Don't Think of Me"}],"setlistUnknown":false,"notes":[]},{"band":"Oasis","date":"April 29, 2000","sort":"2000-04-29","year":"2000","tour":"Standing on the Shoulder of Giants Tour","venue":"Maple Leaf Gardens","city":"Toronto","openingAct":"none","openingFor":null,"setlist":[{"type":"song","text":"Fucking In The Bushes"},{"type":"song","text":"Go Let It Out"},{"type":"song","text":"Who Feels Love"},{"type":"song","text":"Supersonic"},{"type":"song","text":"Shakermaker"},{"type":"song","text":"Acquiesce"},{"type":"song","text":"Where Did It All Go Wrong?"},{"type":"song","text":"Gas Panic!"},{"type":"song","text":"Roll With It"},{"type":"song","text":"Stand By Me"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Cigarettes & Alcohol"},{"type":"song","text":"Don't Look Back In Anger"},{"type":"song","text":"Live Forever"},{"type":"song","text":"Hey Hey My My (Into The Black)"},{"type":"song","text":"Helter Skelter"},{"type":"song","text":"Rock N' Roll Star"}],"setlistUnknown":false,"notes":["last ever concert at Maple Leaf Gardens"]},{"band":"REM","date":"August 24, 1999","sort":"1999-08-24","year":"1999","tour":"Up Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"Wilco, Ember Swift","openingFor":null,"setlist":[{"type":"song","text":"Lotus"},{"type":"song","text":"What's the Frequency, Kenneth?"},{"type":"song","text":"The Wake-Up Bomb"},{"type":"song","text":"Fall on Me"},{"type":"song","text":"Suspicion"},{"type":"song","text":"Begin the Begin"},{"type":"song","text":"Daysleeper"},{"type":"song","text":"The One I Love"},{"type":"song","text":"Electrolite"},{"type":"song","text":"The Apologist"},{"type":"song","text":"Sweetness Follows"},{"type":"song","text":"The Great Beyond"},{"type":"song","text":"Man on the Moon"},{"type":"song","text":"Find the River"},{"type":"song","text":"At My Most Beautiful"},{"type":"song","text":"Star 69"},{"type":"song","text":"Walk Unafraid"},{"type":"song","text":"Losing My Religion"},{"type":"section","label":"Encore"},{"type":"song","text":"Hope (Michael Stipe solo)"},{"type":"song","text":"Why Not Smile (Mills & Stipe)"},{"type":"song","text":"Crush With Eyeliner"},{"type":"song","text":"Tongue"},{"type":"song","text":"So. Central Rain"},{"type":"song","text":"It's the End of the World as We Know It (And I Feel Fine)"}],"setlistUnknown":false,"notes":[]},{"band":"Wilco","date":"August 24, 1999","sort":"1999-08-24","year":"1999","tour":"Up Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"REM","setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Ember Swift","date":"August 24, 1999","sort":"1999-08-24","year":"1999","tour":"Up Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"REM","setlist":[],"setlistUnknown":true,"notes":[]},{"band":"Oasis","date":"January 15, 1998","sort":"1998-01-15","year":"1998","tour":"Be Here Now Tour","venue":"Maple Leaf Gardens","city":"Toronto","openingAct":"Cornershop","openingFor":null,"setlist":[{"type":"song","text":"Intro / Be Here Now"},{"type":"song","text":"Stand By Me"},{"type":"song","text":"Supersonic"},{"type":"song","text":"Roll with It"},{"type":"song","text":"D'yer Know What I Mean?"},{"type":"song","text":"Cigarettes and Alcohol"},{"type":"song","text":"Don't Go Away (Acoustic)"},{"type":"song","text":"Talk Tonight (Acoustic)"},{"type":"song","text":"To Be Someone (Acoustic)"},{"type":"song","text":"Whatever (Acoustic)"},{"type":"song","text":"Don't Look Back In Anger"},{"type":"song","text":"Wonderwall"},{"type":"song","text":"Live Forever"},{"type":"song","text":"It's Getting Better Man!!!"},{"type":"song","text":"Champagne supernova"},{"type":"song","text":"Acquiesce"}],"setlistUnknown":false,"notes":[]},{"band":"Cornershop","date":"January 15, 1998","sort":"1998-01-15","year":"1998","tour":"Be Here Now Tour","venue":"Maple Leaf Gardens","city":"Toronto","openingAct":null,"openingFor":"Oasis","setlist":[{"type":"song","text":"Brimful of Asha"}],"setlistUnknown":true,"notes":[]},{"band":"Bush","date":"July 10, 1997","sort":"1997-07-10","year":"1997","tour":"Razorblade Suitcase Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":"The Jesus Lizard","openingFor":null,"setlist":[{"type":"song","text":"A Tendency to Start Fires"},{"type":"song","text":"Personal Holloway"},{"type":"song","text":"Machinehead"},{"type":"song","text":"Insect Kin"},{"type":"song","text":"Mouth"},{"type":"song","text":"Everything Zen"},{"type":"song","text":"History"},{"type":"song","text":"Cold Contagious"},{"type":"song","text":"Bonedriven"},{"type":"song","text":"Glycerine"},{"type":"song","text":"Testosterone"},{"type":"song","text":"Body"},{"type":"song","text":"Comedown"},{"type":"section","label":"Encore"},{"type":"song","text":"Swallowed"},{"type":"song","text":"Alien"},{"type":"song","text":"Greedy Fly"},{"type":"song","text":"The One I Love (R.E.M. cover)"},{"type":"song","text":"Little Things"}],"setlistUnknown":false,"notes":["Setlist may contain errors. Just What I Needed (The Cars) is thought to have been played."]},{"band":"The Jesus Lizard","date":"July 10, 1997","sort":"1997-07-10","year":"1997","tour":"Razorblade Suitcase Tour","venue":"Molson Amphitheatre","city":"Toronto","openingAct":null,"openingFor":"Bush","setlist":[],"setlistUnknown":true,"notes":[]}];
+
+const $ = s => document.querySelector(s);
+const list = $('#list');
+const qEl = $('#q'), clearEl = $('#clear');
+const fYear = $('#fYear'), fBand = $('#fBand'), fVenue = $('#fVenue');
+const countEl = $('#count');
+
+// ---- populate filters ----
+function opts(sel, values, allLabel){
+  sel.innerHTML = '<option value="">'+allLabel+'</option>' +
+    values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+const years = [...new Set(DATA.map(c=>c.year))].sort((a,b)=>b.localeCompare(a));
+const bands = [...new Set(DATA.map(c=>c.band))].sort((a,b)=>a.localeCompare(b));
+const venues = [...new Set(DATA.map(c=>c.venue))].filter(v=>v && !/^venue unknown$/i.test(v)).sort((a,b)=>a.localeCompare(b));
+opts(fYear, years, 'All years');
+opts(fBand, bands, 'All bands');
+opts(fVenue, venues, 'All venues');
+
+// ---- searchable text per show ----
+DATA.forEach(c=>{
+  const songs = (c.setlist||[]).filter(s=>s.type==='song').map(s=>s.text).join(' ');
+  c._hay = [c.band,c.tour,c.venue,c.city,c.date,c.openingAct||'',c.openingFor||'',songs,(c.notes||[]).join(' ')]
+    .join(' ').toLowerCase();
+});
+
+function songCount(c){
+  if(c.setlistUnknown && !(c.setlist||[]).some(s=>s.type==='song')) return null;
+  const n = (c.setlist||[]).filter(s=>s.type==='song').length;
+  return n||null;
+}
+
+function openingMarkup(c){
+  const bits=[];
+  if(c.openingAct){
+    const none = /^(none|unknown)$/i.test(c.openingAct);
+    bits.push(`<span><span class="k">Opening act</span><span class="v${none?' none':''}">${none?cap(c.openingAct):esc(c.openingAct)}</span></span>`);
+  }
+  if(c.openingFor){
+    bits.push(`<span><span class="k">Opening for</span><span class="v">${esc(c.openingFor)}</span></span>`);
+  }
+  return bits.length?`<div class="open">${bits.join('')}</div>`:'';
+}
+function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1);}
+
+function sheetMarkup(c){
+  const hasSongs = (c.setlist||[]).some(s=>s.type==='song');
+  let inner='';
+  if(!hasSongs){
+    inner = `<div class="unknown">Setlist unknown<small>${c.setlistUnknown?'No record kept from this night.':''}</small></div>`;
+  } else {
+    let li='';
+    for(const s of c.setlist){
+      if(s.type==='song'){
+        const m = splitNote(s.text);
+        li += `<li class="song">${esc(m.title)}${m.note?`<span class="note">${esc(m.note)}</span>`:''}</li>`;
+      } else if(s.type==='section'){
+        li += `<li class="encore re">${esc(s.label)}</li>`;
+      } else if(s.type==='interlude'){
+        li += `<li class="interlude">${esc(s.text)}</li>`;
+      }
+    }
+    // trailing "unknown" continuation (e.g. one known song then unknown rest)
+    if(c.setlistUnknown){
+      li += `<li class="interlude">&hellip; remainder of set unknown</li>`;
+    }
+    inner = `<ol class="songs">${li}</ol>`;
+  }
+  const notes = (c.notes||[]).length
+    ? `<div class="snotes">${c.notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>` : '';
+  return `<div class="sheet-wrap"><div class="sheet-clip"><div class="sheet">
+      <p class="sheet-title">Setlist</p>${inner}${notes}
+    </div></div></div>`;
+}
+
+// Split a performance annotation off a song title.
+// Parentheticals are only peeled when they read as an annotation (contain a
+// signal word) — so real titles like "Pride (In the Name of Love)" stay intact.
+const SIGNAL = /\b(cover|snippet|snippets|dedicat|from tape|played from tape|\btape\b|acoustic|electric|remix|intro|outro|p\.a|debut|with |feat|played|stopped|first time|preceded|led the|tease|duet|a cappella|dialogue|from the)\b/i;
+function splitNote(text){
+  const notes=[];
+  let title=text.trim();
+  // 1) peel a trailing dash annotation ( — / – / -- / --- )
+  const dash = title.match(/^(.*?)\s+(?:—|–|-{2,3})\s+(.+)$/);
+  if(dash){ title=dash[1].trim(); notes.push(dash[2].trim()); }
+  // 2) peel a trailing parenthetical only if it's an annotation
+  const par = title.match(/^(.*?)\s*\(([^()]+)\)\s*$/);
+  if(par && SIGNAL.test(par[2])){ title=par[1].trim(); notes.unshift(par[2].trim()); }
+  return {title, note: notes.length?notes.join('; '):null};
+}
+
+function factsMarkup(c){
+  const parts=[];
+  if(c.tour && !/^unknown tour$/i.test(c.tour)) parts.push(`<span class="tour">${esc(c.tour)}</span>`);
+  else if(/^unknown tour$/i.test(c.tour)) parts.push(`<span class="tour" style="color:var(--ink-faint);font-style:italic">tour unknown</span>`);
+  if(c.venue){
+    const unk=/^venue unknown$/i.test(c.venue);
+    parts.push(`<span class="venue"${unk?' style="color:var(--ink-faint);font-style:italic"':''}>${unk?'venue unknown':esc(c.venue)}</span>`);
+  }
+  if(c.city) parts.push(`<span>${esc(c.city)}</span>`);
+  return parts.join('<span class="dot">·</span>');
+}
+
+function cardMarkup(c,idx){
+  const n = songCount(c);
+  return `<article class="show" data-i="${idx}">
+    <div class="show-head">
+      <div class="band-line">
+        <h2 class="band">${esc(c.band)}</h2>
+        <span class="date">${esc(c.date)}</span>
+      </div>
+      <div class="facts">${factsMarkup(c)}</div>
+      ${openingMarkup(c)}
+    </div>
+    <button class="toggle" aria-expanded="false">
+      <span class="plus"></span>
+      <span class="lbl">Setlist</span>
+      <span class="n">${n?`${n} song${n>1?'s':''}`:'unknown'}</span>
+    </button>
+    ${sheetMarkup(c)}
+  </article>`;
+}
+
+function render(){
+  const q = qEl.value.trim().toLowerCase();
+  const y = fYear.value, b = fBand.value, v = fVenue.value;
+  clearEl.style.display = qEl.value ? 'block' : 'none';
+
+  const rows = DATA.filter(c=>
+    (!q || c._hay.includes(q)) &&
+    (!y || c.year===y) &&
+    (!b || c.band===b) &&
+    (!v || c.venue===v)
+  );
+
+  countEl.innerHTML = `<b>${rows.length}</b> ${rows.length===1?'show':'shows'}${(q||y||b||v)?' matching':''}`;
+
+  if(!rows.length){
+    list.innerHTML = `<div class="empty"><div class="big">No shows found</div>
+      <p>Nothing matches those filters yet.</p>
+      <button id="reset">Clear filters</button></div>`;
+    $('#reset').onclick = resetAll;
+    return;
+  }
+
+  // group by year, newest first (rows already sorted globally)
+  let html='', curYear=null;
+  rows.forEach((c)=>{
+    if(c.year!==curYear){
+      curYear=c.year;
+      html += `<div class="year-rule"><span class="yr">${esc(curYear)}</span><span class="ln"></span></div>`;
+    }
+    html += cardMarkup(c, DATA.indexOf(c));
+  });
+  list.innerHTML = html;
+}
+
+function resetAll(){qEl.value='';fYear.value='';fBand.value='';fVenue.value='';render();}
+
+// toggle setlists (event delegation)
+list.addEventListener('click', e=>{
+  const t = e.target.closest('.toggle');
+  if(!t) return;
+  const card = t.closest('.show');
+  const open = card.classList.toggle('open');
+  t.setAttribute('aria-expanded', open?'true':'false');
+});
+
+[qEl,fYear,fBand,fVenue].forEach(el=>el.addEventListener('input',render));
+clearEl.addEventListener('click',()=>{qEl.value='';render();qEl.focus();});
+
+$('#foot').textContent = `${DATA.length} shows logged · ${years[years.length-1].slice(0,4)}–${years[0].slice(0,4)}`;
+render();
+</script>
+</body>
+</html>

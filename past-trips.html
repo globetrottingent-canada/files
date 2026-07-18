@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Log — Globetrotting Ent.</title>
+<meta name="author" content="Ryan JBS">
+<meta name="description" content="A traveler's log: every trip since 1989, where and when.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f2a30;          /* deep petrol-teal (night ocean) */
+    --ink-2:#143840;        /* lifted panel */
+    --ink-3:#1c4a53;        /* hairline / raised */
+    --paper:#f0e9d8;        /* warm chart paper (primary text) */
+    --paper-dim:#a9b9b3;    /* muted secondary */
+    --paper-faint:#5d7a78;  /* faintest, for ghost numerals */
+    --brass:#e0a84e;        /* brass accent */
+    --brass-deep:#c98a2f;
+    --coral:#e2714e;        /* live/stamp highlight, used rarely */
+    --line:#26525a;         /* dividers */
+    --maxw:1120px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--ink);color:var(--paper);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:"Space Mono",monospace}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--brass);margin:0 0 18px;
+  }
+
+  /* ---------- top nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,42,48,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px}
+  .brand{font-family:"Bricolage Grotesque";font-weight:800;font-size:18px;
+    letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--brass);
+    box-shadow:0 0 0 4px rgba(224,168,78,.18)}
+  nav.links{display:flex;gap:4px;font-family:"Space Mono",monospace;font-size:13px}
+  nav.links a{padding:8px 12px;border-radius:6px;color:var(--paper-dim);
+    letter-spacing:.04em;transition:color .2s,background .2s}
+  nav.links a:hover{color:var(--paper);background:var(--ink-3)}
+  nav.links a.active{color:var(--ink);background:var(--brass)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .graticule{position:absolute;inset:-10% -5%;z-index:0;opacity:.5;
+    color:var(--ink-3);pointer-events:none}
+  .graticule svg{width:110%;height:110%}
+  @media (prefers-reduced-motion: no-preference){
+    .graticule{animation:drift 60s linear infinite alternate}
+  }
+  @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(-40px,-24px,0)}}
+  .hero-inner{position:relative;z-index:1;padding:96px 0 84px}
+  h1.title{
+    font-family:"Bricolage Grotesque";font-weight:800;
+    font-size:clamp(52px,10vw,132px);line-height:.92;letter-spacing:-.03em;
+    margin:0;max-width:12ch;
+  }
+  h1.title em{font-style:normal;color:var(--brass)}
+  .lede{font-size:clamp(17px,2.2vw,21px);color:var(--paper-dim);
+    max-width:46ch;margin:26px 0 0}
+  .lede b{color:var(--paper);font-weight:600}
+
+  /* ---------- stat board ---------- */
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    margin-top:56px;border:1px solid var(--line);border-radius:12px;
+    overflow:hidden;background:var(--ink-2)}
+  .stat{padding:26px 24px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:"Space Mono",monospace;font-weight:700;
+    font-size:clamp(34px,5vw,54px);line-height:1;letter-spacing:-.02em;
+    color:var(--paper);display:block}
+  .stat .lab{font-family:"Space Mono",monospace;font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim);
+    margin-top:12px;display:block}
+
+  /* ---------- controls ---------- */
+  .controls{position:sticky;top:57px;z-index:40;
+    background:rgba(15,42,48,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:16px 0}
+  .controls-inner{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:center;
+    max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .search{position:relative;flex:1 1 240px;max-width:340px}
+  .search input{width:100%;background:var(--ink-2);border:1px solid var(--line);
+    color:var(--paper);font-family:"Space Mono",monospace;font-size:13px;
+    padding:11px 14px 11px 38px;border-radius:8px;outline:none;transition:border .2s}
+  .search input::placeholder{color:var(--paper-faint)}
+  .search input:focus{border-color:var(--brass)}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);
+    color:var(--paper-faint)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.03em;
+    padding:8px 13px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--paper-dim);cursor:pointer;
+    transition:all .18s var(--ease)}
+  .chip:hover{border-color:var(--brass-deep);color:var(--paper)}
+  .chip[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);
+    color:var(--ink)}
+  .count{margin-left:auto;font-family:"Space Mono",monospace;font-size:12px;
+    color:var(--paper-faint);letter-spacing:.05em;white-space:nowrap}
+
+  /* ---------- the log ---------- */
+  .log{padding:72px 0 40px}
+  .section-head{margin-bottom:40px}
+  .section-head h2{font-family:"Bricolage Grotesque";font-weight:800;
+    font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:0}
+
+  .decade{margin:0 0 8px;position:relative}
+  .decade-head{display:flex;align-items:baseline;gap:20px;
+    padding:44px 0 22px;border-top:1px solid var(--line)}
+  .decade:first-child .decade-head{border-top:0;padding-top:0}
+  .decade-head .yy{font-family:"Bricolage Grotesque";font-weight:800;
+    font-size:clamp(40px,7vw,80px);line-height:.8;color:var(--ink-3);
+    letter-spacing:-.03em}
+  .decade-head .meta{font-family:"Space Mono",monospace;font-size:12px;
+    color:var(--paper-faint);letter-spacing:.12em;text-transform:uppercase}
+
+  .trip{display:grid;grid-template-columns:88px 1fr;gap:6px 28px;
+    padding:22px 0;border-top:1px solid rgba(38,82,90,.5);
+    align-items:baseline;transition:background .2s}
+  .trip:hover{background:linear-gradient(90deg,rgba(224,168,78,.06),transparent 60%)}
+  .trip .yr{font-family:"Space Mono",monospace;font-weight:700;font-size:19px;
+    color:var(--brass);letter-spacing:.02em;position:relative}
+  .trip .yr::before{content:"";position:absolute;left:-28px;top:.55em;
+    width:9px;height:9px;border-radius:50%;background:var(--line);
+    transition:background .2s,box-shadow .2s}
+  .trip:hover .yr::before{background:var(--brass);
+    box-shadow:0 0 0 4px rgba(224,168,78,.18)}
+  .trip .body h3{font-family:"Bricolage Grotesque";font-weight:600;
+    font-size:22px;letter-spacing:-.01em;margin:0 0 12px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.02em;
+    color:var(--paper-dim);background:var(--ink-2);border:1px solid var(--line);
+    padding:4px 9px;border-radius:5px;white-space:nowrap}
+
+  .empty{padding:60px 0;text-align:center;color:var(--paper-dim);
+    font-family:"Space Mono",monospace;font-size:14px;display:none}
+  .empty b{color:var(--paper);display:block;margin-bottom:6px;font-weight:700}
+
+  /* ---------- map ---------- */
+  .map{padding:80px 0;border-top:1px solid var(--line)}
+  .map-frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:var(--ink-2);margin-top:32px;box-shadow:0 30px 80px -40px rgba(0,0,0,.6)}
+  .map-frame iframe{display:block;width:100%;height:560px;border:0;
+    filter:saturate(.9)}
+  .map-cap{font-family:"Space Mono",monospace;font-size:12px;
+    color:var(--paper-faint);letter-spacing:.08em;margin-top:16px}
+
+  /* ---------- horizon ---------- */
+  .horizon{padding:80px 0 96px;border-top:1px solid var(--line)}
+  .horizon-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    margin-top:36px}
+  .future{border:1px dashed var(--line);border-radius:12px;padding:26px 24px;
+    transition:border-color .25s,transform .25s var(--ease)}
+  .future:hover{border-color:var(--brass-deep);transform:translateY(-3px)}
+  .future .tick{font-family:"Space Mono",monospace;font-size:11px;
+    letter-spacing:.2em;color:var(--coral);text-transform:uppercase}
+  .future h4{font-family:"Bricolage Grotesque";font-weight:800;font-size:24px;
+    margin:14px 0 6px;letter-spacing:-.01em}
+  .future p{margin:0;color:var(--paper-dim);font-size:15px}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:40px 0}
+  .foot-inner{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
+    align-items:center;max-width:var(--maxw);margin:0 auto;padding:0 28px;
+    font-family:"Space Mono",monospace;font-size:12px;color:var(--paper-faint);
+    letter-spacing:.06em}
+
+  /* focus visibility */
+  a:focus-visible,button:focus-visible,input:focus-visible{
+    outline:2px solid var(--brass);outline-offset:3px;border-radius:6px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:820px){
+    .board{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+    .horizon-list{grid-template-columns:1fr}
+    nav.links{display:none}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px}.nav-inner{padding:12px 20px}
+    .controls-inner{padding:0 20px}.foot-inner{padding:0 20px}
+    .trip{grid-template-columns:1fr;gap:10px}
+    .trip .yr::before{display:none}
+    .count{width:100%;margin-left:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="globetrotting.html"><span class="dot"></span>Globetrotting Ent.</a>
+    <nav class="links">
+      <a class="active" href="globe_trips.html">Trips</a>
+      <a href="globe_foodbev.html">Food &amp; Drink</a>
+      <a href="globe_media.html">Media</a>
+      <a href="globe_links.html">Links</a>
+      <a href="globe_about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="graticule" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+      <defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+        <path d="M80 0H0V80" fill="none" stroke="currentColor" stroke-width="1"/>
+      </pattern></defs>
+      <rect width="1200" height="700" fill="url(#grid)"/>
+      <!-- a few sweeping meridians -->
+      <path d="M-100 500 Q400 120 1300 260" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".8"/>
+      <path d="M-100 640 Q500 320 1300 420" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".6"/>
+      <ellipse cx="600" cy="350" rx="560" ry="300" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Globetrotting Ent. · The travel log</p>
+    <h1 class="title">A life in a <em>suitcase.</em></h1>
+    <p class="lede" id="lede">Every trip since 1989 — where it went, and when.</p>
+
+    <div class="board" id="board" aria-label="Travel totals">
+      <div class="stat"><span class="num" data-to="0" id="s-countries">0</span><span class="lab">Countries &amp; territories</span></div>
+      <div class="stat"><span class="num" data-to="0" id="s-continents">0</span><span class="lab">Continents</span></div>
+      <div class="stat"><span class="num" data-to="0" id="s-trips">0</span><span class="lab">Trips logged</span></div>
+      <div class="stat"><span class="num" data-to="0" id="s-years">0</span><span class="lab">Years on the road</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTROLS ===== -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Search a place…" aria-label="Search a place">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by region"></div>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<!-- ===== THE LOG ===== -->
+<section class="log">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Newest first</p>
+      <h2>The Log</h2>
+    </div>
+    <div id="timeline"></div>
+    <div class="empty" id="empty"><b>Nothing matches that.</b>Try another place or clear the filters.</div>
+  </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="map">
+  <div class="wrap">
+    <p class="eyebrow">Territory covered</p>
+    <h2 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:0">Everywhere, on one map.</h2>
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1g6TPREGX2EyOSFJAYP2Xncae-1A" title="Countries visited map" loading="lazy"></iframe>
+    </div>
+    <p class="map-cap">Countries visited — pan and zoom to explore.</p>
+  </div>
+</section>
+
+<!-- ===== HORIZON ===== -->
+<section class="horizon">
+  <div class="wrap">
+    <p class="eyebrow">Not yet stamped</p>
+    <h2 style="font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(30px,5vw,46px);letter-spacing:-.02em;margin:0">On the horizon.</h2>
+    <div class="horizon-list">
+      <div class="future"><span class="tick">Planned</span><h4>India</h4><p>The subcontinent, top to bottom.</p></div>
+      <div class="future"><span class="tick">Planned</span><h4>Antarctica</h4><p>The seventh continent — the last one left.</p></div>
+      <div class="future"><span class="tick">Planned</span><h4>Southern Cone</h4><p>Chile · Argentina · Paraguay · Uruguay · Brazil</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <span>Globetrotting Ent.</span>
+    <span id="copyright">© 2010–2026</span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   TRIP DATA  —  to add a trip, append an object here.
+   region: array, used by the filter chips.
+   countries: sovereign countries/territories, used for the tally.
+   places: whatever you want shown as tags.
+   ============================================================ */
+const TRIPS = [
+  {year:2026,title:"Maritimes",region:["North America"],places:["Nova Scotia"],countries:["Canada"]},
+  {year:2026,title:"South West USA",region:["North America"],places:["Nevada","Arizona","California"],countries:["USA"]},
+  {year:2025,title:"Maritimes",region:["North America"],places:["Nova Scotia"],countries:["Canada"]},
+  {year:2025,title:"Florida",region:["North America"],places:["Orlando"],countries:["USA"]},
+  {year:2024,title:"Mexico",region:["North America"],places:["Puerto Vallarta"],countries:["Mexico"]},
+  {year:2024,title:"Europe",region:["Europe"],places:["England","Scotland","Wales"],countries:["United Kingdom"]},
+  {year:2024,title:"Nashville",region:["North America"],places:["Tennessee","Arkansas"],countries:["USA"]},
+  {year:2023,title:"Maritimes",region:["North America"],places:["Nova Scotia"],countries:["Canada"]},
+  {year:2023,title:"Atlantic Canada",region:["North America"],places:["Newfoundland"],countries:["Canada"]},
+  {year:2023,title:"USA South",region:["North America"],places:["Colorado","Oklahoma","Texas","New Mexico"],countries:["USA"]},
+  {year:2022,title:"West Canada",region:["North America"],places:["British Columbia (Vancouver Island)","Alberta"],countries:["Canada"]},
+  {year:2020,title:"Florida",region:["North America"],places:["Orlando","Clearwater Beach"],countries:["USA"]},
+  {year:2019,title:"Upstate USA",region:["North America"],places:["New York","Vermont"],countries:["USA"]},
+  {year:2019,title:"Northwest USA",region:["North America"],places:["Colorado","Wyoming","Idaho","Montana","Oregon","Washington"],countries:["USA"]},
+  {year:2019,title:"Northeast USA",region:["North America"],places:["New York","Connecticut","Rhode Island","Massachusetts"],countries:["USA"]},
+  {year:2019,title:"Europe",region:["Europe"],places:["England","France","Belgium","Luxembourg","Germany","Switzerland"],countries:["United Kingdom","France","Belgium","Luxembourg","Germany","Switzerland"]},
+  {year:2018,title:"Southwest",region:["North America"],places:["Nevada","Utah","Colorado","New Mexico","Arizona"],countries:["USA"]},
+  {year:2018,title:"Midwest",region:["North America"],places:["Manitoba","North Dakota","South Dakota","Nebraska","Iowa","Minnesota"],countries:["Canada","USA"]},
+  {year:2018,title:"Northwest",region:["North America"],places:["Alberta","BC","Alaska","Yukon","Northwest Territories"],countries:["Canada","USA"]},
+  {year:2018,title:"Eastern USA",region:["North America"],places:["Philadelphia PA","Baltimore MD","Washington DC","Virginia","Delaware"],countries:["USA"]},
+  {year:2018,title:"Cuba",region:["Caribbean"],places:["Varadero"],countries:["Cuba"]},
+  {year:2017,title:"Pacific Northwest",region:["North America"],places:["Alberta","Montana","Idaho","Washington","British Columbia"],countries:["Canada","USA"]},
+  {year:2017,title:"Europe",region:["Europe"],places:["Portugal","Spain","England"],countries:["Portugal","Spain","United Kingdom"]},
+  {year:2016,title:"Western Canada",region:["North America"],places:["Saskatchewan","Alberta"],countries:["Canada"]},
+  {year:2016,title:"California",region:["North America"],places:["LA","Anaheim","San Diego","San Francisco","Oakland"],countries:["USA"]},
+  {year:2015,title:"Kansas City, St Louis",region:["North America"],places:["Minnesota","Kansas","Missouri"],countries:["USA"]},
+  {year:2015,title:"Florida",region:["North America"],places:["Florida","Alabama","Mississippi","Louisiana","Georgia"],countries:["USA"]},
+  {year:2014,title:"Cleveland",region:["North America"],places:["New York","Ohio"],countries:["USA"]},
+  {year:2014,title:"Chicago",region:["North America"],places:["Michigan","Illinois","Wisconsin","Indiana"],countries:["USA"]},
+  {year:2013,title:"Eastern Seaboard",region:["North America"],places:["New York","Pennsylvania","West Virginia","Virginia","North Carolina","South Carolina","DC","Maryland","Delaware","New Jersey"],countries:["USA"]},
+  {year:2013,title:"Cincinnati",region:["North America"],places:["Michigan","Ohio","Kentucky"],countries:["USA"]},
+  {year:2013,title:"Europe",region:["Europe"],places:["Germany","Austria","Serbia","Macedonia","Kosovo","Albania","Montenegro","Bosnia Herzegovina"],countries:["Germany","Austria","Serbia","North Macedonia","Kosovo","Albania","Montenegro","Bosnia & Herzegovina"]},
+  {year:2012,title:"Pittsburgh",region:["North America"],places:["New York","Ohio","Pennsylvania"],countries:["USA"]},
+  {year:2012,title:"Central America",region:["Central & South America"],places:["Costa Rica","Panama"],countries:["Costa Rica","Panama"]},
+  {year:2011,title:"Northern Circle",region:["Europe"],places:["Iceland","Russia","England"],countries:["Iceland","Russia","United Kingdom"]},
+  {year:2011,title:"West Africa",region:["Africa"],places:["Ghana","Togo","Benin","Sierra Leone"],countries:["Ghana","Togo","Benin","Sierra Leone"]},
+  {year:2010,title:"Around the World",region:["North America","Central & South America","Europe","Asia & Oceania"],places:["England","Latvia","Russia","Japan","Australia","United States","Peru","Bolivia"],countries:["United Kingdom","Latvia","Russia","Japan","Australia","USA","Peru","Bolivia"]},
+  {year:2009,title:"Eastern Europe",region:["Europe"],places:["Germany","Russia","Ukraine","Moldova","Romania","Bulgaria","Turkey"],countries:["Germany","Russia","Ukraine","Moldova","Romania","Bulgaria","Turkey"]},
+  {year:2008,title:"Hawaii",region:["North America"],places:["Hawaii","Maui","Kauai","Oahu"],countries:["USA"]},
+  {year:2008,title:"Scandinavia",region:["Europe"],places:["England","Norway","Denmark","Sweden","Finland","Estonia","Latvia","Lithuania"],countries:["United Kingdom","Norway","Denmark","Sweden","Finland","Estonia","Latvia","Lithuania"]},
+  {year:2008,title:"New York & Boston",region:["North America"],places:["New York","Connecticut","Massachusetts"],countries:["USA"]},
+  {year:2006,title:"Europe",region:["Europe"],places:["England","Spain","Italy","Slovenia","Croatia"],countries:["United Kingdom","Spain","Italy","Slovenia","Croatia"]},
+  {year:2006,title:"Cuba",region:["Caribbean"],places:["Havana","Varadero"],countries:["Cuba"]},
+  {year:2005,title:"Caribbean",region:["Caribbean"],places:["St Martin","Sint Maarten","St Barths","Anguilla"],countries:["St Martin","Sint Maarten","St Barths","Anguilla"]},
+  {year:2005,title:"Central Europe",region:["Europe"],places:["England","Hungary","Slovakia","Czech Republic","Poland"],countries:["United Kingdom","Hungary","Slovakia","Czech Republic","Poland"]},
+  {year:2005,title:"Mayan Riviera",region:["North America"],places:["Mexico"],countries:["Mexico"]},
+  {year:2003,title:"Europe",region:["Europe"],places:["Wales","Ireland","Northern Ireland","Scotland","England","France","Italy","Vatican City","Switzerland","Liechtenstein","Austria","Germany","Netherlands","Belgium"],countries:["United Kingdom","Ireland","France","Italy","Vatican City","Switzerland","Liechtenstein","Austria","Germany","Netherlands","Belgium"]},
+  {year:1998,title:"Florida",region:["North America"],places:["Michigan","Ohio","Kentucky","Tennessee","Georgia","Florida"],countries:["USA"]},
+  {year:1997,title:"Eastern USA",region:["North America"],places:["New York","Pennsylvania","Maryland","DC","Virginia"],countries:["USA"]},
+  {year:1997,title:"Dominican Republic",region:["Caribbean"],places:["Puerta Plata"],countries:["Dominican Republic"]},
+  {year:1994,title:"East",region:["North America"],places:["New York","Pennsylvania","New Jersey"],countries:["USA"]},
+  {year:1993,title:"Northeast",region:["North America"],places:["Quebec","New Brunswick","Prince Edward Island","Nova Scotia","Maine","New Hampshire","Vermont","New York"],countries:["Canada","USA"]},
+  {year:1989,title:"Florida",region:["North America"],places:["Michigan","Ohio","Kentucky","Tennessee","Georgia","Florida"],countries:["USA"]},
+];
+
+const CONTINENT = {
+  "USA":"North America","Canada":"North America","Mexico":"North America",
+  "Dominican Republic":"North America","Cuba":"North America",
+  "St Martin":"North America","Sint Maarten":"North America","St Barths":"North America","Anguilla":"North America",
+  "Costa Rica":"North America","Panama":"North America",
+  "Peru":"South America","Bolivia":"South America",
+  "United Kingdom":"Europe","Ireland":"Europe","France":"Europe","Italy":"Europe","Vatican City":"Europe",
+  "Switzerland":"Europe","Liechtenstein":"Europe","Austria":"Europe","Germany":"Europe","Netherlands":"Europe",
+  "Belgium":"Europe","Hungary":"Europe","Slovakia":"Europe","Czech Republic":"Europe","Poland":"Europe",
+  "Spain":"Europe","Slovenia":"Europe","Croatia":"Europe","Norway":"Europe","Denmark":"Europe","Sweden":"Europe",
+  "Finland":"Europe","Estonia":"Europe","Latvia":"Europe","Lithuania":"Europe","Russia":"Europe","Ukraine":"Europe",
+  "Moldova":"Europe","Romania":"Europe","Bulgaria":"Europe","Turkey":"Europe","Iceland":"Europe","Serbia":"Europe",
+  "North Macedonia":"Europe","Kosovo":"Europe","Albania":"Europe","Montenegro":"Europe","Bosnia & Herzegovina":"Europe",
+  "Portugal":"Europe","Luxembourg":"Europe",
+  "Ghana":"Africa","Togo":"Africa","Benin":"Africa","Sierra Leone":"Africa",
+  "Japan":"Asia","Australia":"Oceania"
+};
+
+const REGIONS = ["North America","Caribbean","Central & South America","Europe","Africa","Asia & Oceania"];
+
+/* ---- compute totals ---- */
+const allCountries = new Set(), allContinents = new Set();
+let minY = Infinity, maxY = -Infinity;
+TRIPS.forEach(t=>{
+  t.countries.forEach(c=>{allCountries.add(c); if(CONTINENT[c]) allContinents.add(CONTINENT[c]);});
+  minY=Math.min(minY,t.year); maxY=Math.max(maxY,t.year);
+});
+const totals = {
+  countries: allCountries.size,
+  continents: allContinents.size,
+  trips: TRIPS.length,
+  years: maxY - minY + 1
+};
+
+/* ---- lede + copyright ---- */
+document.getElementById('lede').innerHTML =
+  `<b>${totals.trips} journeys</b> across <b>${totals.continents} continents</b>, logged since ${minY} — where each one went, and when.`;
+document.getElementById('copyright').textContent = `© 2010–${new Date().getFullYear()}`;
+
+/* ---- odometer count-up ---- */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function countUp(el,to){
+  if(reduce){el.textContent=to;return;}
+  const dur=1100, t0=performance.now();
+  (function step(now){
+    const p=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e*to);
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+const board=document.getElementById('board');
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+  countUp(document.getElementById('s-countries'),totals.countries);
+  countUp(document.getElementById('s-continents'),totals.continents);
+  countUp(document.getElementById('s-trips'),totals.trips);
+  countUp(document.getElementById('s-years'),totals.years);
+  io.disconnect();
+}});},{threshold:.4});
+io.observe(board);
+
+/* ---- chips ---- */
+let activeRegion="All", query="";
+const chipsEl=document.getElementById('chips');
+["All",...REGIONS].forEach(r=>{
+  const b=document.createElement('button');
+  b.className='chip'; b.textContent=r; b.setAttribute('aria-pressed', r==="All");
+  b.onclick=()=>{activeRegion=r;
+    [...chipsEl.children].forEach(c=>c.setAttribute('aria-pressed', c===b));
+    render();};
+  chipsEl.appendChild(b);
+});
+
+/* ---- search ---- */
+document.getElementById('search').addEventListener('input', e=>{
+  query=e.target.value.trim().toLowerCase(); render();
+});
+
+/* ---- render timeline ---- */
+const timeline=document.getElementById('timeline');
+const emptyEl=document.getElementById('empty');
+const countEl=document.getElementById('count');
+
+function matches(t){
+  const regionOk = activeRegion==="All" || t.region.includes(activeRegion);
+  if(!regionOk) return false;
+  if(!query) return true;
+  const hay = (t.title+" "+t.places.join(" ")+" "+t.countries.join(" ")).toLowerCase();
+  return hay.includes(query);
+}
+
+function render(){
+  const list=TRIPS.filter(matches).sort((a,b)=>b.year-a.year);
+  countEl.textContent = `${list.length} ${list.length===1?'trip':'trips'}`;
+  timeline.innerHTML="";
+  emptyEl.style.display = list.length? "none":"block";
+
+  // group by decade
+  const groups={};
+  list.forEach(t=>{const d=Math.floor(t.year/10)*10;(groups[d]??=[]).push(t);});
+  Object.keys(groups).sort((a,b)=>b-a).forEach(dec=>{
+    const g=document.createElement('div'); g.className='decade';
+    const trips=groups[dec];
+    const head=document.createElement('div'); head.className='decade-head';
+    head.innerHTML=`<span class="yy">${dec}s</span><span class="meta">${trips.length} ${trips.length===1?'trip':'trips'}</span>`;
+    g.appendChild(head);
+    trips.forEach(t=>{
+      const row=document.createElement('article'); row.className='trip';
+      row.innerHTML=`<div class="yr">${t.year}</div>
+        <div class="body"><h3>${t.title}</h3>
+        <div class="tags">${t.places.map(p=>`<span class="tag">${p}</span>`).join("")}</div></div>`;
+      g.appendChild(row);
+    });
+    timeline.appendChild(g);
+  });
+}
+render();
+</script>
+</body>
+</html>

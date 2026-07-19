@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="brazil.html" class="back-link" aria-label="Brazil cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Brazil Cuisine
+      </a>
+    </div>
+    <span class="field-tag">SOUTH AMERICA / BRAZILIAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Brazil</h1>
+      <p class="subhead">Pure exuberance — Carnaval feathers and sequins, the boom of the samba drums, tropical colour on every surface, and a caipirinha in hand.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            SAMBA · CARNAVAL · FORRÓ · AXÉ · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Brazil">
+          <rect width="240" height="160" fill="#009c3b"/>
+          <polygon points="120,20 220,80 120,140 20,80" fill="#ffdf00"/>
+          <circle cx="120" cy="80" r="34" fill="#002776"/>
+          <path d="M90,73 q30,17 60,3" fill="none" stroke="#ffffff" stroke-width="6"/>
+          <g fill="#ffffff">
+            <circle cx="107" cy="69" r="1.6"/>
+            <circle cx="120" cy="65" r="1.4"/>
+            <circle cx="133" cy="70" r="1.6"/>
+            <circle cx="113" cy="90" r="1.4"/>
+            <circle cx="127" cy="92" r="1.5"/>
+            <circle cx="120" cy="98" r="1.3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>A Brazilian party is pure exuberance — colour, movement, and rhythm turned all the way up. The flagship is Carnaval: feathers and sequins, samba drums, streamers everywhere, and the loose, joyful energy of a street-party <em>bloco</em>. Nothing is understated; brightness and warmth are the whole point, and glitter is always welcome.</p>
+        <p>But Brazil is enormous and gloriously diverse, so it's worth reaching past the Rio-Carnival postcard. There's the rustic countryside <em>Festa Junina</em>, the deep Afro-Brazilian culture of Bahia (capoeira, candomblé, the berimbau), and the cool of bossa nova and the beach. The palette spans the flag's green-yellow-blue and the full tropical rainbow, mixed with real foliage, bright fabric, paper bunting, and drums.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">One country, many parties</span>
+        <p><strong>Carnaval</strong> — the flagship. Feathers, sequins, samba, glitter, and street-party blocos. Big, loud, and euphoric.</p>
+        <p><strong>Festa Junina (June)</strong> — the countryside festival: checkered shirts and straw hats, triangular bunting (bandeirinhas), bonfires, forró and quadrilha square-dancing, and corn treats.</p>
+        <p><strong>Bahia &amp; beyond</strong> — Afro-Brazilian Bahia (capoeira, berimbau, the white-lace baiana dress), plus the cool of bossa nova and the beach. It's all Brazil — mix to taste.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a Carnaval party,</strong> go maximal. Drape streamers and metallic fringe, pile on feathers (penachos), sequins, and colourful paper garlands, and bring the tropics indoors with palm, monstera, and heliconia. Set up a percussion corner — a surdo bass drum, tamborins, and shakers — because the batucada drumming is the heartbeat of the night. Colour on every surface, glitter encouraged.</p>
+        <p><strong>For a countryside or all-rounder Brazilian party,</strong> string bandeirinhas (triangular bunting) across the ceiling, add paper lanterns, hay bales, and a checkered-cloth table of corn treats, with forró playing — the Festa Junina look. For a Bahia accent, tie on Senhor do Bonfim wish-ribbons (fitas), stand a berimbau in the corner, and add white-and-blue lace touches.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Go big on <strong>colour</strong> — streamers, metallic fringe curtains, and rainbow paper garlands on every surface. This is a Carnaval, not a minimalist affair.</li>
+        <li>String <strong>bandeirinhas</strong> — triangular fabric or paper bunting overhead — the signature of a Festa Junina and a great all-purpose Brazilian backdrop.</li>
+        <li>Add <strong>feathers and sequins</strong> — plumes (penachos), sparkle, and glitter for full Carnaval glamour.</li>
+        <li>Bring the <strong>tropics</strong> in — palm leaves, monstera, heliconia, and bright flowers massed together.</li>
+        <li>Build a <strong>percussion corner</strong> — surdo, tamborim, pandeiro, and shakers — the batucada that drives samba.</li>
+        <li><strong>(Festa Junina)</strong> lay <strong>checkered cloths</strong>, add straw hats, hay bales, paper lanterns, and a "bonfire" (fogueira) centrepiece.</li>
+        <li><strong>(Bahia)</strong> tie on <strong>Senhor do Bonfim fitas</strong> (wish-ribbons), stand a berimbau in the corner, and add white lace accents.</li>
+        <li>Fly the <strong>colours</strong> — the green, yellow, and blue of the flag, plus the full tropical rainbow.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Flag green, yellow &amp; blue</li>
+        <li><span class="n">06</span> Bandeirinha brights</li>
+        <li><span class="n">02</span> Carnaval rainbow (all of it)</li>
+        <li><span class="n">07</span> Red gingham / checkered (Junina)</li>
+        <li><span class="n">03</span> Feather &amp; sequin sparkle</li>
+        <li><span class="n">08</span> Straw &amp; natural fibre</li>
+        <li><span class="n">04</span> Tropical foliage green</li>
+        <li><span class="n">09</span> Bahia white &amp; blue lace</li>
+        <li><span class="n">05</span> Hot pink &amp; orange bloom</li>
+        <li><span class="n">10</span> Gold &amp; metallic fringe</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Carnaval is powered by <strong>escolas de samba</strong> (samba schools) — huge community organisations that spend most of the year building costumes and floats for the Sambadrome parade. The driving sound is <em>batucada</em>, led by the booming surdo bass drums.</li>
+        <li>Brazil is so vast that <strong>Festa Junina</strong> — the June "São João" festivals honouring Saints Anthony, John, and Peter — rivals Carnaval across much of the Northeast, with bonfires, forró, and quadrilha square dancing.</li>
+        <li>The colourful <strong>fitas of Senhor do Bonfim</strong> in Salvador are tied around the wrist with three knots — one wish per knot — and worn until they fall off on their own, when the wishes are said to come true.</li>
+        <li><strong>Bossa nova</strong> — the cool, hushed sound of "The Girl from Ipanema" — grew out of samba on the beaches of Rio in the late 1950s and became one of Brazil's biggest cultural exports.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">One big, colourful culture — lean into Carnaval, or branch out.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Carnaval</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Feathers &amp; Sequins</span><span class="dish-tag">penachos &amp; sparkle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Big feather plumes, sequinned fabric, and sparkle everywhere — the glamorous, over-the-top core of the Carnaval look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Streamers &amp; Fringe</span><span class="dish-tag">metallic curtains</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Paper streamers, metallic fringe curtains, and rainbow garlands draped from ceilings and doorways — instant party maximalism.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Foliage</span><span class="dish-tag">palm &amp; monstera</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Palm fronds, monstera leaves, heliconia, and bright tropical flowers to bring the lushness of Brazil indoors.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Percussion Corner</span><span class="dish-tag">batucada</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A surdo bass drum, tamborins, pandeiro, and shakers set up in a corner — both décor and the engine of the samba sound.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Festa Junina &amp; Beyond</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandeirinhas</span><span class="dish-tag">triangular bunting</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rows of colourful triangular flag bunting strung overhead — the defining look of a Festa Junina "arraiá," and cheerful for any Brazilian party.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Checkered Cloth &amp; Straw</span><span class="dish-tag">country look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Red-checkered tablecloths, straw hats, hay bales, and paper lanterns for the rustic caipira (countryside) feel of São João.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fogueira &amp; Lanterns</span><span class="dish-tag">the bonfire</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bonfire (fogueira) is central to Festa Junina — a safe faux version plus warm paper lanterns capture it indoors.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bonfim Fitas &amp; Berimbau</span><span class="dish-tag">a Bahia accent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Senhor do Bonfim wish-ribbons tied around wrists and railings, a berimbau in the corner, and white lace — the Afro-Brazilian Bahia touch.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Carnaval</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Feathered Headdress</span><span class="dish-tag">the showpiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tall feather headdress and plumes — the unmistakable crown of a samba-parade costume (fantasia).</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sequins &amp; Colour</span><span class="dish-tag">fantasia</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bright sequinned bodysuits, bikinis, or shirts in vivid colour — the more it catches the light, the better.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Glitter &amp; Gems</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Body glitter and stick-on face gems — the easy, universal way to look Carnaval-ready with almost no effort.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Flowers</span><span class="dish-tag">bloco style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flower crowns and bright blooms for a street-party bloco look that's fun and low-commitment.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Festa Junina &amp; Bahia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caipira Look</span><span class="dish-tag">checkered &amp; straw</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Festa Junina "country" costume: a checkered (xadrez) shirt, straw hat, and patched trousers, often with painted freckles — a warm, playful tribute to rural life.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saia de Chita</span><span class="dish-tag">floral country skirt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A full, floral-print chita skirt with pigtails and ribbons — the women's Festa Junina look, great for the quadrilha.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Baiana Dress</span><span class="dish-tag">Bahia</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The flowing white lace dress and turban of Bahia's baianas — elegant, dignified, and central to Afro-Brazilian tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Casual &amp; Colours</span><span class="dish-tag">low-effort</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>No costume? Green-and-yellow, a football shirt, and Havaianas flip-flops read Brazilian and keep things easy.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Carnaval &amp; Party</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Samba</span><span class="dish-tag">the heartbeat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The definitive Brazilian rhythm — irresistible, danceable, and the sound of Carnaval. Put it on and the party starts itself.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Batucada</span><span class="dish-tag">drum ensemble</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The pounding percussion of a samba-school bateria — surdos, tamborins, and repiniques. Live drums turn any room into a parade.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Axé</span><span class="dish-tag">Bahia Carnaval</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The high-energy pop sound of Salvador's Carnaval — made for the trio elétrico sound trucks and mass dancing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Frevo</span><span class="dish-tag">Recife &amp; Olinda</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The frantic, brass-driven Carnaval music of Pernambuco, danced with a little frevo umbrella — colourful and joyous.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Bossa &amp; Regional</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bossa Nova</span><span class="dish-tag">cool &amp; smooth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Understated, jazzy, and effortlessly cool — Jobim and "The Girl from Ipanema." Perfect for the mellow, beachy end of the evening.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Forró</span><span class="dish-tag">Northeast &amp; Junina</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Accordion-led dance music from the Northeast — the sound of Festa Junina, made for close, swaying partner dancing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">MPB</span><span class="dish-tag">Brazilian pop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Música Popular Brasileira — the rich songbook of Gil, Veloso, and more for a warm, sophisticated background.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pagode &amp; Samba de Roda</span><span class="dish-tag">backyard samba</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Relaxed, communal samba played around a table — the intimate, everyday cousin of the big Carnaval sound.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Brazilian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Feathers &amp; plumes (Carnaval)</li>
+        <li><span class="n">06</span> Berimbau (capoeira)</li>
+        <li><span class="n">02</span> Flag green-yellow-blue diamond</li>
+        <li><span class="n">07</span> Toucan &amp; macaw</li>
+        <li><span class="n">03</span> Samba drum (surdo)</li>
+        <li><span class="n">08</span> Christ the Redeemer &amp; Sugarloaf</li>
+        <li><span class="n">04</span> Bandeirinhas (bunting)</li>
+        <li><span class="n">09</span> Bonfim ribbons (fitas)</li>
+        <li><span class="n">05</span> Tropical leaf (monstera / palm)</li>
+        <li><span class="n">10</span> Copacabana wave mosaic</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Samba lesson</li>
+              <li>Caipirinha bar</li>
+              <li>Quadrilha (Junina square dance)</li>
+              <li>Capoeira demo</li>
+              <li>Churrasco BBQ or feijoada</li>
+              <li>Toast — "Saúde!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Samba drums &amp; pandeiro</li>
+              <li>Churrasco on the grill</li>
+              <li>Tropical flowers &amp; fruit</li>
+              <li>Feathers, glitter &amp; colour</li>
+              <li>Havaianas &amp; warm nights</li>
+              <li>Brigadeiro &amp; pão de queijo</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Carnaval (Feb / Mar)</li>
+              <li>Festa Junina / São João (June)</li>
+              <li>Independence Day (Sep 7)</li>
+              <li>Yemanjá (Feb 2, Salvador)</li>
+              <li>Parintins Folklore (June, Amazon)</li>
+              <li>Réveillon / New Year (white)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="brazil.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Brazil Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

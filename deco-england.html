@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>England — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="england.html" class="back-link" aria-label="England cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        England Cuisine
+      </a>
+    </div>
+    <span class="field-tag">BRITISH ISLES / ENGLISH</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">England</h1>
+      <p class="subhead">The country garden and the village green — bunting and bone china, roses and Pimm's, a cosy pub fire, and the bells and ribbons of a Morris side.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ROSE · BUNTING · TEA · MORRIS · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of England (St George's Cross)">
+          <rect width="240" height="160" fill="#ffffff"/>
+          <path d="M120,0 V160 M0,80 H240" stroke="#CE1124" stroke-width="34"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The most English party there is happens in a garden in summer: bunting strung between the trees, a long table of mismatched floral china and a tiered cake stand, a jug of Pimm's and a pot of tea, roses spilling out of everything, and the lazy ease of a cricket afternoon. Its cosy cousin is the country pub — dark oak, gleaming brass, a real ale and a fire — and its rowdier one is the village green, with a ribboned maypole, a Morris side jingling with bells, and the bunting-and-tombola bustle of the summer fête.</p>
+        <p>The through-line is the English countryside: floral chintz and bone china, bunting and garden roses, oak and tweed, all a little vintage and lovingly mismatched. Reach for the rose — the Tudor rose is England's flower — and, for the flag, the red-and-white St George's Cross rather than the Union Jack. Done this way it feels warm, homely, and specifically English rather than a generic "British" souvenir.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">Two registers</span>
+        <p><strong>Authentic English</strong> (this page) — the country garden party, afternoon tea, the village fête, the country pub, and English folk like Morris and the maypole. The flag is the St George's Cross.</p>
+        <p><strong>London-souvenir kitsch</strong> — Union Jack everything, red phone boxes and buses, Beefeaters, "Keep Calm and Carry On." Fun and instantly readable, but it's Britain-as-souvenir — and the Union Jack is the whole UK, not England (whose own flag is the red-and-white St George's Cross). A wink or two goes a long way.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a garden party or afternoon tea,</strong> get a table outside if you can and string bunting overhead. Dress it in a floral or lace cloth, lay out mismatched vintage floral bone china and a tiered cake stand of scones and Victoria sponge, and crowd the middle with jugs of garden roses, sweet peas, and delphiniums. Add a big jug of Pimm's — mint, cucumber, strawberry, and orange — and a proper pot of tea. The whole look should feel a little faded and homely rather than slick.</p>
+        <p><strong>For an evening or an indoor party,</strong> go country pub: dark wood, brass and horse brasses, warm low light, a chalkboard, and real ale with a roast. And to bring in the village green, add folk touches — a ribboned maypole or hanging ribbons, Morris bells and hankies, hay bales, and a St George's Cross. If it's Bonfire Night, build the whole thing around the fire, with sparklers, toffee apples, and parkin.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>String up <strong>bunting</strong> — triangular fabric bunting in florals or red-and-white — overhead and along the table. It's the single most English party decoration there is.</li>
+        <li>Lay the table with <strong>floral bone china</strong> — mismatched vintage cups and plates, a tiered cake stand, and a lace or floral cloth for a proper afternoon-tea look.</li>
+        <li>Fill it with <strong>English garden flowers</strong> — roses, sweet peas, delphiniums, foxgloves, and lavender, loose in jugs, teapots, and jam jars.</li>
+        <li>Set up a <strong>Pimm's jug or a tea urn</strong> — Pimm's with mint, cucumber, and fruit for summer; a big teapot and cake stand for the tea version.</li>
+        <li>Go <strong>country pub</strong> for the evening — dark wood, brass and horse brasses, a chalkboard menu, real ale, and warm low light.</li>
+        <li>Fly the <strong>St George's Cross</strong> — the red-on-white flag or bunting — and work in a <strong>Tudor rose</strong> motif for a properly English accent.</li>
+        <li>Nod to the <strong>village green</strong> — a ribboned maypole, Morris bells and hankies, and hay bales for a fête or harvest feel.</li>
+        <li><strong>(Bonfire Night)</strong> build it around the <strong>fire</strong> — sparklers, toffee apples, parkin, a "guy," and blankets for the cold.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rose red &amp; white (St George)</li>
+        <li><span class="n">06</span> Willow-pattern &amp; Wedgwood blue</li>
+        <li><span class="n">02</span> English garden florals (chintz)</li>
+        <li><span class="n">07</span> Lavender &amp; sweet-pea pastels</li>
+        <li><span class="n">03</span> Sage &amp; hedgerow green</li>
+        <li><span class="n">08</span> Oak &amp; brass (the pub)</li>
+        <li><span class="n">04</span> Bunting brights</li>
+        <li><span class="n">09</span> Tweed &amp; country brown</li>
+        <li><span class="n">05</span> Cream &amp; bone-china white</li>
+        <li><span class="n">10</span> Strawberries-and-cream</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The English flag is the <strong>St George's Cross</strong> — a red cross on white. The <strong>Union Jack</strong> is the flag of the whole United Kingdom, combining the crosses of England, Scotland, and Ireland — so for an English party specifically, the St George's Cross is the accurate choice.</li>
+        <li><strong>Morris dancing</strong> — with bells, ribbons, waved handkerchiefs, and clashing sticks — is one of England's oldest folk traditions, with regional styles like Cotswold (from the South Midlands) and Longsword (Yorkshire), performed at May Day and village fairs for centuries.</li>
+        <li><strong>Maypole dancing</strong> on May Day — children weaving ribbons around a flower-decked pole while a May Queen is crowned — was so associated with revelry that the Puritan Parliament banned maypoles in 1644; Charles II restored them at the Restoration.</li>
+        <li>The <strong>Pearly Kings and Queens</strong> of London's East End cover their suits in thousands of mother-of-pearl buttons — a charitable tradition begun by the orphan Henry Croft in the 1870s and still marked each autumn at their Harvest Festival.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound that build an authentic English day.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Garden Party</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bunting</span><span class="dish-tag">strung overhead</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Triangular fabric bunting in florals or red-and-white, strung between trees, fences, and along the table edge. The defining English party decoration.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Floral Bone China</span><span class="dish-tag">&amp; cake stand</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mismatched vintage floral cups, saucers, and plates, plus a tiered cake stand — charity-shop finds are perfect and add to the homely, lived-in charm.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Garden Roses &amp; Sweet Peas</span><span class="dish-tag">the flowers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Roses, sweet peas, delphiniums, foxgloves, and lavender, arranged loose and generous in jugs, teapots, and jam jars — the English cottage garden on the table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pimm's &amp; Tea</span><span class="dish-tag">the drinks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A jug of Pimm's loaded with mint, cucumber, strawberry, and orange for summer, and a proper pot of tea alongside. Both are half the point of the party.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Pub &amp; Village Green</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dark Oak &amp; Brass</span><span class="dish-tag">the pub look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dark wood, gleaming brass, and warm low light — the cosy country-pub atmosphere for an evening or indoor party.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Horse Brasses &amp; Chalkboard</span><span class="dish-tag">pub details</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Horse brasses, tankards, and a hand-chalked board of ales and roasts — the small touches that make a room read as a proper English local.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hay Bales &amp; Maypole</span><span class="dish-tag">fête &amp; folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Straw bales for seating, a ribboned maypole, and Morris bells and hankies bring the village-green fête feel to a garden or hall.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">St George &amp; Tudor Rose</span><span class="dish-tag">the emblems</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The red-and-white St George's Cross as flag or bunting, and the Tudor rose as a motif — the accurate, specifically English emblems.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Floral Tea Dress</span><span class="dish-tag">garden-party frock</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A pretty floral tea dress is the classic English summer look — vintage-inspired, easy, and right at home on a lawn.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sun Hat or Fascinator</span><span class="dish-tag">Ascot style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A wide-brimmed sun hat for a garden party, or a fascinator for the full royal-garden-party / Ascot flourish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cardigan &amp; Pearls</span><span class="dish-tag">or country tweed</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A neat cardigan and pearls for the tea-party register, or tweed and wellies for the country-walk-and-pub version.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">A Rose</span><span class="dish-tag">the finishing touch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A single English rose pinned on, or a flower crown for a May Day / fête theme — small, fresh, and very English.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen Suit / Cricket Whites</span><span class="dish-tag">summer smart</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light linen or seersucker suit, or cricket whites with a club jumper — the relaxed English summer-garden look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boater or Flat Cap</span><span class="dish-tag">the hat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A straw boater for the garden party, or a flat cap for the country-pub register — either one seals the look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tweed &amp; Waistcoat</span><span class="dish-tag">country gent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tweed jacket and waistcoat — the English country-gentleman look, ideal for an autumn or pub-themed evening.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Morris Kit</span><span class="dish-tag">for the folk side</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>For a folk theme: whites with a baldric of ribbons, bell-pads at the shins, a flowered hat, and handkerchiefs — full Morris-dancer regalia.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Village Green</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Morris Tunes</span><span class="dish-tag">melodeon &amp; fiddle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bouncy folk tunes on melodeon, concertina, and fiddle, punctuated by the jingle of bells and the clash of sticks — the sound of a Morris side.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">English Folk Songs</span><span class="dish-tag">Greensleeves &amp; ballads</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>"Greensleeves," "Scarborough Fair," and other old English ballads — plus a sea shanty or two — for the traditional folk register.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brass Band</span><span class="dish-tag">the bandstand</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The warm oompah of a colliery-style brass band — the classic sound of a village fête, a bandstand, or a summer green.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Church Bells</span><span class="dish-tag">change ringing</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The peal of English change-ringing bells — an atmospheric backdrop that instantly says "English village."</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Concert Hall &amp; Modern</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Elgar &amp; the Proms</span><span class="dish-tag">Land of Hope and Glory</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Elgar's "Land of Hope and Glory" and the flag-waving finale of the Last Night of the Proms — grand, rousing, and very English.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jerusalem</span><span class="dish-tag">unofficial anthem</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Parry's "Jerusalem," sung at cricket and rugby and treated as England's own anthem — a proper full-throated singalong.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">British Invasion</span><span class="dish-tag">Beatles &amp; Kinks</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Beatles, The Kinks, and The Who — especially very-English songwriting like The Kinks' "Village Green" — for a 1960s lift.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Britpop</span><span class="dish-tag">Oasis &amp; Blur</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Oasis, Blur, and Pulp for a modern, singalong-at-the-end-of-the-night finish — the 1990s English pop canon.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably English:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tudor rose (national flower)</li>
+        <li><span class="n">06</span> Willow-pattern china</li>
+        <li><span class="n">02</span> St George's Cross</li>
+        <li><span class="n">07</span> The crown</li>
+        <li><span class="n">03</span> Three lions (heraldry)</li>
+        <li><span class="n">08</span> Bunting triangles</li>
+        <li><span class="n">04</span> English oak &amp; acorn</li>
+        <li><span class="n">09</span> Maypole &amp; Morris bells</li>
+        <li><span class="n">05</span> Chintz &amp; William Morris florals</li>
+        <li><span class="n">10</span> Teapot &amp; cake stand</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Afternoon tea (scones, jam &amp; cream)</li>
+              <li>Pimm's o'clock</li>
+              <li>Garden cricket or croquet</li>
+              <li>Maypole or Morris (fête-style)</li>
+              <li>Fête games (tombola, coconut shy)</li>
+              <li>Toast — "Cheers!" / "Chin chin!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Cut grass &amp; garden roses</li>
+              <li>Woodsmoke (pub fire / bonfire)</li>
+              <li>Bunting fluttering</li>
+              <li>Church bells &amp; brass band</li>
+              <li>Warm scones &amp; strawberries</li>
+              <li>Real ale &amp; a good cuppa</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>St George's Day (Apr 23)</li>
+              <li>May Day (maypole &amp; Morris)</li>
+              <li>Village fête season (summer)</li>
+              <li>Bonfire Night (Nov 5)</li>
+              <li>Harvest Festival (autumn)</li>
+              <li>Last Night of the Proms (Sept)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="england.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        England Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

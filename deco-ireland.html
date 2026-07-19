@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ireland — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="ireland.html" class="back-link" aria-label="Ireland cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Ireland Cuisine
+      </a>
+    </div>
+    <span class="field-tag">WESTERN EUROPE / CELTIC</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Ireland</h1>
+      <p class="subhead">Turf-fire warmth and the low hum of a trad session — Aran wool, Donegal tweed, cut crystal, and Celtic craft, with the greens of the hedgerow rather than the parade.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            CELTIC · CLADDAGH · ARAN · TWEED · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Crect width='3' height='2' fill='%23ffffff'/%3E%3Crect width='1' height='2' fill='%23169b62'/%3E%3Crect x='2' width='1' height='2' fill='%23ff883e'/%3E%3C/svg%3E" alt="Flag of Ireland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Set aside the plastic leprechaun hats and neon shamrocks — that is parade-day dressing, and it belongs to St. Patrick's Day. An authentic Irish party looks and feels like something older and warmer: a low-lit country pub or a farmhouse kitchen with a turf fire going, wool throws over the chairs, and a fiddle starting up in the corner. The palette is drawn from the land — mossy emerald, the heathery russets and oatmeals of Donegal tweed, stout black and cream, and the honey glow of firelight and cut crystal.</p>
+        <p>The other thread is Celtic craft: endless knotwork, the triple spiral carved at Newgrange five thousand years ago, the harp that stands as the national emblem, and the Claddagh with its clasped hands. Lean into handmade, heritage materials — Aran cable-knit wool, Irish linen, Belleek china, woven rushes — and keep the light low and golden. The result feels cosy, lived-in, and unmistakably Irish without a single cartoon shamrock in sight.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Dim the overheads and light the room with candles and firelight — an open fire or a flickering faux-turf glow is the single most atmospheric thing you can do. Bring in dark wood, brass and copper, and plenty of soft wool: drape Aran throws over seat backs and pile cushions in tweedy heather tones. Aim for the feeling of a "snug," the small cosy nook found in old Irish pubs.</p>
+        <p>Dress the table in white Irish linen, set out Belleek china and a few pieces of cut crystal, and cluster candles down the centre. For green, skip the shamrock garlands and reach for the real hedgerow — trailing ivy, ferns, sprigs of fuchsia and heather in jam jars or an old jug. Give one corner over to drink (stout, whiskey, a chalkboard) and leave an open space with a stool or two for musicians. A St. Brigid's cross on the wall and a bit of Celtic knotwork finish the room.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Turn the lights down and bring in <strong>candlelight and firelight</strong> — a real fire, a cluster of candles, or a faux-turf/log glow. Warm, low light is the whole mood.</li>
+        <li>Drape <strong>Aran wool throws and blankets</strong> over chairs and sofas, and scatter cushions in <strong>Donegal tweed</strong> heather tones for instant cosy-cottage texture.</li>
+        <li>Lay the table with <strong>white Irish linen</strong>, set out <strong>Belleek china</strong>, and give everyone a piece of <strong>cut crystal</strong> for whiskey or stout.</li>
+        <li>Add <strong>Celtic craft</strong> on the walls — knotwork and triple-spiral prints, a small harp, and a <strong>St. Brigid's cross</strong> woven from rushes by the door for luck.</li>
+        <li>Use <strong>real greenery, not shamrock cut-outs</strong> — trailing ivy, ferns, fuchsia and heather in jam jars, jugs, or an old enamel pitcher.</li>
+        <li>Build a <strong>pub corner</strong> — bottles of stout and Irish whiskey, a couple of pint glasses, and a little chalkboard "menu" or blessing.</li>
+        <li>Leave an <strong>open nook for the music</strong> — a stool, good light, and room for a fiddle and bodhrán. The session should feel like it could start any minute.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Mossy emerald green</li>
+        <li><span class="n">06</span> Turf brown &amp; amber firelight</li>
+        <li><span class="n">02</span> Donegal tweed heather (russet, oatmeal)</li>
+        <li><span class="n">07</span> White Irish linen</li>
+        <li><span class="n">03</span> Stout black &amp; cream</li>
+        <li><span class="n">08</span> Cut-crystal sparkle</li>
+        <li><span class="n">04</span> Aran cream wool</li>
+        <li><span class="n">09</span> Fuchsia pink &amp; gorse yellow</li>
+        <li><span class="n">05</span> Brass &amp; copper</li>
+        <li><span class="n">10</span> Weathered stone grey</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>St. Brigid's cross</strong> is woven from rushes and traditionally hung by the door for protection at Imbolc (1 February) — a date now marked by a national public holiday in Ireland.</li>
+        <li>The <strong>harp</strong> is Ireland's national emblem — the only country in the world with a musical instrument as its symbol — and it is the same harp you see on the Guinness label, turned to face the other way.</li>
+        <li><strong>Celtic knotwork and the triple spiral (triskele)</strong> trace back to ancient carvings at Newgrange, a passage tomb older than both Stonehenge and the pyramids of Giza.</li>
+        <li>The <strong>Claddagh</strong> — two hands holding a crowned heart for friendship, love, and loyalty — takes its name from a fishing village near Galway, and the way you wear the ring signals whether your heart is taken.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound that build an authentic Irish night.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Statement Pieces</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aran Wool Throws</span><span class="dish-tag">cable-knit blankets</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cream cable-and-diamond knit blankets from the Aran Islands, draped over chairs and sofas. The cosiest, most tactile way to fill a room with Irish character.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">St. Brigid's Cross</span><span class="dish-tag">woven rushes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A distinctive off-square cross woven from rushes, hung by the door for protection and luck. A quiet, authentic folk touch — and something guests can weave themselves.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Celtic Knotwork &amp; Harp</span><span class="dish-tag">heritage motifs</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Endless-line knotwork, triple spirals, and the national harp — as prints, wall plaques, or a small decorative harp. Ancient, elegant, and unmistakably Irish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Turf Fire / Candle Glow</span><span class="dish-tag">the light source</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An open fire, a faux-turf glow, or a mass of candles. Low golden light is the defining atmosphere of an Irish pub or farmhouse kitchen.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Table &amp; Accents</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Irish Linen</span><span class="dish-tag">table dressing</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp white linen tablecloths and napkins — a point of national pride and the perfect calm base for crystal and candlelight.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Belleek China</span><span class="dish-tag">Fermanagh porcelain</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Delicate ivory Parian china from Co. Fermanagh, often with woven-basket or shamrock detailing. Beautiful for serving and instantly recognizable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Irish Crystal</span><span class="dish-tag">Waterford &amp; Galway</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-cut lead crystal from Waterford or Galway — tumblers and glasses that catch the candlelight and give a stout or whiskey real occasion.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hedgerow Greenery</span><span class="dish-tag">ivy, fuchsia, heather</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Trailing ivy, ferns, wild fuchsia and heather in jam jars and jugs — the real green of the Irish countryside instead of novelty shamrocks.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aran Knitwear</span><span class="dish-tag">fisherman sweater</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cream cable-knit Aran sweater or cardigan — warm, handsome, and the most authentic Irish garment there is. Each traditional stitch pattern carries its own meaning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Donegal Tweed</span><span class="dish-tag">skirt, cape or shawl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Heathery flecked tweed woven in the northwest — a skirt, cape, or shawl in russet and moss tones reads country-Irish and elegant at once.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Claddagh Ring</span><span class="dish-tag">love &amp; loyalty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic Irish ring — clasped hands, a crowned heart. The direction it faces tells whether your heart is taken.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Celtic Jewellery</span><span class="dish-tag">marble &amp; brooches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Green Connemara marble pieces or a Tara-style brooch pinning a shawl — understated Celtic detail rather than costume.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aran Sweater</span><span class="dish-tag">cream cable-knit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The iconic fisherman's jumper — heavy cream wool covered in cables, diamonds, and basket stitch. Effortless and genuinely Irish.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tweed Jacket &amp; Cap</span><span class="dish-tag">Donegal tweed</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flecked tweed jacket or waistcoat with a matching flat cap — the timeless look of the Irish countryman.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Waistcoat &amp; Shirt</span><span class="dish-tag">pub-session look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple white or grandad-collar shirt under a waistcoat — the relaxed uniform of a trad musician at the session.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Celtic Ring</span><span class="dish-tag">Claddagh or knot</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Claddagh or Celtic-knot ring — a small heritage detail that finishes the look without tipping into costume.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Session</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fiddle</span><span class="dish-tag">the lead voice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The heart of Irish traditional music — driving the jigs and reels. Even a fiddle playing quietly in the background sets the tone instantly.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bodhrán</span><span class="dish-tag">frame drum</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The goatskin frame drum played with a double-ended beater (a "tipper") — the pulse of the session, and simple enough for guests to try.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tin Whistle</span><span class="dish-tag">penny whistle</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The cheap, bright little whistle that nearly every Irish child learns — carries the melody and is a fun party instrument to pass around.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Uilleann Pipes</span><span class="dish-tag">Irish bagpipes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bellows-blown Irish pipes with a sweeter, softer sound than the Scottish Highland set — haunting and distinctly Irish on a playlist.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Songs &amp; Styles</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jigs &amp; Reels</span><span class="dish-tag">céilí dance tunes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The fast dance tunes that fuel a céilí. Put a set on and clear a little floor space — someone will start dancing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sean-nós Singing</span><span class="dish-tag">"old style"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Unaccompanied traditional singing in Irish, highly ornamented and deeply moving — a hush-the-room moment between livelier tunes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ballads</span><span class="dish-tag">singalong classics</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The big singalong ballads in the style of The Dubliners and the Clancy Brothers — everyone knows the choruses by the second verse.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Trad Greats</span><span class="dish-tag">Chieftains &amp; Planxty</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Groups like The Chieftains and Planxty for a ready-made authentic playlist — the polished sound of Irish trad without needing live players.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Irish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Celtic knot (endless knotwork)</li>
+        <li><span class="n">06</span> Shamrock (three-leaf sprig)</li>
+        <li><span class="n">02</span> Triple spiral / triskele (Newgrange)</li>
+        <li><span class="n">07</span> Aran cable &amp; diamond stitch</li>
+        <li><span class="n">03</span> Claddagh (hands, heart, crown)</li>
+        <li><span class="n">08</span> Ogham (the tree alphabet)</li>
+        <li><span class="n">04</span> Harp (national emblem)</li>
+        <li><span class="n">09</span> Book of Kells illumination</li>
+        <li><span class="n">05</span> Celtic cross</li>
+        <li><span class="n">10</span> Trinity knot (triquetra)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Host a live trad session</li>
+              <li>Whiskey or stout tasting</li>
+              <li>Weave a St. Brigid's cross</li>
+              <li>Storytelling (seanchaí) corner</li>
+              <li>Try a céilí dance</li>
+              <li>Raise a toast — "Sláinte!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Turf-smoke / peat scent</li>
+              <li>Warm soda bread &amp; butter</li>
+              <li>Candle &amp; firelight</li>
+              <li>Live fiddle &amp; bodhrán</li>
+              <li>Wool throws to wrap up in</li>
+              <li>Cut-crystal clink</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Samhain / Halloween (Oct 31)</li>
+              <li>St. Brigid's Day (Feb 1)</li>
+              <li>St. Patrick's Day (Mar 17)</li>
+              <li>Bloomsday (Jun 16)</li>
+              <li>Lughnasa harvest (Aug 1)</li>
+              <li>Wren Day (Dec 26)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="ireland.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Ireland Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

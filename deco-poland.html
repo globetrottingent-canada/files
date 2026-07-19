@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poland — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="poland.html" class="back-link" aria-label="Poland cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Poland Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CENTRAL EUROPE / FOLK</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Poland</h1>
+      <p class="subhead">Whitewashed-cottage warmth meets exuberant folk color — paper-cut flowers, straw chandeliers, cobalt pottery, and candlelight, all under the crisp red-and-white of the flag.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            WYCINANKI · PAJĄKI · KRAKÓW · ŁOWICZ · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC8CAIAAABNDgTVAAACNUlEQVR4nO3VQQ2AMAAEQUpIMIAGnijAvwq8FBn76IyC+2xuzDk3oLPXA2B1IoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYiKEmAghJkKIiRBiIoSYCCEmQoiJEGIihJgIISZCiIkQYuO73noDLM0TQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAgxEUJMhBATIcRECDERQkyEEBMhxEQIMRFCTIQQEyHERAix43zuegMs7QcQ7gX9v1C6BQAAAABJRU5ErkJggg==" alt="Flag of Poland">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>A Polish party lives between two moods, and both belong. There is the crisp, upright national look — the red-and-white of the flag, the crowned white eagle, the dignity of Constitution Day and Independence Day. And there is the exuberant folk countryside: saturated rooster reds, cornflower blues, hot pinks and greens layered together without apology. The room should feel handmade and warm rather than sleek — paper cut into flowers, straw spun into hanging chandeliers, cobalt-patterned stoneware, embroidered linen, and a lot of candlelight.</p>
+        <p>The reference point is a whitewashed village cottage dressed for a feast day: white walls and pale wood as the calm backdrop, then color and pattern piled on top in cheerful, generous abundance. Nothing is precious or matchy — folk décor in Poland was always made by hand from what was around, so a slightly imperfect, layered, lovingly-assembled table reads as more authentic than anything store-bought and uniform.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Start with a quiet base — white or cream cloths, natural wood, plain linen — so the folk color has somewhere to sing. Then build one or two strong focal points rather than scattering decoration everywhere. The classic centerpiece is a <em>pająk</em>, the straw-and-paper chandelier, suspended over the table where it can slowly turn. Failing that, a cluster of paper flowers or a bold striped runner down the table anchors the room.</p>
+        <p>Dress the windows and walls with <em>wycinanki</em> — symmetrical paper-cuts of roosters, peacocks, and flowers in bright layered color. Bring in cobalt-and-cream pottery for serving, plenty of fresh or paper flowers, sheaves of wheat or rye in the corners for a harvest note, and warm candlelight throughout. If you want the national register instead of the folk one, swap the rainbow palette for disciplined red-and-white: flags, ribbon, white flowers with red berries, and the eagle emblem.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Hang a <strong>pająk</strong> (straw chandelier) or a cluster of tissue-paper flowers over the table as the centerpiece — let it hang low enough to be seen and slowly spin. A paper-flower mobile or a hoop wrapped in ribbon and blooms is an easy stand-in.</li>
+        <li>Tape <strong>wycinanki</strong> paper-cuts to windows and mirrors — roosters, peacocks, stars, and symmetrical flowers in bright layered paper. They read beautifully backlit by daylight or fairy lights.</li>
+        <li>Run a <strong>Łowicz-stripe or embroidered folk runner</strong> down the center of the table, or use a plain white cloth trimmed with red ribbon for the national look.</li>
+        <li>Serve on <strong>Bolesławiec-style pottery</strong> — cream stoneware stamped with cobalt "peacock's eye" dots. Even a few pieces mixed with white plates sets the tone instantly.</li>
+        <li>Cluster <strong>candles, wildflowers, and greenery</strong> — beeswax pillars, jars of cornflowers and poppies, trailing ivy. Warm light is doing half the work.</li>
+        <li>Stand <strong>sheaves of wheat or rye</strong> in the corners or in jugs — a nod to the harvest (dożynki) and to the straw that folk decorations were made from.</li>
+        <li>Fly the <strong>red-and-white flag</strong> and the crowned <strong>white eagle</strong> if the party leans national — bunting, ribbon rosettes, or a single bold flag over the doorway.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Color &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Flag red &amp; white (national base)</li>
+        <li><span class="n">06</span> Rye straw &amp; natural wheat</li>
+        <li><span class="n">02</span> Rooster red (folk accent)</li>
+        <li><span class="n">07</span> Whitewashed wood &amp; linen</li>
+        <li><span class="n">03</span> Cornflower &amp; cobalt blue</li>
+        <li><span class="n">08</span> Baltic amber (honey gold)</li>
+        <li><span class="n">04</span> Hot pink &amp; magenta (Łowicz florals)</li>
+        <li><span class="n">09</span> Tissue paper (wycinanki brights)</li>
+        <li><span class="n">05</span> Grass &amp; leaf green</li>
+        <li><span class="n">10</span> Beeswax candlelight</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>pająk</strong> — literally "spider" — is a straw-and-paper chandelier that farming families made through the long winters, once believed to protect the home and bring a good harvest. They evolved from a simple sheaf of straw hung from the ceiling into elaborate spinning masterpieces.</li>
+        <li><strong>Wycinanki</strong> paper-cutting has strong regional styles: Łowicz cut-outs build a base shape and then layer bright multicolored pieces on top, while Kurpie cut-outs are single-color, symmetrical star-bursts (gwiazda) or tree-of-life shapes (leluja) cut on a fold.</li>
+        <li>The <strong>Kraków costume</strong> became a symbol of national pride during Poland's fight for independence — the hero Tadeusz Kościuszko famously wore the white peasant <em>sukmana</em>, and the look spread across the country as a patriotic emblem.</li>
+        <li>Strings of <strong>red coral beads</strong> (korale) were the prized jewelry of Cracovian women — worn in multiple strands, they signaled wealth and status and were often finished with a small holy medallion.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound that build an authentic Polish night.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Statement Pieces</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pająk</span><span class="dish-tag">straw chandelier</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The showpiece — a geometric hanging ornament of rye straw, tissue paper, pom-poms and feathers. Hang it over the table where it can turn slowly. A paper-flower mobile makes an easy modern version.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wycinanki</span><span class="dish-tag">paper-cuts</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Symmetrical folded-paper cut-outs of roosters, peacocks, stars and flowers. Stick them on windows, walls and mirrors, or frame a few as art. Łowicz style is multicolor and layered; Kurpie style is single-color.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bolesławiec Pottery</span><span class="dish-tag">cobalt stoneware</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cream stoneware hand-stamped with cobalt-blue "peacock's eye" dots and folk florals — Poland's most recognizable ceramics. Use for serving bowls, jugs and plates.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Paper Flowers</span><span class="dish-tag">kwiaty z bibuły</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Big, bright crepe-paper flowers — a folk craft in their own right. Use them in bouquets, garlands, or worked into the pająk and wreaths.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Table &amp; Accents</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Folk-Stripe Runner</span><span class="dish-tag">Łowicz textile</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The famous vertical rainbow stripes of the Łowicz region, or embroidered folk linen. Runs the length of the table over a plain white cloth.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Beeswax Candles</span><span class="dish-tag">warm light</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pillars and tapers in brass or cobalt holders. Warm candlelight is essential to the cottage-feast atmosphere.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wheat &amp; Rye Sheaves</span><span class="dish-tag">harvest note</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bundles of wheat or rye stood in corners or jugs — a nod to the dożynki harvest festival and to the straw of folk decorations.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pisanki &amp; Amber</span><span class="dish-tag">seasonal touches</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-painted Easter eggs (pisanki) in bowls for a spring party, or Baltic amber pieces and honey-gold glass for a warm, glinting finish year-round.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kraków Costume</span><span class="dish-tag">strój krakowski</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White embroidered blouse, a laced velvet bodice (gorset) covered in beads and sequins, a full floral skirt, a white lace apron (zapaska), and lace-up boots. The most iconic and recognizable Polish look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower Wreath</span><span class="dish-tag">wianek</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crown of fresh or paper flowers with trailing ribbons, traditionally worn by unmarried women. Perfect for a Midsummer (Wianki / Noc Kupały) theme.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coral Beads</span><span class="dish-tag">korale</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Multiple strands of red coral beads — the signature Cracovian jewelry, a sign of festivity and good fortune. Easy to fake with red glass beads.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Highlander Style</span><span class="dish-tag">Góralka</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Podhale mountain look: embroidered floral skirt, fitted corset, a tied shawl (chusta), and soft leather moccasins (kierpce). Earthier than the Kraków costume.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kraków Costume</span><span class="dish-tag">strój krakowski</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crimson embroidered jacket over striped navy trousers, a wide studded leather belt (pas), and the four-cornered <em>rogatywka</em> cap topped with peacock feathers.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Highlander Costume</span><span class="dish-tag">Góral</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Tight white wool trousers with heart-shaped <em>parzenica</em> embroidery, a white shirt, an embroidered jacket or sheepskin vest, and a black felt hat with a feather or shells.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sukmana Coat</span><span class="dish-tag">peasant coat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The long white woolen coat with colorful stitching — a patriotic emblem worn by Kościuszko. A strong, simple statement piece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Simple Option</span><span class="dish-tag">low-effort look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>No costume? A white shirt with a red vest or red-and-white accents and a folk-print sash reads Polish without the full outfit.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Folk &amp; Dance</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Krakowiak</span><span class="dish-tag">lively 2/4 dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fast, syncopated dance from the Kraków region — bright, bouncy, and instantly festive. Great as the party's arrival music.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Oberek</span><span class="dish-tag">spinning dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The fastest of the Polish folk dances — a whirling, foot-stamping 3/8 built for energy on the dance floor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Polka</span><span class="dish-tag">crowd-pleaser</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Universally recognizable and easy to dance to — accordion-driven and cheerful, it keeps a mixed crowd moving.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Highlander Music</span><span class="dish-tag">muzyka góralska</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fiddles and mountain voices from the Tatras — wild, drone-based and haunting. A striking change of texture between livelier sets.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Classical &amp; Modern</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chopin Polonaises</span><span class="dish-tag">national pride</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Poland's beloved composer turned folk dances into art music. The stately polonaises and lilting mazurkas make an elegant dinner backdrop.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mazurka &amp; Kujawiak</span><span class="dish-tag">triple-time folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The slower, swaying triple-meter dances — romantic and rooted, whether in folk form or Chopin's concert versions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Disco Polo</span><span class="dish-tag">kitschy pop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cheerful, unashamedly cheesy Polish dance-pop — the sound of many a real Polish wedding and party. Guaranteed to get a knowing laugh and a full floor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kolędy</span><span class="dish-tag">Christmas carols</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>For a Wigilia (Christmas Eve) theme — traditional Polish carols create the quiet, reverent mood of the year's most important meal.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Polish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Rooster (kogut — the folk-art favorite)</li>
+        <li><span class="n">06</span> Flower wreath (wianek)</li>
+        <li><span class="n">02</span> Peacock (wycinanki &amp; pottery)</li>
+        <li><span class="n">07</span> Paired birds facing a flower</li>
+        <li><span class="n">03</span> Folk flowers &amp; roses</li>
+        <li><span class="n">08</span> Star-burst (Kurpie gwiazda)</li>
+        <li><span class="n">04</span> Tree of life (leluja)</li>
+        <li><span class="n">09</span> Wheat sheaf (harvest)</li>
+        <li><span class="n">05</span> Crowned white eagle (national)</li>
+        <li><span class="n">10</span> Cobalt "peacock's eye" dot</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Cut wycinanki paper-flowers</li>
+              <li>Build a simple pająk</li>
+              <li>Decorate pisanki eggs</li>
+              <li>Learn a polka or polonaise</li>
+              <li>Cold vodka toast — "Na zdrowie!"</li>
+              <li>Bread &amp; salt welcome</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Beeswax &amp; pine scent</li>
+              <li>Amber-glow tea lights</li>
+              <li>Rye bread on the table</li>
+              <li>Live accordion or fiddle</li>
+              <li>Cornflowers &amp; poppies</li>
+              <li>Embroidered linen napkins</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Wigilia (Christmas Eve)</li>
+              <li>Wielkanoc (Easter)</li>
+              <li>Wianki / Noc Kupały (Midsummer)</li>
+              <li>Dożynki (harvest)</li>
+              <li>Constitution Day (May 3)</li>
+              <li>Independence Day (Nov 11)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="poland.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Poland Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

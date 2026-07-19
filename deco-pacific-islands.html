@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pacific Islands — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="pacific-islands.html" class="back-link" aria-label="Pacific Islands cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Pacific Cuisine
+      </a>
+    </div>
+    <span class="field-tag">OCEANIA / PACIFIC</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">The Pacific Islands</h1>
+      <p class="subhead">Two very different parties share this map: the retro tiki bar — a mid-century American fantasy — and the real islands of Polynesia, Melanesia, and Micronesia. Here's how to throw either.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TIKI · TAPA · KAVA · UMU · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The Pacific Islands">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F3A15C"/>
+              <stop offset="1" stop-color="#F7CE8A"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="102" fill="url(#sky)"/>
+          <circle cx="120" cy="100" r="34" fill="#FBE3AB"/>
+          <circle cx="120" cy="100" r="25" fill="#FCEFCB"/>
+          <rect y="102" width="240" height="58" fill="#2E7C8B"/>
+          <path d="M0,116 q30,-8 60,0 t60,0 t60,0 t60,0" stroke="#6FB4BF" stroke-width="3" fill="none" opacity="0.7"/>
+          <path d="M0,132 q30,-8 60,0 t60,0 t60,0 t60,0" stroke="#93CBD4" stroke-width="3" fill="none" opacity="0.6"/>
+          <path d="M80,102 C78,82 74,62 72,48" stroke="#3B2A20" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <g stroke="#2F6B3A" stroke-width="5" fill="none" stroke-linecap="round">
+            <path d="M72,48 C58,42 48,44 40,52"/>
+            <path d="M72,48 C60,34 52,30 42,30"/>
+            <path d="M72,48 C78,34 88,28 100,28"/>
+            <path d="M72,48 C86,42 96,44 106,54"/>
+            <path d="M72,48 C72,36 74,28 76,20"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>This page carries two looks that happen to share a corner of the map but come from completely different places. The first is <strong>Tiki</strong> — the amber-lit bar of carved idols, bamboo, rum, and lounge music. It's enormous fun, but it's important to know it's a fantasy: "Polynesian Pop," dreamed up in 1930s California, an American daydream of the South Seas rather than any real island culture.</p>
+        <p>The second is the <strong>authentic Pacific</strong> — the living cultures of Fiji, Samoa, Tonga, Tahiti, and Papua New Guinea. That look is built from the earth-oven feast (umu or lovo), tapa barkcloth, woven pandanus mats, the ceremonial kava bowl, coconut and banana leaf, and open, generous communal hospitality. Both are here. Pick the one that fits your night — or borrow tastefully from each, as long as you know which is which.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">Two ways to do it</span>
+        <p><strong>Tiki / Polynesian Pop</strong> — the retro cocktail-bar fantasy invented by Donn Beach and Trader Vic. Gloriously kitschy, rum-soaked, and escapist. Best for a fun grown-up cocktail party.</p>
+        <p><strong>Authentic Pacific</strong> — the real cultures of the islands, centred on the communal feast and the kava circle. Best for honouring the places themselves. Treat sacred elements (kava, ceremony, dance) with respect rather than as gags.</p>
+        <p>Looking for the specifically Hawaiian version? That has its own page — see <a href="deco-hawaii.html">Hawaii</a>.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a tiki night,</strong> build a bar. Line a corner with bamboo and rattan, add a thatch valance, and drop the lights to a warm amber glow — pufferfish lamps, glass float lights, a string or two of little lanterns. Populate it with carved tiki idols and a shelf of collectable tiki mugs, hang fishing floats and netting, and make rum the star. A loop of exotica in the background completes the illusion.</p>
+        <p><strong>For an authentic island feast,</strong> think low and communal. Lay banana or ti leaves straight down the centre of the table, set everything on woven pandanus mats, and hang or drape tapa barkcloth for pattern. Serve from coconut shells and wooden bowls, and give the table a real centrepiece — a carved tanoa kava bowl, tropical flowers (hibiscus, frangipani, heliconia), and torch or firelight. The earth oven, or a stand-in of slow-roasted pork and taro, is what the whole gathering orbits.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Set the light warm and low — <strong>tiki:</strong> amber bulbs, pufferfish and float lamps, tiki torches. <strong>Authentic:</strong> torch and firelight ringing the feast.</li>
+        <li>Bring in natural structure — <strong>tiki:</strong> bamboo, rattan, and a thatch valance for the bar. <strong>Authentic:</strong> woven pandanus mats and baskets on and around the table.</li>
+        <li>Choose your wall pieces — <strong>tiki:</strong> carved idols, masks, and a shelf of tiki mugs. <strong>Authentic:</strong> tapa barkcloth (masi, ngatu, or siapo) hung as art or run down the table.</li>
+        <li>Add the props — <strong>tiki:</strong> fishing floats, nets, and driftwood. <strong>Authentic:</strong> coconut shells, carved wooden bowls, and a tanoa kava bowl as centrepiece.</li>
+        <li>Flowers work for both — <strong>hibiscus and frangipani</strong>, loose in bowls, tucked into arrangements, or floated in water.</li>
+        <li>Pile on real greenery — <strong>banana leaves, monstera, palm fronds, and ti</strong> — as runners, plates, and backdrop for either look.</li>
+        <li>Dress the table — <strong>tiki:</strong> bold vintage barkcloth-print cloths and mugs. <strong>Authentic:</strong> banana-leaf place settings and shared communal bowls.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tiki amber &amp; lantern glow</li>
+        <li><span class="n">06</span> Tapa brown, black &amp; rust</li>
+        <li><span class="n">02</span> Sunset orange &amp; coral</li>
+        <li><span class="n">07</span> Banana-leaf &amp; palm green</li>
+        <li><span class="n">03</span> Aqua &amp; lagoon turquoise</li>
+        <li><span class="n">08</span> Coconut brown &amp; shell</li>
+        <li><span class="n">04</span> Bamboo &amp; rattan tan</li>
+        <li><span class="n">09</span> Volcanic black</li>
+        <li><span class="n">05</span> Thatch &amp; raffia straw</li>
+        <li><span class="n">10</span> Rum &amp; mahogany wood</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>Tiki is American, not Pacific.</strong> "Polynesian Pop" was invented in 1930s Los Angeles by Donn Beach (Don the Beachcomber) and Victor "Trader Vic" Bergeron — a stylised fantasy of the South Seas. The Mai Tai, the Zombie, and the ceramic tiki mug all come from this bar scene, not from any island tradition.</li>
+        <li><strong>Exotica</strong> — tiki's lounge soundtrack, pioneered by Martin Denny ("Quiet Village") and Les Baxter — is equally a studio creation, layering jazz with bird calls and vibraphone to conjure an imagined jungle paradise.</li>
+        <li><strong>Real Pacific barkcloth (tapa)</strong> goes by different names across the islands — ngatu in Tonga, siapo in Samoa, masi in Fiji, kapa in Hawaii — beaten from mulberry bark and still made by hand for weddings, funerals, and gifts of honour.</li>
+        <li><strong>Kava</strong>, drunk from a carved wooden tanoa bowl, is a genuine ceremonial centrepiece across Fiji, Samoa, Tonga, and Vanuatu, governed by real protocol that signals welcome and respect — worlds away from a novelty cocktail.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">Two routes through one region — pick a lane, or blend them knowingly.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Tiki Bar</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bamboo &amp; Rattan</span><span class="dish-tag">the bar itself</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bamboo poles, rattan furniture, and a thatch valance are the backbone of the tiki look — instant "little grass shack" atmosphere for a bar corner.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carved Idols &amp; Mugs</span><span class="dish-tag">tiki gods</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Grinning carved tiki idols and a shelf of collectable ceramic tiki mugs — the signature (and knowingly kitschy) icon of the whole aesthetic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pufferfish &amp; Float Lamps</span><span class="dish-tag">warm glow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dried pufferfish lanterns and glass fishing-float lights cast the low amber glow that defines a classic tiki room.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thatch, Nets &amp; Floats</span><span class="dish-tag">nautical trim</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Thatch matting, draped fishing nets, glass floats, and driftwood — the "scrounged from the waterfront" clutter that Donn Beach built the original look from.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Island Feast · Authentic</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tapa / Barkcloth</span><span class="dish-tag">masi · ngatu · siapo</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-beaten barkcloth in geometric earth tones — hung as a wall piece or run down the table. The single most authentic Pacific textile you can use.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Woven Pandanus Mats</span><span class="dish-tag">natural fibre</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Handwoven mats and baskets from pandanus leaf — laid on the table or the floor for a genuine communal-feast setting.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Banana &amp; Ti Leaves</span><span class="dish-tag">the green base</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Big glossy leaves as table runners, platters, and plates — exactly how food is wrapped and served from the earth oven.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tanoa &amp; Coconut Shells</span><span class="dish-tag">the kava bowl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A carved wooden tanoa (kava bowl) as centrepiece, with coconut-shell cups and bowls — the heart of Pacific hospitality. Handle with respect.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tiki / Retro</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vintage Aloha Shirt</span><span class="dish-tag">loud &amp; proud</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bold 1950s-style rayon aloha shirt is the tiki uniform — the louder and more retro, the better.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Print Dress</span><span class="dish-tag">mid-century glam</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A halter or wiggle dress in a big tropical barkcloth print — think cocktail-hour pin-up, cat-eye sunglasses optional.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower Behind the Ear</span><span class="dish-tag">easy accent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A single hibiscus behind the ear is the low-effort finishing touch that reads instantly tropical.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mug in Hand</span><span class="dish-tag">the accessory</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Honestly, the most important tiki accessory is a well-garnished mug — paper umbrella, mint, and a wedge of pineapple.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Island / Authentic</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sulu / Lavalava</span><span class="dish-tag">the wrap</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The wraparound skirt worn across the Pacific by men and women — sulu in Fiji, lavalava in Samoa, pareu in Tahiti. Comfortable, respectful, and genuinely island.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Island Floral Dress</span><span class="dish-tag">pareu print</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A flowing floral dress in an island print — modest, breezy, and worn everywhere from church to celebration.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower Garland</span><span class="dish-tag">salusalu · ei</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fresh flower or leaf garland — salusalu in Fiji, ei in the Cook Islands — given and worn as a mark of welcome and honour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tiare / Frangipani</span><span class="dish-tag">worn fresh</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fragrant tiare (Tahitian gardenia) or frangipani flower, often behind the ear, plus bare feet — simple and true to the islands.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tiki Lounge</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Exotica</span><span class="dish-tag">Denny &amp; Baxter</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Martin Denny's "Quiet Village" and Les Baxter's "Ritual of the Savage" are the quintessential tiki soundtrack — lush, kitschy, and perfect for cocktail hour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Surf Rock</span><span class="dish-tag">Dick Dale, Ventures</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Reverb-drenched surf guitar from the same California scene — a livelier, up-tempo option to keep a tiki party moving.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hapa-Haole</span><span class="dish-tag">steel guitar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Old Hawaiian-themed songs with English lyrics and sliding steel guitar — the "Hawaiian standards" that play in every classic Trader Vic's.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bongos &amp; Birdcalls</span><span class="dish-tag">the extras</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bongos, vibraphone, and piped-in bird and jungle sounds — the little audio flourishes that complete the tiki illusion.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Pacific Sound · Authentic</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Log &amp; Slit Drums</span><span class="dish-tag">toʻere · lali · garamut</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hollowed wooden slit drums drive Pacific rhythm — the toʻere of Tahiti, the lali of Fiji and Tonga, the garamut of Papua New Guinea.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tahitian ʻŌteʻa</span><span class="dish-tag">drum dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The fast, hip-shaking drum dance of Tahiti — thrilling to watch and the highlight of the Heiva festival.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Meke &amp; Siva</span><span class="dish-tag">Fiji &amp; Samoa</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Fijian meke (chant-and-dance storytelling) and the graceful Samoan siva — living dance traditions rather than floor-show spectacle.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Island String Bands</span><span class="dish-tag">ukulele &amp; guitar</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm ukulele-and-guitar string bands and contemporary island reggae — the everyday, feel-good music of the modern Pacific.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">Recurring shapes across both the tiki fantasy and the real islands (★ = authentic Pacific):</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tiki idol / mask (Polynesian Pop)</li>
+        <li><span class="n">06</span> Honu — sea turtle ★</li>
+        <li><span class="n">02</span> Moai (Easter Island heads)</li>
+        <li><span class="n">07</span> Tapa geometric patterns ★</li>
+        <li><span class="n">03</span> Pufferfish &amp; fishing floats</li>
+        <li><span class="n">08</span> Tatau — tattoo patterns ★</li>
+        <li><span class="n">04</span> Hibiscus &amp; frangipani ★</li>
+        <li><span class="n">09</span> Tanoa kava bowl ★</li>
+        <li><span class="n">05</span> Outrigger canoe (vaʻa) ★</li>
+        <li><span class="n">10</span> Palm, monstera &amp; banana leaf</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">The Tiki Bar</p>
+            <ol class="plain">
+              <li>Rum: Mai Tai, Zombie, Painkiller</li>
+              <li>Serve in tiki mugs</li>
+              <li>One flaming drink (carefully!)</li>
+              <li>Exotica on the turntable</li>
+              <li>Limbo contest</li>
+              <li>Cocktail-glam dress code</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Island Feast</p>
+            <ol class="plain">
+              <li>Umu / lovo earth-oven feast</li>
+              <li>Kava circle (with respect)</li>
+              <li>Torch-lit &amp; fireside</li>
+              <li>Learn a meke or ʻōteʻa</li>
+              <li>Coconut everything</li>
+              <li>Toast — "Bula!" / "Manuia!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Regional Flavours</p>
+            <ol class="plain">
+              <li>Fijian — kava, meke, masi</li>
+              <li>Samoan / Tongan — umu, siva, ngatu</li>
+              <li>Tahitian — Heiva, ʻōteʻa, tiare</li>
+              <li>Melanesian / PNG — garamut, sing-sing</li>
+              <li>Cook Islands — ei, ika mata</li>
+              <li>Hawaii — see its own page</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="pacific-islands.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Pacific Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

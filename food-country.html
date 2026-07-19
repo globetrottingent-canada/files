@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -50,7 +50,8 @@
   .topbar-left{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:10px 14px;
+    flex-wrap:wrap;
   }
   .main-site-link{
     display:inline-flex;
@@ -311,10 +312,19 @@
     margin:0 0 10px;
   }
 
-  .footer-note{
+  .footer-links{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
     margin-top:64px;
     padding-top:24px;
     border-top:1px solid var(--hairline);
+  }
+  .footer-note{
+    margin-top:16px;
+    padding-top:0;
+    border-top:none;
     font-family:'IBM Plex Mono', monospace;
     font-size:11.5px;
     letter-spacing:.04em;
@@ -366,8 +376,10 @@
     <div class="topbar-left">
       <a href="https://globetrottingent-canada.github.io/files/index.html" class="main-site-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Main Site
+        Home
       </a>
+      <a href="decoration-party.html" class="main-site-link">All Decor</a>
+      <a href="theme-calendar.html" class="main-site-link">Theme Calendar</a>
       <span class="wordmark"><b>THE TABLE</b> — A Cuisine Guide</span>
     </div>
     <span class="count-tag" id="total-tag">68 REGIONS</span>
@@ -405,7 +417,15 @@
       <p>Try a different search term, or clear your filters.</p>
     </div>
 
-    <div class="footer-note">‍‍​‌‌‌​​‌‌​‌‌​‌‌‌​​‌‌‌​‌​‌​‌‌‌​​‌‌​‌‌​‌​​​​‌‌​​​​‌​‌‌​‌‌​​​‌‌​‌‌​​​‌​‌‌‌‌‌​‌‌‌​​‌‌​‌‌​‌​​‌​‌‌‌​‌​​​‌‌​​‌​‌​‌‌‌​​‌‌‍‍The Table · A Cuisine Guide · 68 regions and counting</div>
+    <div class="footer-links">
+      <a href="https://globetrottingent-canada.github.io/files/index.html" class="main-site-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Home
+      </a>
+      <a href="decoration-party.html" class="main-site-link">All Decor</a>
+      <a href="theme-calendar.html" class="main-site-link">Theme Calendar</a>
+    </div>
+    <div class="footer-note">The Table · A Cuisine Guide‍‍​‌‌‌​​‌‌​‌‌​‌‌‌​​‌‌‌​‌​‌​‌‌‌​​‌‌​‌‌​‌​​​​‌‌​​​​‌​‌‌​‌‌​​​‌‌​‌‌​​​‌​‌‌‌‌‌​‌‌‌​​‌‌​‌‌​‌​​‌​‌‌‌​‌​​​‌‌​​‌​‌​‌‌‌​​‌‌‍‍ · 68 regions and counting</div>
   </div>
 
 <script>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scotland — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="scotland.html" class="back-link" aria-label="Scotland cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Scotland Cuisine
+      </a>
+    </div>
+    <span class="field-tag">BRITISH ISLES / HIGHLAND</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Scotland</h1>
+      <p class="subhead">Tartan and firelight — a Burns Supper or a ceilidh done right: candlelit tables, clan crests and the Saltire, a dram in hand, and the skirl of the pipes.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TARTAN · CEILIDH · THISTLE · CLAN · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Scotland (the Saltire)">
+          <rect width="240" height="160" fill="#0065BD"/>
+          <path d="M0,0 L240,160 M240,0 L0,160" stroke="#ffffff" stroke-width="30"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>A Scottish gathering is built from two things above all: tartan and firelight. Whether it's a Burns Supper, a ceilidh, or a Hogmanay, the feeling is warm, convivial, and a little bit grand — candlelit tables laid with tartan and pewter, a dram of whisky in hand, and the skirl of the pipes cutting through the room. The palette comes straight from the Highlands: heather purple, thistle, stag-brown tweed, saltire blue, and whisky amber, set against dark wood, stone, and candle glow. Think baronial hall meets cosy hearth.</p>
+        <p>The through-line is clan and craft — the tartan sett, the clan crest, the thistle and the Saltire, the two-handled quaich passed round for a toast. Lean on real materials (wool, tweed, pewter, antler, candle, and heather) and the room reads unmistakably Scottish and genuinely warm, rather than like a costume shop.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">Two registers</span>
+        <p><strong>Authentic Highland</strong> (this page) — tartan and clan, the Burns Supper, the ceilidh, whisky and the quaich. Handsome, warm, and grounded in real tradition.</p>
+        <p><strong>Tartan-tourist kitsch</strong> — "See You Jimmy" wigs, inflatable bagpipes, Nessie everything, and novelty everything-in-tartan. It's a laugh, and a wink or two is fine — just remember a little goes a long way.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Dress the table in tartan — a full cloth or a runner in a clan sett, or a universal one like Black Watch or Royal Stewart — and light it with candles in silver or pewter. Add sprigs of thistle and heather, a centrepiece of whisky and a quaich, and darker accents of antler, tweed, and greenery. On the walls, hang clan crests, a blue-and-white Saltire or the red-and-gold Lion Rampant, and a bit of stag imagery. Keep the light low and the wood dark for that baronial-hall-by-candlelight feeling.</p>
+        <p>Then leave room to move: a ceilidh is a dancing party, so clear a floor for Strip the Willow and the Gay Gordons. If it's a Burns Supper, give the haggis a place of honour — it gets piped in and addressed before anyone eats — with tatties and neeps alongside and whisky ready for the toasts.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lay <strong>tartan</strong> down the table — a cloth or runner in a clan tartan, or a universal sett like Black Watch or Royal Stewart if you've no clan of your own.</li>
+        <li>Light it with <strong>candles in pewter or silver</strong> — candelabra, tapers, and a low, warm glow throughout.</li>
+        <li>Bring in <strong>thistle and heather</strong> — sprigs in jugs, tucked into napkins, or run down the centre as a garland.</li>
+        <li>Add <strong>Highland texture</strong> — tweed and tartan throws over chairs, sheepskin, antler, and plenty of dark wood.</li>
+        <li>Fly the <strong>flags and crests</strong> — the Saltire (St Andrew's Cross) and the Lion Rampant, plus your clan crest on the wall.</li>
+        <li>Set a proper <strong>whisky bar</strong> — a spread of Scotch, heavy tumblers, and the two-handled <strong>quaich</strong> for shared toasts.</li>
+        <li>Clear a <strong>floor for the ceilidh</strong> — the dancing is the party, so leave space for a caller and a reel.</li>
+        <li><strong>(Burns Supper)</strong> give the <strong>haggis a grand entrance</strong> — piped in on a platter to a place of honour, with tatties and neeps.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tartan (clan setts)</li>
+        <li><span class="n">06</span> Tweed &amp; stag brown</li>
+        <li><span class="n">02</span> Saltire blue &amp; white</li>
+        <li><span class="n">07</span> Lion Rampant red &amp; gold</li>
+        <li><span class="n">03</span> Heather purple</li>
+        <li><span class="n">08</span> Pewter &amp; silver</li>
+        <li><span class="n">04</span> Thistle green &amp; mauve</li>
+        <li><span class="n">09</span> Stone grey &amp; slate</li>
+        <li><span class="n">05</span> Whisky amber</li>
+        <li><span class="n">10</span> Candlelight &amp; dark wood</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Over <strong>7,000 tartans</strong> are recorded on the Scottish Register of Tartans, each tied to a clan, region, regiment, or institution. If your surname is Scottish a tartan may already be "yours" — and universal setts like Black Watch and Royal Stewart are open to everyone.</li>
+        <li>The <strong>sgian-dubh</strong> ("black knife") worn in the sock comes from an old custom: a guest gave up his weapons on entering a home but kept this small blade in plain sight, to show he had nothing to hide.</li>
+        <li>A <strong>Burns Supper</strong> (25 January) follows a set order — guests rise as the haggis is piped in, someone performs Burns's "Address to a Haggis" and cuts it open, and the night runs through the Selkirk Grace, the Immortal Memory, and the Toast to the Lassies.</li>
+        <li>The <strong>quaich</strong> — a shallow two-handled cup — is Scotland's "cup of friendship," offered with both hands so neither person could reach for a weapon. It's still used for whisky toasts at weddings and welcomes.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound that build an authentic Scottish night.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Table</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tartan Cloth</span><span class="dish-tag">clan or universal sett</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tartan tablecloth or runner is the foundation of the whole look. Use a clan sett if you have one, or a universal tartan like Black Watch or Royal Stewart.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pewter &amp; Candlelight</span><span class="dish-tag">warm, low glow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pewter or silver candelabra, tankards, and tapers. Keep the lighting low for the baronial-hall-by-candle feeling that anchors a Scottish table.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Thistle &amp; Heather</span><span class="dish-tag">the flowers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Scotland's national flower and its moorland companion — sprigs in jugs, tucked into napkins, or run down the table as a simple garland.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quaich &amp; Whisky</span><span class="dish-tag">the toast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A two-handled quaich as centrepiece and a spread of Scotch for the toasts — the social heart of the evening. Offer the quaich with both hands.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Highland Accents</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tweed &amp; Tartan Throws</span><span class="dish-tag">wool warmth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Harris Tweed and tartan blankets over chairs and sofas, with sheepskin for texture — the cosy, layered feel of a Highland lodge.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Antler &amp; Stag</span><span class="dish-tag">lodge style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Antlers, a stag motif, or a "Monarch of the Glen" print bring the hunting-lodge grandeur without much effort.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Saltire &amp; Lion Rampant</span><span class="dish-tag">the flags</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The blue-and-white Saltire (St Andrew's Cross) and the red-and-gold Lion Rampant — as flags, bunting, or a single bold banner over the room.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clan Crests</span><span class="dish-tag">heraldry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A framed clan crest or coat of arms on the wall adds authenticity and a personal, heritage touch to the room.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tartan Sash &amp; Brooch</span><span class="dish-tag">over the shoulder</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tartan sash worn over one shoulder and pinned with a brooch is the classic women's Highland touch — often in a birth or married clan tartan.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tartan Skirt or Dress</span><span class="dish-tag">ankle-length</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A long tartan skirt or dress with a white blouse and fitted vest — the traditional women's outfit, elegant and easy to dance in.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tonnag or Earasaid</span><span class="dish-tag">shawl / wrap</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tonnag (small shawl) or a larger earasaid wrap in tartan, fastened with a brooch — a graceful, historically grounded layer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ghillie Shoes</span><span class="dish-tag">for the ceilidh</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft laced ghillie shoes for dancing, finished with a sprig of thistle or heather. Comfort matters when the reels start.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">The Kilt</span><span class="dish-tag">clan or universal tartan</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The centrepiece — a kilt in your clan tartan, or a universal sett. Tartan trews are the traditional alternative if a kilt isn't your thing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sporran</span><span class="dish-tag">day or dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The pouch worn at the front of the kilt (kilts have no pockets). Plain leather for day, fur or silver-mounted "dress" sporran for a formal night.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sgian-dubh &amp; Hose</span><span class="dish-tag">the details</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The small sgian-dubh knife in the right sock (handle showing), plus kilt hose, garter flashes, and a kilt pin. The details make the outfit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jacket &amp; Brogues</span><span class="dish-tag">Prince Charlie / Argyll</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Prince Charlie jacket for black-tie formality or an Argyll for something more relaxed, finished with laced ghillie brogues.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Ceilidh</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceilidh Band</span><span class="dish-tag">fiddle &amp; accordion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fiddle, accordion, and drums with a caller who walks everyone through the steps — the beating heart of a Scottish party. No experience needed.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Strip the Willow</span><span class="dish-tag">the big reel</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fast, spinning line dance that gets the whole room involved — chaotic, joyful, and usually the highlight of the night.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">The Gay Gordons</span><span class="dish-tag">couples dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, marching couples dance — a friendly opener that even total beginners can manage after one run-through.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dashing White Sergeant</span><span class="dish-tag">groups of three</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Danced in sets of three facing three — sociable and easy to learn, keeping everyone mixing all evening.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Pipes &amp; Songs</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">The Bagpipes</span><span class="dish-tag">the skirl</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The Great Highland Bagpipe — for piping in the haggis or the guests, or just as a playlist. The unmistakable sound of Scotland.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Auld Lang Syne</span><span class="dish-tag">Burns &amp; Hogmanay</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Robert Burns's most famous song, sung in a crossed-hands circle at midnight on Hogmanay — and a fitting close to any Scottish gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caledonia &amp; Ballads</span><span class="dish-tag">Dougie MacLean</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dougie MacLean's "Caledonia," the "Skye Boat Song," and other ballads for the softer, sing-along moments of the evening.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Runrig &amp; The Proclaimers</span><span class="dish-tag">modern Scottish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>For a contemporary lift — Runrig's Celtic rock and The Proclaimers' anthems get a crowd singing at full volume.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Scottish:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tartan sett (the crossed weave)</li>
+        <li><span class="n">06</span> Clan crest &amp; badge</li>
+        <li><span class="n">02</span> Thistle (national flower)</li>
+        <li><span class="n">07</span> Stag / Monarch of the Glen</li>
+        <li><span class="n">03</span> Saltire (St Andrew's Cross)</li>
+        <li><span class="n">08</span> Celtic &amp; Pictish knotwork</li>
+        <li><span class="n">04</span> Lion Rampant (royal banner)</li>
+        <li><span class="n">09</span> Highland "hairy coo"</li>
+        <li><span class="n">05</span> Unicorn (national animal)</li>
+        <li><span class="n">10</span> Bagpipes &amp; quaich</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Address the haggis (Burns Supper)</li>
+              <li>Ceilidh dancing</li>
+              <li>Whisky tasting (Speyside → Islay)</li>
+              <li>Share a toast from the quaich</li>
+              <li>Recite a little Burns</li>
+              <li>Toast — "Slàinte mhath!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>The skirl of the pipes</li>
+              <li>Peat smoke &amp; whisky</li>
+              <li>Heather &amp; thistle</li>
+              <li>Candlelight on pewter</li>
+              <li>Tweed &amp; tartan wool</li>
+              <li>Shortbread &amp; Dundee cake</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Burns Night (Jan 25)</li>
+              <li>St Andrew's Day (Nov 30)</li>
+              <li>Hogmanay (Dec 31, first-footing)</li>
+              <li>Highland Games (summer)</li>
+              <li>Tartan Day (Apr 6)</li>
+              <li>Up Helly Aa (Shetland, Jan)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="scotland.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Scotland Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

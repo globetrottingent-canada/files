@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ontario Breweries — Field Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241C12;
+    --ink-soft:#5b4f3d;
+    --paper:#EFE7D6;
+    --paper-2:#E7DDC7;
+    --line:#D6C9AC;
+    --hop:#2F6B34;
+    --hop-bright:#3d8a44;
+    --amber:#B0691F;
+    --faded:#BEB299;
+    --card:#F6F0E2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ---- shared nav (top + bottom) ---- */
+  .railnav{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+    padding:18px clamp(20px,5vw,64px);
+  }
+  .railnav .marque{
+    font-family:"Fraunces",serif;
+    font-weight:600;font-size:19px;letter-spacing:.01em;
+    display:flex;align-items:center;gap:9px;
+  }
+  .railnav .marque .dot{width:11px;height:11px;border-radius:50%;background:var(--hop);display:inline-block;}
+  .railnav .links{display:flex;gap:8px;font-family:"Space Mono",monospace;font-size:13px;}
+  .railnav .links a{
+    text-decoration:none;padding:7px 14px;border:1px solid var(--line);border-radius:100px;
+    background:var(--card);transition:background .15s,border-color .15s,transform .15s;
+    letter-spacing:.02em;
+  }
+  .railnav .links a:hover{background:var(--hop);color:#F6F0E2;border-color:var(--hop);transform:translateY(-1px);}
+  .railnav .links a:focus-visible{outline:2.5px solid var(--amber);outline-offset:2px;}
+  .topnav{border-bottom:1px solid var(--line);}
+  .botnav{border-top:1px solid var(--line);margin-top:12px;}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,64px);}
+
+  /* ---- hero ---- */
+  .hero{padding:clamp(38px,7vw,74px) 0 26px;}
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--amber);margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:"Fraunces",serif;
+    font-weight:900;
+    font-size:clamp(44px,9vw,92px);
+    line-height:.95;letter-spacing:-.02em;
+    margin:0;
+  }
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--hop);}
+  .hero .lede{
+    max-width:52ch;margin:20px 0 0;color:var(--ink-soft);font-size:17px;
+  }
+
+  /* ---- tally strip (signature) ---- */
+  .tally{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    margin:34px 0 0;background:var(--card);
+  }
+  .tally .cell{padding:20px 22px;border-right:1px solid var(--line);}
+  .tally .cell:last-child{border-right:none;}
+  .tally .num{
+    font-family:"Space Mono",monospace;font-weight:700;
+    font-size:clamp(30px,5vw,44px);line-height:1;letter-spacing:-.02em;
+  }
+  .tally .num .of{color:var(--faded);font-size:.5em;font-weight:400;}
+  .tally .lab{
+    font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:9px;
+  }
+  .tally .bar{height:5px;border-radius:100px;background:var(--paper-2);margin-top:13px;overflow:hidden;}
+  .tally .bar > i{display:block;height:100%;background:var(--hop);border-radius:100px;}
+  .tally .cell.town .bar > i{background:var(--amber);}
+
+  /* ---- controls ---- */
+  .controls{
+    position:sticky;top:0;z-index:20;
+    background:var(--paper);
+    padding:22px 0 16px;margin-top:38px;
+    border-bottom:1px solid var(--line);
+  }
+  .controls .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .search{position:relative;flex:1 1 280px;min-width:220px;}
+  .search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--ink-soft);}
+  .search input{
+    width:100%;padding:13px 15px 13px 42px;
+    font-family:"Instrument Sans",sans-serif;font-size:15px;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-radius:11px;
+  }
+  .search input::placeholder{color:var(--faded);}
+  .search input:focus-visible{outline:2.5px solid var(--amber);outline-offset:1px;border-color:var(--amber);}
+  select.city{
+    padding:13px 38px 13px 15px;font-family:"Instrument Sans",sans-serif;font-size:15px;
+    background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235b4f3d' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 15px center;
+    border:1px solid var(--line);border-radius:11px;color:var(--ink);cursor:pointer;
+    max-width:230px;-webkit-appearance:none;appearance:none;
+  }
+  select.city:focus-visible{outline:2.5px solid var(--amber);outline-offset:1px;border-color:var(--amber);}
+  .toggle{
+    display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    padding:12px 16px;border:1px solid var(--line);border-radius:11px;background:var(--card);
+    font-size:14px;font-weight:500;user-select:none;transition:border-color .15s,background .15s;
+  }
+  .toggle:focus-within{outline:2.5px solid var(--amber);outline-offset:1px;}
+  .toggle input{position:absolute;opacity:0;width:0;height:0;}
+  .toggle .box{
+    width:19px;height:19px;border-radius:6px;border:1.8px solid var(--faded);
+    display:grid;place-items:center;transition:background .15s,border-color .15s;
+  }
+  .toggle .box svg{width:12px;height:12px;stroke:#F6F0E2;stroke-width:2.6;opacity:0;transition:opacity .12s;}
+  .toggle input:checked + .box{background:var(--hop);border-color:var(--hop);}
+  .toggle input:checked + .box svg{opacity:1;}
+  .toggle input:checked ~ .txt{color:var(--hop);}
+
+  .meta{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    margin:20px 0 4px;
+  }
+  .meta .count{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.04em;color:var(--ink-soft);}
+  .meta .count b{color:var(--ink);}
+  .reset{
+    font-family:"Space Mono",monospace;font-size:12.5px;background:none;border:none;cursor:pointer;
+    color:var(--amber);text-decoration:underline;text-underline-offset:3px;padding:4px 2px;
+  }
+  .reset:focus-visible{outline:2.5px solid var(--amber);outline-offset:2px;border-radius:4px;}
+  .reset[hidden]{display:none;}
+
+  /* ---- list ---- */
+  .list{list-style:none;margin:8px 0 40px;padding:0;}
+  .entry{
+    display:grid;
+    grid-template-columns:52px 1fr auto;
+    align-items:center;gap:18px;
+    padding:15px 8px 15px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  .entry .idx{
+    font-family:"Space Mono",monospace;font-size:13px;color:var(--faded);text-align:right;
+    font-variant-numeric:tabular-nums;
+  }
+  .entry .name{font-family:"Fraunces",serif;font-weight:600;font-size:20px;line-height:1.15;letter-spacing:-.01em;}
+  .entry .city{
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:3px;
+  }
+  .stamps{display:flex;gap:10px;}
+  .stamp{
+    width:44px;height:44px;border-radius:11px;border:1px solid var(--line);
+    display:grid;place-items:center;background:var(--card);position:relative;
+  }
+  .stamp svg{width:23px;height:23px;}
+  .stamp .glyph{stroke:var(--faded);fill:none;stroke-width:1.7;}
+  .stamp.on{background:var(--hop);border-color:var(--hop);}
+  .stamp.on .glyph{stroke:#F4EEDF;}
+  .stamp.on .fillable{fill:rgba(244,238,223,.22);}
+  .stamp .tip{
+    position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
+    background:var(--ink);color:var(--paper);font-family:"Space Mono",monospace;font-size:11px;
+    white-space:nowrap;padding:5px 9px;border-radius:6px;opacity:0;pointer-events:none;
+    transition:opacity .15s,transform .15s;letter-spacing:.02em;z-index:5;
+  }
+  .stamp:hover .tip,.stamp:focus-visible .tip{opacity:1;transform:translateX(-50%) translateY(0);}
+  .stamp:focus-visible{outline:2.5px solid var(--amber);outline-offset:2px;}
+
+  .empty{
+    text-align:center;padding:60px 20px;color:var(--ink-soft);
+  }
+  .empty .big{font-family:"Fraunces",serif;font-size:26px;color:var(--ink);margin:0 0 8px;}
+  .empty p{margin:0;}
+
+  @media (max-width:560px){
+    .tally{grid-template-columns:1fr;}
+    .tally .cell{border-right:none;border-bottom:1px solid var(--line);}
+    .tally .cell:last-child{border-bottom:none;}
+    .entry{grid-template-columns:34px 1fr;grid-template-areas:"idx name" ". stamps";gap:8px 14px;}
+    .entry .idx{grid-area:idx;}
+    .entry .who{grid-area:name;}
+    .stamps{grid-area:stamps;margin-top:4px;}
+    select.city{max-width:none;flex:1 1 100%;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="railnav topnav" aria-label="Primary">
+  <span class="marque"><span class="dot" aria-hidden="true"></span>The Beer Journal</span>
+  <span class="links">
+    <a href="index.html">Home</a>
+    <a href="beerjournal.html">Beer Journal</a>
+  </span>
+</nav>
+
+<header class="wrap hero">
+  <p class="eyebrow">A running field log · Ontario</p>
+  <h1>Ontario<br>Breweries <em>logged</em></h1>
+  <p class="lede">Every brewery I'm tracking across the province — the ones whose beer I've tasted, and the taprooms I've actually set foot in. Search it, sort through it, filter it down.</p>
+
+  <div class="tally" id="tally" aria-label="Collection totals">
+    <div class="cell beer">
+      <div class="num" id="t-beer">0<span class="of"> / 0</span></div>
+      <div class="lab">Beers tried</div>
+      <div class="bar"><i id="b-beer" style="width:0"></i></div>
+    </div>
+    <div class="cell brew">
+      <div class="num" id="t-brew">0<span class="of"> / 0</span></div>
+      <div class="lab">Taprooms visited</div>
+      <div class="bar"><i id="b-brew" style="width:0"></i></div>
+    </div>
+    <div class="cell town">
+      <div class="num" id="t-town">0</div>
+      <div class="lab">Towns represented</div>
+      <div class="bar"><i style="width:100%"></i></div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="controls" role="search">
+    <div class="row">
+      <label class="search">
+        <span class="visually-hidden" style="position:absolute;left:-9999px">Search breweries</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-linecap="round"/><path d="M20 20l-3.5-3.5" stroke-linecap="round"/></svg>
+        <input type="text" id="q" placeholder="Search by brewery or town…" autocomplete="off">
+      </label>
+
+      <select class="city" id="citysel" aria-label="Filter by city">
+        <option value="">All towns</option>
+      </select>
+
+      <label class="toggle">
+        <input type="checkbox" id="f-beer">
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="txt">Had the beer</span>
+      </label>
+
+      <label class="toggle">
+        <input type="checkbox" id="f-brew">
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-11" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="txt">Been to the brewery</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="meta">
+    <div class="count" id="count">—</div>
+    <button class="reset" id="reset" hidden>Clear filters</button>
+  </div>
+
+  <ul class="list" id="list" aria-live="polite"></ul>
+</section>
+
+<nav class="railnav botnav" aria-label="Secondary">
+  <span class="marque"><span class="dot" aria-hidden="true"></span>The Beer Journal</span>
+  <span class="links">
+    <a href="index.html">Home</a>
+    <a href="beerjournal.html">Beer Journal</a>
+  </span>
+</nav>
+
+<script>
+const DATA = [{"city":"Peterborough","name":"100 Acre","beer":true,"brew":true},{"city":"Brockville","name":"1000 Islands","beer":false,"brew":false},{"city":"Oakville","name":"3 Brewers (Brewpub)","beer":true,"brew":true},{"city":"Smiths Falls","name":"4 Degrees","beer":false,"brew":false},{"city":"Sudbury","name":"46 North","beer":false,"brew":false},{"city":"Whitby","name":"5 Paddles","beer":false,"brew":false},{"city":"Burlington","name":"5 West (Brewpub)","beer":false,"brew":false},{"city":"Picton","name":"555 Brewing","beer":false,"brew":false},{"city":"Madoc","name":"7/62 Craft","beer":true,"brew":true},{"city":"Toronto","name":"Ace Hill","beer":true,"brew":false},{"city":"Bloomfield","name":"All My Friends","beer":false,"brew":false},{"city":"Oshawa","name":"All Or Nothing","beer":true,"brew":false},{"city":"Markham","name":"Amber","beer":false,"brew":false},{"city":"Toronto","name":"Amsterdam","beer":true,"brew":true},{"city":"London","name":"Anderson Craft Ales","beer":false,"brew":false},{"city":"Mallorytown","name":"Arbru Solar","beer":false,"brew":false},{"city":"Ashton","name":"Ashton","beer":true,"brew":false},{"city":"Toronto","name":"Avling Kitchen (Brewpub)","beer":false,"brew":false},{"city":"Zurich","name":"Bad Apple (Cider)","beer":false,"brew":false},{"city":"Cheltenham","name":"Badlands","beer":false,"brew":false},{"city":"Bancroft","name":"Bancroft","beer":true,"brew":false},{"city":"Kingsville","name":"Banded Goose","beer":false,"brew":false},{"city":"Toronto","name":"Bandit","beer":true,"brew":false},{"city":"Toronto","name":"Bar Hop Brewco","beer":false,"brew":false},{"city":"Toronto","name":"Bar Volo","beer":false,"brew":false},{"city":"Picton","name":"Barley Days","beer":true,"brew":false},{"city":"Cambridge","name":"Barncat","beer":true,"brew":true},{"city":"Barrie","name":"Barnstormer","beer":true,"brew":false},{"city":"Bayfield","name":"Bayfield","beer":true,"brew":false},{"city":"Toronto","name":"Beaches","beer":true,"brew":true},{"city":"Vankleek Hill","name":"Beaus","beer":true,"brew":true},{"city":"Harrow","name":"Beerded Dog","beer":false,"brew":false},{"city":"London","name":"BeerLab!","beer":false,"brew":false},{"city":"Toronto","name":"Belgian Moon","beer":true,"brew":false},{"city":"Brantford","name":"Bell City","beer":true,"brew":true},{"city":"Belle River","name":"Belle River","beer":true,"brew":true},{"city":"North York","name":"Bellwoods","beer":true,"brew":false},{"city":"Havelock","name":"Belmont Lake","beer":false,"brew":false},{"city":"Beamsville","name":"Bench","beer":true,"brew":true},{"city":"Ottawa","name":"Beyond the Pale","beer":true,"brew":false},{"city":"Ottawa","name":"Bicycle Craft","beer":false,"brew":false},{"city":"Sarnia","name":"Big Family","beer":true,"brew":true},{"city":"Ottawa","name":"Big Rig","beer":true,"brew":true},{"city":"North Bay","name":"Big Water","beer":false,"brew":false},{"city":"New Hamburg","name":"Bitte Schon Brewhouse","beer":true,"brew":true},{"city":"Collingwood","name":"Black Bellows","beer":true,"brew":false},{"city":"North York","name":"Black Creek","beer":true,"brew":false},{"city":"Mitchell","name":"Black Donnellys","beer":true,"brew":true},{"city":"Petrolia","name":"Black Gold","beer":true,"brew":true},{"city":"Toronto","name":"Black Lab","beer":false,"brew":false},{"city":"Etobicoke","name":"Black Oak","beer":true,"brew":false},{"city":"Stratford","name":"Black Swan","beer":true,"brew":true},{"city":"Niagara","name":"Blackburn Brew","beer":true,"brew":false},{"city":"St Jacobs","name":"Block Three","beer":false,"brew":false},{"city":"Toronto","name":"Blood Brothers","beer":true,"brew":false},{"city":"Simcoe","name":"Blue Elephant Brewpub","beer":true,"brew":true},{"city":"Peterborough","name":"Bobcaygeon","beer":true,"brew":false},{"city":"Minden","name":"Boshkung","beer":true,"brew":false},{"city":"Carleton Place","name":"Braumeister","beer":false,"brew":false},{"city":"Port Colborne","name":"Breakwall","beer":false,"brew":false},{"city":"Windsor","name":"Brew","beer":false,"brew":false},{"city":"Stittsville","name":"Brew Revolution","beer":false,"brew":false},{"city":"Hamilton","name":"Brewers Blackbird (Brewpub)","beer":true,"brew":true},{"city":"Woodstock","name":"Brickhouse","beer":false,"brew":false},{"city":"Ridgeway","name":"Brimstone","beer":true,"brew":false},{"city":"Orleans","name":"Broadhead","beer":true,"brew":false},{"city":"Whitby","name":"Brock St","beer":true,"brew":false},{"city":"St Marys","name":"Broken Rail","beer":false,"brew":false},{"city":"Guelph","name":"Brothers","beer":true,"brew":true},{"city":"Toronto","name":"Brunswick Bierworks","beer":true,"brew":false},{"city":"Toronto","name":"Burdock","beer":true,"brew":false},{"city":"Burlington","name":"Burlington","beer":true,"brew":true},{"city":"Pickering","name":"C'est What Durham","beer":true,"brew":false},{"city":"Calabogie","name":"Calabogie","beer":true,"brew":false},{"city":"Palgrave","name":"Caledon Hills","beer":true,"brew":false},{"city":"Oakville","name":"Cameron's","beer":true,"brew":false},{"city":"Huntsville","name":"Canvas","beer":true,"brew":true},{"city":"St Thomas","name":"Caps Off","beer":true,"brew":true},{"city":"Pakenham","name":"Cartwright Springs","beer":false,"brew":false},{"city":"North Bay","name":"Cecil's (Brewpub)","beer":false,"brew":false},{"city":"Windsor","name":"Chapter Two","beer":true,"brew":false},{"city":"Charlotteville","name":"Charlotteville","beer":false,"brew":false},{"city":"Scarborough","name":"Cheetah International","beer":true,"brew":false},{"city":"Bowmanville","name":"Chronicle","beer":false,"brew":false},{"city":"Campbellford","name":"Church Key","beer":true,"brew":false},{"city":"Torrance","name":"Clear Lake","beer":true,"brew":false},{"city":"Hamilton","name":"Clifford","beer":true,"brew":true},{"city":"Ottawa","name":"Clocktower (Brewpub)","beer":true,"brew":true},{"city":"St Catherines","name":"Cold Break","beer":true,"brew":true},{"city":"Hamilton","name":"Collective Arts","beer":true,"brew":true},{"city":"Collingwood","name":"Collingwood","beer":true,"brew":false},{"city":"Scarborough","name":"Common Good","beer":false,"brew":false},{"city":"Timmins","name":"Compass","beer":false,"brew":false},{"city":"Jarvis","name":"Concession Road","beer":true,"brew":true},{"city":"Nepean","name":"Conspiracy Theory","beer":false,"brew":false},{"city":"Etobicoke","name":"Cool Beer Brewing","beer":true,"brew":false},{"city":"Bowmanville","name":"Copperworks (Brewpub)","beer":false,"brew":false},{"city":"Orillia","name":"Couchiching","beer":true,"brew":false},{"city":"Niagara","name":"Counterpart","beer":false,"brew":false},{"city":"Kitchener","name":"Counterpoint","beer":false,"brew":false},{"city":"Hillier","name":"County Road","beer":true,"brew":true},{"city":"Stittsville","name":"Covered Bridge","beer":false,"brew":false},{"city":"Blyth","name":"Cowbell","beer":true,"brew":false},{"city":"Windsor","name":"Craft Heads","beer":true,"brew":true},{"city":"Creemore","name":"Creemore Springs","beer":true,"brew":true},{"city":"Almonte","name":"Crooked Mile","beer":false,"brew":false},{"city":"Leamington","name":"Cured Craft","beer":true,"brew":true},{"city":"London","name":"Curley","beer":false,"brew":false},{"city":"Kingston","name":"Daft","beer":false,"brew":false},{"city":"Thunder Bay","name":"Dawson Trail","beer":true,"brew":true},{"city":"St Catherines","name":"Decew Falls","beer":true,"brew":true},{"city":"Waterloo","name":"Descendants","beer":true,"brew":true},{"city":"Petawawa","name":"Dog House","beer":false,"brew":false},{"city":"Gloucester","name":"Dominion City","beer":true,"brew":false},{"city":"St Catherines","name":"Dragan","beer":true,"brew":true},{"city":"Toronto","name":"Duggan","beer":true,"brew":false},{"city":"London","name":"Dundas & Sons","beer":false,"brew":false},{"city":"Bowmanville","name":"Dusk To Dawn","beer":true,"brew":false},{"city":"Toronto","name":"Eastbound","beer":true,"brew":false},{"city":"Ottawa","name":"Elgin Beer Project","beer":false,"brew":false},{"city":"Elora","name":"Elora","beer":true,"brew":false},{"city":"London","name":"Equals Brewing","beer":false,"brew":false},{"city":"Windsor","name":"Erie Street","beer":false,"brew":false},{"city":"Bayside","name":"Erieau","beer":true,"brew":false},{"city":"Embrun","name":"Etienne Brule","beer":true,"brew":true},{"city":"Kanata","name":"Evergreen Craft Ales","beer":false,"brew":false},{"city":"Niagara OTL","name":"The Exchange","beer":true,"brew":false},{"city":"Hamilton","name":"Fairweather","beer":true,"brew":true},{"city":"Ajax","name":"Falcon","beer":true,"brew":false},{"city":"Cambridge","name":"Farm League","beer":true,"brew":true},{"city":"La Salle","name":"Fat Lou","beer":false,"brew":false},{"city":"Fenelon Falls","name":"Fenelon Falls","beer":true,"brew":false},{"city":"Kingston","name":"Fine Balance","beer":false,"brew":false},{"city":"Guelph","name":"Fixed Gear","beer":true,"brew":true},{"city":"Ottawa","name":"Flora Hall","beer":true,"brew":true},{"city":"Scotland","name":"Flux","beer":true,"brew":true},{"city":"Trenton","name":"Flyby","beer":false,"brew":false},{"city":"Barrie","name":"Flying Monkey's","beer":true,"brew":false},{"city":"Hastings","name":"Focal","beer":false,"brew":false},{"city":"Campbellford","name":"Fogorig","beer":true,"brew":true},{"city":"Toronto","name":"Folly","beer":true,"brew":false},{"city":"London","name":"Forked River","beer":true,"brew":false},{"city":"Formosa","name":"Formosa Springs","beer":true,"brew":false},{"city":"Cambridge","name":"Foundry","beer":false,"brew":false},{"city":"Cambridge","name":"Four Fathers","beer":true,"brew":false},{"city":"Tecumseh","name":"Frank Brewing","beer":true,"brew":false},{"city":"Consecon","name":"Fronterra","beer":false,"brew":false},{"city":"Timmins","name":"Full Beard","beer":false,"brew":false},{"city":"Georgetown","name":"Furnace Room","beer":true,"brew":false},{"city":"Gananoque","name":"Gan Brewing","beer":true,"brew":false},{"city":"Port Hope","name":"Ganaraska","beer":false,"brew":false},{"city":"Wellington","name":"Garage Time","beer":false,"brew":false},{"city":"North Bay","name":"Gateway City","beer":false,"brew":false},{"city":"Newmarket","name":"The George (Brewpub)","beer":false,"brew":false},{"city":"Hamilton","name":"The George Hamilton (Brewpub)","beer":true,"brew":true},{"city":"Hillier","name":"Gillingham","beer":false,"brew":false},{"city":"Essex","name":"GL Heritage","beer":false,"brew":false},{"city":"Wallaceberg","name":"Glasstown","beer":false,"brew":false},{"city":"Toronto","name":"Godspeed","beer":true,"brew":false},{"city":"Waterloo","name":"Gold Crown","beer":false,"brew":false},{"city":"Ottawa","name":"Good Prospect","beer":false,"brew":false},{"city":"Alton","name":"Goodlot Farm","beer":true,"brew":false},{"city":"Toronto","name":"Goose Island (Chicago)","beer":true,"brew":false},{"city":"Hamilton","name":"Grain & Grit","beer":true,"brew":true},{"city":"Toronto","name":"Granite","beer":true,"brew":false},{"city":"Etobicoke","name":"Great Lakes Brewery","beer":true,"brew":false},{"city":"Kincardine","name":"Grey Matter","beer":true,"brew":true},{"city":"Niagara","name":"The Grist (Brewpub)","beer":false,"brew":false},{"city":"Kingsville","name":"Grove","beer":true,"brew":false},{"city":"Vankleek Hill","name":"Halcyon Barrel House","beer":true,"brew":false},{"city":"Seaforth","name":"Half hour on Earth","beer":false,"brew":false},{"city":"Haliburton","name":"Haliburton Highlands","beer":true,"brew":false},{"city":"Toronto","name":"Halo","beer":false,"brew":false},{"city":"Peterborough","name":"Haven (Smithhaven)","beer":true,"brew":false},{"city":"Toronto","name":"Henderson","beer":true,"brew":false},{"city":"Stratford","name":"Herald Haus","beer":true,"brew":true},{"city":"Hespeler","name":"Hespeler","beer":false,"brew":false},{"city":"Toronto","name":"High Park","beer":true,"brew":false},{"city":"Orangeville","name":"Hockley Valley","beer":true,"brew":false},{"city":"St Williams","name":"Hometown Brew","beer":false,"brew":false},{"city":"Brampton","name":"Hop City","beer":true,"brew":false},{"city":"Ingleside","name":"Humble Beginnings","beer":false,"brew":false},{"city":"Sarnia","name":"Imperial City","beer":true,"brew":true},{"city":"Toronto","name":"Indie Alehouse","beer":true,"brew":false},{"city":"Waterloo","name":"Innocente","beer":true,"brew":false},{"city":"Waterloo","name":"IX Poets","beer":true,"brew":false},{"city":"Cambridge","name":"Jackass","beer":true,"brew":true},{"city":"Stratford","name":"Jobsite","beer":true,"brew":true},{"city":"Toronto","name":"Junction","beer":true,"brew":false},{"city":"Fonthill","name":"Kame & Kettle","beer":true,"brew":true},{"city":"Bracebridge","name":"Katalyst","beer":true,"brew":true},{"city":"Toronto","name":"Kensington","beer":true,"brew":false},{"city":"Stratford","name":"Keystone Alley (Brewpub)","beer":false,"brew":false},{"city":"Nepean","name":"Kichesippi","beer":true,"brew":false},{"city":"Sharbot Lake","name":"Kick & Push","beer":false,"brew":false},{"city":"Owen Sound","name":"Kilannan","beer":true,"brew":false},{"city":"Nobleton","name":"King Brewery (now Thornbury)","beer":true,"brew":false},{"city":"Kingston","name":"King's Town","beer":false,"brew":false},{"city":"Kingston","name":"Kingston Brewing","beer":false,"brew":false},{"city":"Kingsville","name":"Kingsville","beer":true,"brew":false},{"city":"Muskoka","name":"Lake of Bays","beer":true,"brew":false},{"city":"Kenora","name":"Lake of the Woods","beer":false,"brew":false},{"city":"Prince Edward","name":"Lake on the Mountain","beer":false,"brew":false},{"city":"Thunder Bay","name":"Lakehead Beer","beer":false,"brew":false},{"city":"Toronto","name":"Laylow","beer":false,"brew":false},{"city":"Toronto","name":"Leftfield","beer":true,"brew":false},{"city":"Toronto","name":"Liberty Commons","beer":false,"brew":false},{"city":"Waterloo","name":"The Lion (Brewpub)","beer":false,"brew":false},{"city":"Whitby","name":"Little Beasts","beer":false,"brew":false},{"city":"St Catherines","name":"Lock Street","beer":true,"brew":true},{"city":"London","name":"London Brewing Co-op","beer":false,"brew":false},{"city":"Stirling","name":"Long Tooth","beer":false,"brew":false},{"city":"Uxbridge","name":"Longhorn","beer":true,"brew":false},{"city":"Toronto","name":"Longslice","beer":false,"brew":false},{"city":"Long Sault","name":"Lost Villages","beer":false,"brew":false},{"city":"Amhearstburg","name":"Lot 10","beer":true,"brew":true},{"city":"Toronto","name":"Louis Cifer","beer":false,"brew":false},{"city":"Ottawa","name":"Lowertown","beer":true,"brew":true},{"city":"Bath","name":"Mackinnon Brothers","beer":true,"brew":false},{"city":"Hanover","name":"Macleans","beer":true,"brew":false},{"city":"Woodbridge","name":"Magnotta","beer":true,"brew":false},{"city":"Bowmanville","name":"Manantler","beer":true,"brew":true},{"city":"Little Current","name":"Manitoulin","beer":true,"brew":false},{"city":"Newmarket","name":"Market Brewing","beer":true,"brew":false},{"city":"Etobicoke","name":"Mascot","beer":true,"brew":true},{"city":"Brantford","name":"Mash Paddle","beer":true,"brew":true},{"city":"Bloomfield","name":"Matron","beer":false,"brew":false},{"city":"St Catherines","name":"The Merchant","beer":true,"brew":true},{"city":"Hamilton","name":"Merit","beer":true,"brew":true},{"city":"Scotland","name":"Meuse","beer":false,"brew":false},{"city":"Belleville","name":"Meyers Creek","beer":false,"brew":false},{"city":"Casselman","name":"Microbrasserie Cassel","beer":true,"brew":false},{"city":"Wellington","name":"Midtown","beer":true,"brew":false},{"city":"Toronto","name":"Mill St","beer":true,"brew":false},{"city":"Mono","name":"Mono Centre","beer":false,"brew":false},{"city":"Windsor","name":"Motor Craft","beer":true,"brew":true},{"city":"Toronto","name":"Muddy York","beer":true,"brew":true},{"city":"Owen Sound","name":"Mudtown Station","beer":false,"brew":false},{"city":"Bracebridge","name":"Muskoka","beer":true,"brew":false},{"city":"Napanee","name":"Napanee Beer Company","beer":true,"brew":false},{"city":"West Lorne","name":"Natterjack","beer":true,"brew":true},{"city":"Neustadt","name":"Neustadt Springs","beer":true,"brew":false},{"city":"Simcoe","name":"New Limburg","beer":false,"brew":false},{"city":"North Bay","name":"New Ontario","beer":true,"brew":false},{"city":"Oshawa","name":"New Ritual","beer":false,"brew":false},{"city":"Beamsville","name":"Newark","beer":true,"brew":true},{"city":"Niagara","name":"Niagara Brewing","beer":true,"brew":true},{"city":"Niagara OTL","name":"Niagara College","beer":false,"brew":false},{"city":"Burlington","name":"Nickel brook","beer":true,"brew":true},{"city":"Nepean","name":"Nita","beer":false,"brew":false},{"city":"Nobel","name":"Norse","beer":true,"brew":true},{"city":"Cambridge","name":"North Works","beer":false,"brew":false},{"city":"Toronto","name":"Northern Maverick","beer":true,"brew":true},{"city":"Sault Ste Marie","name":"Northern Superior","beer":false,"brew":false},{"city":"Cobourg","name":"Northumberland Hills","beer":true,"brew":false},{"city":"Collingwood","name":"Northwinds (Brewpub)","beer":true,"brew":true},{"city":"Niagara OTL","name":"Oasthouse","beer":true,"brew":true},{"city":"Mississauga","name":"Old Credit","beer":true,"brew":false},{"city":"Bobcaygeon","name":"Old Dog","beer":true,"brew":false},{"city":"Port Perry","name":"Old Flame","beer":true,"brew":false},{"city":"Thunder Bay","name":"One Time","beer":false,"brew":false},{"city":"Milton","name":"Orange Snail","beer":true,"brew":false},{"city":"Caledonia","name":"Oranje Son","beer":true,"brew":true},{"city":"Orleans","name":"Orleans","beer":false,"brew":false},{"city":"Southampton","name":"Outlaw","beer":true,"brew":false},{"city":"Sault Ste Marie","name":"Outspoken","beer":false,"brew":false},{"city":"Ottawa","name":"Overflow","beer":false,"brew":false},{"city":"Toronto","name":"Paniza","beer":true,"brew":false},{"city":"Paris","name":"Paris Beer Company","beer":true,"brew":true},{"city":"Picton","name":"Parsons","beer":false,"brew":false},{"city":"Toronto","name":"People's Pint","beer":false,"brew":false},{"city":"Burlington","name":"Pepperwood (Brewpub)","beer":true,"brew":true},{"city":"Perth","name":"Perth","beer":true,"brew":false},{"city":"Lindsay","name":"Pie Eyed Monk (Lindsay Brewing)","beer":true,"brew":false},{"city":"Point Edward","name":"Point","beer":true,"brew":true},{"city":"London","name":"Powerhouse","beer":false,"brew":false},{"city":"Brighton","name":"Presqu'ile","beer":true,"brew":true},{"city":"Picton","name":"Prince Eddy's","beer":false,"brew":false},{"city":"Peterborough","name":"Publican House","beer":true,"brew":false},{"city":"Mattawa","name":"Purple Skull","beer":true,"brew":false},{"city":"Coldwater","name":"Quayle's","beer":true,"brew":false},{"city":"Toronto","name":"Radical Road","beer":true,"brew":false},{"city":"St Thomas","name":"Railway City","beer":true,"brew":false},{"city":"Toronto","name":"Rainhard","beer":true,"brew":false},{"city":"La Salette","name":"Ramblin Road","beer":false,"brew":false},{"city":"Blenheim","name":"Red Barn","beer":true,"brew":true},{"city":"Ottawa","name":"Red Neck","beer":false,"brew":false},{"city":"Toronto","name":"Red Tape","beer":false,"brew":false},{"city":"Newmarket","name":"Red Thread","beer":true,"brew":false},{"city":"Barrie","name":"Redline","beer":true,"brew":true},{"city":"Sarnia","name":"Refined Fool","beer":true,"brew":true},{"city":"Cambridge","name":"Reverence Barrel Works","beer":true,"brew":false},{"city":"Cambridge","name":"Rhythm & Brews","beer":true,"brew":true},{"city":"Carp","name":"Ridge Rock","beer":false,"brew":false},{"city":"Bayfield","name":"River Road","beer":true,"brew":true},{"city":"Sarnia","name":"River Run","beer":true,"brew":true},{"city":"Kingston","name":"Riverhead","beer":false,"brew":false},{"city":"Toronto","name":"Rorschach","beer":false,"brew":false},{"city":"Windsor","name":"Rose City","beer":false,"brew":false},{"city":"Markham","name":"Rouge River","beer":true,"brew":false},{"city":"Guelph","name":"Royal City","beer":true,"brew":false},{"city":"Elmira","name":"Rural Roots","beer":false,"brew":false},{"city":"Cornwall","name":"Rurban","beer":false,"brew":false},{"city":"Strathroy","name":"Rusty Wrench","beer":true,"brew":true},{"city":"Toronto","name":"Salter Street","beer":true,"brew":false},{"city":"Windsor","name":"Sandwich","beer":true,"brew":false},{"city":"Kingston","name":"SanTur","beer":false,"brew":false},{"city":"Gloucester","name":"Savage","beer":false,"brew":false},{"city":"Gravenhurst","name":"Sawdust City","beer":true,"brew":false},{"city":"Uxbridge","name":"Second Wedge","beer":true,"brew":false},{"city":"Toronto","name":"Shacklands","beer":true,"brew":false},{"city":"Shakespeare","name":"Shakespeare","beer":true,"brew":true},{"city":"Hamilton","name":"Shawn & Ed","beer":true,"brew":false},{"city":"Gloucester","name":"Shillow","beer":false,"brew":false},{"city":"Kitchener","name":"Short Finger","beer":false,"brew":false},{"city":"Collingwood","name":"Sidelaunch","beer":true,"brew":false},{"city":"Corbyville","name":"Signal","beer":true,"brew":false},{"city":"Niagara OTL","name":"Silversmith","beer":true,"brew":true},{"city":"Courtice","name":"Sir Monty's (Brewpub)","beer":false,"brew":false},{"city":"Kingston","name":"Skeleton Park","beer":true,"brew":false},{"city":"Picton","name":"Slake","beer":false,"brew":false},{"city":"Terrace Bay","name":"Slate Island","beer":false,"brew":false},{"city":"Guelph","name":"Sleeman","beer":true,"brew":true},{"city":"Thunder Bay","name":"Sleeping Giant","beer":true,"brew":true},{"city":"Kanata","name":"Small Pony","beer":false,"brew":false},{"city":"Toronto","name":"Something in the Water","beer":true,"brew":false},{"city":"Caledon","name":"Sonnen Hill","beer":true,"brew":false},{"city":"Chatham","name":"Sons of Kent","beer":true,"brew":true},{"city":"South River","name":"South River (Highlander)","beer":true,"brew":false},{"city":"Sudbury","name":"Spacecraft","beer":false,"brew":false},{"city":"Ottawa","name":"Spark","beer":false,"brew":false},{"city":"Cambridge","name":"Sparrow","beer":true,"brew":true},{"city":"Kingston","name":"Spearhead","beer":true,"brew":false},{"city":"Gore Bay","name":"Split Rail","beer":false,"brew":false},{"city":"Goderich","name":"Square Brew","beer":true,"brew":true},{"city":"Pembroke","name":"Square Timber","beer":false,"brew":false},{"city":"Sudbury","name":"Stack","beer":true,"brew":false},{"city":"Carleton Place","name":"Stalwart","beer":false,"brew":false},{"city":"Toronto","name":"Steadfast","beer":false,"brew":false},{"city":"Toronto","name":"Steamwhistle","beer":true,"brew":true},{"city":"Brantford","name":"Steel Wheel","beer":true,"brew":true},{"city":"Kitchener","name":"Stockyard","beer":true,"brew":false},{"city":"Kingston","name":"Stone City","beer":true,"brew":true},{"city":"Guelph","name":"Stonehammer","beer":true,"brew":false},{"city":"Mississauga","name":"Stonehooker","beer":true,"brew":false},{"city":"Varna","name":"Stonehouse","beer":true,"brew":false},{"city":"Plympton","name":"Stonepicker","beer":true,"brew":false},{"city":"London","name":"Storm Stayed","beer":false,"brew":false},{"city":"Hillier","name":"Strange Brew Studio","beer":true,"brew":false},{"city":"Strathroy","name":"Strathroy","beer":false,"brew":false},{"city":"Orleans","name":"Stray Dog","beer":false,"brew":false},{"city":"Niagara","name":"Syndicate (Brewpub)","beer":true,"brew":true},{"city":"Niagara","name":"Taps","beer":true,"brew":true},{"city":"Milton","name":"Third Moon","beer":true,"brew":true},{"city":"Thornbury","name":"Thornbury Village (Cider)","beer":true,"brew":false},{"city":"Bowmanville","name":"Tilted Glass","beer":false,"brew":false},{"city":"Tobermory","name":"Tobermory","beer":true,"brew":false},{"city":"London","name":"Toboggan","beer":false,"brew":false},{"city":"Ottawa","name":"Tooth & Nail","beer":true,"brew":false},{"city":"Grand Bend","name":"Torched (Brewster's Mill)","beer":true,"brew":true},{"city":"Whitby","name":"Town","beer":true,"brew":false},{"city":"Brampton","name":"Tracks (Brewpub)","beer":false,"brew":false},{"city":"Parry Sound","name":"Trestle","beer":true,"brew":true},{"city":"Toronto","name":"True History","beer":true,"brew":false},{"city":"Embrun","name":"Tuque de Broue","beer":true,"brew":true},{"city":"Keswick","name":"Turkey Shoot","beer":true,"brew":true},{"city":"Kitchener","name":"TWB","beer":false,"brew":false},{"city":"Pembroke","name":"Two Hawks","beer":false,"brew":false},{"city":"Corunna","name":"Two Water","beer":true,"brew":false},{"city":"Woodstock","name":"Upper Thames","beer":true,"brew":true},{"city":"Ottawa","name":"Vimy","beer":true,"brew":false},{"city":"Etobicoke","name":"Von Bugle","beer":false,"brew":false},{"city":"Windsor","name":"Walkerville","beer":true,"brew":false},{"city":"Wasaga Beach","name":"Wasaga Beach","beer":true,"brew":true},{"city":"Kitchener","name":"Waterloo","beer":true,"brew":false},{"city":"Cambridge","name":"Wave maker","beer":true,"brew":true},{"city":"Niagara OTL","name":"Wayne Gretzky","beer":true,"brew":true},{"city":"Perth","name":"Weatherhead","beer":false,"brew":false},{"city":"Guelph","name":"Wellington","beer":true,"brew":false},{"city":"Westport","name":"Westport","beer":false,"brew":false},{"city":"Nepean","name":"Whiprsnipr","beer":true,"brew":false},{"city":"Haileybury","name":"Whiskeyjack","beer":false,"brew":false},{"city":"Ottawa","name":"Whitewater","beer":true,"brew":false},{"city":"Thedford","name":"Widder Station Golf (Brewpub)","beer":false,"brew":false},{"city":"Trenton","name":"Wild Card","beer":false,"brew":false},{"city":"Cobourg","name":"William Street","beer":false,"brew":false},{"city":"Ayr","name":"Willibald Farm","beer":true,"brew":true},{"city":"Johnstown","name":"Windmill","beer":false,"brew":false},{"city":"Waterford","name":"Wishbone","beer":false,"brew":false},{"city":"Glen Robertson","name":"Wood Brothers","beer":false,"brew":false},{"city":"Toronto","name":"Woodhouse","beer":true,"brew":false},{"city":"Grand Valley","name":"Wrinkly Bear","beer":false,"brew":false}];
+
+// glyphs: a pint (beer tried) and a doorway (taproom visited)
+const PINT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="glyph fillable" d="M7 3h10l-1 17H8L7 3z" stroke-linejoin="round"/><path class="glyph" d="M6.6 8h10.8" /></svg>';
+const DOOR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="glyph fillable" d="M5 21V6l7-3 7 3v15" stroke-linejoin="round"/><path class="glyph" d="M4 21h16"/><path class="glyph" d="M10 21v-5.5a2 2 0 0 1 4 0V21" stroke-linejoin="round"/></svg>';
+
+const el = id => document.getElementById(id);
+const listEl = el('list'), qEl = el('q'), citySel = el('citysel'),
+      fBeer = el('f-beer'), fBrew = el('f-brew'),
+      countEl = el('count'), resetEl = el('reset');
+
+// --- totals (fixed, from full dataset) ---
+const total = DATA.length;
+const beerN = DATA.filter(d => d.beer).length;
+const brewN = DATA.filter(d => d.brew).length;
+const towns = [...new Set(DATA.map(d => d.city).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+
+el('t-beer').innerHTML = beerN + '<span class="of"> / ' + total + '</span>';
+el('t-brew').innerHTML = brewN + '<span class="of"> / ' + total + '</span>';
+el('t-town').textContent = towns.length;
+requestAnimationFrame(()=>{
+  el('b-beer').style.width = (beerN/total*100) + '%';
+  el('b-brew').style.width = (brewN/total*100) + '%';
+});
+
+// populate city dropdown
+for(const t of towns){
+  const o = document.createElement('option');
+  o.value = t; o.textContent = t;
+  citySel.appendChild(o);
+}
+
+function render(){
+  const q = qEl.value.trim().toLowerCase();
+  const city = citySel.value;
+  const needBeer = fBeer.checked, needBrew = fBrew.checked;
+
+  const shown = DATA.filter(d => {
+    if(needBeer && !d.beer) return false;
+    if(needBrew && !d.brew) return false;
+    if(city && d.city !== city) return false;
+    if(q){
+      const hay = (d.name + ' ' + (d.city||'')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  listEl.innerHTML = '';
+  if(shown.length === 0){
+    listEl.innerHTML = '<li class="empty"><p class="big">Nothing on tap here.</p><p>No breweries match these filters — try widening the search.</p></li>';
+  } else {
+    const frag = document.createDocumentFragment();
+    shown.forEach((d, i) => {
+      const li = document.createElement('li');
+      li.className = 'entry';
+      li.innerHTML =
+        '<span class="idx">' + String(i+1).padStart(3,'0') + '</span>' +
+        '<span class="who">' +
+          '<div class="name">' + esc(d.name) + '</div>' +
+          '<div class="city">' + esc(d.city || '—') + '</div>' +
+        '</span>' +
+        '<span class="stamps">' +
+          stamp(PINT, d.beer, d.beer ? 'Beer tried' : 'Not yet tried') +
+          stamp(DOOR, d.brew, d.brew ? 'Taproom visited' : 'Not yet visited') +
+        '</span>';
+      frag.appendChild(li);
+    });
+    listEl.appendChild(frag);
+  }
+
+  countEl.innerHTML = 'Showing <b>' + shown.length + '</b> of ' + total + ' breweries';
+  const active = q || city || needBeer || needBrew;
+  resetEl.hidden = !active;
+}
+
+function stamp(svg, on, label){
+  return '<span class="stamp' + (on?' on':'') + '" tabindex="0" role="img" aria-label="' + label + '">' +
+         svg + '<span class="tip">' + label + '</span></span>';
+}
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+qEl.addEventListener('input', render);
+citySel.addEventListener('change', render);
+fBeer.addEventListener('change', render);
+fBrew.addEventListener('change', render);
+resetEl.addEventListener('click', () => {
+  qEl.value=''; citySel.value=''; fBeer.checked=false; fBrew.checked=false;
+  render(); qEl.focus();
+});
+
+render();
+</script>
+</body>
+</html>

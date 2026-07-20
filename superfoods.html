@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Superfoods — Global Nutritional Powerhouses</title>
+<meta name="description" content="55 nutrient-dense foods from around the world, plus a Top 15 honestly ranked by the strength of real evidence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#F4F0E2; --paper-2:#EDE7D5; --card:#FCFBF3;
+    --forest:#1E3A29; --leaf:#4E7C46; --sprout:#8AAE3B;
+    --ink:#34362C; --muted:#6F7160; --line:#DED7C1;
+    --shadow:0 1px 2px rgba(30,58,41,.05), 0 8px 24px rgba(30,58,41,.06);
+    --maxw:1140px;
+    --f-display:"Fraunces", Georgia, "Times New Roman", serif;
+    --f-body:"Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:84px; }
+  body {
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--f-body); font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:inherit; }
+  .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+  /* ---- Nav ---- */
+  .topbar {
+    position:sticky; top:0; z-index:20;
+    background:rgba(244,240,226,.86); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .brand {
+    display:flex; align-items:center; gap:10px; text-decoration:none;
+    font-family:var(--f-display); font-weight:600; font-size:20px; color:var(--forest);
+    letter-spacing:-.01em;
+  }
+  .brand .seed {
+    width:22px; height:22px; border-radius:50% 50% 50% 0;
+    background:linear-gradient(135deg,var(--leaf),var(--sprout));
+    transform:rotate(-45deg); display:inline-block; flex:none;
+  }
+  .nav { display:flex; gap:8px; }
+  .nav-link {
+    text-decoration:none; color:var(--forest); font-weight:600; font-size:15px;
+    padding:8px 14px; border-radius:999px; border:1px solid transparent;
+    transition:background .18s ease, border-color .18s ease;
+  }
+  .nav-link:hover { background:var(--card); border-color:var(--line); }
+
+  /* ---- Hero ---- */
+  .hero { padding:76px 0 30px; }
+  .eyebrow {
+    font-size:12.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--leaf); margin:0 0 18px;
+  }
+  .hero h1 {
+    font-family:var(--f-display); font-weight:500; color:var(--forest);
+    font-size:clamp(38px,6.4vw,72px); line-height:1.02; letter-spacing:-.02em;
+    margin:0 0 22px; max-width:16ch;
+  }
+  .hero h1 em { font-style:italic; color:var(--leaf); }
+  .lede { max-width:60ch; font-size:19px; color:#43463a; margin:0 0 10px; }
+  .disclaimer {
+    max-width:64ch; font-size:14.5px; color:var(--muted); margin:22px 0 0;
+    border-left:3px solid var(--sprout); padding:2px 0 2px 16px;
+  }
+
+  /* ---- Section shell ---- */
+  .section { padding:56px 0; }
+  .band { background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .section-eyebrow {
+    font-size:12.5px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--leaf); margin:0 0 12px;
+  }
+  .section-title {
+    font-family:var(--f-display); font-weight:500; color:var(--forest);
+    font-size:clamp(30px,4.4vw,46px); line-height:1.05; letter-spacing:-.02em; margin:0 0 14px;
+  }
+  .section-intro { max-width:66ch; color:#43463a; margin:0; }
+
+  /* ---- Top 15 ladder ---- */
+  .tier { margin-top:40px; }
+  .tier-label {
+    display:flex; align-items:baseline; gap:14px; margin:0 0 8px;
+  }
+  .tier-label h3 {
+    font-family:var(--f-body); font-weight:700; font-size:14px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--forest); margin:0;
+  }
+  .tier-label .tier-range { font-size:13px; color:var(--muted); font-weight:600; }
+  .tier-rule { height:1px; background:var(--line); margin:0 0 18px; }
+  .ranks { list-style:none; margin:0; padding:0; }
+  .rank-item {
+    display:grid; grid-template-columns:96px 1fr; gap:8px 22px; align-items:start;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .rank-item:last-child { border-bottom:none; }
+  .rank-num {
+    font-family:var(--f-display); font-weight:400; font-size:clamp(44px,6vw,64px);
+    line-height:.9; color:var(--leaf); font-feature-settings:"tnum";
+  }
+  .tier--judgment .rank-num { color:#9aa389; }
+  .rank-title {
+    font-family:var(--f-display); font-weight:600; font-size:22px; color:var(--forest);
+    margin:2px 0 6px; letter-spacing:-.01em;
+  }
+  .rank-why { margin:0; color:#43463a; font-size:16px; max-width:72ch; }
+
+  /* ---- 55 grid ---- */
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 4px; }
+  .chip {
+    text-decoration:none; font-size:13.5px; font-weight:600; color:var(--forest);
+    background:var(--card); border:1px solid var(--line); border-radius:999px; padding:7px 14px;
+    transition:background .16s ease, transform .16s ease;
+  }
+  .chip:hover { background:#fff; transform:translateY(-1px); }
+
+  .region { margin-top:52px; }
+  .region:first-of-type { margin-top:34px; }
+  .region-head { margin-bottom:22px; }
+  .region-name {
+    font-family:var(--f-display); font-weight:500; color:var(--forest);
+    font-size:clamp(24px,3.2vw,32px); margin:0 0 6px; display:flex; align-items:center; gap:12px;
+    letter-spacing:-.01em;
+  }
+  .region-mark {
+    width:14px; height:14px; border-radius:50% 50% 50% 0; transform:rotate(-45deg);
+    background:var(--sprout); flex:none;
+  }
+  .region-blurb { margin:0; color:var(--muted); max-width:70ch; font-size:15.5px; }
+  .region-count {
+    display:inline-block; margin-top:10px; font-size:12.5px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--leaf);
+  }
+  .grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  .card {
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:20px 20px 18px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 2px 4px rgba(30,58,41,.06), 0 14px 30px rgba(30,58,41,.10);
+    border-color:#cdd6bd;
+  }
+  .card-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; min-height:22px; }
+  .origin {
+    font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .badge {
+    font-size:11px; font-weight:700; letter-spacing:.03em; color:var(--card);
+    background:var(--leaf); border-radius:999px; padding:4px 9px; white-space:nowrap; flex:none;
+  }
+  .food {
+    font-family:var(--f-display); font-weight:600; font-size:22px; color:var(--forest);
+    margin:0 0 8px; letter-spacing:-.01em; line-height:1.12;
+  }
+  .why { margin:0 0 16px; font-size:15px; color:#43463a; flex:1; }
+  .find {
+    margin:0; font-size:13.5px; color:var(--muted);
+    border-top:1px dashed var(--line); padding-top:12px;
+  }
+  .find-label {
+    display:block; font-size:11px; font-weight:700; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--leaf); margin-bottom:3px;
+  }
+
+  /* ---- Footer ---- */
+  .footer { background:var(--forest); color:#e7ecdf; padding:52px 0 40px; margin-top:12px; }
+  .footer .wrap { display:flex; flex-wrap:wrap; gap:28px; align-items:center; justify-content:space-between; }
+  .footer .brand { color:#fff; }
+  .footer .brand .seed { background:linear-gradient(135deg,#cfe0a3,var(--sprout)); }
+  .footer-nav { display:flex; gap:10px; }
+  .footer-nav a {
+    text-decoration:none; color:#fff; font-weight:600; font-size:15px;
+    padding:9px 16px; border:1px solid rgba(255,255,255,.28); border-radius:999px;
+    transition:background .18s ease;
+  }
+  .footer-nav a:hover { background:rgba(255,255,255,.12); }
+  .footer-note { width:100%; margin:8px 0 0; color:#b7c3a7; font-size:13px; max-width:70ch; }
+
+  :focus-visible { outline:2.5px solid var(--sprout); outline-offset:2px; border-radius:6px; }
+
+  @media (max-width:900px) {
+    .grid { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:600px) {
+    body { font-size:16px; }
+    .hero { padding:52px 0 20px; }
+    .grid { grid-template-columns:1fr; }
+    .rank-item { grid-template-columns:64px 1fr; gap:4px 16px; }
+    .nav-link { padding:8px 11px; font-size:14px; }
+    .brand { font-size:18px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    * { animation:none !important; transition:none !important; scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="seed" aria-hidden="true"></span>Superfoods</a>
+      <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="food-country.html" class="nav-link">All cuisine</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">55 foods &middot; 6 continents</p>
+        <h1>Global nutritional <em>powerhouses</em></h1>
+        <p class="lede">A tour of nutrient-dense foods from around the world — where each comes from, why it earns the label, and where to find it in Canada.</p>
+        <p class="disclaimer">Origin is the place each item is most associated with (some are debated), and availability reflects the Greater Toronto Area. “Powerhouse” is a popular label, not a scientific category: nutrient content is generally well established, while some benefits (adaptogens, manuka honey) are still preliminary or dose-dependent.</p>
+      </div>
+    </section>
+
+    <section class="section band" id="top15">
+      <div class="wrap">
+        <p class="section-eyebrow">Ranked by real evidence</p>
+        <h2 class="section-title">The Top 15</h2>
+        <p class="section-intro">Ranked on the depth and quality of human evidence first, then nutrient density, then whether it's a real whole food eaten in meaningful amounts, then practicality and safety. Ranks 1–6 rest on strong, repeatable evidence; 7–15 involve more judgment. Notice how many of the leaders are simply the Mediterranean diet in disguise.</p>
+
+        <div class="tier tier--strong">
+          <div class="tier-label"><h3>Strong, repeatable evidence</h3><span class="tier-range">Ranks 1–6</span></div>
+          <div class="tier-rule"></div>
+          <ol class="ranks">
+      <li class="rank-item">
+        <div class="rank-num">01</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Extra-virgin olive oil</h3>
+          <p class="rank-why">Best evidence base on the list — large randomized trials (PREDIMED) plus decades of cohort data as the cornerstone of the Mediterranean diet. Broad cardiometabolic benefit, easy to use daily; nothing else combines this strength of proof with this versatility.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">02</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Legumes (lentils, chickpeas, beans)</h3>
+          <p class="rank-why">Just behind olive oil: evidence is slightly more observational, but it&#x27;s a true staple tied to longevity in every “Blue Zone.” Protein + fiber + minerals, dirt cheap, eaten in real quantity. Beats fish on accessibility and cost.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">03</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Fatty fish (wild salmon, sardines)</h3>
+          <p class="rank-why">Elite for omega-3 EPA/DHA, vitamin D, and protein with strong heart and brain evidence. Ranks below legumes only on cost, sustainability concerns, and frequency of eating; above oats because the benefit is broader than a single mechanism.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">04</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Oats</h3>
+          <p class="rank-why">One of very few foods with an authorized health claim (beta-glucan lowers LDL cholesterol) — rigorous, specific proof. Ranks below fish because the benefit is narrower (mainly cholesterol/glycemic), above berries because the effect is more directly established.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">05</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Berries (blueberries, cranberries)</h3>
+          <p class="rank-why">Anthocyanin evidence for heart and cognitive health is genuinely good, and they&#x27;re native and accessible here. Ranks below oats because effects are more modest and diffuse; above greens because the antioxidant data is more berry-specific and consistent.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">06</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Leafy greens (kale)</h3>
+          <p class="rank-why">Unmatched nutrient density per calorie (vitamins K, C, A, folate, fiber). Sits here rather than higher because “eat your greens” evidence is more general than food-specific, but it&#x27;s an unimpeachable everyday choice.</p>
+        </div>
+      </li>
+          </ol>
+        </div>
+
+        <div class="tier tier--judgment">
+          <div class="tier-label"><h3>More judgment involved</h3><span class="tier-range">Ranks 7–15</span></div>
+          <div class="tier-rule"></div>
+          <ol class="ranks" start="7">
+      <li class="rank-item">
+        <div class="rank-num">07</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Fermented foods (kefir, kimchi, sauerkraut)</h3>
+          <p class="rank-why">Microbiome and gut-health science is one of the fastest-growing areas, with recent trials showing measurable diversity and inflammation benefits. Ranks mid-pack because the field is newer and strain and product variability is high — real but still maturing.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">08</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Walnuts (and nuts broadly)</h3>
+          <p class="rank-why">Strong cardiovascular evidence (included in PREDIMED); best plant omega-3 source among nuts. Ranks below fermented foods only narrowly; the ceiling is portion size (calorie-dense, easy to overeat).</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">09</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Flaxseed</h3>
+          <p class="rank-why">Well-studied for LDL, blood pressure, and ALA plus lignans. Ranks below walnuts because you must grind it to absorb the benefit and it&#x27;s used in small amounts — slightly less “whole food eaten in quantity.”</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">10</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Avocado</h3>
+          <p class="rank-why">Great monounsaturated fat, potassium, fiber, and satiety with solid data. Ranks here rather than higher because much of the benefit overlaps with olive oil (fat quality), so it adds less that&#x27;s unique.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">11</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Green tea / matcha</h3>
+          <p class="rank-why">Consistent polyphenol (EGCG) evidence plus L-theanine for calm focus, but effect sizes are modest and it&#x27;s a beverage rather than a nourishing food. That caps how high it can go.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">12</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Cacao / dark chocolate</h3>
+          <p class="rank-why">Real flavanol evidence for blood pressure and blood-vessel function — legitimately good. Ranks below tea because the useful dose comes bundled with sugar and fat in most products, diluting the benefit.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">13</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Beetroot</h3>
+          <p class="rank-why">Genuine nitrate evidence for blood pressure and exercise performance, but the benefit is narrow (one main mechanism), which is why it sits below broader-benefit foods.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">14</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Garlic</h3>
+          <p class="rank-why">Modest but real cardiovascular and antimicrobial evidence. Ranks low because effects are small, results are inconsistent, and you eat it in tiny amounts — more seasoning than staple.</p>
+        </div>
+      </li>
+      <li class="rank-item">
+        <div class="rank-num">15</div>
+        <div class="rank-body">
+          <h3 class="rank-title">Turmeric</h3>
+          <p class="rank-why">Makes the list on popularity and promising anti-inflammatory research, but ranks last on purpose: curcumin is poorly absorbed without enhancers, human trials are mixed, and it&#x27;s used in pinches. A good example of hype outrunning proof.</p>
+        </div>
+      </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="all55">
+      <div class="wrap">
+        <p class="section-eyebrow">The full list</p>
+        <h2 class="section-title">All 55, by region</h2>
+        <p class="section-intro">The complete list, grouped by where each food is most at home. Cards marked with a badge also earned a spot in the Top 15.</p>
+        <nav class="chips" aria-label="Jump to region">
+          <a class="chip" href="#r-la">Latin America</a>
+          <a class="chip" href="#r-na">North America</a>
+          <a class="chip" href="#r-af">Africa</a>
+          <a class="chip" href="#r-me">Middle East &amp; Mediterranean</a>
+          <a class="chip" href="#r-eu">Europe &amp; Central Asia</a>
+          <a class="chip" href="#r-sa">South Asia</a>
+          <a class="chip" href="#r-ea">East &amp; Southeast Asia</a>
+          <a class="chip" href="#r-oc">Oceania</a>
+        </nav>
+
+      <section class="region" id="r-la">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>Latin America</h2>
+          <p class="region-blurb">The Andes, the Amazon, and Mesoamerica — ancient grains, cacao, and antioxidant berries.</p>
+          <span class="region-count">12 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Peru / Bolivia (Andes)</span>
+            
+          </div>
+          <h3 class="food">Quinoa</h3>
+          <p class="why">Complete plant protein (all nine essential amino acids); gluten-free, high fiber, magnesium, iron.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Peru</span>
+            
+          </div>
+          <h3 class="food">Maca</h3>
+          <p class="why">Adaptogenic root traditionally used for energy, stamina, and hormonal balance; sold as a powder.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Brazil (Amazon)</span>
+            
+          </div>
+          <h3 class="food">Açaí</h3>
+          <p class="why">Very high in anthocyanin antioxidants; sold as a frozen purée or powder.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; frozen aisle</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Peru / Brazil</span>
+            
+          </div>
+          <h3 class="food">Camu camu</h3>
+          <p class="why">Among the richest natural vitamin C sources; a tart berry, usually powdered.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Brazil / Bolivia</span>
+            
+          </div>
+          <h3 class="food">Brazil nuts</h3>
+          <p class="why">Exceptional selenium (1–2 nuts ≈ a day&#x27;s needs); healthy fats.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers &amp; bulk</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Argentina / Paraguay</span>
+            
+          </div>
+          <h3 class="food">Yerba mate</h3>
+          <p class="why">Polyphenol-rich caffeinated tea; smooth energy and focus for many.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mesoamerica / Amazon</span>
+            <span class="badge">Top 15 &middot; №12</span>
+          </div>
+          <h3 class="food">Cacao (raw / dark)</h3>
+          <p class="why">Flavanol antioxidants, magnesium, iron; far higher than milk chocolate.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mexico</span>
+            
+          </div>
+          <h3 class="food">Chia seeds</h3>
+          <p class="why">Plant omega-3 (ALA), gel-forming soluble fiber for satiety, calcium.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mexico</span>
+            <span class="badge">Top 15 &middot; №10</span>
+          </div>
+          <h3 class="food">Avocado</h3>
+          <p class="why">Monounsaturated fat, more potassium than a banana, fiber, folate.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mexico / Andes</span>
+            
+          </div>
+          <h3 class="food">Amaranth</h3>
+          <p class="why">Gluten-free pseudo-grain high in lysine, protein, iron.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; bulk</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mexico</span>
+            
+          </div>
+          <h3 class="food">Nopal (prickly pear cactus)</h3>
+          <p class="why">Fiber plus compounds studied for blood-sugar support; low calorie.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Latin/Mexican grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mexico / Chad (lakes)</span>
+            
+          </div>
+          <h3 class="food">Spirulina</h3>
+          <p class="why">Blue-green algae ≈60% protein; B vitamins, iron; powder or tablets.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-na">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>North America</h2>
+          <p class="region-blurb">Native berries, wild-caught fish, and tree nuts close to home.</p>
+          <span class="region-count">4 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">North America</span>
+            <span class="badge">Top 15 &middot; №5</span>
+          </div>
+          <h3 class="food">Blueberries</h3>
+          <p class="why">Anthocyanins linked to brain and heart health; native to Canada.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">North America</span>
+            <span class="badge">Top 15 &middot; №5</span>
+          </div>
+          <h3 class="food">Cranberries</h3>
+          <p class="why">Proanthocyanidins studied for urinary-tract health; vitamin C.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Pacific NW (Canada/US)</span>
+            <span class="badge">Top 15 &middot; №3</span>
+          </div>
+          <h3 class="food">Wild salmon</h3>
+          <p class="why">Omega-3 EPA/DHA, vitamin D, high-quality protein.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">North America</span>
+            
+          </div>
+          <h3 class="food">Pecans</h3>
+          <p class="why">Antioxidant-rich tree nut; monounsaturated fats.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-af">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>Africa</h2>
+          <p class="region-blurb">Baobab, teff, and roselle — nutrient-dense staples from across the continent.</p>
+          <span class="region-count">6 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Sub-Saharan Africa</span>
+            
+          </div>
+          <h3 class="food">Baobab</h3>
+          <p class="why">Fruit powder high in vitamin C, fiber, potassium.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>African grocers &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Ethiopia</span>
+            
+          </div>
+          <h3 class="food">Teff</h3>
+          <p class="why">Tiny gluten-free grain notably high in iron and calcium; the base of injera.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Ethiopian &amp; health stores</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">West Africa</span>
+            
+          </div>
+          <h3 class="food">Fonio</h3>
+          <p class="why">Fast-cooking ancient grain, gluten-free, rich in methionine and cysteine.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>African &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Africa &amp; tropics</span>
+            
+          </div>
+          <h3 class="food">Hibiscus (roselle)</h3>
+          <p class="why">Antioxidant-rich tart tea; studied for blood-pressure support.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Grocers &amp; health</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">South Africa</span>
+            
+          </div>
+          <h3 class="food">Rooibos</h3>
+          <p class="why">Caffeine-free red tea rich in antioxidants (aspalathin).</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">West / North Africa</span>
+            
+          </div>
+          <h3 class="food">Tigernuts</h3>
+          <p class="why">Fiber-rich tubers (resistant starch = prebiotic); the base of horchata.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-me">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>Middle East &amp; Mediterranean</h2>
+          <p class="region-blurb">The Mediterranean and the Levant — olive oil, pulses, and oily fish, the diet most of the Top 15 keeps circling back to.</p>
+          <span class="region-count">10 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mediterranean</span>
+            <span class="badge">Top 15 &middot; №1</span>
+          </div>
+          <h3 class="food">Extra-virgin olive oil</h3>
+          <p class="why">Monounsaturated fat plus polyphenols; the cornerstone of the Mediterranean diet.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Iran / Middle East</span>
+            
+          </div>
+          <h3 class="food">Pomegranate</h3>
+          <p class="why">Punicalagin antioxidants; vitamin C, potassium.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Middle East</span>
+            
+          </div>
+          <h3 class="food">Dates</h3>
+          <p class="why">A natural sweetener with potassium, fiber, antioxidants.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major &amp; Middle Eastern grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Middle East</span>
+            
+          </div>
+          <h3 class="food">Sesame / tahini</h3>
+          <p class="why">Calcium, healthy fats, lignans; tahini is mineral-dense.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Middle East</span>
+            <span class="badge">Top 15 &middot; №2</span>
+          </div>
+          <h3 class="food">Chickpeas</h3>
+          <p class="why">Plant protein plus fiber; steady energy and gut health.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Middle East / South Asia</span>
+            <span class="badge">Top 15 &middot; №2</span>
+          </div>
+          <h3 class="food">Lentils</h3>
+          <p class="why">Protein, iron, folate, fiber; Canada is a top global exporter.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Levant</span>
+            
+          </div>
+          <h3 class="food">Freekeh</h3>
+          <p class="why">Roasted green wheat; high fiber and protein, lower glycemic.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Middle Eastern &amp; health</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Fertile Crescent</span>
+            <span class="badge">Top 15 &middot; №9</span>
+          </div>
+          <h3 class="food">Flaxseed</h3>
+          <p class="why">ALA omega-3, lignans, soluble fiber; grind for absorption.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Eastern Mediterranean</span>
+            <span class="badge">Top 15 &middot; №6</span>
+          </div>
+          <h3 class="food">Kale</h3>
+          <p class="why">Very high vitamin K, C, and A; fiber and antioxidants.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Mediterranean</span>
+            <span class="badge">Top 15 &middot; №3</span>
+          </div>
+          <h3 class="food">Sardines</h3>
+          <p class="why">Omega-3s plus calcium (edible bones); low in mercury.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-eu">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>Europe &amp; Central Asia</h2>
+          <p class="region-blurb">Ferments, roots, and cold-climate grains from Central Europe to Central Asia.</p>
+          <span class="region-count">6 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Central Europe</span>
+            <span class="badge">Top 15 &middot; №7</span>
+          </div>
+          <h3 class="food">Sauerkraut</h3>
+          <p class="why">Fermented cabbage with live probiotics, vitamin C, fiber.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers (refrigerated)</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Caucasus</span>
+            <span class="badge">Top 15 &middot; №7</span>
+          </div>
+          <h3 class="food">Kefir</h3>
+          <p class="why">Fermented milk with diverse probiotic strains; protein, calcium.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Europe</span>
+            <span class="badge">Top 15 &middot; №13</span>
+          </div>
+          <h3 class="food">Beetroot</h3>
+          <p class="why">Dietary nitrates linked to blood flow and exercise performance; folate.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Persia / Central Asia</span>
+            <span class="badge">Top 15 &middot; №8</span>
+          </div>
+          <h3 class="food">Walnuts</h3>
+          <p class="why">Best nut source of plant omega-3 (ALA); antioxidants.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Europe / Near East</span>
+            <span class="badge">Top 15 &middot; №4</span>
+          </div>
+          <h3 class="food">Oats</h3>
+          <p class="why">Beta-glucan fiber shown to lower LDL cholesterol; steady energy.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Central Asia</span>
+            <span class="badge">Top 15 &middot; №14</span>
+          </div>
+          <h3 class="food">Garlic</h3>
+          <p class="why">Allicin, with antimicrobial and heart-health associations.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-sa">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>South Asia</h2>
+          <p class="region-blurb">India&#x27;s spice-cabinet medicine chest — turmeric, ginger, amla, and adaptogens.</p>
+          <span class="region-count">7 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India (used across Africa)</span>
+            
+          </div>
+          <h3 class="food">Moringa</h3>
+          <p class="why">Leaf powder loaded with vitamins A and C, calcium, protein.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>South Asian &amp; health</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India</span>
+            <span class="badge">Top 15 &middot; №15</span>
+          </div>
+          <h3 class="food">Turmeric</h3>
+          <p class="why">Curcumin, a well-studied anti-inflammatory; pair with black pepper.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major &amp; South Asian grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">South / SE Asia</span>
+            
+          </div>
+          <h3 class="food">Ginger</h3>
+          <p class="why">Gingerol; nausea relief and anti-inflammatory properties.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India</span>
+            
+          </div>
+          <h3 class="food">Amla (Indian gooseberry)</h3>
+          <p class="why">Extremely high, heat-stable vitamin C; an Ayurvedic staple.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>South Asian &amp; online</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India</span>
+            
+          </div>
+          <h3 class="food">Mung beans</h3>
+          <p class="why">Easy-to-digest protein and fiber; sprout for added nutrients.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>South Asian &amp; major</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India / Middle East</span>
+            
+          </div>
+          <h3 class="food">Fenugreek</h3>
+          <p class="why">Seeds and leaves studied for blood-sugar and cholesterol support.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>South Asian grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">India</span>
+            
+          </div>
+          <h3 class="food">Ashwagandha</h3>
+          <p class="why">Adaptogenic root used for stress and sleep; powder or capsule.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; online</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-ea">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>East &amp; Southeast Asia</h2>
+          <p class="region-blurb">Tea, seaweed, mushrooms, and the world&#x27;s great soy ferments.</p>
+          <span class="region-count">8 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">China / Japan</span>
+            <span class="badge">Top 15 &middot; №11</span>
+          </div>
+          <h3 class="food">Green tea / matcha</h3>
+          <p class="why">EGCG antioxidants plus L-theanine for calm focus.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Japan / Korea</span>
+            
+          </div>
+          <h3 class="food">Seaweed (nori, wakame, kombu)</h3>
+          <p class="why">Iodine and minerals; supports thyroid; umami.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Asian &amp; major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Japan</span>
+            
+          </div>
+          <h3 class="food">Miso</h3>
+          <p class="why">Fermented soybean paste; probiotics, protein, umami.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Asian &amp; major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Japan</span>
+            
+          </div>
+          <h3 class="food">Natto</h3>
+          <p class="why">Fermented soy exceptionally high in vitamin K2 and nattokinase; probiotic.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Japanese/Asian grocers (frozen)</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">East Asia</span>
+            
+          </div>
+          <h3 class="food">Shiitake mushrooms</h3>
+          <p class="why">Beta-glucans for immune support; B vitamins, umami.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">China</span>
+            
+          </div>
+          <h3 class="food">Goji berries</h3>
+          <p class="why">Antioxidants including zeaxanthin for eye health; vitamin C.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; Asian grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Korea</span>
+            <span class="badge">Top 15 &middot; №7</span>
+          </div>
+          <h3 class="food">Kimchi</h3>
+          <p class="why">Fermented spicy vegetables; probiotics, fiber, vitamins.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major &amp; Korean grocers</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Indonesia</span>
+            
+          </div>
+          <h3 class="food">Tempeh</h3>
+          <p class="why">Fermented whole soybeans; complete protein plus probiotics.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Health &amp; major grocers</p>
+        </article>
+        </div>
+      </section>
+
+      <section class="region" id="r-oc">
+        <div class="region-head">
+          <h2 class="region-name"><span class="region-mark" aria-hidden="true"></span>Oceania</h2>
+          <p class="region-blurb">Rare, high-value fruits and honeys from Australia and New Zealand.</p>
+          <span class="region-count">2 foods</span>
+        </div>
+        <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">Australia</span>
+            
+          </div>
+          <h3 class="food">Kakadu plum</h3>
+          <p class="why">The highest recorded natural vitamin C of any fruit.</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Limited — online/specialty</p>
+        </article>
+        <article class="card">
+          <div class="card-top">
+            <span class="origin">New Zealand</span>
+            
+          </div>
+          <h3 class="food">Manuka honey</h3>
+          <p class="why">Distinct antibacterial activity (rated by MGO/UMF).</p>
+          <p class="find"><span class="find-label">Find it in Canada</span>Major &amp; health stores</p>
+        </article>
+        </div>
+      </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="seed" aria-hidden="true"></span>Superfoods</a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="food-country.html">All cuisine</a>
+      </nav>
+      <p class="footer-note">A reference list, not medical advice. Nutrient claims are generally well established; some marketed benefits remain preliminary. Availability reflects the Greater Toronto Area.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

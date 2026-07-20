@@ -58,10 +58,10 @@
   .badge .fill-gold{fill:var(--gold);stroke:none;}
   .badge .suitcase{fill:var(--cover-deep);stroke:var(--gold);stroke-width:2.5;}
 
-  /* ---------- Booklet / grid ---------- */
+  /* ---------- Booklet / pages ---------- */
   .booklet{
     width:100%;max-width:880px;position:relative;
-    display:grid;grid-template-columns:1fr 1fr;gap:22px;
+    columns:2;column-gap:22px;
   }
   /* binding spine down the middle */
   .booklet::before{
@@ -73,6 +73,8 @@
 
   .page{
     position:relative;overflow:hidden;
+    break-inside:avoid;-webkit-column-break-inside:avoid;
+    margin-bottom:22px;
     background-color:var(--page);
     background-image:
       repeating-linear-gradient(45deg, rgba(42,42,46,.035) 0 1px, transparent 1px 8px),
@@ -122,6 +124,14 @@
   }
 
   .items{list-style:none;display:flex;flex-direction:column;gap:15px;}
+  .subhead{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:.66rem;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
+    margin-top:4px;
+  }
+  .subhead:first-child{margin-top:0;}
+  .subhead::after{content:"";flex:1;height:1px;background:var(--line);}
   a.item{
     display:block;text-decoration:none;color:var(--ink);
     padding-left:16px;position:relative;
@@ -213,8 +223,13 @@
       </div>
       <p class="cat-desc">Food, drink &amp; everything worth a second helping.</p>
       <ul class="items">
+        <li class="subhead">Drink</li>
         <li><a class="item" href="beerjournal.html"><span class="name">Beer Journal</span><span class="sub">Every beer, logged and rated.</span></a></li>
+        <li><a class="item" href="alcohol.html"><span class="name">Alcohol</span><span class="sub">Wine, spirits &amp; cocktails.</span></a></li>
+        <li class="subhead">Eat</li>
         <li><a class="item" href="food-country.html"><span class="name">Food Around the World</span><span class="sub">A running list of dishes by country.</span></a></li>
+        <li><a class="item" href="superfoods.html"><span class="name">Superfoods</span><span class="sub">Eating on the healthier side.</span></a></li>
+        <li><a class="item" href="burgers.html"><span class="name">Burgers</span><span class="sub">The endless hunt for the best.</span></a></li>
         <li><a class="item" href="theme-calendar.html"><span class="name">Theme Night Calendar</span><span class="sub">A country a month, cooked at home.</span></a></li>
       </ul>
       <span class="folio">· 02 ·</span>

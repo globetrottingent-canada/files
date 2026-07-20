@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof — A Field Guide to the World's Drinks</title>
+<meta name="description" content="Beer, fermented beverages, wine, spirits, and liqueurs from around the world, with ABV, origin, and deep-dives on whisky and beer styles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1b1613; --charcoal-2:#262019; --paper:#F3E7CE; --paper-2:#ECDCBD;
+    --card:#FBF3E0; --ink:#2c231a; --amber:#C07826; --amber-deep:#9C5A16;
+    --gold:#E0A94E; --cream:#F1E4C8; --muted:#8a765a; --line:#DAC7A0; --line-dk:rgba(240,220,180,.15);
+    --f-disp:"Marcellus", "Palatino Linotype", Georgia, serif;
+    --f-body:"Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --f-mono:"Spline Sans Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:78px;}
+  body{margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--f-body); font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* nav */
+  .topbar{position:sticky; top:0; z-index:30; background:rgba(20,16,13,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line-dk);}
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:62px;}
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--cream);
+    font-family:var(--f-disp); font-size:22px; letter-spacing:.16em; text-transform:uppercase;}
+  .brand .mark{width:12px; height:20px; background:linear-gradient(180deg,var(--gold),var(--amber-deep));
+    border-radius:3px 3px 5px 5px; display:inline-block; flex:none; box-shadow:inset 0 3px 0 rgba(255,255,255,.25);}
+  .nav{display:flex; gap:8px;}
+  .nav-link{text-decoration:none; color:var(--cream); font-weight:600; font-size:14.5px;
+    padding:8px 14px; border-radius:2px; border:1px solid transparent; transition:border-color .18s, background .18s;}
+  .nav-link:hover{border-color:var(--line-dk); background:rgba(224,169,78,.10);}
+
+  /* hero */
+  .hero{background:
+      radial-gradient(120% 90% at 85% -10%, rgba(224,169,78,.18), transparent 55%),
+      var(--charcoal); color:var(--cream); border-bottom:3px solid var(--amber-deep);}
+  .hero .wrap{padding:78px 24px 66px;}
+  .hero-eyebrow{font-size:12.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold);
+    margin:0 0 20px; font-weight:600;}
+  .hero h1{font-family:var(--f-disp); font-size:clamp(42px,7vw,86px); line-height:1; margin:0 0 22px;
+    letter-spacing:.01em; color:#fff;}
+  .hero h1 span{color:var(--gold);}
+  .hero-lede{max-width:56ch; font-size:19px; color:#e6d9bf; margin:0;}
+  .hero-stat{margin:26px 0 0; font-family:var(--f-mono); font-size:14px; color:var(--gold); letter-spacing:.02em;}
+  .jumps{display:flex; flex-wrap:wrap; gap:9px; margin:34px 0 0;}
+  .jump{text-decoration:none; color:var(--cream); font-size:13.5px; font-weight:600;
+    padding:8px 15px; border:1px solid var(--line-dk); border-radius:999px; transition:background .16s, color .16s;}
+  .jump:hover{background:var(--gold); color:var(--charcoal); border-color:var(--gold);}
+
+  /* families */
+  main .wrap{padding-top:8px; padding-bottom:8px;}
+  .fam{padding:56px 0; border-bottom:1px solid var(--line);}
+  .fam:last-child{border-bottom:none;}
+  .fam-head{display:flex; gap:30px; align-items:center; margin-bottom:26px;}
+  .fam-glass{flex:none; width:132px; text-align:center;}
+  .glass{width:112px; height:auto; display:block; margin:0 auto;}
+  .fam-abv{display:block; margin-top:8px; font-family:var(--f-mono); font-size:11.5px;
+    color:var(--amber-deep); letter-spacing:.01em;}
+  .fam-eyebrow{display:flex; align-items:center; gap:9px; margin:0 0 8px; font-size:12px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--amber-deep);}
+  .fam-eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--amber);}
+  .fam-name{font-family:var(--f-disp); font-size:clamp(30px,4.6vw,46px); color:var(--ink);
+    margin:0 0 10px; letter-spacing:.01em; line-height:1.02;}
+  .fam-blurb{margin:0; max-width:64ch; color:#5a4a37; font-size:16px;}
+
+  /* tables */
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px; background:var(--card);
+    box-shadow:0 1px 2px rgba(60,40,20,.04), 0 10px 26px rgba(60,40,20,.05);}
+  .dtable{width:100%; border-collapse:collapse; font-size:15px; min-width:520px;}
+  .dtable thead th{background:var(--charcoal); color:var(--gold); text-align:left; font-weight:600;
+    font-size:11.5px; letter-spacing:.11em; text-transform:uppercase; padding:13px 18px; white-space:nowrap;}
+  .dtable tbody tr{border-top:1px solid var(--line);}
+  .dtable tbody tr:nth-child(even){background:rgba(220,199,160,.20);}
+  .dtable tbody tr:hover{background:rgba(224,169,78,.16);}
+  .dtable th,.dtable td{padding:12px 18px; vertical-align:top;}
+  .c-name{font-weight:700; color:var(--ink); text-align:left; white-space:nowrap;}
+  .c-origin{color:#6a5842;}
+  td.c-abv,th.c-abv{text-align:right; white-space:nowrap;}
+  td.c-abv{font-family:var(--f-mono); font-weight:600; color:var(--amber-deep);}
+  .wtable{min-width:680px;}
+  .c-notes{font-style:italic; color:#6a5842;}
+  .c-brands{color:#6a5842;}
+
+  /* spotlight tint */
+  .spotlight{background:linear-gradient(180deg, rgba(224,169,78,.09), transparent 40%);}
+
+  /* beer styles grid */
+  .style-grid{list-style:none; margin:0; padding:0; display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:2px; border:1px solid var(--line);
+    border-radius:10px; overflow:hidden; background:var(--line);}
+  .style{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    background:var(--card); padding:13px 18px;}
+  .style:hover{background:rgba(224,169,78,.14);}
+  .style-name{font-weight:700; color:var(--ink);}
+  .style-origin{font-size:13px; color:var(--muted); text-align:right; font-family:var(--f-mono); letter-spacing:.01em;}
+
+  /* glass svg styling */
+  .g-body{fill:rgba(255,255,255,.30); stroke:#4a3826; stroke-width:2.2; stroke-linejoin:round; stroke-linecap:round;}
+  .g-rim{fill:none; stroke:#4a3826; stroke-width:2.2;}
+  .g-stem{stroke:#4a3826; stroke-width:2.2; stroke-linecap:round;}
+  .g-foot{fill:none; stroke:#4a3826; stroke-width:2.2;}
+  .g-liqtop{fill:rgba(255,255,255,.22);}
+  .g-foam{fill:#f4ecd8;}
+
+  /* footer */
+  .footer{background:var(--charcoal); color:#d9c8a6; padding:52px 0 44px; border-top:3px solid var(--amber-deep);}
+  .footer .wrap{display:flex; flex-wrap:wrap; gap:26px; align-items:center; justify-content:space-between;}
+  .footer .brand{color:#fff;}
+  .footer-nav{display:flex; gap:10px;}
+  .footer-nav a{text-decoration:none; color:#fff; font-weight:600; font-size:14.5px; padding:9px 16px;
+    border:1px solid var(--line-dk); border-radius:2px; transition:background .18s;}
+  .footer-nav a:hover{background:rgba(224,169,78,.14);}
+  .foot-note{width:100%; margin:6px 0 0; font-size:12.5px; color:#9c8a68; max-width:74ch; line-height:1.55;}
+
+  :focus-visible{outline:2.5px solid var(--gold); outline-offset:2px; border-radius:4px;}
+
+  @media (max-width:640px){
+    .fam-head{flex-direction:column; align-items:flex-start; gap:14px; text-align:left;}
+    .fam-glass{width:96px;} .glass{width:88px;}
+    .fam-glass{display:flex; align-items:center; gap:12px; width:auto;}
+    .fam-abv{margin-top:0;}
+    .hero .wrap{padding:56px 22px 48px;}
+    .nav-link{padding:8px 10px; font-size:13.5px;}
+    .brand{font-size:19px; letter-spacing:.12em;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="mark" aria-hidden="true"></span>Proof</a>
+      <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="beerjournal.html" class="nav-link">Beer Journal</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">A field guide to the world's drinks</p>
+      <h1>The world of <span>alcohols</span></h1>
+      <p class="hero-lede">Seven families of drink, sorted by how they're made and how strong they land — each with where it comes from and its alcohol by volume, plus closer looks at whisky and beer styles.</p>
+      <p class="hero-stat">// from 0.5% kvass to 74% absinthe</p>
+      <nav class="jumps" aria-label="Jump to a family">
+          <a class="jump" href="#beer">Beer</a>
+          <a class="jump" href="#fermented">Fermented</a>
+          <a class="jump" href="#wine">Wine</a>
+          <a class="jump" href="#spirits">Spirits</a>
+          <a class="jump" href="#liqueurs">Liqueurs</a>
+          <a class="jump" href="#whisky">Whisky</a>
+          <a class="jump" href="#beer-styles">Beer Styles</a>
+      </nav>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <section class="fam" id="beer">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gAmber1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0952F"/><stop offset="1" stop-color="#A85E15"/></linearGradient></defs>
+  <path d="M 34.4,106.5 L 38.0,150.0 L 82.0,150.0 L 82.0,150.0 L 85.6,106.5 Z" fill="url(#gAmber1)"/>
+  <ellipse cx="60" cy="106.5" rx="25.6" ry="2.4" class="g-liqtop"/>
+  <ellipse cx="60" cy="103.5" rx="27.6" ry="5" class="g-foam"/>
+  <path d="M 30.0,22.0 L 31.0,50.0 L 29.5,58.0 L 31.0,66.0 L 38.0,150.0 L 82.0,150.0 L 89.0,66.0 L 90.5,58.0 L 89.0,50.0 L 90.0,22.0" class="g-body"/>
+  <ellipse cx="60" cy="22" rx="30.0" ry="2.6" class="g-rim"/>
+  
+</svg>
+            <span class="fam-abv">Typical ABV 3–12%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Brewed &middot; 8 entries</p>
+            <h2 class="fam-name">Beer</h2>
+            <p class="fam-blurb">Grain fermented and brewed the world over — the broad families here run from crisp pale lagers to inky, high-strength stouts.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th scope="col">Name</th><th scope="col">Origin</th><th scope="col" class="c-abv">ABV</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Lager</th>
+            <td class="c-origin">Various (Germany, USA, etc.)</td>
+            <td class="c-abv">3–6%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Ale</th>
+            <td class="c-origin">Various (UK, Belgium, etc.)</td>
+            <td class="c-abv">3–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Stout</th>
+            <td class="c-origin">Ireland, UK</td>
+            <td class="c-abv">4–12%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Porter</th>
+            <td class="c-origin">UK</td>
+            <td class="c-abv">4–7%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Pilsner</th>
+            <td class="c-origin">Czech Republic</td>
+            <td class="c-abv">4–5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Wheat Beer</th>
+            <td class="c-origin">Germany, Belgium</td>
+            <td class="c-abv">4–5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Sour Beer</th>
+            <td class="c-origin">Belgium</td>
+            <td class="c-abv">3–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">IPA</th>
+            <td class="c-origin">UK, USA</td>
+            <td class="c-abv">5–7.5%</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam" id="fermented">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gHoney2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E7B34E"/><stop offset="1" stop-color="#C07A22"/></linearGradient></defs>
+  <path d="M 32.6,90.4 L 33.0,96.0 L 43.0,112.0 L 77.0,112.0 L 77.0,112.0 L 87.0,96.0 L 87.4,90.4 Z" fill="url(#gHoney2)"/>
+  <ellipse cx="60" cy="90.4" rx="27.4" ry="2.4" class="g-liqtop"/>
+  
+  <path d="M 51.0,40.0 L 36.0,50.0 L 31.0,66.0 L 33.0,96.0 L 43.0,112.0 L 77.0,112.0 L 87.0,96.0 L 89.0,66.0 L 84.0,50.0 L 69.0,40.0" class="g-body"/>
+  <ellipse cx="60" cy="40" rx="9.0" ry="2.6" class="g-rim"/>
+  <line x1="60" y1="112" x2="60" y2="136" class="g-stem"/><ellipse cx="60" cy="140" rx="20" ry="3.4" class="g-foot"/>
+</svg>
+            <span class="fam-abv">Typical ABV 0.5–16%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Fermented &middot; 12 entries</p>
+            <h2 class="fam-name">Fermented Beverages</h2>
+            <p class="fam-blurb">Low-intervention drinks made by fermenting fruit, honey, sap, grain, or even pineapple rind — often ancient, often local, usually gentle in strength.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th scope="col">Name</th><th scope="col">Origin</th><th scope="col" class="c-abv">ABV</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Cider</th>
+            <td class="c-origin">Various (UK, USA, France)</td>
+            <td class="c-abv">5–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Perry</th>
+            <td class="c-origin">UK, France</td>
+            <td class="c-abv">5–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Mead</th>
+            <td class="c-origin">Various (historically widespread)</td>
+            <td class="c-abv">8–12%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tepache</th>
+            <td class="c-origin">Mexico</td>
+            <td class="c-abv">1–2%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Chicha</th>
+            <td class="c-origin">Latin America</td>
+            <td class="c-abv">1–12%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Kvass</th>
+            <td class="c-origin">Eastern Europe</td>
+            <td class="c-abv">0.5–2.5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Palm Wine</th>
+            <td class="c-origin">Africa, Asia</td>
+            <td class="c-abv">2–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Toddy</th>
+            <td class="c-origin">India, Southeast Asia</td>
+            <td class="c-abv">6–8%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Kumis</th>
+            <td class="c-origin">Central Asia</td>
+            <td class="c-abv">0.7–2.5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Basi</th>
+            <td class="c-origin">Philippines</td>
+            <td class="c-abv">10–16%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Bilibili</th>
+            <td class="c-origin">Fiji</td>
+            <td class="c-abv">5–10%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Pulque</th>
+            <td class="c-origin">Mexico</td>
+            <td class="c-abv">4–6%</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam" id="wine">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gWine3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A2231"/><stop offset="1" stop-color="#57121D"/></linearGradient></defs>
+  <path d="M 34.4,65.4 L 36.0,78.0 L 49.0,96.0 L 71.0,96.0 L 71.0,96.0 L 84.0,78.0 L 85.6,65.4 Z" fill="url(#gWine3)"/>
+  <ellipse cx="60" cy="65.4" rx="25.6" ry="2.4" class="g-liqtop"/>
+  
+  <path d="M 55.0,28.0 L 41.0,38.0 L 33.0,54.0 L 36.0,78.0 L 49.0,96.0 L 71.0,96.0 L 84.0,78.0 L 87.0,54.0 L 79.0,38.0 L 65.0,28.0" class="g-body"/>
+  <ellipse cx="60" cy="28" rx="5.0" ry="2.6" class="g-rim"/>
+  <line x1="60" y1="96" x2="60" y2="146" class="g-stem"/><ellipse cx="60" cy="150" rx="22" ry="3.4" class="g-foot"/>
+</svg>
+            <span class="fam-abv">Typical ABV 10–22%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Fermented &middot; 7 entries</p>
+            <h2 class="fam-name">Wine</h2>
+            <p class="fam-blurb">Fermented grapes across the colour and sweetness spectrum, plus Japan&#x27;s rice wine, sake, which sits comfortably at wine strength.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th scope="col">Name</th><th scope="col">Origin</th><th scope="col" class="c-abv">ABV</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Red Wine</th>
+            <td class="c-origin">Various (France, Italy, Spain, etc.)</td>
+            <td class="c-abv">12–15%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">White Wine</th>
+            <td class="c-origin">Various (France, Italy, Spain, etc.)</td>
+            <td class="c-abv">11–14%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Rosé Wine</th>
+            <td class="c-origin">Various (France, Spain, USA, etc.)</td>
+            <td class="c-abv">11–13%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Sparkling Wine</th>
+            <td class="c-origin">Various (France, Italy, Spain)</td>
+            <td class="c-abv">10–13%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Fortified Wine</th>
+            <td class="c-origin">Spain, Portugal</td>
+            <td class="c-abv">15–20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Dessert Wine</th>
+            <td class="c-origin">Various (France, Italy, etc.)</td>
+            <td class="c-abv">15–22%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Sake (rice wine)</th>
+            <td class="c-origin">Japan</td>
+            <td class="c-abv">14–16%</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam" id="spirits">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gAmber4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0952F"/><stop offset="1" stop-color="#A85E15"/></linearGradient></defs>
+  <path d="M 27.0,85.3 L 29.0,150.0 L 91.0,150.0 L 91.0,150.0 L 93.0,85.3 Z" fill="url(#gAmber4)"/>
+  <ellipse cx="60" cy="85.3" rx="33.0" ry="2.4" class="g-liqtop"/>
+  
+  <path d="M 26.0,52.0 L 29.0,150.0 L 91.0,150.0 L 94.0,52.0" class="g-body"/>
+  <ellipse cx="60" cy="52" rx="34.0" ry="2.6" class="g-rim"/>
+  
+</svg>
+            <span class="fam-abv">Typical ABV 16–74%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Distilled &middot; 29 entries</p>
+            <h2 class="fam-name">Spirits</h2>
+            <p class="fam-blurb">Distillation concentrates the alcohol, so this is the strong end of the shelf — a global tour from vodka and rum to grappa, baijiu, and eye-watering absinthe.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th scope="col">Name</th><th scope="col">Origin</th><th scope="col" class="c-abv">ABV</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Vodka</th>
+            <td class="c-origin">Russia, Poland</td>
+            <td class="c-abv">35–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Whiskey</th>
+            <td class="c-origin">Scotland, Ireland, USA</td>
+            <td class="c-abv">40–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Rum</th>
+            <td class="c-origin">Caribbean, Central America</td>
+            <td class="c-abv">40–55%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Gin</th>
+            <td class="c-origin">England</td>
+            <td class="c-abv">37.5–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tequila</th>
+            <td class="c-origin">Mexico</td>
+            <td class="c-abv">35–55%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Mezcal</th>
+            <td class="c-origin">Mexico</td>
+            <td class="c-abv">40–55%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Brandy</th>
+            <td class="c-origin">France, Spain, USA</td>
+            <td class="c-abv">35–60%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Cognac</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Armagnac</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Grappa</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">35–60%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Pisco</th>
+            <td class="c-origin">Peru, Chile</td>
+            <td class="c-abv">30–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Baijiu</th>
+            <td class="c-origin">China</td>
+            <td class="c-abv">40–60%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Soju</th>
+            <td class="c-origin">South Korea</td>
+            <td class="c-abv">16–25%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Shochu</th>
+            <td class="c-origin">Japan</td>
+            <td class="c-abv">25–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Raki</th>
+            <td class="c-origin">Turkey</td>
+            <td class="c-abv">40–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Ouzo</th>
+            <td class="c-origin">Greece</td>
+            <td class="c-abv">37.5–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Arrack</th>
+            <td class="c-origin">Southeast Asia, Middle East</td>
+            <td class="c-abv">33–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Cachaça</th>
+            <td class="c-origin">Brazil</td>
+            <td class="c-abv">38–48%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Schnapps</th>
+            <td class="c-origin">Germany, Austria</td>
+            <td class="c-abv">30–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Aquavit</th>
+            <td class="c-origin">Scandinavia</td>
+            <td class="c-abv">40–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Calvados</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Eau de vie</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">35–60%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tsipouro</th>
+            <td class="c-origin">Greece</td>
+            <td class="c-abv">40–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Rakija</th>
+            <td class="c-origin">Balkans</td>
+            <td class="c-abv">40–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Aguardiente</th>
+            <td class="c-origin">Spain, Latin America</td>
+            <td class="c-abv">29–60%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Grogue</th>
+            <td class="c-origin">Cape Verde</td>
+            <td class="c-abv">40–50%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tiquira</th>
+            <td class="c-origin">Brazil</td>
+            <td class="c-abv">35–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Feni</th>
+            <td class="c-origin">India</td>
+            <td class="c-abv">40–45%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Absinthe</th>
+            <td class="c-origin">Switzerland, France</td>
+            <td class="c-abv">45–74%</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam" id="liqueurs">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gGold5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8BE63"/><stop offset="1" stop-color="#C88A2E"/></linearGradient></defs>
+  <path d="M 42.5,66.7 L 42.0,70.0 L 49.0,84.0 L 53.0,92.0 L 67.0,92.0 L 67.0,92.0 L 71.0,84.0 L 78.0,70.0 L 77.5,66.7 Z" fill="url(#gGold5)"/>
+  <ellipse cx="60" cy="66.7" rx="17.5" ry="2.4" class="g-liqtop"/>
+  
+  <path d="M 55.0,46.0 L 44.0,56.0 L 42.0,70.0 L 49.0,84.0 L 53.0,92.0 L 67.0,92.0 L 71.0,84.0 L 78.0,70.0 L 76.0,56.0 L 65.0,46.0" class="g-body"/>
+  <ellipse cx="60" cy="46" rx="5.0" ry="2.6" class="g-rim"/>
+  <line x1="60" y1="92" x2="60" y2="134" class="g-stem"/><ellipse cx="60" cy="138" rx="16" ry="3.4" class="g-foot"/>
+</svg>
+            <span class="fam-abv">Typical ABV 11–55%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Distilled &amp;amp; sweetened &middot; 27 entries</p>
+            <h2 class="fam-name">Liqueurs</h2>
+            <p class="fam-blurb">Spirits flavoured and sweetened with fruit, herbs, nuts, or cream. Strengths swing wide, from an 11% Aperol to a 55% Chartreuse.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable">
+            <thead><tr><th scope="col">Name</th><th scope="col">Origin</th><th scope="col" class="c-abv">ABV</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Curaçao</th>
+            <td class="c-origin">Caribbean (originally from Curaçao)</td>
+            <td class="c-abv">15–40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Benedictine</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Chambord</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">16.5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Chartreuse</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40–55%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Cointreau</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Grand Marnier</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Hpnotiq</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">17%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">St-Germain</th>
+            <td class="c-origin">France</td>
+            <td class="c-abv">20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Anisette</th>
+            <td class="c-origin">France, Italy</td>
+            <td class="c-abv">25–40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Jägermeister</th>
+            <td class="c-origin">Germany</td>
+            <td class="c-abv">35%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Baileys Irish Cream</th>
+            <td class="c-origin">Ireland</td>
+            <td class="c-abv">17%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Amaretto</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">21–28%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Aperol</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">11%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Campari</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">20.5–28.5%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Fernet-Branca</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">39%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Frangelico</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Galliano</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">30–42.3%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Limoncello</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">25–30%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Sambuca</th>
+            <td class="c-origin">Italy</td>
+            <td class="c-abv">38%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tia Maria</th>
+            <td class="c-origin">Jamaica</td>
+            <td class="c-abv">20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Midori</th>
+            <td class="c-origin">Japan</td>
+            <td class="c-abv">20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Kahlúa</th>
+            <td class="c-origin">Mexico</td>
+            <td class="c-abv">20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Advocaat</th>
+            <td class="c-origin">Netherlands</td>
+            <td class="c-abv">14–20%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Drambuie</th>
+            <td class="c-origin">Scotland</td>
+            <td class="c-abv">40%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Licor 43</th>
+            <td class="c-origin">Spain</td>
+            <td class="c-abv">31%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Pimm&#x27;s</th>
+            <td class="c-origin">UK</td>
+            <td class="c-abv">25%</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Southern Comfort</th>
+            <td class="c-origin">USA</td>
+            <td class="c-abv">35%</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam spotlight" id="whisky">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gAmber6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0952F"/><stop offset="1" stop-color="#A85E15"/></linearGradient></defs>
+  <path d="M 32.2,63.6 L 32.0,64.0 L 33.0,94.0 L 44.0,114.0 L 76.0,114.0 L 76.0,114.0 L 87.0,94.0 L 88.0,64.0 L 87.8,63.6 Z" fill="url(#gAmber6)"/>
+  <ellipse cx="60" cy="63.6" rx="27.8" ry="2.4" class="g-liqtop"/>
+  
+  <path d="M 51.0,30.0 L 43.0,42.0 L 32.0,64.0 L 33.0,94.0 L 44.0,114.0 L 76.0,114.0 L 87.0,94.0 L 88.0,64.0 L 77.0,42.0 L 69.0,30.0" class="g-body"/>
+  <ellipse cx="60" cy="30" rx="9.0" ry="2.6" class="g-rim"/>
+  <line x1="60" y1="114" x2="60" y2="136" class="g-stem"/><ellipse cx="60" cy="140" rx="18" ry="3.4" class="g-foot"/>
+</svg>
+            <span class="fam-abv">Typical ABV 40–50%</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Spotlight &middot; 14 types</p>
+            <h2 class="fam-name">Whisky, up close</h2>
+            <p class="fam-blurb">A distilled family big enough to deserve its own page. Here it's broken out by regional style, with the flavour signature and a few benchmark distilleries for each.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="dtable wtable">
+            <thead><tr><th scope="col">Type</th><th scope="col">Origin</th><th scope="col">Tasting notes</th><th scope="col">Makers to know</th></tr></thead>
+            <tbody>
+          <tr>
+            <th scope="row" class="c-name">Scotch Whisky</th>
+            <td class="c-origin">Scotland</td>
+            <td class="c-notes">Smoky, peaty, complex</td>
+            <td class="c-brands">Glenfiddich, Macallan, Laphroaig</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Single Malt</th>
+            <td class="c-origin">Scotland</td>
+            <td class="c-notes">Rich, malty, fruity</td>
+            <td class="c-brands">Glenlivet, Ardbeg, Balvenie</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Blended Scotch</th>
+            <td class="c-origin">Scotland</td>
+            <td class="c-notes">Smooth, balanced, mellow</td>
+            <td class="c-brands">Johnnie Walker, Chivas Regal</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Irish Whiskey</th>
+            <td class="c-origin">Ireland</td>
+            <td class="c-notes">Smooth, light, slightly sweet</td>
+            <td class="c-brands">Jameson, Bushmills, Redbreast</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">American Whiskey</th>
+            <td class="c-origin">USA</td>
+            <td class="c-notes">Sweet, robust, full-bodied</td>
+            <td class="c-brands">Jack Daniel&#x27;s, Maker&#x27;s Mark</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Bourbon</th>
+            <td class="c-origin">USA (Kentucky)</td>
+            <td class="c-notes">Sweet, vanilla, caramel</td>
+            <td class="c-brands">Jim Beam, Wild Turkey, Buffalo Trace</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Tennessee Whiskey</th>
+            <td class="c-origin">USA (Tennessee)</td>
+            <td class="c-notes">Smooth, charcoal mellowed</td>
+            <td class="c-brands">Jack Daniel&#x27;s, George Dickel</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Rye Whiskey</th>
+            <td class="c-origin">USA, Canada</td>
+            <td class="c-notes">Spicy, fruity, peppery</td>
+            <td class="c-brands">Bulleit, Crown Royal, WhistlePig</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Canadian Whisky</th>
+            <td class="c-origin">Canada</td>
+            <td class="c-notes">Light, smooth, versatile</td>
+            <td class="c-brands">Crown Royal, Canadian Club</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Japanese Whisky</th>
+            <td class="c-origin">Japan</td>
+            <td class="c-notes">Delicate, floral, balanced</td>
+            <td class="c-brands">Yamazaki, Hibiki, Nikka</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Indian Whisky</th>
+            <td class="c-origin">India</td>
+            <td class="c-notes">Bold, spicy, fruity</td>
+            <td class="c-brands">Amrut, Paul John</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Blended Malt</th>
+            <td class="c-origin">Various (Scotland)</td>
+            <td class="c-notes">Complex, layered flavors</td>
+            <td class="c-brands">Monkey Shoulder</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Corn Whiskey</th>
+            <td class="c-origin">USA</td>
+            <td class="c-notes">Sweet, corn flavor</td>
+            <td class="c-brands">Mellow Corn</td>
+          </tr>
+          <tr>
+            <th scope="row" class="c-name">Wheat Whiskey</th>
+            <td class="c-origin">USA</td>
+            <td class="c-notes">Soft, sweet, gentle</td>
+            <td class="c-brands">Bernheim Original</td>
+          </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="fam spotlight" id="beer-styles">
+        <div class="fam-head">
+          <div class="fam-glass"><svg viewBox="0 0 120 172" class="glass" role="img" aria-hidden="true">
+  <defs><linearGradient id="gAmber7" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E0952F"/><stop offset="1" stop-color="#A85E15"/></linearGradient></defs>
+  <path d="M 35.0,100.6 L 31.0,120.0 L 34.0,150.0 L 86.0,150.0 L 86.0,150.0 L 89.0,120.0 L 85.0,100.6 Z" fill="url(#gAmber7)"/>
+  <ellipse cx="60" cy="100.6" rx="25.0" ry="2.4" class="g-liqtop"/>
+  <ellipse cx="60" cy="97.6" rx="27.0" ry="5" class="g-foam"/>
+  <path d="M 35.0,20.0 L 41.0,30.0 L 45.0,48.0 L 42.0,66.0 L 31.0,120.0 L 34.0,150.0 L 86.0,150.0 L 89.0,120.0 L 78.0,66.0 L 75.0,48.0 L 79.0,30.0 L 85.0,20.0" class="g-body"/>
+  <ellipse cx="60" cy="20" rx="25.0" ry="2.6" class="g-rim"/>
+  
+</svg>
+            <span class="fam-abv">30 styles &middot; 6 countries</span>
+          </div>
+          <div class="fam-intro">
+            <p class="fam-eyebrow"><span class="dot"></span>Spotlight &middot; 30 styles</p>
+            <h2 class="fam-name">Beer styles by origin</h2>
+            <p class="fam-blurb">Beyond the broad beer families up top, here's the deeper roll-call of named styles and where they were born — a German and Belgian showcase, with British and American additions.</p>
+          </div>
+        </div>
+        <ul class="style-grid">
+            <li class="style"><span class="style-name">Vienna Lager</span><span class="style-origin">Austria, Germany</span></li>
+            <li class="style"><span class="style-name">Hefeweizen</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Dunkel</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Bock</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Doppelbock</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Kölsch</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Altbier</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Berliner Weisse</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Gose</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Marzen</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Rauchbier</span><span class="style-origin">Germany</span></li>
+            <li class="style"><span class="style-name">Wheat Beer</span><span class="style-origin">Germany, Belgium</span></li>
+            <li class="style"><span class="style-name">Lager</span><span class="style-origin">Germany, Czech Republic</span></li>
+            <li class="style"><span class="style-name">Pilsner</span><span class="style-origin">Czech Republic</span></li>
+            <li class="style"><span class="style-name">Baltic Porter</span><span class="style-origin">Eastern Europe</span></li>
+            <li class="style"><span class="style-name">Witbier</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Tripel</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Quadrupel</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Saison</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Lambic</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Gueuze</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Flanders Red Ale</span><span class="style-origin">Belgium</span></li>
+            <li class="style"><span class="style-name">Stout</span><span class="style-origin">Ireland, UK</span></li>
+            <li class="style"><span class="style-name">Porter</span><span class="style-origin">UK</span></li>
+            <li class="style"><span class="style-name">Pale Ale</span><span class="style-origin">UK, USA</span></li>
+            <li class="style"><span class="style-name">India Pale Ale (IPA)</span><span class="style-origin">UK, USA</span></li>
+            <li class="style"><span class="style-name">Brown Ale</span><span class="style-origin">UK, USA</span></li>
+            <li class="style"><span class="style-name">Barleywine</span><span class="style-origin">UK, USA</span></li>
+            <li class="style"><span class="style-name">Amber Ale</span><span class="style-origin">USA</span></li>
+            <li class="style"><span class="style-name">Steam Beer</span><span class="style-origin">USA</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="mark" aria-hidden="true"></span>Proof</a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="beerjournal.html">Beer Journal</a>
+      </nav>
+      <p class="foot-note">A reference guide, not a drinking guide. ABV figures are typical ranges and vary by producer and product. Please enjoy responsibly.</p>
+    </div>
+  </footer>
+</body>
+</html>

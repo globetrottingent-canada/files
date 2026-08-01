@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Power Diet</title>
+<meta name="description" content="A day's meal plan from morning to night, with a live nutrition estimate that updates as you check off what you're actually having.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FBF1E6; --paper-2:#F5E4D2; --card:#FFFAF2;
+    --rust:#B8532E; --rust-deep:#8F3E20; --peach:#E8A16B; --gold:#D98A3D;
+    --ink:#3A2C22; --muted:#8A7362; --line:#E8D5BE;
+    --shadow:0 1px 2px rgba(139,70,30,.05), 0 8px 24px rgba(139,70,30,.07);
+    --f-display:"Fraunces", Georgia, "Times New Roman", serif;
+    --f-body:"Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body);
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; }
+  .wrap { max-width:900px; margin:0 auto; padding:0 24px; }
+
+  .topbar { position:sticky; top:0; z-index:20; background:rgba(251,241,230,.88);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .topbar .wrap { max-width:1180px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:var(--f-display);
+    font-weight:600; font-size:20px; color:var(--rust-deep); letter-spacing:-.01em; }
+  .brand .seed { width:22px; height:22px; border-radius:50% 50% 50% 0; background:linear-gradient(135deg,var(--gold),var(--rust));
+    transform:rotate(-45deg); display:inline-block; flex:none; }
+  .nav { display:flex; gap:6px; }
+  .nav-link { text-decoration:none; color:var(--rust-deep); font-weight:600; font-size:14.5px; padding:8px 13px;
+    border-radius:999px; border:1px solid transparent; transition:background .18s ease, border-color .18s ease; white-space:nowrap; }
+  .nav-link:hover { background:var(--card); border-color:var(--line); }
+
+  .hero { padding:64px 0 40px; }
+  .hero h1 { font-family:var(--f-display); font-weight:500; color:var(--rust-deep); font-size:clamp(36px,6vw,62px);
+    line-height:1.05; letter-spacing:-.02em; margin:0; max-width:18ch; }
+  .hero h1 em { font-style:italic; color:var(--gold); }
+
+  .section { padding:20px 0 70px; }
+  .wrap.layout { max-width:1180px; display:grid; grid-template-columns:1fr 300px; gap:44px; align-items:start; }
+  .main-col { min-width:0; }
+
+  .timeline { list-style:none; margin:0; padding:0; }
+  .tl-item { display:grid; grid-template-columns:52px 1fr; column-gap:22px; position:relative; padding-bottom:38px; }
+  .tl-item::before { content:""; position:absolute; left:25px; top:52px; bottom:-2px; width:2px; background:var(--line); }
+  .tl-item.no-line::before { display:none; }
+  .tl-marker { width:52px; height:52px; border-radius:50%; background:var(--card); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--rust); box-shadow:var(--shadow); z-index:1; }
+  .tl-icon { width:24px; height:24px; }
+  .tl-content { padding-top:6px; }
+  .tl-time { font-family:var(--f-display); font-weight:600; font-size:26px; color:var(--rust-deep);
+    margin:0 0 14px; letter-spacing:-.01em; }
+  .subgroup { margin-bottom:16px; }
+  .subgroup:last-child { margin-bottom:0; }
+  .subgroup-label { display:block; font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:7px; }
+  .tags { display:flex; flex-wrap:wrap; gap:7px; }
+  .tag { font-size:14px; background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:5px 13px; color:#4a3a2c; }
+  .tag.excluded { background:transparent; border-style:dashed; color:var(--muted); }
+
+  .toggle { font-family:var(--f-body); font-size:14px; font-weight:600; border-radius:999px; padding:5px 12px 5px 8px;
+    cursor:pointer; border:1px solid var(--line); background:var(--card); color:#4a3a2c;
+    display:inline-flex; align-items:center; gap:6px; transition:border-color .14s ease, background .14s ease; }
+  .toggle:hover { border-color:var(--gold); }
+  .toggle .box { width:14px; height:14px; border-radius:4px; border:1.5px solid var(--muted); flex:none;
+    display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:#fff; }
+  .toggle.on { background:#fff8ee; border-color:var(--gold); color:var(--rust-deep); }
+  .toggle.on .box { background:var(--rust); border-color:var(--rust); }
+  .toggle.on .box::after { content:"\2713"; }
+
+  .stat-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+  .stat-chip { font-size:12.5px; color:var(--rust-deep); font-weight:600; }
+  .stat-chip .stat-sep { color:var(--line); margin:0 6px; font-weight:400; }
+  .stat-chip.muted { color:var(--muted); }
+
+  .plate-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:2px; }
+  .plate-card { border:1.5px solid var(--line); border-radius:12px; padding:14px 16px; cursor:pointer;
+    background:var(--card); transition:border-color .15s ease, box-shadow .15s ease; }
+  .plate-card:hover { border-color:var(--gold); }
+  .plate-card.active { border-color:var(--rust); box-shadow:0 0 0 2px rgba(184,83,46,.14); }
+  .plate-head { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:9px; }
+  .plate-name { font-weight:700; color:var(--rust-deep); font-size:15px; }
+  .plate-badge { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#fff;
+    background:var(--rust); border-radius:999px; padding:3px 9px; white-space:nowrap; }
+  .plate-badge.inactive { visibility:hidden; }
+  .plate-card .tags { margin-bottom:2px; }
+  .plate-card .tag { background:#fff; }
+
+  .extras { margin-top:8px; padding:26px 28px; background:var(--paper-2); border:1px solid var(--line); border-radius:14px; }
+  .extras h3 { font-family:var(--f-display); font-weight:600; font-size:20px; color:var(--rust-deep); margin:0 0 6px; }
+  .extras p.note { margin:0 0 12px; color:var(--muted); font-size:14.5px; }
+
+  .nutri-col { position:sticky; top:84px; }
+  .nutri-card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 22px 18px; box-shadow:var(--shadow); }
+  .nutri-head { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .nutri-head h3 { font-family:var(--f-display); font-weight:600; font-size:21px; color:var(--rust-deep); margin:0; }
+  .sample-badge { font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--rust-deep);
+    background:#f3e0c8; border:1px dashed var(--gold); border-radius:999px; padding:3px 9px; white-space:nowrap; }
+  .nutri-sub { margin:0 0 16px; font-size:12.5px; color:var(--muted); line-height:1.5; }
+  .nutri-cal { display:flex; align-items:baseline; gap:8px; margin-bottom:14px; }
+  .nutri-cal-num { font-family:var(--f-display); font-weight:600; font-size:34px; color:var(--rust-deep); letter-spacing:-.01em; }
+  .nutri-cal-unit { font-size:13px; color:var(--muted); font-weight:600; }
+  .nutri-divider { height:1px; background:var(--line); margin:14px 0; }
+  .nutri-section-label { font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 6px; }
+  .nutri-row { padding:8px 0; border-bottom:1px solid var(--line); }
+  .nutri-row:last-of-type { border-bottom:none; }
+  .nutri-row-top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .nutri-name { font-size:13.5px; font-weight:600; color:var(--ink); }
+  .nutri-amt { font-size:13.5px; color:#5a4736; font-weight:600; white-space:nowrap; }
+  .nutri-bar { margin-top:6px; height:5px; border-radius:999px; background:var(--paper-2); overflow:hidden; }
+  .nutri-bar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--rust)); transition:width .2s ease; }
+  .nutri-dv { display:inline-block; margin-top:4px; font-size:11px; font-weight:700; color:var(--rust); }
+  .nutri-footnote { margin:12px 0 0; font-size:11px; color:var(--muted); line-height:1.5; }
+
+  .footer { background:var(--rust-deep); color:#f6e6d6; padding:52px 0 40px; margin-top:12px; }
+  .footer .wrap { max-width:1180px; display:flex; flex-wrap:wrap; gap:22px; align-items:center; justify-content:space-between; }
+  .footer .brand { color:#fff; }
+  .footer .brand .seed { background:linear-gradient(135deg,#f3caa0,var(--gold)); }
+  .footer-nav { display:flex; gap:8px; flex-wrap:wrap; }
+  .footer-nav a { text-decoration:none; color:#fff; font-weight:600; font-size:14.5px; padding:9px 15px;
+    border:1px solid rgba(255,255,255,.28); border-radius:999px; transition:background .18s ease; white-space:nowrap; }
+  .footer-nav a:hover { background:rgba(255,255,255,.12); }
+  .footer-note { width:100%; margin:8px 0 0; color:#e0bd9c; font-size:13px; max-width:70ch; }
+
+  :focus-visible { outline:2.5px solid var(--gold); outline-offset:2px; border-radius:6px; }
+
+  @media (max-width:900px) {
+    .wrap.layout { grid-template-columns:1fr; gap:32px; }
+    .nutri-col { position:static; }
+    .hero { padding:48px 0 30px; }
+    .tl-item { grid-template-columns:42px 1fr; column-gap:16px; }
+    .tl-marker { width:42px; height:42px; }
+    .tl-icon { width:20px; height:20px; }
+    .tl-item::before { left:20px; top:44px; }
+    .tl-time { font-size:22px; }
+    .nav-link { padding:7px 10px; font-size:13.5px; }
+    .brand { font-size:18px; }
+    .plate-grid { grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="seed" aria-hidden="true"></span>The Daily Plate</a>
+      <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="superfoods.html" class="nav-link">Superfoods</a>
+      <a href="food-country.html" class="nav-link">All cuisine</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>The <em>Power</em> Diet</h1>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="wrap layout">
+      <div class="main-col">
+        <ol class="timeline">
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Morning</h2>
+          <div class="subgroup" data-key="wakeup">
+            <span class="subgroup-label">Wake-up drink</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C8.5 8 6.5 12 6.5 15.5A5.5 5.5 0 0 0 12 21a5.5 5.5 0 0 0 5.5-5.5C17.5 12 15.5 8 12 3Z"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Breakfast</h2>
+          <div class="subgroup" data-key="protein">
+            <span class="subgroup-label">Protein</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="dairy">
+            <span class="subgroup-label">Dairy</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="seedbowl">
+            <span class="subgroup-label">Seed &amp; grain bowl</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4-1 7-5 7-9.5A7 7 0 0 0 12 4a7 7 0 0 0-7 7.5C5 16 8 20 12 21Z"/><path d="M12 21V9"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Pre-lunch</h2>
+          <div class="subgroup" data-key="seeds">
+            <span class="subgroup-label">Seeds</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="mixednuts">
+            <span class="subgroup-label">Mixed nuts</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="nutscheese">
+            <span class="subgroup-label">Nuts &amp; cheese</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="vitamins">
+            <span class="subgroup-label">Vitamins</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.5-5 9-5 9 5 9 5-3.5 5-9 5-9-5-9-5Z"/><circle cx="16.5" cy="10.5" r=".6" fill="currentColor" stroke="none"/><path d="M3 12c0-1.4.8-2.2.8-2.2M3 12c0 1.4.8 2.2.8 2.2"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Lunch</h2>
+          <div class="subgroup bundle" data-key="lunch">
+            <span class="subgroup-label">Choose one</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="14" r="5"/><circle cx="15.5" cy="14" r="5"/><path d="M12 5.5C12 4 13 3 14.5 3"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Lunch Dessert</h2>
+          <div class="subgroup" data-key="driedfruit">
+            <span class="subgroup-label">Dried fruit</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="freshfruit">
+            <span class="subgroup-label">Fresh fruit</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h11v6a5.5 5.5 0 0 1-5.5 5.5A5.5 5.5 0 0 1 5 14V8Z"/><path d="M16 9.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 4.5c0 1-1 1-1 2M12 4.5c0 1-1 1-1 2"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Afternoon</h2>
+          <div class="subgroup" data-key="sweettreat">
+            <span class="subgroup-label">Sweet treat</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="ferments">
+            <span class="subgroup-label">Ferments</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-9 5-15 16-15-1 11-7 16-16 15Z"/><path d="M5 19c3-3 7-7 12-13"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Beverage</h2>
+          <div class="subgroup bundle" data-key="hotdrink">
+            <span class="subgroup-label">Hot drink</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="proteinpowder">
+            <span class="subgroup-label">Protein powder</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="powders">
+            <span class="subgroup-label">Superfood powders</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8l-1 12.2a1 1 0 0 1-1 .8h-4a1 1 0 0 1-1-.8L8 8Z"/><path d="M7 8h10M9.2 8V6.2A1.2 1.2 0 0 1 10.4 5h3.2a1.2 1.2 0 0 1 1.2 1.2V8"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Snacks</h2>
+          <div class="subgroup" data-key="snacks">
+            <span class="subgroup-label">Sweet and Salty</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11h17a1 1 0 0 1 1 1.1A8.5 8.5 0 0 1 3.5 12.5 1 1 0 0 1 3.5 11Z"/><path d="M6 11c0-3 2.5-6 6-6"/><path d="M11 6.2c.8-.6 1.9-.9 3-.5"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Dinner</h2>
+          <div class="subgroup" data-key="dinnerprotein">
+            <span class="subgroup-label">Protein</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="vegetables">
+            <span class="subgroup-label">Vegetables</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="legumes">
+            <span class="subgroup-label">Legumes</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="grains">
+            <span class="subgroup-label">Ancient grains</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+          <div class="subgroup" data-key="grainsbread">
+            <span class="subgroup-label">Grains &amp; bread</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4v3.4c1.3.5 2 1.7 2 3.1v10.5a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9.5c0-1.4.7-2.6 2-3.1V3Z"/><path d="M9 12.5h6"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Toppings</h2>
+          <div class="subgroup" data-key="toppings">
+            <span class="subgroup-label">Condiments &amp; extras</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+      <li class="tl-item no-line">
+        <div class="tl-marker"><svg viewBox="0 0 24 24" class="tl-icon" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg></div>
+        <div class="tl-content">
+          <h2 class="tl-time">Night</h2>
+          <div class="subgroup" data-key="winddown">
+            <span class="subgroup-label">Wind-down</span>
+            <div data-slot="body"></div>
+            <div class="stat-row" data-slot="stats"></div>
+          </div>
+        </div>
+      </li>
+        </ol>
+      </div>
+
+      <aside class="nutri-col">
+        <div class="nutri-card">
+          <div class="nutri-head">
+            <h3>Daily Total</h3>
+          </div>
+          <p class="nutri-sub">Check off what you're actually having &mdash; the total updates live to reflect your day.</p>
+          <div class="nutri-cal">
+            <span class="nutri-cal-num" id="total-cals">0</span>
+            <span class="nutri-cal-unit">kcal / day</span>
+          </div>
+          <div class="nutri-divider"></div>
+          <p class="nutri-section-label">Macros</p>
+          <div id="macro-rows"></div>
+          <div class="nutri-divider"></div>
+          <p class="nutri-section-label">Vitamins &amp; minerals</p>
+          <div id="micro-rows"></div>
+          <div class="nutri-divider"></div>
+          <p class="nutri-footnote">*% based on daily targets for an adult male (age 31&ndash;50): e.g. iron 8mg, fiber 38g, calcium 1000mg, potassium 3400mg. Sodium shown against the 2300mg limit. General references, not medical advice.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="seed" aria-hidden="true"></span>The Daily Plate</a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="superfoods.html">Superfoods</a>
+        <a href="food-country.html">All cuisine</a>
+      </nav>
+      <p class="footer-note">A personal eating rhythm, not medical advice. Adjust timing, portions, and ingredients to what works for you.</p>
+    </div>
+  </footer>
+
+<script>
+(function(){
+  var DATA = {"wakeup": {"key": "wakeup", "label": "Wake-up drink", "mode": "fixed", "items": [{"name": "hot water + lemon + ginger", "cals": 4, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 2, "vitC": 4}], "options": null, "optionLabels": null, "excluded": false, "stats": ["vitC"]}, "protein": {"key": "protein", "label": "Protein", "mode": "multiselect", "items": [{"name": "chicken", "cals": 140, "protein": 26, "carbs": 0, "fat": 3, "fiber": 0, "sugar": 0, "sodium": 60, "on": false, "iron": 0.4, "b12": 0.3, "zinc": 0.8}, {"name": "ground meat", "cals": 215, "protein": 21, "carbs": 0, "fat": 14, "fiber": 0, "sugar": 0, "sodium": 65, "on": false, "iron": 2, "b12": 2.1, "zinc": 4.6}, {"name": "sausage", "cals": 265, "protein": 12, "carbs": 0, "fat": 23, "fiber": 0, "sugar": 0, "sodium": 560, "on": false, "iron": 1, "zinc": 1.6}, {"name": "beef", "cals": 215, "protein": 25, "carbs": 0, "fat": 12, "fiber": 0, "sugar": 0, "sodium": 55, "on": false, "iron": 2.2, "b12": 2.1, "zinc": 4.5}, {"name": "ham", "cals": 125, "protein": 18, "carbs": 0, "fat": 5, "fiber": 0, "sugar": 0, "sodium": 1100, "on": false, "iron": 0.8, "zinc": 1.9}, {"name": "seafood", "cals": 95, "protein": 20, "carbs": 0, "fat": 1.5, "fiber": 0, "sugar": 0, "sodium": 250, "on": false, "iron": 0.4, "omega3": 0.3, "vitD": 1.5}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "sodium"]}, "dairy": {"key": "dairy", "label": "Dairy", "mode": "fixed", "items": [{"name": "skyr", "cals": 63, "protein": 11, "carbs": 4, "fat": 0.2, "fiber": 0, "sugar": 3.5, "sodium": 45, "calcium": 110}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "calcium"]}, "seedbowl": {"key": "seedbowl", "label": "Seed & grain bowl", "mode": "fixed", "items": [{"name": "hemp + chia + flax + chex + coconut milk", "cals": 646, "protein": 25.9, "carbs": 41.3, "fat": 45.7, "fiber": 23.2, "sugar": 0, "sodium": 230, "magnesium": 536, "omega3": 17.9, "calcium": 767, "iron": 13.3, "zinc": 8.1}], "options": null, "optionLabels": null, "excluded": false, "stats": ["fiber", "sodium"]}, "seeds": {"key": "seeds", "label": "Seeds", "mode": "fixed", "items": [{"name": "sunflower", "cals": 53, "protein": 1.9, "carbs": 1.8, "fat": 4.6, "fiber": 0.8, "sugar": 0, "sodium": 1, "magnesium": 29, "zinc": 0.5}, {"name": "pumpkin", "cals": 50, "protein": 2.7, "carbs": 1, "fat": 4.4, "fiber": 0.5, "sugar": 0, "sodium": 1, "magnesium": 53, "zinc": 0.7}], "options": null, "optionLabels": null, "excluded": false, "stats": ["magnesium", "fiber"]}, "mixednuts": {"key": "mixednuts", "label": "Mixed nuts", "mode": "fixed", "items": [{"name": "walnut", "cals": 39, "protein": 0.9, "carbs": 0.8, "fat": 3.9, "fiber": 0.4, "sugar": 0, "sodium": 0, "magnesium": 9, "omega3": 0.5}, {"name": "pine", "cals": 7, "protein": 0.1, "carbs": 0, "fat": 0.7, "fiber": 0, "sugar": 0, "sodium": 0, "magnesium": 3}, {"name": "brazil", "cals": 33, "protein": 0.7, "carbs": 0.6, "fat": 3.4, "fiber": 0.4, "sugar": 0, "sodium": 0, "magnesium": 19}, {"name": "pecans", "cals": 41, "protein": 0.5, "carbs": 0.8, "fat": 4.3, "fiber": 0.6, "sugar": 0, "sodium": 0, "magnesium": 7}, {"name": "macadamia", "cals": 54, "protein": 0.6, "carbs": 1.1, "fat": 5.7, "fiber": 0.6, "sugar": 0, "sodium": 0, "magnesium": 10}, {"name": "cashew", "cals": 28, "protein": 0.9, "carbs": 1.5, "fat": 2.2, "fiber": 0.2, "sugar": 0, "sodium": 1, "magnesium": 15}, {"name": "pistachio", "cals": 17, "protein": 0.6, "carbs": 0.8, "fat": 1.4, "fiber": 0.3, "sugar": 0, "sodium": 0, "potassium": 31}], "options": null, "optionLabels": null, "excluded": false, "stats": ["fat", "magnesium"]}, "nutscheese": {"key": "nutscheese", "label": "Nuts & cheese", "mode": "fixed", "items": [{"name": "almond + peanut + cheddar", "cals": 168, "protein": 8.3, "carbs": 4.1, "fat": 14.1, "fiber": 1.7, "sugar": 0, "sodium": 155, "calcium": 119, "magnesium": 42}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "sodium"]}, "vitamins": {"key": "vitamins", "label": "Vitamins", "mode": "multiselect", "items": [{"name": "Vit C", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": false, "vitC": 1000}, {"name": "L-Citrulline", "cals": 2, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": true}, {"name": "Korean Red Ginseng", "cals": 4, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": true}, {"name": "Creatine", "cals": 0, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["vitC"]}, "lunch": {"key": "lunch", "label": "Choose one", "mode": "bundle", "items": [], "options": [[{"name": "sardines + lemon", "cals": 189, "protein": 22.5, "carbs": 0, "fat": 9.9, "fiber": 0, "sugar": 0, "sodium": 455, "calcium": 344, "iron": 2.6, "b12": 8, "vitD": 4.3, "omega3": 1.35, "vitC": 3}, {"name": "water", "cals": 0, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0}, {"name": "greek yogurt", "cals": 49, "protein": 4.5, "carbs": 1.8, "fat": 2.5, "fiber": 0, "sugar": 1.8, "sodium": 18, "calcium": 50}, {"name": "D3 + K2", "cals": 2, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "vitD": 50, "vitK": 120}], [{"name": "egg + avocado + turmeric + cayenne + black pepper + D3 + K2", "cals": 252, "protein": 14.4, "carbs": 6.8, "fat": 20.2, "fiber": 4.8, "sugar": 0, "sodium": 147, "potassium": 468, "vitD": 52, "vitK": 120, "b12": 1.1, "iron": 1.8, "calcium": 56}, {"name": "fish oil", "cals": 18, "protein": 0, "carbs": 0, "fat": 2, "fiber": 0, "sugar": 0, "sodium": 0, "omega3": 0.6}], []], "optionLabels": ["Fish plate", "Egg plate", "Neither"], "excluded": false, "stats": ["protein", "sodium"]}, "driedfruit": {"key": "driedfruit", "label": "Dried fruit", "mode": "fixed", "items": [{"name": "goji", "cals": 21, "protein": 0, "carbs": 4.6, "fat": 0, "fiber": 0.8, "sugar": 2.8, "sodium": 18, "iron": 0.4, "potassium": 68, "vitC": 2.9}, {"name": "mulberries", "cals": 13, "protein": 0, "carbs": 2.8, "fat": 0, "fiber": 0.6, "sugar": 1.9, "sodium": 0, "iron": 0.1, "potassium": 40}, {"name": "prune", "cals": 24, "protein": 0, "carbs": 6.4, "fat": 0, "fiber": 0.7, "sugar": 3.8, "sodium": 0, "potassium": 73}, {"name": "fig", "cals": 20, "protein": 0, "carbs": 5.1, "fat": 0, "fiber": 0.8, "sugar": 3.8, "sodium": 1, "calcium": 13, "potassium": 54}, {"name": "dates", "cals": 68, "protein": 0, "carbs": 18, "fat": 0, "fiber": 1.9, "sugar": 15, "sodium": 0, "potassium": 157}], "options": null, "optionLabels": null, "excluded": false, "stats": ["fiber", "sugar"]}, "freshfruit": {"key": "freshfruit", "label": "Fresh fruit", "mode": "multiselect", "items": [{"name": "banana", "cals": 105, "protein": 0, "carbs": 27, "fat": 0, "fiber": 3.1, "sugar": 14, "sodium": 1, "on": true, "potassium": 422, "vitC": 10}, {"name": "strawberry", "cals": 12, "protein": 0, "carbs": 2.8, "fat": 0, "fiber": 0.7, "sugar": 1.8, "sodium": 0, "on": true, "vitC": 21, "potassium": 55}, {"name": "grapes", "cals": 35, "protein": 0, "carbs": 9, "fat": 0, "fiber": 0.5, "sugar": 7.5, "sodium": 1, "on": true, "potassium": 96, "vitC": 1.6}, {"name": "blueberry", "cals": 13, "protein": 0, "carbs": 3.1, "fat": 0, "fiber": 0.5, "sugar": 2.2, "sodium": 0, "on": false, "vitC": 2.1, "potassium": 17}, {"name": "raspberry", "cals": 8, "protein": 0, "carbs": 1.9, "fat": 0, "fiber": 1, "sugar": 0.7, "sodium": 0, "on": false, "vitC": 4.2, "potassium": 24}, {"name": "blackberry", "cals": 5, "protein": 0, "carbs": 1.2, "fat": 0, "fiber": 0.6, "sugar": 0.6, "sodium": 0, "on": false, "vitC": 2.5, "potassium": 19}], "options": null, "optionLabels": null, "excluded": false, "stats": ["vitC", "fiber"]}, "sweettreat": {"key": "sweettreat", "label": "Sweet treat", "mode": "multiselect", "items": [{"name": "greek yogurt + cacao dark chocolate", "cals": 145, "protein": 6.5, "carbs": 7.3, "fat": 9.5, "fiber": 1.7, "sugar": 5.8, "sodium": 25, "on": true, "iron": 1.8, "magnesium": 34, "calcium": 63}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "sugar"]}, "ferments": {"key": "ferments", "label": "Ferments", "mode": "multiselect", "items": [{"name": "kefir", "cals": 16, "protein": 1.3, "carbs": 1.9, "fat": 0.4, "fiber": 0, "sugar": 1.8, "sodium": 16, "on": false, "calcium": 48}, {"name": "sauerkraut", "cals": 13, "protein": 0, "carbs": 3, "fat": 0, "fiber": 2, "sugar": 1.3, "sodium": 300, "on": false, "vitC": 11, "vitK": 9, "potassium": 119}, {"name": "kimchi", "cals": 2, "protein": 0, "carbs": 0.4, "fat": 0, "fiber": 0.2, "sugar": 0, "sodium": 75, "on": false, "vitC": 3, "vitK": 7}, {"name": "kombucha", "cals": 8, "protein": 0, "carbs": 2.1, "fat": 0, "fiber": 0, "sugar": 1.8, "sodium": 6, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["sodium", "calcium"]}, "hotdrink": {"key": "hotdrink", "label": "Hot drink", "mode": "bundle", "items": [], "options": [[{"name": "yerba mate + ginger + lemon", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 3, "vitC": 5, "potassium": 15}, {"name": "water", "cals": 0, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0}], [{"name": "cappuccino", "cals": 80, "protein": 4, "carbs": 6, "fat": 4.5, "fiber": 0, "sugar": 0, "sodium": 55, "calcium": 140}], []], "optionLabels": ["Tea", "Cappuccino", "Neither"], "excluded": false, "stats": ["vitC", "potassium"]}, "proteinpowder": {"key": "proteinpowder", "label": "Protein powder", "mode": "multiselect", "items": [{"name": "whey", "cals": 56, "protein": 11, "carbs": 1.4, "fat": 0.5, "fiber": 0, "sugar": 0, "sodium": 25, "on": false, "calcium": 47}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "calcium"]}, "powders": {"key": "powders", "label": "Superfood powders", "mode": "multiselect", "items": [{"name": "amla", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false, "vitC": 9}, {"name": "moringa", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 2, "on": false, "iron": 0.4, "calcium": 8, "vitC": 1}, {"name": "ashwagandha", "cals": 4, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false}, {"name": "matcha", "cals": 4, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false, "vitC": 0.6}, {"name": "baobab", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 1.9, "sugar": 0, "sodium": 1, "on": false, "vitC": 13, "potassium": 8}, {"name": "camu camu", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false, "vitC": 40}, {"name": "maca", "cals": 6, "protein": 0, "carbs": 1.2, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false}, {"name": "acai", "cals": 5, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0.6, "sugar": 0, "sodium": 2, "on": false, "vitC": 1}, {"name": "spirulina", "cals": 5, "protein": 1, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 42, "on": false, "iron": 0.5}], "options": null, "optionLabels": null, "excluded": false, "stats": ["vitC", "iron"]}, "snacks": {"key": "snacks", "label": "Sweet and Salty", "mode": "multiselect", "items": [{"name": "flavored peanuts", "cals": 150, "protein": 6, "carbs": 4.3, "fat": 12.5, "fiber": 1.5, "sugar": 0, "sodium": 175, "on": false}, {"name": "candied nuts", "cals": 104, "protein": 1.8, "carbs": 9.6, "fat": 6.4, "fiber": 0, "sugar": 7.6, "sodium": 24, "on": false}, {"name": "crispers", "cals": 141, "protein": 2.4, "carbs": 19.2, "fat": 6, "fiber": 0.9, "sugar": 0, "sodium": 270, "on": false}, {"name": "popcorn", "cals": 62, "protein": 2.1, "carbs": 12.5, "fat": 0.7, "fiber": 2.4, "sugar": 0, "sodium": 88, "on": false}, {"name": "Que Pasa", "cals": 170, "protein": 2.4, "carbs": 21, "fat": 8.8, "fiber": 1.7, "sugar": 0, "sodium": 146, "on": false}, {"name": "cheese slice", "cals": 70, "protein": 4, "carbs": 1, "fat": 5.5, "fiber": 0, "sugar": 0, "sodium": 280, "on": false, "calcium": 150}, {"name": "flavored chickpeas", "cals": 96, "protein": 3.8, "carbs": 11.6, "fat": 3.6, "fiber": 2, "sugar": 0, "sodium": 130, "on": false}, {"name": "hummus", "cals": 25, "protein": 0.8, "carbs": 2.1, "fat": 1.5, "fiber": 0.9, "sugar": 0, "sodium": 57, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["sodium", "fat"]}, "dinnerprotein": {"key": "dinnerprotein", "label": "Protein", "mode": "multiselect", "items": [{"name": "chicken", "cals": 140, "protein": 26, "carbs": 0, "fat": 3, "fiber": 0, "sugar": 0, "sodium": 60, "on": false, "iron": 0.4, "b12": 0.3, "zinc": 0.8}, {"name": "ground meat", "cals": 215, "protein": 21, "carbs": 0, "fat": 14, "fiber": 0, "sugar": 0, "sodium": 65, "on": false, "iron": 2, "b12": 2.1, "zinc": 4.6}, {"name": "sausage", "cals": 265, "protein": 12, "carbs": 0, "fat": 23, "fiber": 0, "sugar": 0, "sodium": 560, "on": false, "iron": 1, "zinc": 1.6}, {"name": "beef", "cals": 215, "protein": 25, "carbs": 0, "fat": 12, "fiber": 0, "sugar": 0, "sodium": 55, "on": false, "iron": 2.2, "b12": 2.1, "zinc": 4.5}, {"name": "ham", "cals": 125, "protein": 18, "carbs": 0, "fat": 5, "fiber": 0, "sugar": 0, "sodium": 1100, "on": false, "iron": 0.8, "zinc": 1.9}, {"name": "seafood", "cals": 95, "protein": 20, "carbs": 0, "fat": 1.5, "fiber": 0, "sugar": 0, "sodium": 250, "on": false, "iron": 0.4, "omega3": 0.3, "vitD": 1.5}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "sodium"]}, "vegetables": {"key": "vegetables", "label": "Vegetables", "mode": "multiselect", "items": [{"name": "cucumber", "cals": 3, "protein": 0, "carbs": 0.7, "fat": 0, "fiber": 0.1, "sugar": 0, "sodium": 0, "on": true, "potassium": 29, "vitC": 0.6}, {"name": "carrots", "cals": 21, "protein": 0, "carbs": 5, "fat": 0, "fiber": 1.4, "sugar": 0, "sodium": 35, "on": true, "potassium": 160, "vitC": 3, "vitK": 7}, {"name": "kale", "cals": 23, "protein": 1.9, "carbs": 2.9, "fat": 0, "fiber": 2.7, "sugar": 0, "sodium": 36, "on": false, "vitC": 62, "vitK": 261, "calcium": 170, "potassium": 233}, {"name": "collards", "cals": 6, "protein": 0.6, "carbs": 1.1, "fat": 0, "fiber": 0.8, "sugar": 0, "sodium": 3, "on": false, "vitC": 7, "vitK": 87, "calcium": 46}, {"name": "broccoli", "cals": 17, "protein": 1.4, "carbs": 3.3, "fat": 0, "fiber": 1.3, "sugar": 0, "sodium": 17, "on": false, "vitC": 45, "vitK": 51, "potassium": 158}, {"name": "tomato", "cals": 4, "protein": 0, "carbs": 0.8, "fat": 0, "fiber": 0.2, "sugar": 0.5, "sodium": 1, "on": false, "vitC": 3, "potassium": 47}, {"name": "potato", "cals": 158, "protein": 3.4, "carbs": 36, "fat": 0, "fiber": 3.7, "sugar": 0, "sodium": 10, "on": false, "potassium": 716, "vitC": 22}, {"name": "pickle", "cals": 4, "protein": 0, "carbs": 0.8, "fat": 0, "fiber": 0.3, "sugar": 0, "sodium": 280, "on": false, "vitC": 1, "vitK": 13}], "options": null, "optionLabels": null, "excluded": false, "stats": ["fiber", "sodium"]}, "legumes": {"key": "legumes", "label": "Legumes", "mode": "multiselect", "items": [{"name": "lupini", "cals": 36, "protein": 4.8, "carbs": 3, "fat": 0, "fiber": 1.4, "sugar": 0, "sodium": 180, "on": true, "potassium": 74}, {"name": "chickpea", "cals": 25, "protein": 1.3, "carbs": 4.1, "fat": 0, "fiber": 1.1, "sugar": 0, "sodium": 1, "on": false, "iron": 0.4}, {"name": "lentil", "cals": 116, "protein": 9, "carbs": 20, "fat": 0, "fiber": 7.9, "sugar": 0, "sodium": 2, "on": false, "iron": 3.3, "potassium": 369}], "options": null, "optionLabels": null, "excluded": false, "stats": ["protein", "fiber"]}, "grains": {"key": "grains", "label": "Ancient grains", "mode": "multiselect", "items": [{"name": "amaranth", "cals": 92, "protein": 3.4, "carbs": 17, "fat": 0, "fiber": 1.9, "sugar": 0, "sodium": 5, "on": false, "magnesium": 59}, {"name": "teff", "cals": 91, "protein": 3.5, "carbs": 18, "fat": 0, "fiber": 2.5, "sugar": 0, "sodium": 7, "on": false, "magnesium": 45, "iron": 1.5}, {"name": "quinoa", "cals": 108, "protein": 4, "carbs": 19, "fat": 0, "fiber": 2.5, "sugar": 0, "sodium": 6, "on": false, "magnesium": 58}, {"name": "farro", "cals": 153, "protein": 5.4, "carbs": 31, "fat": 0, "fiber": 4.5, "sugar": 0, "sodium": 5, "on": false, "magnesium": 30}, {"name": "spelt", "cals": 114, "protein": 5, "carbs": 23, "fat": 0, "fiber": 3.5, "sugar": 0, "sodium": 5, "on": false, "magnesium": 44}, {"name": "sorghum", "cals": 97, "protein": 3.2, "carbs": 20, "fat": 0, "fiber": 1.6, "sugar": 0, "sodium": 3, "on": false, "magnesium": 27}], "options": null, "optionLabels": null, "excluded": false, "stats": ["fiber", "magnesium"]}, "grainsbread": {"key": "grainsbread", "label": "Grains & bread", "mode": "multiselect", "items": [{"name": "brown rice", "cals": 112, "protein": 2.3, "carbs": 24, "fat": 0, "fiber": 1.6, "sugar": 0, "sodium": 5, "on": false, "magnesium": 44}, {"name": "english muffin", "cals": 134, "protein": 5, "carbs": 26, "fat": 0, "fiber": 1.5, "sugar": 0, "sodium": 250, "on": false}, {"name": "brown bread", "cals": 75, "protein": 3.6, "carbs": 12, "fat": 0, "fiber": 1.9, "sugar": 0, "sodium": 137, "on": false}, {"name": "rye bread", "cals": 83, "protein": 2.8, "carbs": 15, "fat": 0, "fiber": 1.9, "sugar": 0, "sodium": 134, "on": false}, {"name": "pasta", "cals": 131, "protein": 5, "carbs": 25, "fat": 0, "fiber": 1.8, "sugar": 0, "sodium": 1, "on": false}, {"name": "sourdough bread", "cals": 93, "protein": 3.6, "carbs": 18, "fat": 0, "fiber": 0.8, "sugar": 0, "sodium": 208, "on": false}, {"name": "tortilla", "cals": 100, "protein": 2.7, "carbs": 17, "fat": 2.5, "fiber": 0, "sugar": 0, "sodium": 200, "on": false}, {"name": "couscous", "cals": 101, "protein": 3.4, "carbs": 21, "fat": 0, "fiber": 1.3, "sugar": 0, "sodium": 5, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["carbs", "sodium"]}, "toppings": {"key": "toppings", "label": "Condiments & extras", "mode": "multiselect", "items": [{"name": "ginger", "cals": 10, "protein": 0, "carbs": 2, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false}, {"name": "garlic", "cals": 9, "protein": 0, "carbs": 2, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 1, "on": false}, {"name": "onion", "cals": 16, "protein": 0, "carbs": 4, "fat": 0, "fiber": 0.7, "sugar": 0, "sodium": 2, "on": false}, {"name": "mustard", "cals": 10, "protein": 0, "carbs": 1, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 340, "on": false}, {"name": "bbq sauce", "cals": 58, "protein": 0, "carbs": 14, "fat": 0, "fiber": 0, "sugar": 11, "sodium": 350, "on": false}, {"name": "hot sauce", "cals": 2, "protein": 0, "carbs": 0.5, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 380, "on": false}, {"name": "mayo", "cals": 180, "protein": 0, "carbs": 0, "fat": 20, "fiber": 0, "sugar": 0, "sodium": 210, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["sodium", "fat"]}, "winddown": {"key": "winddown", "label": "Wind-down", "mode": "multiselect", "items": [{"name": "kiwi", "cals": 44, "protein": 0, "carbs": 11, "fat": 0, "fiber": 2.3, "sugar": 8, "sodium": 2, "on": false, "vitC": 64, "potassium": 215}, {"name": "magnesium glycinate", "cals": 0, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": false, "magnesium": 150}, {"name": "glycine", "cals": 0, "protein": 0, "carbs": 0, "fat": 0, "fiber": 0, "sugar": 0, "sodium": 0, "on": false}], "options": null, "optionLabels": null, "excluded": false, "stats": ["vitC", "magnesium"]}};
+  var UNITS = {"cals": "kcal", "protein": "g", "carbs": "g", "fat": "g", "fiber": "g", "sugar": "g", "sodium": "mg", "vitC": "mg", "vitD": "mcg", "vitK": "mcg", "b12": "mcg", "calcium": "mg", "iron": "mg", "magnesium": "mg", "potassium": "mg", "zinc": "mg", "omega3": "g"};
+  var LABELS = {"cals": "Calories", "protein": "Protein", "carbs": "Carbs", "fat": "Fat", "fiber": "Fiber", "sugar": "Sugar", "sodium": "Sodium", "vitC": "Vitamin C", "vitD": "Vitamin D", "vitK": "Vitamin K", "b12": "Vitamin B12", "calcium": "Calcium", "iron": "Iron", "magnesium": "Magnesium", "potassium": "Potassium", "zinc": "Zinc", "omega3": "Omega-3"};
+  var DV = {"protein": 65, "carbs": 275, "fat": 78, "fiber": 38, "sodium": 2300, "vitC": 90, "vitD": 15, "vitK": 120, "b12": 2.4, "calcium": 1000, "iron": 8, "magnesium": 420, "potassium": 3400, "zinc": 11};
+  var MACRO_ORDER = ["protein", "carbs", "fat", "fiber", "sugar", "sodium"];
+  var MICRO_ORDER = ["vitC", "vitD", "vitK", "b12", "calcium", "iron", "magnesium", "potassium", "zinc", "omega3"];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function fmt(key, val) {
+    if (!val) val = 0;
+    var rounded = (Math.round(val * 10) / 10);
+    if (rounded === Math.round(rounded)) rounded = Math.round(rounded);
+    return rounded + (UNITS[key] || '');
+  }
+  function sumItems(items) {
+    var t = {cals:0};
+    items.forEach(function(it) {
+      Object.keys(it).forEach(function(k) {
+        if (k === 'name' || k === 'on') return;
+        t[k] = (t[k] || 0) + (it[k] || 0);
+      });
+    });
+    return t;
+  }
+  function statChipsHtml(totals, statKeys) {
+    var chips = ['<span class="stat-chip">' + fmt('cals', totals.cals) + '</span>'];
+    (statKeys || []).forEach(function(k) {
+      if (totals[k]) chips.push('<span class="stat-chip">' + fmt(k, totals[k]) + ' ' + (LABELS[k] || k).toLowerCase() + '</span>');
+    });
+    return chips.join('<span class="stat-sep">&middot;</span>');
+  }
+
+  function renderSubgroup(key) {
+    var sub = DATA[key];
+    var root = document.querySelector('.subgroup[data-key="' + key + '"], .extras[data-key="' + key + '"]');
+    if (!root) return;
+    var bodyEl = root.querySelector('[data-slot="body"]');
+    var statsEl = root.querySelector('[data-slot="stats"]');
+
+    if (sub.excluded) {
+      bodyEl.innerHTML = '<div class="tags">' + sub.items.map(function(it) {
+        return '<span class="tag excluded">' + esc(it.name) + '</span>';
+      }).join('') + '</div>';
+      return;
+    }
+
+    if (sub.mode === 'multiselect') {
+      bodyEl.innerHTML = '<div class="tags">' + sub.items.map(function(it, i) {
+        return '<button type="button" class="toggle' + (it.on ? ' on' : '') + '" data-key="' + key + '" data-idx="' + i + '">' +
+          '<span class="box"></span>' + esc(it.name) + '</button>';
+      }).join('') + '</div>';
+      var totals = sumItems(sub.items.filter(function(it) { return it.on; }));
+      statsEl.innerHTML = statChipsHtml(totals, sub.stats);
+      return;
+    }
+
+    if (sub.mode === 'bundle') {
+      var cardsHtml = sub.options.map(function(opt, i) {
+        var active = (sub.selected || 0) === i;
+        var totals = sumItems(opt);
+        var tags = opt.length ? opt.map(function(it) { return '<span class="tag">' + esc(it.name) + '</span>'; }).join('')
+          : '<span class="tag" style="opacity:.6;font-style:italic;">Skipped today</span>';
+        return '<div class="plate-card' + (active ? ' active' : '') + '" data-key="' + key + '" data-idx="' + i + '">' +
+          '<div class="plate-head"><span class="plate-name">' + esc(sub.optionLabels[i]) + '</span>' +
+          '<span class="plate-badge' + (active ? '' : ' inactive') + '">Counted</span></div>' +
+          '<div class="tags">' + tags + '</div>' +
+          '<div class="stat-row">' + statChipsHtml(totals, sub.stats) + '</div>' +
+          '</div>';
+      }).join('');
+      bodyEl.innerHTML = '<div class="plate-grid">' + cardsHtml + '</div>';
+      statsEl.innerHTML = '';
+      return;
+    }
+
+    bodyEl.innerHTML = '<div class="tags">' + sub.items.map(function(it) {
+      return '<span class="tag">' + esc(it.name) + '</span>';
+    }).join('') + '</div>';
+    var totals2 = sumItems(sub.items);
+    statsEl.innerHTML = statChipsHtml(totals2, sub.stats);
+  }
+
+  function computeGrandTotal() {
+    var grand = {cals:0};
+    Object.keys(DATA).forEach(function(key) {
+      var sub = DATA[key];
+      if (sub.excluded) return;
+      var activeItems;
+      if (sub.mode === 'multiselect') activeItems = sub.items.filter(function(it) { return it.on; });
+      else if (sub.mode === 'bundle') activeItems = sub.options[sub.selected || 0];
+      else activeItems = sub.items;
+      var totals = sumItems(activeItems);
+      Object.keys(totals).forEach(function(k) { grand[k] = (grand[k] || 0) + totals[k]; });
+    });
+    return grand;
+  }
+
+  function dvBar(key, val) {
+    var dv = DV[key];
+    if (!dv) return '';
+    var pct = Math.round((val / dv) * 100);
+    var fill = Math.min(pct, 100);
+    return '<div class="nutri-bar"><div class="nutri-bar-fill" style="width:' + fill + '%"></div></div>' +
+      '<span class="nutri-dv">' + pct + '% DV</span>';
+  }
+
+  function renderTotals() {
+    var grand = computeGrandTotal();
+    document.getElementById('total-cals').textContent = fmt('cals', grand.cals).replace('kcal','');
+
+    var macroHtml = '';
+    MACRO_ORDER.forEach(function(k) {
+      var val = grand[k] || 0;
+      macroHtml += '<div class="nutri-row"><div class="nutri-row-top"><span class="nutri-name">' +
+        (LABELS[k] || k) + '</span><span class="nutri-amt">' + fmt(k, val) + '</span></div>' +
+        dvBar(k, val) + '</div>';
+    });
+    document.getElementById('macro-rows').innerHTML = macroHtml;
+
+    var microHtml = '';
+    MICRO_ORDER.forEach(function(k) {
+      var val = grand[k] || 0;
+      if (!val) return;
+      microHtml += '<div class="nutri-row"><div class="nutri-row-top"><span class="nutri-name">' +
+        (LABELS[k] || k) + '</span><span class="nutri-amt">' + fmt(k, val) + '</span></div>' +
+        dvBar(k, val) + '</div>';
+    });
+    document.getElementById('micro-rows').innerHTML = microHtml || '<p class="nutri-sub" style="margin:0;">None from current selections.</p>';
+  }
+
+  function renderAll() {
+    Object.keys(DATA).forEach(renderSubgroup);
+    renderTotals();
+  }
+
+  document.addEventListener('click', function(e) {
+    var toggleBtn = e.target.closest('.toggle');
+    if (toggleBtn) {
+      var key = toggleBtn.getAttribute('data-key');
+      var idx = parseInt(toggleBtn.getAttribute('data-idx'), 10);
+      DATA[key].items[idx].on = !DATA[key].items[idx].on;
+      renderSubgroup(key);
+      renderTotals();
+      return;
+    }
+    var plateCard = e.target.closest('.plate-card');
+    if (plateCard) {
+      var key2 = plateCard.getAttribute('data-key');
+      var idx2 = parseInt(plateCard.getAttribute('data-idx'), 10);
+      DATA[key2].selected = idx2;
+      renderSubgroup(key2);
+      renderTotals();
+      return;
+    }
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

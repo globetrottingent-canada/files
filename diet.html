@@ -117,6 +117,22 @@
   .nutri-bar-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,var(--gold),var(--rust)); transition:width .2s ease; }
   .nutri-dv { display:inline-block; margin-top:4px; font-size:11px; font-weight:700; color:var(--rust); }
   .nutri-footnote { margin:12px 0 0; font-size:11px; color:var(--muted); line-height:1.5; }
+  .export-btn { margin-top:16px; width:100%; font-family:var(--f-body); font-size:14.5px; font-weight:600;
+    color:#fff; background:var(--rust); border:1px solid var(--rust-deep); border-radius:10px; padding:11px 14px;
+    cursor:pointer; transition:background .16s ease; }
+  .export-btn:hover { background:var(--rust-deep); }
+  .export-btn:active { transform:translateY(1px); }
+  .export-btn.ai-review { margin-top:9px; background:transparent; color:var(--rust-deep); border:1px solid var(--line); }
+  .export-btn.ai-review:hover { background:#fff8ee; border-color:var(--gold); }
+  .ai-providers { margin-top:10px; }
+  .ai-providers[hidden] { display:none; }
+  .ai-hint { margin:0 0 9px; font-size:11.5px; color:var(--muted); line-height:1.5; }
+  .ai-row { display:flex; gap:8px; }
+  .ai-prov { flex:1; font-family:var(--f-body); font-size:13.5px; font-weight:600; cursor:pointer;
+    color:var(--rust-deep); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:9px 6px;
+    transition:background .14s ease, border-color .14s ease; }
+  .ai-prov:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
+  .ai-status { margin:9px 0 0; font-size:11.5px; color:var(--leaf,#4E7C46); line-height:1.5; min-height:1px; }
   .sugar-split { margin-top:6px; display:flex; flex-direction:column; gap:3px; }
   .sugar-line { font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:6px; }
   .sugar-dot { width:8px; height:8px; border-radius:50%; flex:none; }
@@ -382,6 +398,17 @@
           <div id="micro-rows"></div>
           <div class="nutri-divider"></div>
           <p class="nutri-footnote">*% based on daily targets for an adult male (age 31&ndash;50): e.g. iron 8mg, fiber 38g, calcium 1000mg, potassium 3400mg. Sodium shown against the 2300mg limit. General references, not medical advice.</p>
+          <button type="button" id="export-btn" class="export-btn">Export day as .txt</button>
+          <button type="button" id="ai-review-btn" class="export-btn ai-review">Get an AI review of my day</button>
+          <div id="ai-providers" class="ai-providers" hidden>
+            <p class="ai-hint">Copies your day plus a prompt, then opens the AI in a new tab. If it doesn't auto-fill, just paste (Ctrl/Cmd+V).</p>
+            <div class="ai-row">
+              <button type="button" class="ai-prov" data-prov="chatgpt">ChatGPT</button>
+              <button type="button" class="ai-prov" data-prov="claude">Claude</button>
+              <button type="button" class="ai-prov" data-prov="gemini">Gemini</button>
+            </div>
+            <p class="ai-status" id="ai-status" aria-live="polite"></p>
+          </div>
         </div>
       </aside>
     </div>
@@ -557,12 +584,115 @@
     document.getElementById('micro-rows').innerHTML = microHtml || '<p class="nutri-sub" style="margin:0;">None from current selections.</p>';
   }
 
+  function buildExportText() {
+    var lines = [];
+    // 1. Checked items, in page order
+    Object.keys(DATA).forEach(function(key) {
+      var sub = DATA[key];
+      if (sub.excluded) return;
+      if (sub.mode === 'bundle') {
+        var opt = sub.options[sub.selected || 0];
+        opt.forEach(function(it) { lines.push(it.name); });
+      } else if (sub.mode === 'multiselect') {
+        sub.items.forEach(function(it) { if (it.on) lines.push(it.name); });
+      } else {
+        sub.items.forEach(function(it) { lines.push(it.name); });
+      }
+    });
+
+    // 2. Daily totals
+    var g = computeGrandTotal();
+    function r1(v) { var n = Math.round((v||0)*10)/10; return (n === Math.round(n)) ? Math.round(n) : n; }
+    lines.push('');
+    lines.push('====================');
+    lines.push('DAILY TOTAL');
+    lines.push('====================');
+    lines.push('Calories: ' + Math.round(g.cals || 0) + ' kcal');
+    lines.push('Protein: ' + r1(g.protein) + ' g');
+    lines.push('Carbs: ' + r1(g.carbs) + ' g');
+    lines.push('Fat: ' + r1(g.fat) + ' g');
+    lines.push('  - unsaturated: ' + r1(Math.max(0,(g.fat||0)-(g.satFat||0)-(g.transFat||0))) + ' g');
+    lines.push('  - saturated: ' + r1(g.satFat) + ' g');
+    lines.push('  - trans: ' + r1(g.transFat) + ' g');
+    lines.push('Fiber: ' + r1(g.fiber) + ' g');
+    lines.push('Sugar: ' + r1(g.sugar) + ' g');
+    lines.push('  - natural: ' + r1(Math.max(0,(g.sugar||0)-(g.concSugar||0)-(g.addedSugar||0))) + ' g');
+    lines.push('  - concentrated: ' + r1(g.concSugar) + ' g');
+    lines.push('  - added: ' + r1(g.addedSugar) + ' g');
+    lines.push('Sodium: ' + r1(g.sodium) + ' mg');
+    lines.push('');
+    lines.push('Vitamins & minerals');
+    MICRO_ORDER.forEach(function(k) {
+      var v = g[k] || 0;
+      if (!v) return;
+      lines.push('  ' + (LABELS[k]||k) + ': ' + r1(v) + ' ' + (UNITS[k]||''));
+    });
+    return lines.join('\n');
+  }
+
+  function downloadTxt() {
+    var text = buildExportText();
+    var blob = new Blob([text], {type:'text/plain'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    var d = new Date();
+    var stamp = d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
+    a.href = url;
+    a.download = 'power-diet-' + stamp + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  var AI_PROMPT = "Here's my diet for today. Tell me the strengths and weaknesses - where am I doing well, what am I missing? Do not invent information.";
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-9999px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function copyText(text) {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).catch(function() { fallbackCopy(text); });
+      }
+    } catch (e) {}
+    fallbackCopy(text);
+    return Promise.resolve();
+  }
+
+  function openAiReview(prov) {
+    var text = AI_PROMPT + '\n\n' + buildExportText();
+    copyText(text);
+    var enc = encodeURIComponent(text);
+    var url, name;
+    if (prov === 'chatgpt') { url = 'https://chatgpt.com/?q=' + enc; name = 'ChatGPT'; }
+    else if (prov === 'claude') { url = 'https://claude.ai/new?q=' + enc; name = 'Claude'; }
+    else { url = 'https://gemini.google.com/app'; name = 'Gemini'; }
+    window.open(url, '_blank', 'noopener');
+    var st = document.getElementById('ai-status');
+    if (st) st.textContent = 'Copied your day + prompt. Opening ' + name + ' in a new tab \u2014 paste if it doesn\'t auto-fill.';
+  }
+
   function renderAll() {
     Object.keys(DATA).forEach(renderSubgroup);
     renderTotals();
   }
 
   document.addEventListener('click', function(e) {
+    var exportBtn = e.target.closest('#export-btn');
+    if (exportBtn) { downloadTxt(); return; }
+    var aiReviewBtn = e.target.closest('#ai-review-btn');
+    if (aiReviewBtn) {
+      var panel = document.getElementById('ai-providers');
+      panel.hidden = !panel.hidden;
+      return;
+    }
+    var prov = e.target.closest('.ai-prov');
+    if (prov) { openAiReview(prov.getAttribute('data-prov')); return; }
     var toggleBtn = e.target.closest('.toggle');
     if (toggleBtn) {
       var key = toggleBtn.getAttribute('data-key');

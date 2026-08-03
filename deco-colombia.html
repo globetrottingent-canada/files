@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colombia — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="colombia.html" class="back-link" aria-label="Colombia cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Colombia Cuisine
+      </a>
+    </div>
+    <span class="field-tag">SOUTH AMERICA / COLOMBIAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Colombia</h1>
+      <p class="subhead">A carnival of regions — cumbia and vallenato, towering flower arrangements, Wayuu weaving, and the masked joy of Barranquilla's Battle of Flowers.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            CUMBIA · CARNAVAL · FLORES · VALLENATO · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Colombia">
+          <rect width="240" height="80" fill="#FCD116"/>
+          <rect y="80" width="240" height="40" fill="#003893"/>
+          <rect y="120" width="240" height="40" fill="#CE1126"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Colombia is a country of striking regional variety, and a Colombian party can honestly draw on any of them: the Caribbean coast's Carnaval de Barranquilla, with its masked characters and cumbia rhythm; Medellín's Feria de las Flores, where farmers carry towering flower arrangements on their backs; the coffee-growing Eje Cafetero's paisa culture, all sombreros and leather satchels; and the vallenato accordion tradition of the northern plains. Threaded through all of it is extraordinary craft — Wayuu woven bags, the iconic sombrero vueltiao — and a genuine, contagious love of colour and celebration.</p>
+        <p>The palette draws from the flag (yellow, blue, red) and from flowers in every possible hue, set against natural fibre, straw, and warm wood. Think masks and streamers for Carnaval energy, or flowers and woven textiles for a gentler, craft-forward version — either reads as authentically Colombian.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a Carnaval-style party,</strong> go maximal: masks (a long-nosed Marimonda mask is instantly recognisable), streamers, bright costumes, and a "Battle of Flowers" table centrepiece piled with blooms. Add drums and wind instruments for the cumbia/porro sound, and don't forget a bit of flour or foam for a cheeky nod to Carnaval's messier traditions.</p>
+        <p><strong>For a gentler, craft-forward party,</strong> build the table around towering flower arrangements in the style of Medellín's silleteros, bring in Wayuu-patterned textiles and mochila bags, and hang a sombrero vueltiao or two as decoration. Either way, keep coffee and a proper Colombian brew station close at hand, and leave room for dancing — cumbia, vallenato, and salsa all belong on the playlist.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Pile the table with <strong>flowers</strong> — a nod to Medellín's Feria de las Flores and Barranquilla's Battle of Flowers, Colombia's two great floral traditions.</li>
+        <li>Hang <strong>Marimonda and Garabato masks</strong> — the iconic long-nosed and caped characters of Carnaval de Barranquilla — as wall art or costume pieces.</li>
+        <li>Bring in <strong>Wayuu-woven textiles</strong> — geometric-patterned mochila bags and fabric, genuine indigenous craft from La Guajira.</li>
+        <li>Add a <strong>sombrero vueltiao</strong> — the woven caña flecha hat that's a recognised national symbol — as decoration or headwear.</li>
+        <li>Set up a proper <strong>coffee station</strong> — Colombian coffee is a point of deep national pride.</li>
+        <li>String <strong>streamers and bright bunting</strong> for Carnaval energy, or keep it calmer with woven textiles and flowers for the craft-forward route.</li>
+        <li>Include a bit of <strong>paisa/arriero style</strong> — sombrero aguadeño, leather carriel satchel — for a coffee-region touch.</li>
+        <li>Leave <strong>room to dance</strong> — cumbia, vallenato, and salsa caleña are all essential to the mood.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Flag yellow, blue &amp; red</li>
+        <li><span class="n">06</span> Wayuu geometric brights</li>
+        <li><span class="n">02</span> Carnaval rainbow</li>
+        <li><span class="n">07</span> Coffee brown</li>
+        <li><span class="n">03</span> Flower-market brights (all hues)</li>
+        <li><span class="n">08</span> Straw &amp; caña flecha tan</li>
+        <li><span class="n">04</span> Tropical green</li>
+        <li><span class="n">09</span> Emerald green</li>
+        <li><span class="n">05</span> Orchid pink &amp; purple</li>
+        <li><span class="n">10</span> Leather brown</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>Carnaval de Barranquilla</strong> is a UNESCO Intangible Cultural Heritage event blending European, African, and Indigenous traditions in one festival — its dances alone include the Spanish paloteo, the African congo, and the Indigenous mico y micas.</li>
+        <li>Carnaval's <strong>Battle of Flowers</strong> parade is presided over by the Carnival Queen, and the festivities close on Tuesday with the poetic, symbolic burial of "Joselito Carnaval," mourning the end of the celebration.</li>
+        <li>At <strong>Feria de las Flores</strong>, silleteros — flower farmers — carry towering, elaborate arrangements on wooden saddles strapped to their backs, walking through Medellín's streets in a tradition that's become the city's proudest symbol.</li>
+        <li><strong>Wayuu mochila bags</strong>, hand-woven by artisans of La Guajira, carry deep cultural meaning in their geometric patterns — each design can represent nature, memory, or personal identity, passed down through generations of weavers.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of an authentic Colombian celebration.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Carnaval Energy</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Marimonda Mask</span><span class="dish-tag">long-nosed Carnaval icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The long-nosed, big-eared mask worn by one of Barranquilla Carnaval's most beloved characters — instantly recognisable and full of playful energy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Garabato Staff</span><span class="dish-tag">life-and-death symbol</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The decorated cape and staff of the Garabato dancer, symbolising the struggle between life and death — a striking, meaningful Carnaval prop.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Streamers &amp; Confetti</span><span class="dish-tag">carnaval brights</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bright paper streamers and confetti in rainbow colour — simple, cheerful, and true to Carnaval's maximalist spirit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Battle of Flowers Centrepiece</span><span class="dish-tag">floral abundance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A generous, colourful flower arrangement as centrepiece — a nod to Carnaval's most important event, La Batalla de Flores.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Craft &amp; Countryside</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Silleta Flower Display</span><span class="dish-tag">Feria de las Flores style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A towering flower arrangement inspired by the silleteros of Medellín — a beautiful, genuinely Colombian centrepiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wayuu Mochila</span><span class="dish-tag">woven bags &amp; fabric</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Geometric-patterned handwoven bags and textiles from La Guajira's Wayuu artisans — genuine indigenous craft, rich with meaning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sombrero Vueltiao</span><span class="dish-tag">national symbol</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The woven caña flecha hat, a recognised national symbol — displayed as decoration or worn as part of the look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coffee Station</span><span class="dish-tag">Eje Cafetero pride</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Colombian coffee, properly brewed — a point of deep national pride and a natural social hub.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cumbiamba Dress</span><span class="dish-tag">wide skirt, adorned blouse</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A wide, colourful skirt and adorned blouse, worn by cumbiamba dancers at Carnaval — festive, traditional, and made for movement.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower Crown</span><span class="dish-tag">Feria de las Flores</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A crown or arrangement of bright flowers — an easy, beautiful nod to the Feria de las Flores tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wayuu Accessories</span><span class="dish-tag">mochila &amp; jewellery</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A Wayuu mochila bag and woven jewellery — genuine, meaningful craft as everyday-wearable accent pieces.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bright Colour</span><span class="dish-tag">easy option</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simply leaning into bold, saturated colour — Carnaval's spirit is more about joy and brightness than any single garment.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Paisa / Arriero Outfit</span><span class="dish-tag">coffee-region dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rolled-up drill trousers, a long-sleeved shirt, sombrero aguadeño, leather carriel satchel, and espadrilles — the symbolic dress of the Eje Cafetero.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sombrero Vueltiao</span><span class="dish-tag">the national hat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Colombia's iconic woven hat — an easy, recognisable, and genuinely national accessory.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Marimonda Costume</span><span class="dish-tag">Carnaval character</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The full long-nosed Marimonda look — bright, playful, and one of Carnaval's most beloved and photographed costumes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen Shirt</span><span class="dish-tag">easy tropical</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, breathable linen shirt in a bright colour — simple, comfortable, and right for the climate and mood.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Coastal &amp; Carnaval</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cumbia</span><span class="dish-tag">the heartbeat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Colombia's most iconic rhythm, blending Indigenous, African, and Spanish roots — the predominant sound of Carnaval de Barranquilla.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vallenato</span><span class="dish-tag">accordion storytelling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Accordion-driven music from the northern plains, built on storytelling lyrics — celebrated at its own Valledupar festival each year.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Porro &amp; Puya</span><span class="dish-tag">Carnaval variants</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Brass-and-drum relatives of cumbia, both central to the Carnaval de Barranquilla soundscape.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mapalé</span><span class="dish-tag">high-energy Afro-Colombian</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fast, athletic Afro-Colombian dance and drum rhythm — one of Carnaval's most electrifying performances.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Andean &amp; Modern</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salsa Caleña</span><span class="dish-tag">Cali's own style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cali's distinctively fast-footwork salsa style — the city proudly calls itself the "Salsa Capital of the World."</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Colombian Pop</span><span class="dish-tag">global hits</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Colombia's massive modern pop and reggaeton scene — an easy, upbeat way to keep a mixed crowd dancing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bambuco</span><span class="dish-tag">Andean folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A graceful Andean folk genre played on guitar and tiple — a softer, more traditional counterpoint to the coastal rhythms.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Champeta</span><span class="dish-tag">Cartagena street sound</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>An Afro-Colombian dance genre from Cartagena's picó sound-system culture — energetic and distinctly regional.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Colombian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Sombrero vueltiao pattern</li>
+        <li><span class="n">06</span> Coffee plant &amp; cherry</li>
+        <li><span class="n">02</span> Marimonda mask</li>
+        <li><span class="n">07</span> Chiva bus (painted folk bus)</li>
+        <li><span class="n">03</span> Silleta flower saddle</li>
+        <li><span class="n">08</span> Emerald</li>
+        <li><span class="n">04</span> Wayuu geometric weave</li>
+        <li><span class="n">09</span> Accordion (vallenato)</li>
+        <li><span class="n">05</span> Andean condor</li>
+        <li><span class="n">10</span> Orchid (national flower)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Cumbia or salsa dance lesson</li>
+              <li>Coffee tasting</li>
+              <li>Mini flower-arranging (silleta style)</li>
+              <li>Try a game of tejo</li>
+              <li>Mask decorating (Marimonda style)</li>
+              <li>Toast — "¡Salud!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Cumbia drums &amp; accordion</li>
+              <li>Fresh coffee aroma</li>
+              <li>Flowers everywhere</li>
+              <li>Bright Carnaval colour</li>
+              <li>Arepas &amp; fresh fruit</li>
+              <li>Leather &amp; woven fibre</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Carnaval de Barranquilla (Feb/Mar)</li>
+              <li>Feria de las Flores (August)</li>
+              <li>Festival Vallenato (April)</li>
+              <li>Feria de Cali (December)</li>
+              <li>Carnaval de Negros y Blancos (Jan)</li>
+              <li>Independence Day (Jul 20)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="colombia.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Colombia Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

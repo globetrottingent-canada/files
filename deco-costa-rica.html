@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costa Rica — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(36px, 6vw, 64px);
+    line-height:1.03;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:40px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="costa-rica.html" class="back-link" aria-label="Costa Rica cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Costa Rica Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CENTRAL AMERICA / TICO</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Costa Rica</h1>
+      <p class="subhead">Pura vida — hand-painted oxcarts, marimba and folk skirts twirling, fresh-brewed coffee, and rainforest green at every turn.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PURA VIDA · CARRETA · MARIMBA · CAFÉ · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Costa Rica">
+          <rect width="240" height="160" fill="#ffffff"/>
+          <rect y="0" width="240" height="32" fill="#002B7F"/>
+          <rect y="32" width="240" height="16" fill="#ffffff"/>
+          <rect y="48" width="240" height="64" fill="#CE1126"/>
+          <rect y="112" width="240" height="16" fill="#ffffff"/>
+          <rect y="128" width="240" height="32" fill="#002B7F"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><em>Pura vida</em> — "pure life" — is more than a saying in Costa Rica; it's a whole outlook of gratitude, ease, and appreciation for the natural world, and it should be the guiding feeling of the party. The country's most beloved craft symbol is the <em>carreta</em>, the hand-painted oxcart of Sarchí, its wheels and body covered in swirling floral mandalas in bright, jewel-like colour — now a UNESCO-recognized art form and a fixture in nearly every Tico household.</p>
+        <p>Layer that with rich Central Valley coffee culture, the rolling marimba music and swirling skirts of Guanacaste's cowboy (sabanero) country, and the sheer biodiversity of the rainforest — toucans, sloths, and impossible greens. The palette runs to carreta brights (red, blue, yellow, green) set against natural wood and tropical foliage, with coffee brown and cloud-forest mist rounding it out.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Make a carreta-style mandala the visual anchor — a real miniature painted oxcart if you can find one, or simply the swirling floral pattern reproduced on a tablecloth, banner, or paper decorations. Set up a proper coffee station (Costa Rica is one of the world's great coffee-growing countries), and bring in lush tropical greenery, orchids, and toucan or sloth imagery for the rainforest note. Keep the wood natural and the colour saturated rather than pastel.</p>
+        <p>For a livelier, folkloric feel, lean into Guanacaste: marimba music, the swirling <em>punto guanacasteco</em> dance, and sabanero cowboy touches — wide-brimmed hats, leather, and horse imagery. A patron-saint-festival (fiesta patronal) atmosphere — string lights, a small carnival-fair feel, and fireworks-adjacent sparkle — rounds out the celebratory side.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Centre the room on a <strong>painted oxcart (carreta)</strong> motif — swirling floral mandalas in bright jewel colour, Costa Rica's most beloved craft symbol.</li>
+        <li>Set up a proper <strong>coffee station</strong> — Costa Rican coffee is world-class, and a "cafecito" corner doubles as décor and hospitality.</li>
+        <li>Bring in <strong>lush tropical greenery</strong> — ferns, orchids, and big leafy plants for the rainforest note.</li>
+        <li>Add <strong>toucan, sloth, and hummingbird</strong> imagery — Costa Rica's biodiversity is a genuine point of national pride.</li>
+        <li>Use <strong>natural wood</strong> throughout — furniture, serving boards, and accents — to ground the bright carreta colour.</li>
+        <li><strong>(Guanacaste/folkloric)</strong> add <strong>sabanero cowboy touches</strong> — wide-brimmed hats, leather, and horse imagery — plus swirling folk skirts for the punto guanacasteco.</li>
+        <li>String <strong>warm lights and bunting</strong> for a fiesta-patronal, small-town-festival feel.</li>
+        <li>Nod to <strong>Chorotega pottery or Boruca masks</strong> for genuine indigenous-heritage craft touches.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Carreta red, blue &amp; yellow</li>
+        <li><span class="n">06</span> Coffee-cherry red</li>
+        <li><span class="n">02</span> Flag blue, white &amp; red</li>
+        <li><span class="n">07</span> Natural wood</li>
+        <li><span class="n">03</span> Rainforest green</li>
+        <li><span class="n">08</span> Toucan orange &amp; black</li>
+        <li><span class="n">04</span> Orchid purple &amp; pink</li>
+        <li><span class="n">09</span> Cloud-forest mist grey</li>
+        <li><span class="n">05</span> Coffee brown</li>
+        <li><span class="n">10</span> Sun-gold yellow</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>painted oxcart tradition</strong> is recognised by UNESCO as Intangible Cultural Heritage — carts once used to haul coffee to market are now covered in intricate, brightly coloured mandalas, a craft centred in the town of Sarchí.</li>
+        <li>Each <strong>boyero (oxcart driver)</strong> traditionally wears a white shirt, wide-brimmed hat, and red bandana — and the oxen themselves are decked in colourful ribbons and bells for parade days.</li>
+        <li>The <strong>marimba</strong> is inseparable from Guanacaste's identity, providing the rhythm for the <em>punto guanacasteco</em>, the country's signature folk dance of swirling skirts and embroidered shirts.</li>
+        <li>The <strong>Danza de los Diablitos</strong> in Boruca is a three-day collective ritual performance, and the <strong>Tope Nacional</strong> horse parade brings richly dressed sabaneros and their mounts through the streets of San José — both genuine, living folk traditions rather than tourist shows.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of an authentic Tico celebration.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Craft &amp; Colour</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Painted Oxcart</span><span class="dish-tag">carreta de Sarchí</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A miniature painted oxcart, or the swirling mandala pattern reproduced elsewhere — Costa Rica's most iconic and beloved folk-art symbol.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chorotega Pottery</span><span class="dish-tag">Guaitil ceramics</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-shaped pottery with intricate indigenous designs from the Guaitil area — an authentic craft tradition centuries deep.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coffee Station</span><span class="dish-tag">café de altura</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Costa Rican coffee, brewed properly (a chorreador cloth-filter setup is a lovely touch) — both décor and genuine national pride.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boruca Masks</span><span class="dish-tag">carved &amp; woven</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Carved wooden masks and woven textiles from the Boruca people, used in the Danza de los Diablitos — powerful, symbolic indigenous art.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Nature &amp; Setting</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Greenery</span><span class="dish-tag">ferns &amp; orchids</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Lush ferns, orchids, and big leafy plants — the rainforest abundance that's central to Costa Rican identity.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Toucan &amp; Sloth Motifs</span><span class="dish-tag">biodiversity pride</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Toucans, sloths, and hummingbirds as prints or small figures — genuine national pride in the country's astonishing wildlife.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Natural Wood</span><span class="dish-tag">the grounding note</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Unfinished or lightly finished wood furniture and serving pieces — a calm base for the bright carreta colour to sit against.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fiesta-Patronal Lights</span><span class="dish-tag">small-town festival</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>String lights and bunting for a warm, community-fair feel — the atmosphere of a Costa Rican patron-saint festival.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Punto Guanacasteco Dress</span><span class="dish-tag">folk dance dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A full, flowing skirt and embroidered blouse in bright colour — the traditional dress for Guanacaste's marimba-driven folk dance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower in the Hair</span><span class="dish-tag">simple accent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bright tropical flower tucked into the hair — an easy, genuine finishing touch.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bright Cotton Dress</span><span class="dish-tag">easy option</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple, colourful cotton dress — comfortable and right at home at any Tico gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Woven Accessories</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Woven straw or textile accessories with a Chorotega-inspired pattern — a small, genuine craft touch.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sabanero Look</span><span class="dish-tag">cowboy style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A wide-brimmed hat, plain shirt, and leather boots — the working sabanero cowboy look of Guanacaste ranching country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boyero Outfit</span><span class="dish-tag">oxcart driver</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A white shirt, wide-brimmed hat, and red bandana — the traditional dress of the oxcart driver, tying directly into the carreta theme.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen Guayabera-Style Shirt</span><span class="dish-tag">easy tropical</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, breathable shirt in a bright or embroidered style — comfortable and appropriate for the climate and mood.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Straw Hat</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple woven straw hat — easy, comfortable, and right for the pura vida mood.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Folk &amp; Traditional</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Marimba</span><span class="dish-tag">Guanacaste's instrument</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The wooden xylophone-like marimba is inseparable from Guanacaste's identity — bright, rolling, and instantly festive.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Punto Guanacasteco</span><span class="dish-tag">national folk dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Costa Rica's signature folk dance — lively, marimba-driven, and performed in colourful traditional dress at festivals nationwide.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Calypso Limonense</span><span class="dish-tag">Afro-Caribbean coast</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A distinct Afro-Caribbean calypso style from Limón, on the Caribbean coast — a genuinely different, equally Costa Rican regional sound.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boruca Ritual Music</span><span class="dish-tag">Danza de los Diablitos</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Drums and conch-shell horns accompanying the Boruca people's three-day theatrical ritual — profound, living indigenous tradition.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Modern &amp; Ambient</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Costa Rican Pop</span><span class="dish-tag">modern radio</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Contemporary Costa Rican pop and Latin hits for an easy, upbeat modern playlist.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rainforest Soundscape</span><span class="dish-tag">ambient nature</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Birdsong, rain, and jungle ambience as a soft background layer — leaning into the pura vida connection with nature.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cumbia &amp; Latin Pop</span><span class="dish-tag">dance floor</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Widely loved across Central America — an easy way to keep a mixed crowd dancing.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Acoustic Guitar</span><span class="dish-tag">easygoing evening</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple, warm acoustic guitar for a relaxed, conversational pura vida evening.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Costa Rican:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Painted oxcart wheel (carreta)</li>
+        <li><span class="n">06</span> Coffee plant &amp; cherry</li>
+        <li><span class="n">02</span> Toucan</li>
+        <li><span class="n">07</span> Marimba keys</li>
+        <li><span class="n">03</span> Sloth</li>
+        <li><span class="n">08</span> Guanacaste tree (national tree)</li>
+        <li><span class="n">04</span> Resplendent quetzal</li>
+        <li><span class="n">09</span> Chorotega pottery pattern</li>
+        <li><span class="n">05</span> Clay-coloured thrush (yigüirro)</li>
+        <li><span class="n">10</span> Boruca mask</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Coffee tasting / chorreador demo</li>
+              <li>Try the punto guanacasteco</li>
+              <li>Paint a mini oxcart wheel</li>
+              <li>Marimba mini-lesson</li>
+              <li>Guaro cocktail hour</li>
+              <li>Toast — "¡Pura vida!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Fresh coffee aroma</li>
+              <li>Marimba playing</li>
+              <li>Tropical flowers &amp; ferns</li>
+              <li>Rainforest birdsong</li>
+              <li>Bright carreta colour</li>
+              <li>Gallo pinto &amp; fresh fruit</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Independence Day (Sep 15)</li>
+              <li>Annexation of Nicoya (Jul 25)</li>
+              <li>Día del Boyero (2nd Sun, Mar)</li>
+              <li>Tope Nacional (Dec 26)</li>
+              <li>Fiestas de Palmares (Jan)</li>
+              <li>Danza de los Diablitos (Dec 30–Jan 2)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="costa-rica.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Costa Rica Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

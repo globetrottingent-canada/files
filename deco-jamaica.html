@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamaica — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="jamaica.html" class="back-link" aria-label="Jamaica cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Jamaica Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CARIBBEAN / JAMAICAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Jamaica</h1>
+      <p class="subhead">One love, easy rhythm — bandana check and bamboo, the bassline of a reggae one-drop, dominoes on the veranda, and jerk smoke on the breeze.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            REGGAE · ONE LOVE · IRIE · JERK · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Jamaica">
+          <rect width="240" height="160" fill="#009B3A"/>
+          <polygon points="0,0 240,160" stroke="#FED100" stroke-width="26"/>
+          <polygon points="240,0 0,160" stroke="#FED100" stroke-width="26"/>
+          <polygon points="120,0 240,80 120,160 0,80" fill="#000000"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Jamaica's spirit is easy, warm, and unhurried — a veranda, a domino game, a plate of jerk, and reggae's unmistakable off-beat rhythm carrying the whole evening along. It's the birthplace of ska, rocksteady, reggae, dancehall, and the deep folk roots of mento and Kumina drumming, plus the island's biggest cultural export: Bob Marley's "one love" philosophy of peace and unity, still felt everywhere.</p>
+        <p>Visually, that means natural materials (bamboo, wood, woven straw), the national colours of green, gold, and black, and the red-and-white check of Jamaican bandana plaid (its own distinct pattern, different from the French Caribbean's madras). Bright hibiscus and greenery, a relaxed island palette, and a laid-back "no problem" pace tie it all together.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">A note on Rastafari</span>
+        <p>Rastafari's influence on Jamaica is immense — its ites-green-gold colours (drawn from the Ethiopian flag) and its philosophy are woven through reggae and island life. But Rastafari is a living religion, not a costume aesthetic. Enjoy the music, colours, and message of unity, and steer clear of turning sacred symbols (like dreadlocks or ceremonial elements) into a novelty costume.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Build a relaxed veranda feel: bamboo furniture or screens, string lights, and a hammock corner if there's room. Dress the table in bandana-plaid (the red-and-white check) runners or cloths, and bring in bright hibiscus and tropical greenery. Set up a jerk station or grill as the centrepiece — the smoky pimento-and-scotch-bonnet aroma is half the atmosphere — alongside a rum bar. Keep a domino table going in one corner; it's a genuine, beloved pastime, not a prop.</p>
+        <p>Sound matters as much as sight: reggae's rolling one-drop bassline should be present all evening, whether live or on a good speaker. For a festive touch, nod to Jonkonnu — the Christmas masquerade of colourful costumed characters and drumming — with bright, patchwork-inspired costume elements and a bit of playful theatre.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Build a <strong>veranda feel</strong> — bamboo furniture or screens, string lights, and natural textures throughout.</li>
+        <li>Dress the table in <strong>bandana plaid</strong> — the red-and-white check that's genuinely Jamaican national dress fabric, distinct from other islands' madras.</li>
+        <li>Set up a <strong>jerk station</strong> — a grill or smoker as the centrepiece; the pimento-and-scotch-bonnet smoke is pure atmosphere.</li>
+        <li>Add a <strong>rum bar</strong> — Jamaican rum, ginger beer, and fresh lime for classic island cocktails.</li>
+        <li>Keep a <strong>domino table</strong> running — a genuine, beloved Jamaican pastime, best played loudly and competitively.</li>
+        <li>Bring in <strong>green, gold, and black</strong> — the national colours — plus bright hibiscus and tropical greenery.</li>
+        <li><strong>(Festive)</strong> nod to <strong>Jonkonnu</strong> — colourful, patchwork-inspired costume touches and drumming for a Christmas or festival theme.</li>
+        <li>Play <strong>reggae throughout</strong> — the rolling one-drop rhythm should be the backbone of the whole evening's mood.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Flag green, gold &amp; black</li>
+        <li><span class="n">06</span> Jerk-smoke charcoal</li>
+        <li><span class="n">02</span> Bandana red &amp; white check</li>
+        <li><span class="n">07</span> Bamboo &amp; natural wood</li>
+        <li><span class="n">03</span> Hibiscus red &amp; pink</li>
+        <li><span class="n">08</span> Doctor-bird green &amp; teal</li>
+        <li><span class="n">04</span> Rasta ites-green-gold (respectfully)</li>
+        <li><span class="n">09</span> Sunset orange</li>
+        <li><span class="n">05</span> Rum amber</li>
+        <li><span class="n">10</span> Turquoise sea</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Jamaica is the birthplace of <strong>ska, rocksteady, reggae, and dancehall</strong> — an extraordinary run of musical innovation from one small island, with mento as the folk root that started it all.</li>
+        <li><strong>Jonkonnu</strong> is a Christmas masquerade dating back to the 1600s — costumed characters like Pitchy-Patchy and Househead parade door to door between Christmas and New Year, blending African and British influences.</li>
+        <li>Jamaica owes much of its African-heritage preservation to the <strong>Maroon communities</strong> — descendants of enslaved Africans who won their freedom and autonomy in the mountains, keeping traditions like Kumina drumming alive.</li>
+        <li>The <strong>doctor bird (swallow-tail hummingbird)</strong> is Jamaica's national bird, found nowhere else in the world, and the <strong>lignum vitae</strong> — one of the hardest woods on Earth — is the national flower and tree.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of an authentic Jamaican evening.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Veranda</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bamboo &amp; String Lights</span><span class="dish-tag">the setting</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bamboo furniture or screens with warm string lights — the relaxed, natural feel of a Jamaican veranda evening.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandana Plaid</span><span class="dish-tag">red &amp; white check</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Jamaica's own red-and-white checked fabric — used for tablecloths, headwraps, and traditional dress, distinct from other islands' madras.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Domino Table</span><span class="dish-tag">the pastime</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A table set for dominoes — a beloved, noisy, competitive Jamaican tradition that draws a crowd on its own.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hibiscus &amp; Greenery</span><span class="dish-tag">tropical colour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bright hibiscus and lush tropical greenery, loose and generous, for genuine island colour.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Food &amp; Fire</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jerk Station</span><span class="dish-tag">the centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A grill or smoker for jerk chicken or pork — the pimento-wood smoke and scotch bonnet aroma are as much atmosphere as food.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rum Bar</span><span class="dish-tag">island cocktails</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Jamaican rum, ginger beer, and lime for classics like rum punch and a Dark 'n' Stormy — the social hub of the gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">National Colours</span><span class="dish-tag">green, gold &amp; black</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flags, bunting, or simple colour accents in Jamaica's own national colours — a proud, straightforward decorating choice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jonkonnu Touches</span><span class="dish-tag">festive masquerade</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bright, patchwork-patterned costume elements for a Christmas or festival theme — a nod to the centuries-old masquerade tradition.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandana Dress</span><span class="dish-tag">national fabric</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dress or wrap in Jamaica's red-and-white bandana check — a genuinely national look, often worn at cultural and folk events.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Headwrap</span><span class="dish-tag">bandana or bright print</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded headwrap in bandana check or bright island print — a simple, elegant traditional accent.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bright Sundress</span><span class="dish-tag">easy island look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A colourful cotton sundress — breezy, simple, and right for a relaxed veranda gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Natural Accessories</span><span class="dish-tag">wood &amp; shell</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Wooden bangles and shell jewellery — simple, natural accents that suit the island's laid-back materials palette.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen Shirt</span><span class="dish-tag">island casual</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, open linen shirt in a bright colour or bandana print — comfortable and effortlessly Jamaican.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandana Accents</span><span class="dish-tag">sash or pocket square</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bandana-check sash or pocket square — a small, genuine nod to national dress without overreach.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">National Colours</span><span class="dish-tag">green, gold &amp; black</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple green, gold, and black clothing or accessories — straightforward national pride, no costume needed.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Straw Hat</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A woven straw hat — relaxed, practical, and at home on any Jamaican veranda.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">The Reggae Family Tree</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Reggae</span><span class="dish-tag">one-drop rhythm</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The unmistakable off-beat "one-drop" groove, carried worldwide by Bob Marley — the definitive Jamaican sound and message of unity.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ska &amp; Rocksteady</span><span class="dish-tag">reggae's roots</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The upbeat, horn-driven ska of the early 1960s and the slower, soulful rocksteady that followed — reggae's direct ancestors.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mento</span><span class="dish-tag">the folk root</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Acoustic folk music blending African and European elements, played on banjo, hand drums, and rhumba box — where it all began.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Dancehall</span><span class="dish-tag">high energy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Reggae's electronic-influenced, high-energy modern evolution — the sound (and dance styles) of a contemporary Jamaican party.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Folk &amp; Drumming</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Kumina</span><span class="dish-tag">Maroon drumming</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Powerful African-rooted drumming and dance kept alive by Maroon communities — a deep, ancestral folk tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nyabinghi</span><span class="dish-tag">sacred drumming</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Rastafari sacred drumming — profound and meaningful within its own religious context; appreciate its influence rather than reenacting it as party entertainment.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Jonkonnu Music</span><span class="dish-tag">masquerade rhythm</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fife, drum, and grater rhythms accompanying the Jonkonnu masquerade — festive, satirical, and centuries old.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bob Marley &amp; The Wailers</span><span class="dish-tag">the essential playlist</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The easiest, most beloved way to set a Jamaican tone for any gathering — warm, uplifting, and universally known.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Jamaican:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Bandana plaid check</li>
+        <li><span class="n">06</span> Domino tiles</li>
+        <li><span class="n">02</span> Doctor bird (national bird)</li>
+        <li><span class="n">07</span> Jerk grill / pimento smoke</li>
+        <li><span class="n">03</span> Lignum vitae flower</li>
+        <li><span class="n">08</span> Ackee (national fruit)</li>
+        <li><span class="n">04</span> Flag gold diagonal cross</li>
+        <li><span class="n">09</span> Bamboo &amp; palm</li>
+        <li><span class="n">05</span> Jonkonnu costume patchwork</li>
+        <li><span class="n">10</span> Rum bottle</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Dominoes tournament</li>
+              <li>Rum tasting</li>
+              <li>Jerk cooking demo</li>
+              <li>Reggae dance basics</li>
+              <li>Storytelling / Anansi tales</li>
+              <li>Toast — "Respect! One love!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Jerk smoke &amp; pimento</li>
+              <li>Reggae bassline</li>
+              <li>Rum &amp; ginger beer</li>
+              <li>Hibiscus &amp; bamboo</li>
+              <li>Dominoes slapping the table</li>
+              <li>Ackee &amp; saltfish, rice &amp; peas</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Jonkonnu (Dec 25–Jan 1)</li>
+              <li>Independence Day (Aug 6)</li>
+              <li>Emancipation Day (Aug 1)</li>
+              <li>Reggae Sumfest (July)</li>
+              <li>Accompong Maroon Festival (Jan 6)</li>
+              <li>Bob Marley's Birthday (Feb 6)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="jamaica.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Jamaica Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

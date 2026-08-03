@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Argentina — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="argentina.html" class="back-link" aria-label="Argentina cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Argentina Cuisine
+      </a>
+    </div>
+    <span class="field-tag">SOUTH AMERICA / ARGENTINE</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Argentina</h1>
+      <p class="subhead">Tango's smoky elegance meets gaucho country warmth — a milonga's low light, mate passed hand to hand, and an asado on the fire.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TANGO · GAUCHO · MATE · ASADO · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Argentina">
+          <rect width="240" height="53.3" fill="#74ACDF"/>
+          <rect y="53.3" width="240" height="53.4" fill="#ffffff"/>
+          <rect y="106.7" width="240" height="53.3" fill="#74ACDF"/>
+          <circle cx="120" cy="80" r="16" fill="#F6B40E"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Argentina holds two moods that couldn't feel more different, yet both are equally, unmistakably Argentine. <strong>Tango</strong> is Buenos Aires at its most romantic and melancholic — smoky milonga dance halls, red and black, bandoneón and candlelight, born in the city's late-1800s arrabales and still danced there today. <strong>Gaucho country</strong> is the wide-open Pampas — leather, wool, wood smoke, and the unhurried rhythm of estancia life, where the asado (the long, slow barbecue) is a whole afternoon's social ritual rather than just a meal.</p>
+        <p>Threading through both is <em>mate</em> — the shared herbal tea passed hand to hand in a circle — genuinely Argentina's most constant daily ritual, practiced in parks, offices, and living rooms alike. Lean into red-and-black tango elegance, warm leather-and-wool gaucho texture, or blend the two; either way, keep the room a little smoky, a little unhurried, and built for conversation and dance in equal measure.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a tango/milonga night,</strong> keep the light low and warm, in reds and golds, and clear a proper dance floor — tango is a partner dance built around close embrace and improvisation. Dress the room in a faded, romantic Buenos Aires elegance: dark wood, vintage café chairs, a bandoneón (or its image) as a centrepiece, and roses on the table.</p>
+        <p><strong>For a gaucho/estancia gathering,</strong> lean rustic and warm: leather, wood, wool ponchos, and — the centrepiece of the whole event — a proper asado grill (parrilla). Set up a mate circle as the social anchor: one gourd, one bombilla straw, passed hand to hand with a cebador (server) pouring for everyone. It's genuinely how Argentines gather, not a novelty prop.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Keep the light <strong>low, warm, and a little smoky</strong> for a milonga feel — reds, golds, and candlelight.</li>
+        <li>Clear a <strong>proper dance floor</strong> — tango needs open space for its close embrace and improvised steps.</li>
+        <li>Add a <strong>bandoneón</strong> (or its image) as a centrepiece — the accordion-like instrument that defines tango's sound.</li>
+        <li>Set up a <strong>mate circle</strong> — gourd, bombilla, and a cebador pouring — genuinely Argentina's most beloved daily ritual.</li>
+        <li>Fire up a <strong>parrilla (asado grill)</strong> as the centrepiece of a gaucho-style gathering — the long, slow, social barbecue.</li>
+        <li>Bring in <strong>leather, wood, and wool</strong> — gaucho ponchos, saddle-leather textures, and rustic wood furniture.</li>
+        <li>Use <strong>red and black</strong> for tango elegance, or <strong>earthy brown and cream</strong> for gaucho warmth.</li>
+        <li>Add <strong>roses</strong> for a romantic tango touch, or <strong>wide-brimmed gaucho hats</strong> for the country register.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Tango red &amp; black</li>
+        <li><span class="n">06</span> Flag sky blue &amp; white</li>
+        <li><span class="n">02</span> Smoky gold candlelight</li>
+        <li><span class="n">07</span> Malbec wine red</li>
+        <li><span class="n">03</span> Leather brown</li>
+        <li><span class="n">08</span> Yerba mate green</li>
+        <li><span class="n">04</span> Pampas wheat &amp; cream</li>
+        <li><span class="n">09</span> Asado-fire amber</li>
+        <li><span class="n">05</span> Gaucho wool grey</li>
+        <li><span class="n">10</span> Dark polished wood</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>Mate has real etiquette.</strong> One person, the cebador, prepares and pours; the gourd is passed around the circle and each person drinks the whole cup before handing it back — you only say "gracias" when you're finished and don't want more.</li>
+        <li><strong>Tango was born in the 1880s</strong> in the working-class arrabales of Buenos Aires and Montevideo, hit its golden age in the 1930s–50s, and is still danced today in dedicated dance halls called <em>milongas</em>.</li>
+        <li><strong>Día de la Tradición</strong> (November 10th) honours José Hernández, author of the gaucho epic poem "Martín Fierro" — celebrated with rodeo events, horsemanship displays, and folk music across the country.</li>
+        <li>Argentine <strong>folklore music</strong> has real regional identity: chamamé from the northeast, zamba and chacarera from the northwest, and milonga from the Pampas — each showcased every January at the beloved Festival de Cosquín.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">Two registers, one country — tango elegance and gaucho warmth.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tango &amp; Milonga</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bandoneón</span><span class="dish-tag">tango's voice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The accordion-like instrument at the heart of tango's sound — a striking, evocative centrepiece even as decoration alone.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Candlelight &amp; Red</span><span class="dish-tag">milonga mood</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Low, warm candlelight and deep red accents — the smoky, romantic atmosphere of a Buenos Aires dance hall.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Vintage Café Chairs</span><span class="dish-tag">Buenos Aires style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Dark wood bistro-style chairs and small round tables — the timeless look of a classic porteño café.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Roses</span><span class="dish-tag">romantic touch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A single rose or small bouquet — a simple, elegant nod to tango's romantic, melancholic spirit.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Gaucho &amp; Estancia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Parrilla (Asado Grill)</span><span class="dish-tag">the centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A proper grill for a long, slow asado — the true heart of Argentine gathering, worth building the whole event around.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mate Circle Set</span><span class="dish-tag">gourd &amp; bombilla</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional mate gourd, metal bombilla straw, and a thermos of hot water — set up properly with a cebador to pour, per real etiquette.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leather &amp; Wool</span><span class="dish-tag">estancia texture</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Leather saddle-style accents and woven wool ponchos or throws — the warm, rustic materials of Pampas ranch life.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wide-Brimmed Hat</span><span class="dish-tag">gaucho icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic gaucho hat, displayed or worn — instantly evocative of the Pampas cowboy tradition.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tango</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tango Dress</span><span class="dish-tag">slit skirt, heels</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fitted dress with a slit for movement, paired with tango heels — elegant, dramatic, and built for the dance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sharp Suit &amp; Fedora</span><span class="dish-tag">tanguero style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A dark, well-cut suit with a fedora — the classic, timeless look of a tango dancer from the golden age.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Deep Red or Black</span><span class="dish-tag">easy option</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simply leaning into rich red or black tones — an easy way to fit the tango mood without a full costume.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Gaucho</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bombachas</span><span class="dish-tag">baggy gaucho trousers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Loose, gathered trousers worn by gauchos for horseback work — comfortable, practical, and instantly recognisable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wide-Brimmed Hat &amp; Boots</span><span class="dish-tag">country style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A wide-brimmed hat and sturdy boots — the working gaucho's look, still worn with pride at rural festivals today.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wool Poncho</span><span class="dish-tag">Pampas warmth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A woven wool poncho — warm, practical, and a genuine symbol of gaucho identity and rural Argentine life.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Tango</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Classic Tango</span><span class="dish-tag">golden age orchestras</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Carlos Gardel and the great 1930s–50s tango orchestras — smoky, dramatic, and the definitive sound of old Buenos Aires.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Astor Piazzolla</span><span class="dish-tag">nuevo tango</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The composer who reinvented tango for the concert hall — moody, modern, and beloved worldwide.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Milonga Playlist</span><span class="dish-tag">for dancing</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A proper tango-for-dancing set, mixing classic orchestras — the exact soundtrack of a real milonga night.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Folklore &amp; Gaucho</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chacarera</span><span class="dish-tag">lively northwest folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fast, earthy folk dance from the northwest — one of the most popular and accessible Argentine folk styles.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zamba</span><span class="dish-tag">graceful, handkerchief dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A romantic, graceful folk dance often performed with a waved handkerchief — a beautiful counterpart to the livelier chacarera.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chamamé</span><span class="dish-tag">northeast accordion</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Accordion-driven folk music from the northeast, with its own distinct regional character and dance style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Malambo</span><span class="dish-tag">gaucho footwork</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A percussive, competitive solo dance historically performed by gauchos — fast, athletic, and full of showmanship.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Argentine:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Bandoneón</li>
+        <li><span class="n">06</span> Wide-brimmed gaucho hat</li>
+        <li><span class="n">02</span> Tango dancer silhouette</li>
+        <li><span class="n">07</span> Sun of May (flag emblem)</li>
+        <li><span class="n">03</span> Mate gourd &amp; bombilla</li>
+        <li><span class="n">08</span> Wine grape (Malbec)</li>
+        <li><span class="n">04</span> Parrilla grill</li>
+        <li><span class="n">09</span> Ceibo flower (national flower)</li>
+        <li><span class="n">05</span> Gaucho facón knife</li>
+        <li><span class="n">10</span> Pampas horse</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Tango lesson</li>
+              <li>Share mate the proper way</li>
+              <li>Asado cooking demo</li>
+              <li>Malbec wine tasting</li>
+              <li>Try a bit of chacarera</li>
+              <li>Toast — "¡Salud!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Bandoneón &amp; violin</li>
+              <li>Asado smoke</li>
+              <li>Yerba mate aroma</li>
+              <li>Malbec wine</li>
+              <li>Leather &amp; wool</li>
+              <li>Candlelight</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Día de la Tradición (Nov 10)</li>
+              <li>Festival de Cosquín (Jan)</li>
+              <li>Buenos Aires Tango Festival (Aug)</li>
+              <li>Fiesta de la Vendimia (wine, Mar)</li>
+              <li>Independence Day (Jul 9)</li>
+              <li>Carnaval de Gualeguaychú (Jan–Feb)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="argentina.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Argentina Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

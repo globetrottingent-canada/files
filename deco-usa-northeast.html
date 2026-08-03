@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA: Northeast — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="usa-northeast.html" class="back-link" aria-label="USA Northeast cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Northeast Cuisine
+      </a>
+    </div>
+    <span class="field-tag">NORTH AMERICA / THE NORTHEAST</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">USA: Northeast</h1>
+      <p class="subhead">Nautical New England blue-and-white, the electric hum of a New York deli counter, and Philadelphia's fierce, proud corner-of-the-city character.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            ATLANTIC · HUDSON · NEW ENGLAND · DELI · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The American Northeast — coastal and city">
+          <defs>
+            <linearGradient id="nsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#BFDDEA"/>
+              <stop offset="1" stop-color="#E8F1F1"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="105" fill="url(#nsky)"/>
+          <rect y="105" width="240" height="55" fill="#1E4E6B"/>
+          <path d="M0,118 q30,-8 60,0 t60,0 t60,0 t60,0" stroke="#5C90A8" stroke-width="3" fill="none" opacity="0.7"/>
+          <polygon points="60,60 60,105 20,105" fill="#ffffff"/>
+          <rect x="16" y="105" width="10" height="30" fill="#B7472A"/>
+          <g fill="#8A6B47">
+            <rect x="150" y="70" width="8" height="34" rx="2"/>
+            <rect x="164" y="55" width="8" height="49" rx="2"/>
+            <rect x="178" y="62" width="8" height="42" rx="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The Northeast is the oldest European-settled corner of America and its greatest immigrant gateway, and its identity splits into three genuinely distinct moods. <strong>New England</strong> is nautical blue-and-white — shingled cottages, sailboats, lobster traps, and crisp coastal restraint, warming into wood-panelled cosiness and apple-cider colour once autumn arrives. <strong>New York City</strong> is the electric, accumulated energy of the immigrant deli and pizza-by-the-slice counter — block-letter neon, subway tile, and a hundred cultures layered into one skyline. <strong>Philadelphia and the Mid-Atlantic</strong> carry their own fierce, specific local pride — rowhouse brick, soft pretzels, and a cheesesteak argument that's lasted decades.</p>
+        <p>Whichever register you lean into, the materials stay honest — weathered wood, subway tile, exposed brick, and navy stripe — and the palette runs from nautical blue and white through deli-neon red and gold to Philly brick red and pretzel-salt brown.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For New England coastal style,</strong> go navy-and-white with nautical touches — rope, anchors, sea glass, and shiplap panelling. Set up a proper clam bake or lobster roll station, and if the season allows, lean into autumn: apple cider, maple, and fall foliage colour for a cosier version of the same coastal restraint.</p>
+        <p><strong>For a New York deli/pizza night,</strong> lean into the "accumulated, not decorated" feel — subway tile, wood panelling, and a block-letter neon sign if you can manage one. Set up a proper deli spread (pastrami, bagels and lox, pickles) or a pizza-by-the-slice station, and don't over-style it; the real thing is unpretentious by design.</p>
+        <p><strong>For Philadelphia/Mid-Atlantic pride,</strong> bring in brick-red tones, a soft pretzel display, and — the inevitable centrepiece — a proper cheesesteak bar, with the classic Whiz-vs-provolone debate as a fun conversation starter.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>New England:</strong> go <strong>navy and white</strong> with nautical touches — rope, anchors, sea glass, and shiplap panelling.</li>
+        <li><strong>New England:</strong> set up a <strong>clam bake or lobster roll station</strong> — the definitive New England summer food.</li>
+        <li><strong>New England (autumn):</strong> bring in <strong>apple cider, maple, and fall-foliage colour</strong> for a cosier seasonal register.</li>
+        <li><strong>New York:</strong> use <strong>subway tile and block-letter signage</strong> — the classic, unpretentious deli or pizzeria look.</li>
+        <li><strong>New York:</strong> set up a <strong>deli spread</strong> — pastrami, bagels and lox, pickles — or a <strong>pizza-by-the-slice station</strong>.</li>
+        <li><strong>Philadelphia:</strong> bring in <strong>brick-red tones</strong> and a proper <strong>cheesesteak bar</strong> as the centrepiece.</li>
+        <li><strong>Philadelphia:</strong> add a <strong>soft pretzel display</strong> — simple, warm, and genuinely local.</li>
+        <li><strong>Any register:</strong> keep materials <strong>honest and weathered</strong> — wood, tile, and brick over anything glossy.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Nautical navy &amp; white</li>
+        <li><span class="n">06</span> Fall foliage red &amp; orange</li>
+        <li><span class="n">02</span> Sea glass green-blue</li>
+        <li><span class="n">07</span> Deli-neon red &amp; gold</li>
+        <li><span class="n">03</span> Sandy beige</li>
+        <li><span class="n">08</span> Subway-tile white</li>
+        <li><span class="n">04</span> Lobster-shell red</li>
+        <li><span class="n">09</span> Philly brick red</li>
+        <li><span class="n">05</span> Weathered shingle grey</li>
+        <li><span class="n">10</span> Pretzel-salt brown</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>New England vs. Manhattan clam chowder</strong> rivalry reflects a genuine cultural divide so deep that a 1939 Maine state bill actually proposed making it illegal to add tomatoes to clam chowder — it never passed.</li>
+        <li>The <strong>New York deli</strong> has a defining look almost by accident — as one design writer put it, "a true New York deli isn't decorated, it's accumulated" — block-letter neon, subway tile, and wood panelling built up over generations rather than styled all at once.</li>
+        <li><strong>New York-style pizza</strong> was created by Gennaro Lombardi in 1905 at America's first pizzeria; pizza makers still genuinely credit New York's soft, low-mineral water as part of what makes the dough special.</li>
+        <li>The <strong>Philly cheesesteak</strong> was invented by a hot dog vendor in 1930, and the rivalry between Pat's King of Steaks and Geno's Steaks — literally across the street from each other — has run for decades with no sign of resolving.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">Three registers, one region — coastal New England, New York energy, and Philly pride.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">New England</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nautical Navy &amp; Rope</span><span class="dish-tag">coastal style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Navy-and-white stripes, rope, anchors, and shiplap panelling — the crisp, timeless look of a New England coastal home.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Clam Bake / Lobster Roll Station</span><span class="dish-tag">summer centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh lobster, clams, and corn — the definitive New England summer spread, simply prepared and generously served.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sea Glass &amp; Shells</span><span class="dish-tag">beachcomber touch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Collected sea glass and shells as small accents — a genuine, low-effort nod to the coastal New England tradition.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Autumn Foliage &amp; Cider</span><span class="dish-tag">fall register</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Apple cider, maple, and fall-coloured leaves — a cosy, seasonal alternative to the crisp summer nautical look.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New York &amp; Philadelphia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Deli Counter Setup</span><span class="dish-tag">pastrami, bagels &amp; lox</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A proper deli spread — pastrami on rye, bagels and lox, pickles — the heart of New York's Jewish deli heritage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Subway Tile &amp; Neon</span><span class="dish-tag">NYC accumulated look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>White subway tile and a block-letter neon sign — the unpretentious, "accumulated not decorated" look of a classic NYC eatery.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cheesesteak Bar</span><span class="dish-tag">Philly pride</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A proper cheesesteak setup — griddled beef, melted cheese, hoagie rolls — the fiercely defended centrepiece of Philadelphia food culture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Brick &amp; Pretzel Display</span><span class="dish-tag">Mid-Atlantic warmth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Exposed brick tones and a warm soft-pretzel display — simple, comforting, and genuinely Philadelphian.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">New England</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nautical Stripes</span><span class="dish-tag">classic New England</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A navy-and-white striped top — the effortless, preppy-coastal uniform of a New England summer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boat Shoes &amp; Chinos</span><span class="dish-tag">easy coastal</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Classic boat shoes and simple chinos — the relaxed, put-together look of the New England coast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flannel &amp; Wool</span><span class="dish-tag">autumn register</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cosy flannel and wool for the fall version of New England style — warm, practical, and timeless.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New York &amp; Philadelphia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">City Casual</span><span class="dish-tag">everyday NYC style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple, comfortable city clothing — New York style prizes practicality and confidence over costume.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Local Team Gear</span><span class="dish-tag">Philly pride</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Philadelphia sports team gear — worn with the same fierce pride as the cheesesteak debate.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">New England</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sea Shanties &amp; Folk</span><span class="dish-tag">maritime heritage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Traditional sea shanties and New England folk music — a nod to the region's deep maritime history.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Boston Rock</span><span class="dish-tag">regional classics</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Classic Boston-area rock bands — an easy, upbeat regional playlist.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New York &amp; Philadelphia</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Classic New York Jazz</span><span class="dish-tag">the city sound</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>New York's storied jazz tradition — sophisticated, atmospheric, and endlessly city-appropriate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Philadelphia Soul</span><span class="dish-tag">"The Sound of Philadelphia"</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The lush, orchestrated soul sound that made Philadelphia a major music capital in the 1970s.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Hip-Hop Roots</span><span class="dish-tag">NYC birthplace</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>New York City's foundational role in hip-hop — an energetic, essential addition to any city-themed playlist.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Northeastern:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Lobster &amp; lobster trap</li>
+        <li><span class="n">06</span> New York pizza slice</li>
+        <li><span class="n">02</span> Lighthouse</li>
+        <li><span class="n">07</span> Bagel</li>
+        <li><span class="n">03</span> Sailboat</li>
+        <li><span class="n">08</span> Liberty Bell (Philadelphia)</li>
+        <li><span class="n">04</span> Maple leaf</li>
+        <li><span class="n">09</span> Rowhouse silhouette</li>
+        <li><span class="n">05</span> Anchor &amp; rope</li>
+        <li><span class="n">10</span> Subway tile pattern</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">New England</p>
+            <ol class="plain">
+              <li>Lobster / clam bake</li>
+              <li>Chowder taste-off (New England vs. Manhattan)</li>
+              <li>Apple cider tasting</li>
+              <li>Toast — "Cheers!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">New York &amp; Philadelphia</p>
+            <ol class="plain">
+              <li>Bagel-and-lox spread</li>
+              <li>Pizza-by-the-slice tasting</li>
+              <li>Cheesesteak (Whiz vs. provolone debate)</li>
+              <li>Toast — "L'chaim!" / "Cheers!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Thanksgiving (New England roots)</li>
+              <li>Fall foliage season (Sept–Oct)</li>
+              <li>St. Patrick's Day (NYC parade)</li>
+              <li>Summer clam bake season</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="usa-northeast.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Northeast Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

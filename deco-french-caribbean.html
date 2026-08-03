@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>French Caribbean — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(34px, 5.6vw, 62px);
+    line-height:1.05;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:36px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="french-caribbean.html" class="back-link" aria-label="French Caribbean cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        French Caribbean Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CARIBBEAN / FRANCO-ANTILLES</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">French Caribbean</h1>
+      <p class="subhead">Créole colour with a French accent — madras and lace, the drum-and-song of bèlè, King Vaval's carnival, and rhum agricole poured for the toast.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            BÈLÈ · VAVAL · MADRAS · ZOUK · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="French Caribbean — Martinique and Guadeloupe">
+          <defs>
+            <linearGradient id="fcsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F6C453"/>
+              <stop offset="1" stop-color="#F4A6A0"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="102" fill="url(#fcsky)"/>
+          <rect y="102" width="240" height="58" fill="#0E7A87"/>
+          <path d="M0,116 q30,-8 60,0 t60,0 t60,0 t60,0" stroke="#59C4CE" stroke-width="3" fill="none" opacity="0.8"/>
+          <g fill="#2B6E36">
+            <rect x="105" y="60" width="30" height="46" fill="#5B3A22"/>
+            <ellipse cx="120" cy="52" rx="42" ry="20"/>
+            <ellipse cx="98" cy="48" rx="26" ry="14"/>
+            <ellipse cx="142" cy="48" rx="26" ry="14"/>
+          </g>
+          <g fill="none" stroke="#C81D3B" stroke-width="4">
+            <path d="M40,120 q10,-14 20,0"/>
+            <path d="M180,128 q10,-14 20,0"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Martinique and Guadeloupe carry the Caribbean's colour and rhythm with a distinctly French thread woven through — Creole patois beside the French language, madras plaid beside French lace, rhum agricole (distilled straight from fresh cane juice, an AOC-protected specialty) beside café culture. The result is warm, musical, and a little bit elegant: think a colonial-era town square dressed for a fête, with drums, bright fabric, and flowers everywhere.</p>
+        <p>The signature sound is the bèlè drum and its answering call-and-response song, the root of biguine and, later, the 1980s global hit zouk. The signature sight is Carnival's King Vaval, paraded and mourned each year, and the flowing madras dress worn at the Fête des Cuisinières and other Creole celebrations. Lean into deep colonial reds and blues, tropical flowers, madras plaid, and rum, and the room reads as genuinely Franco-Antillean.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">A note on Haiti</span>
+        <p>This page focuses on Martinique and Guadeloupe — French overseas territories with a shared, closely related culture. <strong>Haiti</strong>, though also French-Creole-speaking, has been independent since 1804 and has its own distinct history, religion (Vodou), and traditions (Kanaval, compas music) that deserve their own dedicated page rather than being folded in here.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Dress the table in madras plaid runners or a lace-trimmed white cloth, and bring in real tropical flowers — hibiscus, bird of paradise, anthurium — in abundance. Set up a rhum agricole bar (served the traditional way: a bottle, cane syrup, and lime, so guests build their own "ti punch"), and let bèlè or zouk play in the background. Add colonial-blue or deep-red accents, wicker and dark wood furniture, and a few pieces of French-Creole pottery or ironwork for texture.</p>
+        <p>For a bigger production, lean into Carnival: bright costumes, satirical "groupes à pied" energy, and King Vaval as a mock-monarch centrepiece — or the Fête des Cuisinières, with baskets of Creole delicacies, madras-and-lace "cook" outfits, and gwo ka drumming. Either way, keep the room ready to dance; the vidé (carnival street party) spirit is contagious.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lay down <strong>madras plaid</strong> — as a table runner, bunting, or napkins — the defining Franco-Antillean fabric.</li>
+        <li>Set up a <strong>ti punch bar</strong> — rhum agricole, cane syrup, and lime, so guests mix their own the traditional way.</li>
+        <li>Bring in <strong>tropical flowers in abundance</strong> — hibiscus, anthurium, and bird of paradise, loose and generous.</li>
+        <li>Add <strong>colonial colour</strong> — deep blues and reds, wicker furniture, dark wood, and a touch of French ironwork or lace.</li>
+        <li>Bring a <strong>bèlè drum</strong> (or the image of one) as a centrepiece — the heartbeat instrument of Martinican and Guadeloupean music.</li>
+        <li><strong>(Carnival)</strong> add a <strong>King Vaval figure</strong> — a satirical mock-monarch effigy — plus bright costumes and repainted "bradjak" car imagery for a cheeky touch.</li>
+        <li><strong>(Fête des Cuisinières)</strong> fill baskets with <strong>Creole dishes and flowers</strong>, and dress a "cook" figure in madras, lace, and embroidered apron.</li>
+        <li>Leave <strong>room to dance</strong> — the vidé street-party spirit runs through every Franco-Antillean gathering.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Madras plaid brights</li>
+        <li><span class="n">06</span> Rhum-cane amber</li>
+        <li><span class="n">02</span> Colonial blue &amp; French red</li>
+        <li><span class="n">07</span> White lace &amp; embroidery</li>
+        <li><span class="n">03</span> Hibiscus &amp; anthurium red</li>
+        <li><span class="n">08</span> Dark wood &amp; wicker</li>
+        <li><span class="n">04</span> Turquoise sea</li>
+        <li><span class="n">09</span> Wrought-iron black</li>
+        <li><span class="n">05</span> Carnival gold &amp; purple</li>
+        <li><span class="n">10</span> Sugar-cane green</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>bèlè drum</strong> — traditionally built from staves of old rum barrels topped with goatskin — anchors a whole world of song, storytelling, and dance, and gave rise to biguine, which later helped birth zouk in the 1980s.</li>
+        <li><strong>King Vaval</strong>, Martinique's Carnival King, is a satirical effigy whose identity is kept secret until his grand reveal — he's ceremonially mourned and burned on Ash Wednesday to close the festivities.</li>
+        <li>The <strong>Fête des Cuisinières</strong> in Guadeloupe has run for over a century: women cooks parade in madras, lace, and embroidered aprons to have their baskets and utensils blessed at the cathedral, then share a great communal feast.</li>
+        <li><strong>Rhum agricole</strong> is distilled directly from fresh-pressed sugarcane juice rather than molasses, giving it a grassier, more vegetal flavor — Martinique's rhum agricole even carries its own protected AOC designation, like French wine.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of Martinique and Guadeloupe.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Everyday Créole</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Plaid</span><span class="dish-tag">table &amp; textile</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The signature checked fabric, used as runners, bunting, or napkins — instantly recognisable and rooted in real Creole heritage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rhum Agricole Bar</span><span class="dish-tag">ti punch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cane-juice rhum, cane syrup, and lime set out for guests to build their own ti punch — the traditional, participatory way to serve it.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bèlè Drum</span><span class="dish-tag">the heartbeat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A goatskin-topped drum, traditionally built from rum-barrel staves — a striking centrepiece with real musical history behind it.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Colonial Blue &amp; Wicker</span><span class="dish-tag">the room</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Deep colonial blue accents, wicker furniture, dark wood, and wrought-iron detail — a nod to old Creole town architecture.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Carnival &amp; Fête</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">King Vaval</span><span class="dish-tag">carnival mock-monarch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A satirical effigy figure, kept secret until his reveal and mourned at the close of Carnival — a fun, theatrical centrepiece.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carnival Costume Colour</span><span class="dish-tag">bright &amp; satirical</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bold, playful costume colour and mask elements — Martinique's Carnival is famous for cheeky, socially satirical character costumes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cuisinière Baskets</span><span class="dish-tag">Fête des Cuisinières</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Baskets filled with Creole delicacies and flowers, styled after the ones carried and blessed at Guadeloupe's cooks' festival.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Flowers</span><span class="dish-tag">generous colour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hibiscus, anthurium, and bird of paradise, arranged loose and abundant — the vivid colour note that ties the whole room together.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras &amp; Lace Dress</span><span class="dish-tag">Cuisinière style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A madras-plaid dress with lace and embroidery detail, in the style worn at the Fête des Cuisinières — festive, elegant heritage dress.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Headwrap</span><span class="dish-tag">tête-case</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded madras headwrap — a beautiful, meaningful Creole accessory that works with a simple outfit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Creole Gold Jewellery</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Ornate Creole gold — chains, hoops, and traditional forms — a distinctive Franco-Antillean jewellery style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carnival Colour</span><span class="dish-tag">bold &amp; playful</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bright, mismatched colour and a bit of mask or feather detail for a fun Carnival-inspired look.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Shirt</span><span class="dish-tag">or sash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A madras-plaid shirt, or a plain white shirt with a madras sash — a simple, authentic touch of Creole colour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen &amp; Straw Hat</span><span class="dish-tag">easy island look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light linen trousers and a woven straw hat — comfortable and effortlessly Franco-Antillean.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carnival Costume</span><span class="dish-tag">satirical character</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A playful, satirical carnival costume — Martinique's Carnival characters (like the banana-leaf-covered "bear") are colourful and full of local wit.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rum in Hand</span><span class="dish-tag">the prop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A ti punch in hand completes the character — rhum agricole is central to nearly every Franco-Antillean occasion.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Roots</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bèlè</span><span class="dish-tag">drum &amp; call-response</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Drum, song, and dance in a living call-and-response tradition — the deepest root of Martinican music, still celebrated at its own annual festival.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Gwo Ka</span><span class="dish-tag">Guadeloupean drumming</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Guadeloupe's foundational hand-drum tradition — the percussive heartbeat of the Fête des Cuisinières and countless other gatherings.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Biguine</span><span class="dish-tag">Creole ballroom</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Born in 1890s Saint-Pierre from Creolised mazurka and quadrille — elegant, syncopated, and the direct ancestor of zouk.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quadrille &amp; Mazurka</span><span class="dish-tag">European roots, Creolised</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>European ballroom forms reworked with African syncopation — still danced at folkloric events across both islands.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Modern &amp; Carnival</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zouk</span><span class="dish-tag">Kassav' &amp; beyond</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Popularised worldwide by the Guadeloupean-Martinican group Kassav' in the 1980s — smooth, romantic, and instantly recognisable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Biguine Vidé</span><span class="dish-tag">Carnival street beat</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fast, participatory Carnival version of biguine, played on improvised drums — call-and-response energy built for the street parade.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Zouk Béton</span><span class="dish-tag">hard, fast zouk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The harder, faster style of zouk, rooted in Carnival biguine rhythm — high-energy and built for the dance floor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cadence &amp; Soca Crossover</span><span class="dish-tag">regional blend</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Regional Caribbean crossover sounds heard at Carnival — a lively, contemporary complement to the traditional forms.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Franco-Antillean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Madras plaid check</li>
+        <li><span class="n">06</span> Sugar cane stalk</li>
+        <li><span class="n">02</span> Bèlè drum</li>
+        <li><span class="n">07</span> Creole gold jewellery forms</li>
+        <li><span class="n">03</span> King Vaval effigy</li>
+        <li><span class="n">08</span> Hibiscus &amp; anthurium</li>
+        <li><span class="n">04</span> Creole "case" cottage</li>
+        <li><span class="n">09</span> Rhum agricole bottle</li>
+        <li><span class="n">05</span> Wrought-iron balcony</li>
+        <li><span class="n">10</span> Cuisinière apron &amp; basket</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Build your own ti punch</li>
+              <li>Bèlè or gwo ka rhythm circle</li>
+              <li>Learn a bit of quadrille</li>
+              <li>Bless a basket, Cuisinières-style</li>
+              <li>Vidé street-party dancing</li>
+              <li>Toast — "À la vôtre !"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Bèlè drum &amp; gwo ka</li>
+              <li>Rhum agricole &amp; cane syrup</li>
+              <li>Hibiscus &amp; anthurium</li>
+              <li>Madras colour everywhere</li>
+              <li>Creole music (zouk, biguine)</li>
+              <li>Fresh seafood &amp; spice</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Carnival (Feb/Mar, ends Ash Wed.)</li>
+              <li>Fête des Cuisinières (August)</li>
+              <li>Bèlè Festival, Le Robert (June)</li>
+              <li>Biguine Jazz Festival (August)</li>
+              <li>Abolition Day (May 22 &amp; 27)</li>
+              <li>Jounen Kwéyòl (October)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="french-caribbean.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        French Caribbean Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Caribbean — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(34px, 5.6vw, 60px);
+    line-height:1.05;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:36px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="english-caribbean.html" class="back-link" aria-label="English Caribbean cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        English Caribbean Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CARIBBEAN / ANGLO-CARIBBEAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">English Caribbean</h1>
+      <p class="subhead">Island time — chattel-house colour, rum-shop warmth, cricket on the radio, and the beat of Junkanoo horns and a Crop Over tuk band.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            JUNKANOO · CROP OVER · MADRAS · ISLAND · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="English Caribbean islands">
+          <defs>
+            <linearGradient id="ecsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5EC6D9"/>
+              <stop offset="1" stop-color="#9FE3E0"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="102" fill="url(#ecsky)"/>
+          <rect y="102" width="240" height="58" fill="#0F7C8C"/>
+          <path d="M0,116 q30,-8 60,0 t60,0 t60,0 t60,0" stroke="#5AC3CE" stroke-width="3" fill="none" opacity="0.8"/>
+          <g fill="#3B2A20" stroke="#3B2A20" stroke-width="4" stroke-linecap="round">
+            <path d="M96,102 C94,80 90,58 88,42"/>
+          </g>
+          <g fill="#2F8A3C">
+            <path d="M88,42 C72,36 60,38 50,48 C64,46 76,48 88,54 Z"/>
+            <path d="M88,42 C78,26 68,20 54,20 C66,26 76,34 88,48 Z"/>
+            <path d="M88,42 C96,26 108,18 122,20 C110,28 100,36 88,48 Z"/>
+            <path d="M88,42 C104,38 116,42 126,52 C112,48 100,48 88,54 Z"/>
+            <path d="M88,42 C90,28 92,18 96,10 C92,22 90,32 88,48 Z"/>
+          </g>
+          <rect x="16" y="118" width="30" height="24" fill="#E7C878" stroke="#C79A4B" stroke-width="1.5"/>
+          <polygon points="14,118 48,118 31,106" fill="#D8546B"/>
+          <rect x="170" y="122" width="26" height="20" fill="#8EC7D0" stroke="#5AA0AA" stroke-width="1.5"/>
+          <polygon points="168,122 198,122 183,111" fill="#E7C878"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>This is the wider English-speaking Caribbean — the Bahamas, Barbados, Antigua, Grenada, St. Lucia, Dominica, St. Vincent, and their neighbours (Jamaica and Trinidad &amp; Tobago each get their own dedicated page, since they've grown large, distinct traditions of their own). What unites the rest is an island-time warmth: candy-painted wooden chattel houses, fretwork verandas, a rum shop on every corner, cricket as a shared religion, and a fish-fry on a Friday night that turns into the whole evening's party.</p>
+        <p>Colour and craft carry the design language — batik and shell jewellery, woven baskets, madras plaid, and a palette straight off a Caribbean beach: turquoise sea, hot-pink bougainvillea, sunshine yellow, and the deep green of palm. Music and dance sit at the centre of it, from the horn-and-cowbell riot of Junkanoo to a Crop Over tuk band marching down the street.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">Which island?</span>
+        <p>This page covers the broader Anglo-Caribbean — the Bahamas, Barbados, and the Eastern Caribbean islands. Looking for <strong>Jamaica</strong> or <strong>Trinidad &amp; Tobago</strong> specifically? Each has its own dedicated décor page, since reggae/Rastafari and Carnival/steelpan/soca have grown into their own distinct traditions.</p>
+        <p>Within this page, feel free to lean into one island's flavour — Junkanoo for the Bahamas, Crop Over for Barbados, madras and Creole dress for Grenada, St. Lucia, or Dominica — or blend the shared Anglo-Caribbean island-time feel.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Paint the room the way a chattel house is painted — bold, contrasting, candy-bright colour on every trim and shutter, with white fretwork detail if you can manage it. Set a rum bar as the social hub (Barbados is rum's birthplace), scatter woven baskets, batik cloth, and shell jewellery around, and let cricket — a match on in the background, a bat and stumps as props — set the relaxed, communal mood. String bunting or paper lanterns for a festival feel, and don't skimp on tropical flowers.</p>
+        <p>For a bigger production, lean into one island's signature festival: Junkanoo's cowbell-and-horn costume parade for the Bahamas, or a Crop Over "de road" street-party look — glitter, feathers, and a tuk band — for Barbados. For the Eastern Caribbean islands, madras plaid and the flowing Creole "wob dwiyet" dress bring in real heritage and colour.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Paint it like a <strong>chattel house</strong> — bold, contrasting colours with white fretwork trim, a hallmark of Bajan and wider island architecture.</li>
+        <li>Set up a <strong>rum bar</strong> — Barbados is the birthplace of rum, and a rum punch bar is the natural social hub of an island party.</li>
+        <li>Scatter <strong>batik, baskets, and shell jewellery</strong> — handcrafted island textures that read as genuinely Caribbean rather than generic beach party.</li>
+        <li>Bring in <strong>madras plaid</strong> — the colourful checked fabric that's part of national dress across Grenada, St. Lucia, Dominica, Antigua, and beyond — as table runners or bunting.</li>
+        <li>Add a <strong>cricket touch</strong> — a bat and stumps, a match playing quietly, or cricket-whites detail; it's genuinely a way of life across the islands.</li>
+        <li><strong>(Junkanoo)</strong> go for <strong>cowbells, whistles, and crepe-paper fringe costumes</strong> — the Bahamian parade look.</li>
+        <li><strong>(Crop Over)</strong> add <strong>glitter, feathers, and sugar-cane touches</strong> — the harvest-festival-turned-street-party of Barbados.</li>
+        <li>Pile on <strong>tropical flowers and palm</strong> — hibiscus, bougainvillea, and bird of paradise for lush island colour.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Chattel-house candy brights</li>
+        <li><span class="n">06</span> Coral &amp; conch pink</li>
+        <li><span class="n">02</span> Turquoise sea &amp; sky</li>
+        <li><span class="n">07</span> Madras plaid check</li>
+        <li><span class="n">03</span> Bougainvillea pink &amp; fuchsia</li>
+        <li><span class="n">08</span> White fretwork &amp; lace</li>
+        <li><span class="n">04</span> Sunshine yellow</li>
+        <li><span class="n">09</span> Rum amber</li>
+        <li><span class="n">05</span> Palm &amp; sugar-cane green</li>
+        <li><span class="n">10</span> Sand &amp; driftwood neutrals</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>Junkanoo</strong> is the Bahamas' biggest cultural event — an all-night parade of elaborate costumes, cowbells, goatskin drums, and whistles held on Boxing Day and New Year's Day, with roots reaching back to West Africa.</li>
+        <li><strong>Crop Over</strong> began as a Barbadian celebration marking the end of the sugar-cane harvest — now a summer-long festival of calypso, soca, and the traditional drum-and-fife <em>tuk</em> bands, culminating in the "Grand Kadooment" street parade.</li>
+        <li><strong>Rum shop culture is the backbone of Bajan life</strong> — as numerous as churches, and the place where Barbadians gather to talk, argue, and above all follow cricket. Barbados is widely credited as rum's birthplace.</li>
+        <li><strong>Madras plaid headwraps</strong> historically carried real meaning — in the French Creole islands, the number of peaks tied into the fabric signalled a woman's relationship status, a coded language born under conditions where open speech was dangerous.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of the wider Anglo-Caribbean.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Island Foundations</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chattel-House Colour</span><span class="dish-tag">candy brights</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bold, contrasting paint colours with white fretwork trim — the cheerful, portable wooden houses found across Barbados and the wider Eastern Caribbean.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Plaid</span><span class="dish-tag">Creole national dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The colourful checked cotton fabric woven into the national dress of St. Lucia, Dominica, Grenada, and Antigua — beautiful as table runners or bunting.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Batik &amp; Baskets</span><span class="dish-tag">handcraft</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hand-dyed batik cloth and woven baskets — genuine island craft that brings texture without leaning on cliché.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cricket Corner</span><span class="dish-tag">a way of life</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A bat and stumps, or a match quietly playing — cricket is genuinely central to Anglo-Caribbean identity and community life.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Festival Statement Pieces</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Junkanoo Costume</span><span class="dish-tag">crepe-paper fringe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Elaborate costumes built from crepe paper, cardboard, and bright fringe — the Bahamian parade art form, worth recreating even in miniature.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cowbells &amp; Whistles</span><span class="dish-tag">Junkanoo sound props</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cowbells, whistles, and goatskin drums as both décor and instruments — hand them out and the Junkanoo energy builds itself.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Crop Over Glitter</span><span class="dish-tag">Kadooment style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Feathers, glitter, and sequins for the Crop Over "de road" look, plus a nod to sugar cane — the festival's harvest origins.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rum Bar</span><span class="dish-tag">the social hub</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Barbadian and island rums, rum punch, and tropical garnish — the natural centre of gravity for any Anglo-Caribbean gathering.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wob Dwiyet</span><span class="dish-tag">Creole national dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The graceful, full-skirted national dress of Dominica (and the "Jip" of St. Lucia), built from madras plaid with lace trim and a folded headwrap — elegant heritage dress for the Eastern Caribbean islands.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Headwrap</span><span class="dish-tag">tête-case</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A folded madras-plaid headwrap — a beautiful, meaningful accent on its own, without needing the full formal dress.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bright Sundress</span><span class="dish-tag">easy island look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A colourful cotton sundress in tropical print — comfortable, breezy, and right for any Caribbean-island gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Shell &amp; Straw Accessories</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Shell jewellery and a straw hat or bag — simple, genuine island accents.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Madras Sash or Vest</span><span class="dish-tag">Creole men's wear</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A white shirt with a madras-plaid sash or waistcoat — the traditional men's counterpart to the Creole women's dress.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen Shirt</span><span class="dish-tag">island casual</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A light, breezy linen shirt in a bright colour — the easy, universal Caribbean-island look.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cricket Whites</span><span class="dish-tag">for the sporting touch</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Classic cricket whites — a fun, genuinely Anglo-Caribbean costume choice, and a conversation starter in themselves.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Straw Hat</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A woven straw hat — simple, comfortable, and right at home at a rum shop or beach party alike.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Festival Sounds</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Junkanoo Rhythm</span><span class="dish-tag">cowbells &amp; drums</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Goatskin drums, cowbells, horns, and whistles driving the Bahamian parade beat — pure percussive energy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tuk Band</span><span class="dish-tag">Bajan drum &amp; fife</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Barbados's own drum-and-fife folk sound, heard at Crop Over — a distinctive blend of African and British military rhythms.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Soca &amp; Calypso</span><span class="dish-tag">shared across islands</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Danceable soca and storytelling calypso, common to festivals across the wider Anglo-Caribbean, not just Trinidad.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Steel Drum</span><span class="dish-tag">island standard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Steel drum arrangements of familiar songs — a warm, universally loved island sound for a relaxed gathering.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Everyday Island Sound</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Spouge</span><span class="dish-tag">Bajan pop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Barbados's own reggae-influenced pop sound — an easy-going, lesser-known island genre worth discovering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rake-and-Scrape</span><span class="dish-tag">Bahamian folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A homemade sound built on a hand saw played with a screwdriver, plus accordion and drums — genuine Bahamian folk music.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Island Reggae &amp; Dancehall</span><span class="dish-tag">regional crossover</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Reggae and dancehall cross island lines throughout the Anglo-Caribbean — a natural, easy addition to any playlist.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Quadrille</span><span class="dish-tag">Creole dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A European-inherited square dance kept alive across the Eastern Caribbean, often danced in madras and Creole dress.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Anglo-Caribbean:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Chattel house &amp; fretwork</li>
+        <li><span class="n">06</span> Madras plaid check</li>
+        <li><span class="n">02</span> Junkanoo cowbell &amp; drum</li>
+        <li><span class="n">07</span> Cricket bat &amp; stumps</li>
+        <li><span class="n">03</span> Conch shell</li>
+        <li><span class="n">08</span> Rum bottle &amp; sugar cane</li>
+        <li><span class="n">04</span> Flying fish (Barbados)</li>
+        <li><span class="n">09</span> Steel drum</li>
+        <li><span class="n">05</span> Hibiscus &amp; bougainvillea</li>
+        <li><span class="n">10</span> Palm tree &amp; turquoise sea</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Rum punch tasting</li>
+              <li>Cricket in the yard</li>
+              <li>Fish fry (Friday-night style)</li>
+              <li>Try a bit of quadrille</li>
+              <li>Madras headwrap tying</li>
+              <li>Toast — "Wunna good?"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Cowbells &amp; steel drum</li>
+              <li>Grilled fish &amp; rum</li>
+              <li>Hibiscus &amp; bougainvillea</li>
+              <li>Salt air &amp; turquoise sea</li>
+              <li>Fretwork verandas</li>
+              <li>Cricket commentary on the radio</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Junkanoo (Dec 26 &amp; Jan 1)</li>
+              <li>Crop Over (Jul–Aug)</li>
+              <li>Independence days (various)</li>
+              <li>Jounen Kwéyòl / Creole Day (Oct)</li>
+              <li>Regional Carnivals (varies)</li>
+              <li>Fish-fry Fridays (year-round)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="english-caribbean.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        English Caribbean Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

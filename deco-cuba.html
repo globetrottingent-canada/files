@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuba — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="cuba.html" class="back-link" aria-label="Cuba cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Cuba Cuisine
+      </a>
+    </div>
+    <span class="field-tag">CARIBBEAN / CUBAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Cuba</h1>
+      <p class="subhead">Old Havana at golden hour — faded pastel walls, candy-coloured classic cars, string lights and a mojito, and son and salsa spilling into the street.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            SON · SALSA · HABANA · RUMBA · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Cuba">
+          <rect width="240" height="160" fill="#ffffff"/>
+          <rect y="0" width="240" height="32" fill="#002a8f"/>
+          <rect y="64" width="240" height="32" fill="#002a8f"/>
+          <rect y="128" width="240" height="32" fill="#002a8f"/>
+          <polygon points="0,0 0,160 138,80" fill="#cf142b"/>
+          <polygon points="46,67 48.94,75.95 58.36,75.98 50.76,81.55 53.64,90.52 46,85 38.36,90.52 41.24,81.55 33.64,75.98 43.06,75.95" fill="#ffffff"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>A Cuban party is warm, worn, and soaked in music — the golden glow of old Havana. Picture faded pastel colonial walls with a peeling patina, candy-coloured 1950s American cars at the kerb, string lights overhead, a mojito sweating in your hand, and live music never far away. The mood is sultry, unhurried, and romantic, and music and dance sit at the very centre of everything.</p>
+        <p>It's a blend of roots — Spanish melody and African rhythm in the music (son, rumba), Art Deco and Spanish-colonial in the architecture, and lush Caribbean tropics all around. The palette runs to Havana pastels (turquoise, coral, mint, buttercup), the flag's blue-white-red, rum amber and tobacco brown, and plenty of crisp white — a classic Cuban party colour. Scatter in vintage records, cigar boxes, and old travel posters.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">The look, and the living island</span>
+        <p><strong>Golden-age Havana</strong> — the "Havana Nights" image most people reach for: vintage cars, the Buena Vista Social Club, mojitos, cigars, faded pastel glamour. Beloved, romantic, and largely authentic.</p>
+        <p><strong>Living Cuba</strong> — the island is also modern and moving, with timba, reggaeton, and a contemporary scene well beyond the 1950s postcard. Lean here for present-day rather than nostalgic.</p>
+        <p><strong>One note of respect:</strong> Afro-Cuban Santería — the orishas and batá drums — is a living religion, not décor. Enjoy the rumba and folklore, but don't turn sacred objects into props.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>Build old Havana.</strong> Hang warm, dim string lights for that sultry street glow, and lean into faded-colonial pastels — or vintage Cuban travel posters and prints (Wifredo Lam, Amelia Peláez). Bring in tropical palms and bright flowers, make a rum-and-mojito bar the centrepiece, and scatter vintage records and cigar boxes around. Above all, leave a clear floor — dancing is non-negotiable.</p>
+        <p><strong>Put music at the heart.</strong> Set out real percussion — congas, bongós, claves, maracas, and a güiro — for guests to pick up, and keep son and salsa playing (live, if you can manage it). Give one corner to a domino table and another to cigars, and rig a Malecón-seawall or classic-car backdrop for photos. The room should feel like a street party that could break out at any moment.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Hang <strong>warm string lights</strong> — low and golden — for the sultry glow of a Havana street at night.</li>
+        <li>Go <strong>pastel and faded-colonial</strong> — turquoise, coral, mint, and buttercup, ideally with a lived-in, peeling-paint patina.</li>
+        <li>Bring in the <strong>tropics</strong> — palm and banana leaves and bright flowers for a lush backdrop.</li>
+        <li>Add <strong>vintage Havana props</strong> — old records and a record player, cigar boxes, travel posters, and prints by Cuban artists.</li>
+        <li>Nod to the <strong>classic cars</strong> — a candy-coloured 1950s car backdrop, model, or poster, the icon of the island.</li>
+        <li>Build a <strong>rum &amp; mojito bar</strong> — Havana Club, fresh mint and lime — with a cigar corner alongside.</li>
+        <li>Set a <strong>percussion table</strong> — congas, bongós, claves, maracas, and a güiro for guests to play.</li>
+        <li>Leave a <strong>dance floor and a domino table</strong> — the two things a Cuban gathering simply can't do without.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Havana turquoise &amp; mint</li>
+        <li><span class="n">06</span> Crisp white (guayabera)</li>
+        <li><span class="n">02</span> Coral &amp; flamingo pink</li>
+        <li><span class="n">07</span> Palm &amp; mojito green</li>
+        <li><span class="n">03</span> Flag blue, white &amp; red</li>
+        <li><span class="n">08</span> Faded-pastel patina</li>
+        <li><span class="n">04</span> Rum amber &amp; tobacco brown</li>
+        <li><span class="n">09</span> Art Deco black &amp; gold</li>
+        <li><span class="n">05</span> Buttercup &amp; mustard</li>
+        <li><span class="n">10</span> Warm string-light glow</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>Son cubano</strong> — born in the eastern highlands in the late 1800s, blending Spanish melody with African rhythm — is the root of salsa. The Buena Vista Social Club brought its old masters back to the world stage in the 1990s.</li>
+        <li>Afro-Cuban <strong>rumba</strong> is a whole family: the slow yambú, the flirtatious couple-dance guaguancó, and the fast, showy columbia — the body language behind much of Cuban dance.</li>
+        <li><strong>Dominoes</strong> is practically a national sport, played loudly on street corners and at nearly every gathering. A domino table is as Cuban as a mojito.</li>
+        <li><strong>Las Parrandas de Remedios</strong>, held every December since the 18th century, is one of Cuba's oldest festivals — rival neighbourhoods compete with giant illuminated floats and enormous fireworks.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound that build an authentic Havana night.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Old Havana</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">String Lights &amp; Patina</span><span class="dish-tag">the glow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm, dim string lights and a faded, lived-in backdrop — the sultry, golden atmosphere of an old Havana street after dark.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pastel Colonial Colour</span><span class="dish-tag">Havana walls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Turquoise, coral, mint, and buttercup with a peeling-paint patina — the look of Habana Vieja's colonial facades.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tropical Foliage</span><span class="dish-tag">palms &amp; flowers</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Palm and banana leaves and bright tropical flowers to bring the lush, warm Caribbean into the room.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Records &amp; Cigar Boxes</span><span class="dish-tag">vintage props</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vintage vinyl and a record player, old cigar boxes, and Cuban travel posters — the old-timey details that sell the era.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Music &amp; Play</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Percussion</span><span class="dish-tag">congas &amp; bongós</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Congas, bongós, claves, maracas, and a güiro set out for guests to pick up — décor and impromptu band in one.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rum &amp; Mojito Bar</span><span class="dish-tag">the centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Havana Club rum, fresh mint and lime, and plenty of ice for mojitos, daiquiris, and Cuba Libres — with a cigar corner alongside.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Domino Table</span><span class="dish-tag">the pastime</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A table set for dominoes — the beloved Cuban game. Set it up and a noisy, competitive tournament tends to start itself.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Classic-Car Backdrop</span><span class="dish-tag">photo corner</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A candy-coloured 1950s car or a Malecón-seawall backdrop for photos — the single most recognisable image of Cuba.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bata Cubana</span><span class="dish-tag">rumba dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The ruffled, flowing rumba dress — dramatic layered flounces made for spinning on the dance floor.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">White Linen</span><span class="dish-tag">or guayabera dress</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Crisp white linen or a guayabera dress — cool, elegant, and a very common (and correct) Cuban party choice.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flower in the Hair</span><span class="dish-tag">the accent</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A big bright flower tucked behind the ear — the effortless finishing touch, with bold colour or gold hoops.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bold Colour &amp; Fan</span><span class="dish-tag">Havana glamour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A vivid tropical dress and a hand fan (abanico) — practical in the heat and pure old-Havana glamour.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Guayabera</span><span class="dish-tag">the Cuban shirt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic lightweight, pleated, open-necked shirt worn untucked — the definitive Cuban men's look, in white or a soft colour.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Panama Hat</span><span class="dish-tag">or fedora</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A woven Panama hat or a jaunty fedora — the easiest way to top off the outfit with instant Havana style.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Linen &amp; Two-Tone Shoes</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light linen trousers and two-tone spectator shoes — dapper, breezy, and ready to dance.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">A Cigar</span><span class="dish-tag">the prop</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cigar (lit or not) completes the character — Cuba's most famous export and a natural finishing prop.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Son &amp; Roots</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Son Cubano</span><span class="dish-tag">the foundation</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The warm, swinging root of Cuban music (and of salsa) — tres guitar, trumpet, and gentle percussion. The heart of a Havana evening.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Buena Vista Social Club</span><span class="dish-tag">the classics</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The easiest way to set the tone — the beloved recordings that reintroduced Cuba's golden-age son masters to the world.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bolero &amp; Trova</span><span class="dish-tag">romantic ballads</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Slow, romantic guitar ballads for the softer moments — the sound of a Havana courtyard late at night.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Punto Guajiro</span><span class="dish-tag">country music</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The improvised, verse-trading country music of the Cuban peasantry — heard at rural guateques and parrandas.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Salsa &amp; Dance</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Salsa &amp; Casino</span><span class="dish-tag">the dance floor</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salsa — and Cuba's own circular partner style, casino — get everyone moving. A short lesson early on pays off all night.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rumba</span><span class="dish-tag">congas &amp; clave</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Pure Afro-Cuban percussion and voice — guaguancó and its cousins, driven by congas and the clave rhythm at the core of it all.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mambo &amp; Cha-cha-chá</span><span class="dish-tag">golden-age dance</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The big-band dance crazes of mid-century Havana — brassy, upbeat, and perfect for a retro theme.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Timba</span><span class="dish-tag">modern Cuba</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cuba's contemporary, hard-driving dance sound — a modern option if you want present-day energy over nostalgia.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Cuban:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Vintage 1950s car</li>
+        <li><span class="n">06</span> Mojito &amp; rum bottle</li>
+        <li><span class="n">02</span> Flag (star &amp; triangle)</li>
+        <li><span class="n">07</span> Guayabera</li>
+        <li><span class="n">03</span> Congas &amp; bongós</li>
+        <li><span class="n">08</span> Domino tiles</li>
+        <li><span class="n">04</span> Cigar &amp; tobacco leaf</li>
+        <li><span class="n">09</span> El Malecón &amp; Havana skyline</li>
+        <li><span class="n">05</span> Royal palm tree</li>
+        <li><span class="n">10</span> Art Deco patterns</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Salsa lesson or dance-off</li>
+              <li>Mojito &amp; daiquiri bar</li>
+              <li>Dominoes tournament</li>
+              <li>Cigar-rolling demo</li>
+              <li>Live son / percussion jam</li>
+              <li>Toast — "¡Salud!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Congas, clave &amp; trumpet</li>
+              <li>Warm string-light glow</li>
+              <li>Rum, lime &amp; mint</li>
+              <li>Palm leaves &amp; flowers</li>
+              <li>Cigar aroma</li>
+              <li>Ropa vieja &amp; tostones</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Santiago Carnival (July)</li>
+              <li>Havana Carnival (August)</li>
+              <li>Las Parrandas de Remedios (Dec)</li>
+              <li>Havana Jazz Festival (Jan)</li>
+              <li>Festival del Habano (Feb)</li>
+              <li>New Year (Jan 1)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="cuba.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Cuba Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

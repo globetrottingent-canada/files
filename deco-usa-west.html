@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA: West &amp; Southwest — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px, 5.6vw, 60px);
+    line-height:1.04;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:34px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="usa-west.html" class="back-link" aria-label="USA West cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        West &amp; SW Cuisine
+      </a>
+    </div>
+    <span class="field-tag">NORTH AMERICA / WEST &amp; SOUTHWEST</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">USA: West &amp; Southwest</h1>
+      <p class="subhead">Wine-country calm, sun-baked desert colour, and cowboy-country grit — California cool, Southwest turquoise, and Texas ranch, all under one big sky.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PACIFIC · DESERT · BORDERLANDS · RANCH · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="USA West and Southwest — desert sunset">
+          <defs>
+            <linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F0985C"/>
+              <stop offset="1" stop-color="#E7C08A"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="102" fill="url(#wsky)"/>
+          <circle cx="120" cy="88" r="30" fill="#F7D774"/>
+          <rect y="102" width="240" height="58" fill="#C97B4A"/>
+          <polygon points="30,102 55,55 80,102" fill="#8B5A3C"/>
+          <polygon points="150,102 175,40 205,102" fill="#7A4E34"/>
+          <g fill="#3E6B4A">
+            <rect x="60" y="70" width="6" height="34" rx="3"/>
+            <rect x="52" y="80" width="6" height="16" rx="3" transform="rotate(-25 55 88)"/>
+            <rect x="68" y="80" width="6" height="16" rx="3" transform="rotate(25 71 88)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>The American West carries three complementary moods, all genuinely part of the same region. <strong>California and the Pacific Northwest</strong> bring a cool, understated elegance — wine-country vineyards, foggy coastal calm, farm-to-table simplicity, and a laid-back brunch culture. The <strong>Southwest</strong> is sun-baked desert colour — adobe walls, turquoise, terracotta, and a Spanish-Mexican-Pueblo blend built over centuries. <strong>Texas ranch country</strong> is rugged and proud — leather, longhorn, wide-open land, and a barbecue that's a whole afternoon's event.</p>
+        <p>Whichever register you lean into, the materials stay natural and warm — wood, leather, terracotta, and wine-barrel oak — and the palette runs from cool Pacific fog and vineyard green through desert ochre and turquoise to sunset amber and cowhide brown.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">A note on Southwest patterns</span>
+        <p>Southwestern style genuinely blends Native American (Navajo, Hopi, Pueblo), Spanish Colonial, and cowboy influences — it's not off-limits, but it's worth doing thoughtfully. Where you can, buy authentic textiles, pottery, and jewellery from Native-owned makers rather than mass-produced imitation "tribal print," and treat specific ceremonial items (like dreamcatchers) as more than décor. A little intention goes a long way toward honouring rather than flattening the region's real cultural layers.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For California/Pacific Northwest cool,</strong> set the table with simple, seasonal styling — a wine bar (Napa Cabernet or Sonoma Chardonnay), fresh produce and herbs as centrepieces, and a relaxed, farm-to-table plating sensibility. Add driftwood, greenery, and soft neutral linen for the coastal-foggy Pacific Northwest note.</p>
+        <p><strong>For Southwest desert warmth,</strong> bring in terracotta pots, woven textiles, and a turquoise-and-rust palette, with cacti and succulents as the natural centrepiece. Adobe-style textured walls (or a simple sand-tone backdrop) and wrought-iron or punched-tin lighting complete the look.</p>
+        <p><strong>For Texas ranch country,</strong> go big and rustic: leather, wood, a longhorn skull or star motif, and — the true centrepiece — a proper barbecue smoker. Keep the table casual and hearty, with cast iron and enamelware standing in nicely for anything delicate.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>California/PNW:</strong> set up a <strong>wine bar</strong> — Napa Cabernet or Sonoma Chardonnay — with simple, seasonal produce as a centrepiece.</li>
+        <li><strong>California/PNW:</strong> add <strong>driftwood and greenery</strong> for a coastal, foggy Pacific Northwest note.</li>
+        <li><strong>Southwest:</strong> bring in <strong>terracotta, turquoise, and rust</strong> tones, plus cacti and succulents as living centrepieces.</li>
+        <li><strong>Southwest:</strong> use <strong>authentic woven textiles</strong> and pottery, sourced thoughtfully, for genuine warmth and pattern.</li>
+        <li><strong>Southwest:</strong> light it with <strong>wrought-iron or punched-tin lanterns</strong> for a Santa-Fe-style glow.</li>
+        <li><strong>Texas:</strong> fire up a <strong>barbecue smoker</strong> as the centrepiece — the true heart of a Texas gathering.</li>
+        <li><strong>Texas:</strong> add <strong>leather, longhorn, and star motifs</strong> — barn stars, cowhide, and wrought iron for ranch-proud styling.</li>
+        <li><strong>Any register:</strong> keep it <strong>natural and warm</strong> — wood, leather, terracotta, and oak — over anything glossy or synthetic.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Desert terracotta &amp; rust</li>
+        <li><span class="n">06</span> Vineyard green</li>
+        <li><span class="n">02</span> Turquoise blue</li>
+        <li><span class="n">07</span> Cowhide brown &amp; cream</li>
+        <li><span class="n">03</span> Sunset amber &amp; gold</li>
+        <li><span class="n">08</span> Pacific fog grey</li>
+        <li><span class="n">04</span> Adobe pink &amp; sand</li>
+        <li><span class="n">09</span> Barbecue-smoke charcoal</li>
+        <li><span class="n">05</span> Cactus green</li>
+        <li><span class="n">10</span> Wine-barrel oak</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>California cuisine movement</strong> pioneered by Alice Waters at Chez Panisse in 1971 — simple, seasonal, local food — reshaped the philosophy of fine dining across the Western world, well beyond just décor and food.</li>
+        <li><strong>Southwestern style</strong> is a genuine melting pot — Navajo woven textiles, Hopi and Pueblo adobe building traditions, Spanish colonial stucco and wood beams, and cowboy leather and hides, all layered together over centuries.</li>
+        <li>The <strong>1976 "Judgement of Paris"</strong> blind tasting saw California wines beat France's finest Bordeaux and Burgundy, proving world-class wine could be made outside France and putting Napa and Sonoma permanently on the map.</li>
+        <li><strong>Tex-Mex chili</strong> — Texas's beloved bowl of red — was invented by San Antonio's "chili queens," Tejano women who sold it from outdoor stalls in the 19th century; today's International Chili Society still strictly bans beans from its cook-offs.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">Three registers, one big region — California cool, desert warmth, and ranch grit.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">California &amp; Pacific NW</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wine Bar</span><span class="dish-tag">Napa &amp; Sonoma</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Napa Cabernet Sauvignon and Sonoma Chardonnay set out for tasting — the world-renowned centrepiece of California's wine country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Seasonal Produce Display</span><span class="dish-tag">farm-to-table</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fresh, simple seasonal fruit and herbs as a centrepiece — a nod to the California-cuisine philosophy of letting good ingredients speak for themselves.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Driftwood &amp; Coastal Greenery</span><span class="dish-tag">Pacific NW note</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Weathered driftwood and soft greenery — the foggy, outdoorsy calm of the Pacific Coast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sourdough Bread Board</span><span class="dish-tag">SF classic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A tangy San Francisco sourdough loaf, sliced and set out simply with good butter — an easy, edible centrepiece.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Southwest &amp; Texas</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Terracotta &amp; Turquoise</span><span class="dish-tag">desert palette</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Terracotta pots and turquoise accents together — the defining colour pairing of the Southwest, warm and cool at once.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cacti &amp; Succulents</span><span class="dish-tag">living centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Potted cacti and succulents — a genuine, low-maintenance nod to the desert landscape.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Barbecue Smoker</span><span class="dish-tag">the Texas centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A proper smoker for slow-cooked barbecue — the true social and culinary centre of a Texas gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Leather &amp; Longhorn</span><span class="dish-tag">ranch styling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Leather accents, a longhorn motif, and a barn star or two — proud, rugged Texas ranch heritage.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">California &amp; Pacific NW</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Relaxed Linen</span><span class="dish-tag">wine-country casual</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Light, neutral linen — the effortless, understated style of a Napa Valley afternoon.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Flannel &amp; Denim</span><span class="dish-tag">Pacific NW outdoorsy</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Flannel shirts and denim — practical, casual, and true to Seattle and Portland's outdoor culture.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Sun Hat</span><span class="dish-tag">the finish</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple wide-brimmed sun hat — easy, practical, and right for a vineyard afternoon.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Southwest &amp; Texas</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cowboy Hat &amp; Boots</span><span class="dish-tag">the Texas look</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A classic wide-brimmed cowboy hat and boots — the definitive, proud look of Texas ranch country.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Turquoise Jewellery</span><span class="dish-tag">Southwest craft</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Authentic turquoise jewellery, ideally from Native artisans — a beautiful, genuine Southwestern accent.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Denim &amp; Leather</span><span class="dish-tag">ranch casual</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Denim with leather boots or a belt — rugged, practical, and universally at home across the region.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">California &amp; Pacific NW</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Laurel Canyon Folk-Rock</span><span class="dish-tag">1960s–70s California</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The soft, harmony-driven folk-rock born in Los Angeles's Laurel Canyon scene — mellow and quintessentially Californian.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Indie &amp; Grunge Roots</span><span class="dish-tag">Seattle/Portland heritage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Seattle's grunge legacy and the Pacific Northwest's strong indie scene — moodier, guitar-driven options.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">West Coast Hip-Hop</span><span class="dish-tag">LA sound</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Los Angeles's massive influence on hip-hop — a lively, contemporary option for the region's urban side.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Southwest &amp; Texas</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Texas Country &amp; Western Swing</span><span class="dish-tag">honky-tonk roots</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Classic country and Western swing — the beating heart of a Texas dance hall or backyard party.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tejano &amp; Norteño</span><span class="dish-tag">border sound</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Accordion-driven Tejano and norteño music from the Texas-Mexico borderlands — lively, danceable, and deeply regional.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mariachi &amp; Southwest Folk</span><span class="dish-tag">Spanish-Mexican heritage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Mariachi trumpets and Southwestern folk guitar — reflecting the region's deep Spanish-Mexican musical roots.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably West/Southwest:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Turquoise stone</li>
+        <li><span class="n">06</span> Golden Gate Bridge silhouette</li>
+        <li><span class="n">02</span> Saguaro cactus</li>
+        <li><span class="n">07</span> Wine grape &amp; vine</li>
+        <li><span class="n">03</span> Longhorn skull</li>
+        <li><span class="n">08</span> Route 66 shield</li>
+        <li><span class="n">04</span> Adobe arch</li>
+        <li><span class="n">09</span> Texas Lone Star</li>
+        <li><span class="n">05</span> Desert sunset</li>
+        <li><span class="n">10</span> Redwood tree (Pacific NW)</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">California &amp; Pacific NW</p>
+            <ol class="plain">
+              <li>Wine tasting flight</li>
+              <li>Farmers-market-style spread</li>
+              <li>Third-wave coffee pour-over bar</li>
+              <li>Toast — "Cheers!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Southwest &amp; Texas</p>
+            <ol class="plain">
+              <li>Barbecue / smoker demo</li>
+              <li>Margarita or Tex-Mex bar</li>
+              <li>Line dancing</li>
+              <li>Toast — "Yeehaw!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Cinco de Mayo (borderlands, May 5)</li>
+              <li>Fiesta San Antonio (April)</li>
+              <li>Napa Valley Harvest (Sept–Oct)</li>
+              <li>Rodeo season (varies, spring)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="usa-west.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        West &amp; SW Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arctic Canada &amp; Greenland — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px, 5.6vw, 58px);
+    line-height:1.04;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:36px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="arctic-canada-greenland.html" class="back-link" aria-label="Arctic Canada and Greenland cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Arctic Cuisine
+      </a>
+    </div>
+    <span class="field-tag">NORTH AMERICA / ARCTIC &amp; GREENLAND</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Arctic Canada &amp; Greenland</h1>
+      <p class="subhead">The warm glow of a qulliq lamp against endless white, bannock shared by firelight, and the Northern Lights turning overhead.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            TUNDRA · AURORA · QULLIQ · COUNTRY FOOD · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Arctic Canada and Greenland — aurora over tundra">
+          <defs>
+            <linearGradient id="arcsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0B1E33"/>
+              <stop offset="1" stop-color="#1B3A52"/>
+            </linearGradient>
+            <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#3FE0A5" stop-opacity="0.1"/>
+              <stop offset="0.5" stop-color="#3FE0A5" stop-opacity="0.75"/>
+              <stop offset="1" stop-color="#6FC7E8" stop-opacity="0.1"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="160" fill="url(#arcsky)"/>
+          <path d="M0,40 Q60,10 120,45 T240,35" stroke="url(#aurora)" stroke-width="18" fill="none" opacity="0.9"/>
+          <path d="M0,60 Q70,30 130,60 T240,55" stroke="url(#aurora)" stroke-width="10" fill="none" opacity="0.6"/>
+          <circle cx="190" cy="30" r="10" fill="#F3EFD9" opacity="0.9"/>
+          <path d="M0,120 Q60,105 120,118 T240,112 L240,160 L0,160 Z" fill="#EDEFF2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>This is the oldest continuous culture in the Americas — 5,000 years of Inuit (and Kalaallit, in Greenland) ecological knowledge built for survival and community at the edge of the habitable world. Rather than a costume theme, the honest approach is warmth, generosity, and quiet respect: the golden glow of a qulliq (traditional oil lamp) against the endless white of the tundra, bannock shared freely among everyone present, and the Northern Lights turning slowly overhead. Sharing itself is central to the culture here — successful hunters traditionally distribute their catch through the whole community, and food is identity and medicine as much as sustenance.</p>
+        <p>Greenland layers on a Danish colonial thread — smørrebrød, pastry, and coffee culture alongside traditional Kalaallit food — giving the region two related but distinct registers to draw from. The palette across both is aurora green and ice blue, qulliq-flame amber, snow white, and deep polar-night navy.</p>
+      </div>
+      <div class="callout">
+        <span class="callout-label">A note on respect</span>
+        <p>Throat singing (katajjaq) and drum dancing are living, UNESCO-recognized art forms with real ceremonial and spiritual roots — throat singing in particular was historically suppressed and has been proudly revived by Inuit communities. Appreciate genuine performances and recordings rather than attempting to imitate them as party entertainment. Likewise, traditional clothing like the amauti (parka) and kamiik (sealskin boots) are functional heritage garments, not costumes — a warm coat or parka nods to the practical reality of the climate without needing to reproduce specific traditional dress.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Keep the light warm, low, and golden — a qulliq-style oil lamp or simply candlelight against a white, icy backdrop captures the mood better than anything bright or garish. Bring in soft furs and wool for texture, deep blues and greens for the aurora, and let bannock (the fry-bread now considered thoroughly Indigenous, despite its Scottish fur-trade origins) anchor the food table alongside warming soups and stews.</p>
+        <p>For a Greenlandic evening, add a Danish layer: smørrebrød (open sandwiches), pastries, and good coffee alongside the country-food table. Either way, emphasize sharing and communal warmth over spectacle — a big pot everyone eats from says more about this region than any single decoration could.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Light the room with a <strong>qulliq-style lamp or candlelight</strong> — warm, low, and golden against the cold.</li>
+        <li>Bring in <strong>aurora colour</strong> — soft greens and blues, perhaps as fabric drapes or lighting, evoking the Northern Lights.</li>
+        <li>Use <strong>faux fur and wool throws</strong> for texture and warmth — practical materials genuinely suited to the climate.</li>
+        <li>Set out <strong>bannock</strong> as a table centrepiece — the bread that's become thoroughly woven into Indigenous Arctic food culture.</li>
+        <li>Add a <strong>communal serving pot</strong> for stew or soup — sharing, not individual plating, is the region's true spirit.</li>
+        <li><strong>(Greenland)</strong> add a <strong>smørrebrød and pastry spread</strong> for the Danish-influenced layer of modern Nuuk.</li>
+        <li>Keep <strong>snow-white and deep-navy</strong> as the base palette, with aurora colour as the accent.</li>
+        <li>Appreciate <strong>Inuit art</strong> — carvings, prints, and textiles — as genuine cultural expression worth honouring, ideally sourced from Indigenous artists.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Aurora green</li>
+        <li><span class="n">06</span> Ice blue</li>
+        <li><span class="n">02</span> Qulliq-flame amber</li>
+        <li><span class="n">07</span> Bannock gold-brown</li>
+        <li><span class="n">03</span> Snow &amp; ice white</li>
+        <li><span class="n">08</span> Cloudberry gold</li>
+        <li><span class="n">04</span> Polar-night navy</li>
+        <li><span class="n">09</span> Crowberry deep purple</li>
+        <li><span class="n">05</span> Soft fur grey</li>
+        <li><span class="n">10</span> Danish rye brown (Greenland)</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>qulliq</strong>, a traditional oil lamp carved from soapstone, provided light, heat, and cooking for Arctic peoples for millennia — it holds such cultural significance that it's featured on Nunavut's official coat of arms and is still used ceremonially today.</li>
+        <li><strong>Inuit throat singing (katajjaq)</strong> is traditionally a playful duet between two women, face to face, testing who can outlast the other — it was suppressed for a time but has been proudly revived, and artists like Tanya Tagaq have brought it to international audiences.</li>
+        <li><strong>Greenlandic Inuit drum dancing</strong> — performed with a frame drum called a qilaat — was recognised by UNESCO as Intangible Cultural Heritage in 2021, honouring its role in community identity, storytelling, and continuity between generations.</li>
+        <li><strong>Bannock</strong>, introduced by Scottish fur traders in the 18th century, is now considered a traditional First Nations and Inuit food — one of food history's rare examples of an introduced dish being fully absorbed into Indigenous identity.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, warmth, and sound of an authentic Arctic gathering.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Country Food &amp; Warmth</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Qulliq-Style Lamp</span><span class="dish-tag">or candlelight</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, low-flame light source echoing the traditional soapstone oil lamp — the golden centrepiece of Arctic warmth and gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Bannock Table</span><span class="dish-tag">shared fry-bread</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fried or baked bannock, served for everyone to share — the comfort food that bridges introduced and Indigenous Arctic cooking.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Communal Stew Pot</span><span class="dish-tag">sharing over plating</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A big shared pot of stew or soup, echoing the region's deep cultural value of communal sharing over individual portions.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Faux Fur &amp; Wool</span><span class="dish-tag">warm texture</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft fur throws and wool blankets — practical, cosy materials genuinely suited to the Arctic climate.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Aurora &amp; Greenland</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Aurora Lighting</span><span class="dish-tag">Northern Lights colour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft green-and-blue lighting or drapery evoking the aurora borealis — a genuinely magical, non-costumed way to set the mood.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Berry Preserves</span><span class="dish-tag">cloudberry &amp; crowberry</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cloudberry jam or crowberry preserves — the genuine seasonal sweetness of the brief Arctic summer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smørrebrød Spread</span><span class="dish-tag">Danish-Greenlandic layer</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Open-faced Danish-style sandwiches — a nod to Greenland's Danish colonial food heritage, alongside traditional Kalaallit dishes.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Indigenous Art</span><span class="dish-tag">carvings &amp; prints</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Inuit carvings, prints, or textiles, ideally sourced from Indigenous artists — genuine, meaningful cultural expression as décor.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Practical &amp; Warm</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Warm Parka or Coat</span><span class="dish-tag">practical, not costume</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A warm, practical coat nods honestly to the climate without reproducing specific traditional Inuit dress like the amauti.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wool &amp; Knitwear</span><span class="dish-tag">layered warmth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cosy wool sweaters and layers — comfortable, simple, and genuinely climate-appropriate.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Mittens &amp; Scarves</span><span class="dish-tag">easy accents</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple knit mittens and scarves — practical winter dress that fits the mood without appropriating specific heritage garments.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Greenlandic Touch</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nordic-Style Knits</span><span class="dish-tag">Danish-influenced</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Simple Scandinavian-style patterned knitwear — a nod to Greenland's Danish colonial layer.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Muted Winter Tones</span><span class="dish-tag">simple &amp; understated</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft greys, whites, and navy — understated, practical, and true to the region's aesthetic restraint.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Inuit &amp; Circumpolar</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Recordings of Katajjaq</span><span class="dish-tag">throat singing, appreciated</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Genuine recordings of Inuit throat singing (artists like Tanya Tagaq or PIQSIQ) — a powerful, living art form best enjoyed as the real thing rather than imitated.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Drum Dance Recordings</span><span class="dish-tag">qilaat, UNESCO-recognized</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Recordings of traditional Greenlandic drum dancing and song — storytelling music with deep community meaning.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Contemporary Inuit Artists</span><span class="dish-tag">modern Arctic voices</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Modern Inuit musicians blending traditional elements with contemporary sound — a genuine, living bridge between old and new.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Ambient &amp; Greenlandic</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ambient Arctic Soundscape</span><span class="dish-tag">wind &amp; ice</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Soft ambient sound — wind, ice, and quiet — evoking the vast, still Arctic landscape as a gentle backdrop.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Nordic Folk</span><span class="dish-tag">Danish-Greenlandic layer</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Gentle Scandinavian folk music — a nod to Greenland's Danish colonial cultural thread.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Arctic (approached with respect):</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Northern Lights (aurora borealis)</li>
+        <li><span class="n">06</span> Qilaat (frame drum)</li>
+        <li><span class="n">02</span> Qulliq (soapstone lamp)</li>
+        <li><span class="n">07</span> Cloudberry &amp; crowberry</li>
+        <li><span class="n">03</span> Arctic char</li>
+        <li><span class="n">08</span> Snowflake &amp; ice crystal</li>
+        <li><span class="n">04</span> Caribou / reindeer</li>
+        <li><span class="n">09</span> Midnight sun</li>
+        <li><span class="n">05</span> Polar bear</li>
+        <li><span class="n">10</span> Sled dog</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Do Together</p>
+            <ol class="plain">
+              <li>Share bannock, communal-style</li>
+              <li>Listen to genuine throat-singing recordings</li>
+              <li>Learn a bit about the qulliq's history</li>
+              <li>Toast — "Cheers!" / "Skål!" (Greenland)</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Sensory Details</p>
+            <ol class="plain">
+              <li>Warm lamp glow</li>
+              <li>Fresh bannock aroma</li>
+              <li>Soft fur &amp; wool</li>
+              <li>Berry preserves &amp; smoked fish</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Greenland National Day (Jun 21)</li>
+              <li>Nunavut Day (Jul 9)</li>
+              <li>Midnight sun season (summer)</li>
+              <li>Aurora season (autumn–winter)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="arctic-canada-greenland.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Arctic Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

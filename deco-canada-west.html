@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BC, Alberta &amp; The Prairies — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(32px, 5.6vw, 58px);
+    line-height:1.04;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:36px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="canada-west.html" class="back-link" aria-label="Canada West cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        West Canada Cuisine
+      </a>
+    </div>
+    <span class="field-tag">NORTH AMERICA / WESTERN CANADA</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">BC, Alberta &amp; The Prairies</h1>
+      <p class="subhead">Pacific salmon and Okanagan wine country, a Stampede white hat and chuckwagon spirit, and a prairie church-hall table of perogies and pysanky.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            PACIFIC · FOOTHILLS · PRAIRIE · STAMPEDE · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Western Canada — mountains, foothills and prairie">
+          <defs>
+            <linearGradient id="wcsky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F5CE7A"/>
+              <stop offset="1" stop-color="#F0E3B8"/>
+            </linearGradient>
+          </defs>
+          <rect width="240" height="105" fill="url(#wcsky)"/>
+          <polygon points="0,105 40,55 80,105" fill="#6E7C8C"/>
+          <polygon points="40,55 48,68 32,68" fill="#ffffff"/>
+          <polygon points="60,105 105,50 150,105" fill="#586576"/>
+          <polygon points="105,50 114,66 96,66" fill="#ffffff"/>
+          <rect y="105" width="240" height="55" fill="#D9A94B"/>
+          <path d="M0,116 q40,-10 80,0 t80,0 t80,0" fill="none" stroke="#C89A3E" stroke-width="2" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Western Canada spans three genuinely distinct registers, each rooted in its own landscape and immigrant story. <strong>British Columbia</strong> is Pacific Rim sophistication — cedar-planked salmon, Okanagan wine country, and Vancouver's world-class Cantonese and Japanese-influenced food scene, all wrapped in coastal mountain scenery. <strong>Alberta</strong> is cowboy country, expressed with total sincerity — cattle ranches, the white Stampede hat, and a rodeo culture over a century old. The <strong>Prairies</strong> (Saskatchewan and Manitoba) carry a deep Ukrainian, German, and Scandinavian settler heritage — perogies, cabbage rolls, and painted pysanky eggs at church-hall suppers.</p>
+        <p>Across all three, the underlying spirit is unpretentious pride in exceptional local ingredients and hard-won heritage — the palette runs from Pacific blue-green through foothills gold and Stampede red-and-white to prairie wheat and Ukrainian egg-pattern colour.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For BC coastal style,</strong> set up a cedar-plank salmon station, bring in an Okanagan wine bar (Pinot Noir or Riesling), and lean into natural materials — cedar, driftwood, and mountain-and-ocean imagery. Vancouver's Pacific Rim food scene (dim sum, sushi) makes an easy, genuine addition.</p>
+        <p><strong>For an Alberta Stampede theme,</strong> the white cowboy hat is the icon — hand them out if you can. Add a chuckwagon or campfire feel, a proper Alberta beef station (a well-aged steak, simply done), and a pancake-breakfast spread — a genuine Stampede tradition. Red-and-white, denim, and fringe complete the western look.</p>
+        <p><strong>For prairie Ukrainian heritage,</strong> set the table church-hall style with perogies, cabbage rolls, and borscht, and bring in painted pysanky eggs as décor — a nod to Vegreville's giant pysanka landmark. Keep the mood warm and communal, like a family or community gathering.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li><strong>BC:</strong> set up a <strong>cedar-plank salmon station</strong> — the First Nations technique that defines Pacific Coast cooking.</li>
+        <li><strong>BC:</strong> add an <strong>Okanagan wine bar</strong> — Pinot Noir or Riesling, genuinely world-class Canadian wine.</li>
+        <li><strong>Alberta:</strong> hand out <strong>white cowboy hats</strong> — the iconic Stampede symbol, given even to visiting dignitaries.</li>
+        <li><strong>Alberta:</strong> set up a proper <strong>Alberta beef station</strong> — a well-aged ribeye, simply grilled, served with pride.</li>
+        <li><strong>Alberta:</strong> add a <strong>pancake breakfast</strong> spread — a genuine, beloved Stampede tradition.</li>
+        <li><strong>Prairies:</strong> paint or display <strong>pysanky eggs</strong> — intricately patterned Ukrainian Easter eggs, a nod to Vegreville's giant landmark.</li>
+        <li><strong>Prairies:</strong> lay out a <strong>church-hall style spread</strong> — perogies, cabbage rolls, and borscht with fresh dill.</li>
+        <li><strong>Any register:</strong> keep it <strong>unpretentious and proud</strong> — Western Canadian hospitality is generous rather than fussy.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Pacific blue-green</li>
+        <li><span class="n">06</span> Okanagan wine burgundy</li>
+        <li><span class="n">02</span> Cedar wood brown</li>
+        <li><span class="n">07</span> Pysanky egg brights</li>
+        <li><span class="n">03</span> Stampede red &amp; white</li>
+        <li><span class="n">08</span> Wheat &amp; prairie gold</li>
+        <li><span class="n">04</span> Foothills tan</li>
+        <li><span class="n">09</span> Beet-borscht magenta</li>
+        <li><span class="n">05</span> Rocky Mountain grey-blue</li>
+        <li><span class="n">10</span> Saskatoon berry purple</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>The <strong>Calgary Stampede's white hat</strong> tradition began in 1946, developed with Smithbilt (a Calgary hat maker founded by Russian immigrants in 1919) — it's since been presented to countless visiting dignitaries as a symbol of the city's western hospitality.</li>
+        <li><strong>Alberta is home to one of the world's largest Ukrainian diaspora communities</strong> — over 1.2 million Canadians claim Ukrainian heritage, and Vegreville, Alberta hosts the "World's Largest Pysanka," a giant monument to that community's contribution.</li>
+        <li>The <strong>California roll</strong> — inside-out sushi with avocado, cucumber, and crab — was almost certainly invented in Vancouver in the late 1960s or early '70s by chef Hidekazu Tojo, to ease Canadian diners into raw fish.</li>
+        <li><strong>Cedar-planked salmon</strong> is a First Nations technique — slow-cooking salmon on cedar wood over an open fire — representing one of the world's oldest continuous relationships between a culture and a single food species.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">Three registers, one region — Pacific coast, cowboy country, and prairie heritage.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">BC &amp; Alberta</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Cedar-Plank Salmon</span><span class="dish-tag">First Nations technique</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Salmon slow-cooked on cedar wood over an open fire — a genuine, ancient Pacific Coast First Nations preparation.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Okanagan Wine Bar</span><span class="dish-tag">Pinot Noir &amp; Riesling</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>World-class BC wine, now competing with California and Europe — a genuine point of provincial pride.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">White Stampede Hat</span><span class="dish-tag">Calgary's icon</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic white cowboy hat — Calgary's warm-hospitality symbol since 1946, and instantly recognisable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Alberta Beef Station</span><span class="dish-tag">the ribeye centrepiece</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A well-aged Alberta ribeye, served simply — the pinnacle of the provincial table, eaten with total conviction.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Prairies</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Pysanky Eggs</span><span class="dish-tag">Ukrainian Easter art</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Intricately patterned, hand-decorated Ukrainian Easter eggs — a beautiful nod to the region's deep Ukrainian heritage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Perogies &amp; Cabbage Rolls</span><span class="dish-tag">church-hall classics</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Boiled dumplings with sour cream, and rice-and-meat cabbage rolls baked in tomato sauce — the prairie's edible weekly heritage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Prairie Borscht</span><span class="dish-tag">beet soup with dill</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Vibrant magenta beet soup, finished with fresh dill and sour cream — a warming, communal prairie classic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wheat Sheaf Centrepiece</span><span class="dish-tag">prairie harvest</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple wheat sheaf as a centrepiece — a nod to the enormous grain-growing prairie landscape.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">BC &amp; Alberta</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coastal Casual</span><span class="dish-tag">BC everyday style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Relaxed, outdoorsy layers — the easygoing, nature-focused style of the BC coast.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">White Cowboy Hat &amp; Denim</span><span class="dish-tag">Stampede style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The classic white hat with denim and boots — genuine Calgary Stampede attire, worn with real pride.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Fringe &amp; Western Wear</span><span class="dish-tag">rodeo glamour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fringe jackets and western-cut shirts — still fashionable and fun at Stampede time.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Prairies</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Embroidered Vyshyvanka</span><span class="dish-tag">Ukrainian heritage shirt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A traditional embroidered Ukrainian shirt — a genuine, proud heritage garment still worn at prairie community events.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Simple Prairie Casual</span><span class="dish-tag">unpretentious everyday</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Comfortable, practical clothing — the honest, no-fuss style of the prairie community table.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">BC &amp; Alberta</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">West Coast Chill</span><span class="dish-tag">Vancouver vibe</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Relaxed, easygoing indie and acoustic music — a natural fit for BC's laid-back Pacific coast mood.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Canadian Country</span><span class="dish-tag">Stampede standard</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Classic country music — the near-universal soundtrack of a Calgary Stampede celebration.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Rodeo Announcer Energy</span><span class="dish-tag">chuckwagon spirit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A lively, hollered "Yahoo!" energy — evoking the chuckwagon races and rodeo announcing that defines the Stampede's spirit.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Prairies</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ukrainian Folk Music</span><span class="dish-tag">prairie heritage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Accordion-driven Ukrainian folk music — a genuine, deeply rooted part of prairie community life.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Prairie Polka</span><span class="dish-tag">community dance halls</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cheerful polka music, a legacy of the region's German, Ukrainian, and Scandinavian settlers, still played at community dances.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Western Canadian:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Pacific salmon</li>
+        <li><span class="n">06</span> Rocky Mountain silhouette</li>
+        <li><span class="n">02</span> White cowboy hat</li>
+        <li><span class="n">07</span> Bison</li>
+        <li><span class="n">03</span> Pysanka (Ukrainian egg)</li>
+        <li><span class="n">08</span> Wheat sheaf</li>
+        <li><span class="n">04</span> Chuckwagon</li>
+        <li><span class="n">09</span> Saskatoon berry</li>
+        <li><span class="n">05</span> Okanagan grape vine</li>
+        <li><span class="n">10</span> Cedar tree</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">BC &amp; Alberta</p>
+            <ol class="plain">
+              <li>Okanagan wine tasting</li>
+              <li>Pancake breakfast (Stampede-style)</li>
+              <li>Mechanical bull or line dancing</li>
+              <li>Toast — "Yahoo!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">The Prairies</p>
+            <ol class="plain">
+              <li>Pysanky egg decorating</li>
+              <li>Perogy-making demo</li>
+              <li>Community-style polka dancing</li>
+              <li>Toast — "Budmo!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Calgary Stampede (July)</li>
+              <li>Vegreville Ukrainian Pysanka Festival</li>
+              <li>Okanagan wine harvest (Sept–Oct)</li>
+              <li>Vancouver Chinese New Year (Jan/Feb)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="canada-west.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        West Canada Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

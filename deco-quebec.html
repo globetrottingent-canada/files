@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Québec — Décor &amp; Party Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#1B2430;
+    --muted:#5C6570;
+    --accent:#8C2F39;
+    --accent-soft:#F6E9EA;
+    --brass:#B08D57;
+    --hairline:#E6E4DE;
+    --max:880px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px 120px;
+  }
+
+  .topbar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:28px 28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .navlinks{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--muted);
+    border:1px solid var(--hairline);
+    padding:9px 14px;
+    border-radius:100px;
+    transition:border-color .18s ease, color .18s ease;
+  }
+  .back-link:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .back-link svg{width:13px;height:13px;}
+
+  .field-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+
+  .hero{
+    max-width:var(--max);
+    margin:56px auto 0;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .eyebrow::before{content:"◆  ";}
+  h1.country{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px, 6.4vw, 68px);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subhead{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0;
+  }
+
+  .medallion-holder{
+    position:relative;
+    width:172px;
+    height:172px;
+    flex-shrink:0;
+  }
+  .medallion-ring{
+    position:absolute;
+    inset:0;
+    animation:spin 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .medallion-ring{animation:none;}
+  }
+  @keyframes spin{ to { transform:rotate(360deg); } }
+  .medallion{
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--brass), 0 8px 24px rgba(27,36,48,.14);
+    background:#eee;
+  }
+  .medallion img, .medallion svg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .field{
+    margin-top:64px;
+  }
+  .field-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .field-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--brass);
+    letter-spacing:.04em;
+  }
+  .field-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:23px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .field-rule{
+    flex:1;
+    height:1px;
+    background:var(--hairline);
+    transform:translateY(2px);
+  }
+
+  .prose p{
+    margin:0 0 16px;
+    color:#2A343F;
+  }
+  .prose p:last-child{margin-bottom:0;}
+
+  .callout{
+    border:1px solid var(--hairline);
+    border-left:3px solid var(--brass);
+    border-radius:10px;
+    background:#FCFBF8;
+    padding:18px 22px;
+    margin:22px 0 0;
+  }
+  .callout p{
+    margin:0 0 10px;
+    font-size:14.5px;
+    color:#3A4550;
+  }
+  .callout p:last-child{margin-bottom:0;}
+  .callout .callout-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  ul.chevron{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  ul.chevron li{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:16px;
+    color:#2A343F;
+  }
+  ul.chevron li:last-child{margin-bottom:0;}
+  ul.chevron li::before{
+    content:"›";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--accent);
+    font-weight:700;
+    font-size:19px;
+    line-height:1.4;
+  }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px 32px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+  .num-grid li{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:15.5px;
+  }
+  .num-grid li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass);
+    min-width:16px;
+  }
+
+  .reference-divider{
+    margin-top:88px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .reference-divider .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--brass), var(--hairline) 60%);
+  }
+  .reference-divider .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass);
+    white-space:nowrap;
+  }
+  .reference-sub{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 40px;
+  }
+
+  .catalog-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    margin-bottom:22px;
+    background:linear-gradient(180deg, #FEFEFD, #FFFFFF);
+  }
+  .catalog-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 36px;
+  }
+  .catalog-columns.cols-3{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .col-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  ol.plain{
+    list-style:none;
+    margin:0 0 4px;
+    padding:0;
+    counter-reset:item;
+  }
+  ol.plain li{
+    counter-increment:item;
+    display:flex;
+    gap:8px;
+    padding:9px 0;
+    font-size:15px;
+    border-bottom:1px solid var(--hairline);
+    align-items:flex-start;
+  }
+  ol.plain li:last-child{border-bottom:none;}
+  ol.plain li::before{
+    content:counter(item) ".";
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--brass);
+    font-size:12.5px;
+    min-width:16px;
+    margin-top:2px;
+  }
+  .dish-body{
+    flex:1;
+    min-width:0;
+  }
+  .dish-toggle{
+    display:flex;
+    width:100%;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    background:none;
+    border:none;
+    padding:0;
+    margin:0;
+    cursor:pointer;
+    font-family:inherit;
+    color:inherit;
+    text-align:left;
+  }
+  .dish-name{
+    font-size:15px;
+    color:var(--ink);
+    flex-shrink:0;
+  }
+  .dish-tag{
+    font-size:12.5px;
+    color:var(--muted);
+    font-style:italic;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    text-align:right;
+    flex:1;
+    min-width:0;
+  }
+  .dish-plus{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--brass);
+    flex-shrink:0;
+    width:14px;
+    text-align:center;
+    transition:transform .18s ease;
+  }
+  .dish-toggle[aria-expanded="true"] .dish-plus{
+    transform:rotate(45deg);
+    color:var(--accent);
+  }
+  .dish-toggle:hover .dish-name{
+    color:var(--accent);
+  }
+  .dish-detail{
+    font-size:13.5px;
+    line-height:1.55;
+    color:#3A4550;
+    margin-top:9px;
+    padding-top:9px;
+    border-top:1px dashed var(--hairline);
+  }
+  .dish-detail[hidden]{
+    display:none;
+  }
+
+  @media (max-width: 640px){
+    .dish-toggle{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:3px;
+    }
+    .dish-tag{
+      white-space:normal;
+      text-align:left;
+    }
+    .dish-plus{
+      position:absolute;
+      right:0;
+      top:0;
+    }
+    ol.plain li{position:relative;}
+  }
+
+  .palette-intro{
+    font-style:italic;
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 18px;
+  }
+
+  .footer-nav{
+    margin-top:80px;
+    padding-top:28px;
+    border-top:1px solid var(--hairline);
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width: 640px){
+    .hero{grid-template-columns:1fr; gap:26px;}
+    .medallion-holder{width:128px;height:128px; margin:0 auto;}
+    .catalog-columns, .catalog-columns.cols-3{grid-template-columns:1fr;}
+    .num-grid{grid-template-columns:1fr;}
+    h1.country{font-size:42px;}
+    .topbar{flex-direction:column; align-items:flex-start; gap:12px;}
+    .field-tag{font-size:11px;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="navlinks">
+      <a href="index.html" class="back-link" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link" aria-label="Theme Calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link" aria-label="All décor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="quebec.html" class="back-link" aria-label="Quebec cuisine guide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Québec Cuisine
+      </a>
+    </div>
+    <span class="field-tag">NORTH AMERICA / FRANCO-CANADIAN</span>
+  </div>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Décor &amp; Party Guide</p>
+      <h1 class="country">Québec</h1>
+      <p class="subhead">A sugar shack in the snow, Bonhomme's red toque and arrow sash, and a caribou passed hand to hand under the winter stars.</p>
+    </div>
+    <div class="medallion-holder">
+      <svg class="medallion-ring" viewBox="0 0 172 172">
+        <defs>
+          <path id="ringpath" d="M 86,86 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"/>
+        </defs>
+        <text font-family="IBM Plex Mono, monospace" font-size="9.3" letter-spacing="2.5" fill="#B08D57">
+          <textPath href="#ringpath" startOffset="0%">
+            MONTRÉAL · CABANE À SUCRE · CARNAVAL · ÉRABLE · 
+          </textPath>
+        </text>
+      </svg>
+      <div class="medallion">
+        <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag of Québec">
+          <rect width="240" height="160" fill="#003DA5"/>
+          <rect x="108" y="0" width="24" height="160" fill="#ffffff"/>
+          <rect x="0" y="68" width="240" height="24" fill="#ffffff"/>
+          <g fill="#ffffff" font-family="DejaVu Sans, Arial, sans-serif" font-size="34" text-anchor="middle">
+            <text x="54" y="48">&#9884;</text>
+            <text x="186" y="48">&#9884;</text>
+            <text x="54" y="138">&#9884;</text>
+            <text x="186" y="138">&#9884;</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">01</span>
+        <h2 class="field-title">The Visual Spirit</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p>Québec's identity was forged by four centuries of French colonial life adapted to brutal winters, and its décor spirit runs through two beloved, warmly overlapping registers. The <strong>cabane à sucre</strong> (sugar shack) is rustic habitant warmth — red-checkered cloths, worn wood, maple everywhere, and a big communal feast at the height of sugaring season. The <strong>Carnaval de Québec</strong> is the festival version: Bonhomme's cheerful red toque and woven arrow sash, an ice palace, and caribou passed around to fight off the cold — one of the world's largest winter carnivals.</p>
+        <p>Montréal adds its own thread — smoked meat and wood-fired bagels in the Jewish Ashkenazi deli tradition, urban and unpretentious. Across all three, the palette runs to habitant red, maple amber, snow white, and Carnaval blue, with materials staying rustic and warm: worn wood, wool, and wrought iron.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">02</span>
+        <h2 class="field-title">Setting the Scene</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="prose">
+        <p><strong>For a cabane à sucre feast,</strong> lay out red-and-white checkered cloths, rustic wood tables, and a big communal spread — maple-glazed ham, baked beans, pork rinds, and crêpes, finished with tire d'érable (maple taffy poured onto snow or crushed ice). Keep the room warm, wood-panelled, and unfussy — this is a farmhouse feast, not fine dining.</p>
+        <p><strong>For a Carnaval de Québec theme,</strong> bring in Bonhomme's signature red-and-white — a red toque, an arrow-patterned sash (ceinture fléchée), and touches of ice-palace blue-white. Serve caribou (a warming, fortified port-and-spirits blend) as the signature drink, and let string lights and fire-pit warmth stand in for the festival's real ice sculptures and bonfires.</p>
+        <p><strong>For Montréal urban flavour,</strong> set up a smoked meat and bagel spread in the classic deli style — simple, generous, and proudly unpretentious, echoing the city's own Jewish Ashkenazi deli heritage.</p>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">03</span>
+        <h2 class="field-title">Dressing the Room</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Lay down <strong>red-and-white checkered cloths</strong> and rustic wood — the classic cabane à sucre table.</li>
+        <li>Bring in <strong>maple everywhere</strong> — syrup bottles, maple-leaf motifs, and amber tones throughout.</li>
+        <li>Dress in <strong>Bonhomme's colours</strong> — red toque, and an arrow-patterned ceinture fléchée sash as a table runner or wall hanging.</li>
+        <li>Serve <strong>caribou</strong> — the Carnaval's iconic warming, fortified drink — as the signature toast.</li>
+        <li>Add <strong>ice-palace blue-white</strong> touches and string lights for a festival-night glow.</li>
+        <li>Set up a <strong>smoked meat and bagel spread</strong> for Montréal's own deli tradition.</li>
+        <li>Bring in <strong>wool and wrought iron</strong> — warm, practical winter materials throughout.</li>
+        <li>Finish with <strong>tire d'érable</strong> (maple taffy) — pour onto crushed ice for an easy indoor version of the classic snow treat.</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">04</span>
+        <h2 class="field-title">Colour &amp; Material Palette</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Habitant red &amp; white check</li>
+        <li><span class="n">06</span> Fleur-de-lis blue</li>
+        <li><span class="n">02</span> Maple amber</li>
+        <li><span class="n">07</span> Wrought iron black</li>
+        <li><span class="n">03</span> Snow white</li>
+        <li><span class="n">08</span> Cabane wood brown</li>
+        <li><span class="n">04</span> Bonhomme's toque red</li>
+        <li><span class="n">09</span> Caribou berry-red</li>
+        <li><span class="n">05</span> Ceinture fléchée rainbow weave</li>
+        <li><span class="n">10</span> Ice-blue sparkle</li>
+      </ul>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">05</span>
+        <h2 class="field-title">Did You Know?</h2>
+        <span class="field-rule"></span>
+      </div>
+      <ul class="chevron">
+        <li>Québec produces roughly <strong>72% of the world's maple syrup</strong>, managed through a strategic reserve so significant that its 2012 theft — the "Great Maple Syrup Heist" of roughly 3,000 tonnes worth $18 million — remains one of history's most unusual commodity crimes.</li>
+        <li>The <strong>ceinture fléchée</strong> (arrow sash) worn by Bonhomme Carnaval has roots in both French-Canadian and Indigenous finger-weaving traditions — voyageurs and fur traders wore it to cinch clothing against the cold, and it was designated intangible Québec heritage in 2012.</li>
+        <li><strong>Bonhomme Carnaval</strong>, the festival's beloved seven-foot snowman mascot, has appeared every year since the Carnaval began in 1955 — his effigies are collectible, and the 2025 model was made from recycled maple tubing.</li>
+        <li>The <strong>Montréal bagel</strong> is genuinely distinct from New York's — smaller, denser, sweetened with honey rather than malt, and wood-fired — with the Mile End's two dynasties, Fairmount (1919) and St-Viateur (1957), keeping up a friendly, decades-long rivalry.</li>
+      </ul>
+    </section>
+
+    <div class="reference-divider">
+      <span class="label">Décor &amp; Ambiance Reference</span>
+      <span class="line"></span>
+    </div>
+    <p class="reference-sub">The pieces, the dress, and the sound of an authentic Québécois gathering.</p>
+
+    <section class="field" style="margin-top:36px;">
+      <div class="field-head">
+        <span class="field-num">06</span>
+        <h2 class="field-title">Room &amp; Table Décor</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Cabane à Sucre</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Checkered Cloths &amp; Wood</span><span class="dish-tag">habitant rustic</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Red-and-white checkered tablecloths over worn, rustic wood tables — the classic sugar shack look, warm and unfussy.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Maple Everywhere</span><span class="dish-tag">the defining flavour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Bottles of maple syrup and maple-leaf motifs as décor — the ingredient that's become synonymous with Québec itself.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Tire d'Érable Station</span><span class="dish-tag">maple taffy on snow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Hot maple syrup poured over crushed ice and rolled onto a stick — the most joyful, participatory Québécois tradition there is.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Communal Feast Table</span><span class="dish-tag">ham, beans &amp; crêpes</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A big shared spread of maple-glazed ham, baked beans, and crêpes — the generous, family-style centrepiece of the sugar shack meal.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Carnaval &amp; Montréal</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceinture Fléchée</span><span class="dish-tag">arrow sash</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The colourful woven arrow sash worn by Bonhomme Carnaval — a genuine piece of French-Canadian and Indigenous craft heritage.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Caribou Bar</span><span class="dish-tag">Carnaval's signature drink</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A fortified port-and-spirits blend served warm — the iconic drink of the Québec Winter Carnival, meant to fight off the cold.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ice-Palace Sparkle</span><span class="dish-tag">festival glow</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Blue-white lighting and string lights, echoing Bonhomme's ice palace and the festival's outdoor magic.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Smoked Meat &amp; Bagel Spread</span><span class="dish-tag">Montréal deli</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Piled-high smoked meat on rye and wood-fired Montréal bagels — the city's own proud deli institution.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">07</span>
+        <h2 class="field-title">What to Wear</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">For Her</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Red Toque</span><span class="dish-tag">the Bonhomme colour</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A simple red knit toque — Bonhomme Carnaval's signature colour, easy and instantly recognisable.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Ceinture Fléchée Sash</span><span class="dish-tag">arrow-woven belt</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A colourful woven arrow sash tied at the waist — genuine Québécois heritage worn with pride at Carnaval.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Habitant Wool</span><span class="dish-tag">rustic warmth</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A cosy wool sweater or shawl — practical, warm, and true to the region's rustic winter life.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">For Him</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Red Toque &amp; Sash</span><span class="dish-tag">Bonhomme style</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A red toque with a ceinture fléchée sash — the exact look of Bonhomme Carnaval himself.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Coureur des Bois Look</span><span class="dish-tag">woodsman heritage</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>A rustic plaid or leather jacket, evoking the fur-trading coureurs des bois of Québec's early history.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Wool &amp; Flannel</span><span class="dish-tag">winter practical</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Warm wool and flannel layers — simple, comfortable, and genuinely suited to Québec's long winters.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">08</span>
+        <h2 class="field-title">Music &amp; Sound</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns">
+          <div>
+            <p class="col-title">Traditional Québécois</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Traditional Québécois Music</span><span class="dish-tag">folk fiddle &amp; song</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Fiddle-driven traditional music, heard at Carnaval and cabane à sucre gatherings alike — lively, folk-rooted, and communal.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">La Bottine Souriante</span><span class="dish-tag">modern trad-folk</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Québec's beloved traditional-folk revival band — a genuine, widely-loved entry point into the sound.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Chansonniers</span><span class="dish-tag">Québécois singer-songwriters</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>The French-language singer-songwriter tradition — warm, poetic, and central to Québécois identity.</div></div></li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Modern &amp; Montréal</p>
+            <ol class="plain">
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Québécois Pop &amp; Rock</span><span class="dish-tag">contemporary playlist</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Contemporary French-Canadian pop and rock — an easy, upbeat modern option for any gathering.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Montréal Indie</span><span class="dish-tag">the city's music scene</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Montréal's celebrated indie music scene — a modern, artsy counterpoint to the traditional Québécois sound.</div></div></li>
+              <li><div class="dish-body"><button class="dish-toggle" aria-expanded="false"><span class="dish-name">Carnaval Anthems</span><span class="dish-tag">festival spirit</span><span class="dish-plus">+</span></button><div class="dish-detail" hidden>Cheerful festival music associated with the Carnaval — upbeat and communal, built for a crowd.</div></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">09</span>
+        <h2 class="field-title">Motifs &amp; Symbols</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <p class="palette-intro">The recurring shapes and emblems that make a room read as unmistakably Québécois:</p>
+      <ul class="num-grid">
+        <li><span class="n">01</span> Fleur-de-lis</li>
+        <li><span class="n">06</span> Ice palace</li>
+        <li><span class="n">02</span> Maple leaf</li>
+        <li><span class="n">07</span> Ceinture fléchée pattern</li>
+        <li><span class="n">03</span> Bonhomme Carnaval</li>
+        <li><span class="n">08</span> Cabane à sucre (sugar shack)</li>
+        <li><span class="n">04</span> Red toque</li>
+        <li><span class="n">09</span> Poutine bowl</li>
+        <li><span class="n">05</span> Snowflake</li>
+        <li><span class="n">10</span> Montréal bagel</li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="field">
+      <div class="field-head">
+        <span class="field-num">10</span>
+        <h2 class="field-title">Party Touches &amp; Activities</h2>
+        <span class="field-rule"></span>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-columns cols-3">
+          <div>
+            <p class="col-title">Cabane à Sucre</p>
+            <ol class="plain">
+              <li>Tire d'érable (maple taffy) making</li>
+              <li>Communal ham-and-beans feast</li>
+              <li>Poutine tasting</li>
+              <li>Toast — "Santé!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Carnaval de Québec</p>
+            <ol class="plain">
+              <li>Caribou toasting</li>
+              <li>Ceinture fléchée sash-tying</li>
+              <li>Bonhomme photo corner</li>
+              <li>Toast — "Joyeux Carnaval!"</li>
+            </ol>
+          </div>
+          <div>
+            <p class="col-title">Seasonal Themes</p>
+            <ol class="plain">
+              <li>Carnaval de Québec (Jan/Feb)</li>
+              <li>Cabane à sucre season (March)</li>
+              <li>Fête Nationale du Québec (Jun 24)</li>
+              <li>Festival du Voyageur (Manitoba, Feb)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-nav">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+        Home
+      </a>
+      <a href="theme-calendar.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+        Theme Calendar
+      </a>
+      <a href="decoration-party.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+        All Décor
+      </a>
+      <a href="quebec.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3"></path><line x1="7" y1="10" x2="7" y2="21"></line><path d="M17 3c-1.5 0-3 1.8-3 5s1.5 4 3 4v9"></path></svg>
+        Québec Cuisine
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.dish-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var detail = btn.parentElement.querySelector('.dish-detail');
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(expanded){
+          detail.setAttribute('hidden','');
+        } else {
+          detail.removeAttribute('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
